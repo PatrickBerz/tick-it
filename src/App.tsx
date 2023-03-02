@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import logo from './logo.svg';
 import './App.css';
@@ -8,7 +9,7 @@ function App() {
     <div className="App">
       
       <header className="App-header">
-        <Button variant='warning'>Admin</Button>
+        <Button variant='danger'>Admin</Button>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Tick-it app
