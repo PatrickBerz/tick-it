@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
-import logo from './logo.svg';
+import logo from './logo-tran.png';
 import './App.css';
 
 function App() {
@@ -14,14 +14,7 @@ function App() {
         <p>
           Tick-it app
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        
       </header>
     </div>
   );
