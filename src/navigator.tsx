@@ -1,9 +1,9 @@
 import React, {Component } from 'react';
 import {Navbar, Nav, Container} from 'react-bootstrap';
 import {BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import {SeasonPass} from './seasonPass';
-import {Home} from "./home";
-import {AdminLogin} from "./adminLogin";
+import {SeasonPass} from './Pages/seasonPass';
+import {Home} from "./Pages/home";
+import {AdminLogin} from "./Pages/adminLogin";
 
 export default class Navigator extends Component{
     render(){
