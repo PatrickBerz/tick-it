@@ -7,7 +7,7 @@ export const Home = () =>{
         <div className='App-body'>
         <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
           <Image src={logo} className='App-logo-big' style={{marginTop:'-60px'}}></Image>
-          <div style={{borderColor:'black'}}>
+          <div>
             <Form.Control
             placeholder="Enter to search for event"
             id="searchInput"
