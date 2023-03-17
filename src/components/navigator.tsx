@@ -1,9 +1,7 @@
 import React, {Component } from 'react';
 import {Navbar, Nav, Container} from 'react-bootstrap';
 import {Route, Routes, Link } from 'react-router-dom';
-import { SeasonPass } from './seasonPass';
-import { Home } from './home';
-import {AdminLogin} from "./adminLogin";
+
 
 export default class Navigator extends Component{
     render(){
@@ -19,13 +17,6 @@ export default class Navigator extends Component{
                         </Nav>
                 </Container>
             </Navbar> 
-            <div>
-                <Routes>
-                    <Route path='/' element={<Home/>}/>
-                    <Route path='/adminLogin' element={<AdminLogin/>}/>
-                    <Route path='/seasonPass' element={<SeasonPass/>}/>
-                </Routes>
-            </div>
         </div>  
         )
     }
