@@ -1,14 +1,14 @@
 import React, {Component } from 'react';
 import {Navbar, Nav, Container} from 'react-bootstrap';
-import {BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import {SeasonPass} from './Pages/seasonPass';
-import {Home} from "./Pages/home";
-import {AdminLogin} from "./Pages/adminLogin";
+import {Route, Routes, Link } from 'react-router-dom';
+import { SeasonPass } from './seasonPass';
+import { Home } from './home';
+import {AdminLogin} from "./adminLogin";
 
 export default class Navigator extends Component{
     render(){
     return (
-        <Router>
+        <div>
             <Navbar bg='dark' variant='dark' style={{maxHeight:'50px'}} sticky='top'>
                 <Container>
                     <Navbar.Brand as={Link} to={"/"} style={{color:'red'}} >TickIt</Navbar.Brand>
@@ -26,7 +26,7 @@ export default class Navigator extends Component{
                     <Route path='/seasonPass' element={<SeasonPass/>}/>
                 </Routes>
             </div>
-        </Router>  
+        </div>  
         )
     }
 }
