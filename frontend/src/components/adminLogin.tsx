@@ -24,7 +24,7 @@ export const AdminLogin = () =>{
                 type='password'
                 id='passwordField'
                 name='passInput'
-                value={''}
+                // value={''}
                 placeholder='Password'
                 >
                 </Form.Control>
