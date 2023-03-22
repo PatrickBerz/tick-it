@@ -4,7 +4,7 @@ const router = express.Router();
 router.get("/password", (req, res) => {
 
     const str = [{
-        "name": "Ben"
+        "name": "tick-it"
     }];
     res.end(JSON.stringify(str));
 });
