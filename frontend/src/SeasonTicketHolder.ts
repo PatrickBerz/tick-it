@@ -4,10 +4,10 @@ import { Seat } from "./Seat"; //Import Seat class
 export class SeasonTicketHolder extends Attendee {
     private seatAssignment: Seat;
     
-    /*constructor(name:string, address:string, phoneNum:string, seatAssignment:Seat) {
-        super.constructor(name, address, phoneNum);
+    constructor(name:string, address:string, phoneNum:string, seatAssignment:Seat) {
+        super(name, address, phoneNum);
         this.seatAssignment = seatAssignment;
-    }*/
+    }
 
     getSeatAssignment() { return this.seatAssignment; }
 

@@ -1,5 +1,6 @@
 import { Attendee } from "./Attendee"; //Import Attendee class
 import { Ticket } from "./Ticket"; //Import Ticket class
+import { TicketStatus } from "./Ticket"; //Import TicketStatus enums
 
 export class Purchase {
     private confNum: number;
@@ -24,11 +25,16 @@ export class Purchase {
             totalPrice += this.tickets[ticket].getPrice();
         }
     }
+
+    pickUpTickets() {
+        for (var ticket in this.tickets) {
+            this.tickets[ticket].setTicketStatus(TicketStatus.PickedUp);
+        }
+    }
+
+    payTickets() {
+        for (var ticket in this.tickets) {
+            this.tickets[ticket].setTicketStatus(TicketStatus.Paid);
+        }
+    }
 }
-
-
-/*
-TO DO
-+ pickUpTickets()
-+ pay()
-*/
