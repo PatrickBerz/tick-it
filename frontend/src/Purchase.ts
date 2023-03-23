@@ -1,3 +1,4 @@
+import { threadId } from "worker_threads";
 import { Attendee } from "./Attendee"; //Import Attendee class
 import { Ticket } from "./Ticket"; //Import Ticket class
 import { TicketStatus } from "./Ticket"; //Import TicketStatus enums
@@ -9,6 +10,8 @@ export class Purchase {
 
     constructor(purchaser: Attendee) {
         this.purchaser = purchaser;
+        this.confNum = 0;
+        this.tickets = [];
     }
 
     getConfNum() { return this.confNum; }
