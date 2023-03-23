@@ -30,4 +30,6 @@ export class Ticket {
 
     setPrice(price: number) { this.price = price; }
 
+    getPrice() { return this.price; }
+
 }
