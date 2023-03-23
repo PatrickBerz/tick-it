@@ -1,4 +1,3 @@
-import { threadId } from "worker_threads";
 import { Attendee } from "./Attendee"; //Import Attendee class
 import { Ticket } from "./Ticket"; //Import Ticket class
 import { TicketStatus } from "./Ticket"; //Import TicketStatus enums
@@ -8,10 +7,11 @@ export class Purchase {
     private purchaser: Attendee;
     private tickets: Ticket[];
 
-    constructor(purchaser: Attendee) {
+    constructor(purchaser: Attendee, tickets: Ticket[]) {
         this.purchaser = purchaser;
-        this.confNum = 0;
-        this.tickets = [];
+        this.confNum = 0; //Somehow get conf number
+        this.tickets = tickets;
+        this.reserveTickets();
     }
 
     getConfNum() { return this.confNum; }
@@ -26,6 +26,14 @@ export class Purchase {
         let totalPrice = 0.0;
         for (var index in this.tickets) {
             totalPrice += this.tickets[index].getPrice();
+        }
+
+        return totalPrice;
+    }
+
+    reserveTickets() {
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.Reserved);
         }
     }
 
