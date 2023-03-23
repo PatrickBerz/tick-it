@@ -21,20 +21,20 @@ export class Purchase {
 
     calcTotalPrice() {
         let totalPrice = 0.0;
-        for (var ticket in this.tickets) {
-            totalPrice += this.tickets[ticket].getPrice();
+        for (var index in this.tickets) {
+            totalPrice += this.tickets[index].getPrice();
         }
     }
 
     pickUpTickets() {
-        for (var ticket in this.tickets) {
-            this.tickets[ticket].setTicketStatus(TicketStatus.PickedUp);
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.PickedUp);
         }
     }
 
     payTickets() {
-        for (var ticket in this.tickets) {
-            this.tickets[ticket].setTicketStatus(TicketStatus.Paid);
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.Paid);
         }
     }
 }
