@@ -1,0 +1,30 @@
+.App {
+  background-color: #18054d;
+  min-height:100vh;
+}
+
+.App-logo-big {
+  max-height: 60vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #000000;
+  max-height: 80px;
+  flex-direction: row;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-link {
+  color: #c5a5f7;
+}
+
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */

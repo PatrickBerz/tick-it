@@ -1,28 +1,19 @@
+import * as React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Stack,Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import React, {useState} from 'react';
-
+import {useState} from 'react';
 
 export const AdminLogin = () =>{
-    const [value, setValue] = useState('');
-    
-    const onFormSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log(value);
-        setValue(value);
-        fetch('4000/password', {
-            method: 'POST',
-            body:JSON.stringify({
-                val: value
-            })
-        })
+
+    const [value, setValue] = useState(),
         
-    }
-    // const fetchData = async () => {
-    //     const {data} = await 
-    //     console.log(data);
-    // }
+        onInput = ({target:{value}}) => setValue(value),
+        onFormSubmit = e => {
+            e.preventDefault()
+            console.log(value)
+            setValue()
+        }
 
     return (
         <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
@@ -31,7 +22,7 @@ export const AdminLogin = () =>{
                     <Form.Control
                         type='password'
                         placeholder='Password'
-                        onChange={(e) => setValue(e.target.value)}
+                        onChange={onInput}
                         value = {value}
                     >
                     </Form.Control>
