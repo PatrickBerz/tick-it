@@ -1,5 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const cors = require("cors")
+
+router.use(cors({
+    origin: '*'
+}));
 
 router.get("/password", (req, res) => {
 
@@ -10,12 +15,21 @@ router.get("/password", (req, res) => {
     res.end(JSON.stringify(str));
 });
 router.post("/password", (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'localhost');
-    const str = [{
-        "name": "tick-it",
-        "password": "AdminLog"
-    }];
-    res.end(JSON.stringify(str));
+    //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
+    let password = req.body;
+    console.log(req);
+    if (password == 'admin'){
+        res.status(200);
+    }
+    else{
+        res.status(500);
+    }
+    // const str = [{
+    //     "name": "tick-it",
+    //     "password": "AdminLog"
+    // }];
+    // res.end(JSON.stringify(str));
+    res.end();
 });
 
 module.exports = router;
