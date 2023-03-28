@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo-tran.png';
 import { Stack, Image, Form } from 'react-bootstrap';
+import {Route, Routes, Link } from 'react-router-dom';
 
 export const Home = () =>{
     return (
@@ -19,6 +20,32 @@ export const Home = () =>{
               show events here
             </p>
           </div> 
+          <div>
+
+            <Link 
+              to={"/seatSelection"}
+              state={{event: "SmallEvent1"}}>
+              <button type="button">
+                    Small Event 1
+              </button>
+            </Link>
+
+            <Link 
+              to={"/seatSelection"}
+              state={{event: "SmallEvent2"}}>
+              <button type="button">
+                    Small Event 2
+              </button>
+            </Link>
+            
+            <Link 
+              to={"/seatSelection"}
+              state={{event: "LargeEvent1"}}>
+              <button type="button">
+                    Large Event 1
+              </button>
+            </Link>
+          </div>
         </Stack>
       </div>
     )
