@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-
 function serialize<T>(objects: Set<T>, destinationFileName: String): void { //Turn a set of objects and turn them into a json file, stored at the given destinationFileName.
     fs.writeFile(destinationFileName, '{ "objects": [', function(err) {if (err) console.error(err)});
     for (let object of objects) {
