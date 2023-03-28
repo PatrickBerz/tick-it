@@ -10,6 +10,7 @@ router.get("/password", (req, res) => {
     res.end(JSON.stringify(str));
 });
 router.post("/password", (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'localhost');
     const str = [{
         "name": "tick-it",
         "password": "AdminLog"
