@@ -16,8 +16,8 @@ router.get("/password", (req, res) => {
 });
 router.post("/password", (req, res) => {
     //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
-    let password = req.body;
-    console.log(req);
+    let password = req.body.value;
+    console.log(password);
     if (password == 'admin'){
         res.status(200);
     }
