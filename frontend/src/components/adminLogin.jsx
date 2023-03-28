@@ -22,15 +22,13 @@ export const AdminLogin = () =>{
         promise.then(event => {
             if (event.status === 200) {
               setAlert({ label: 'success', type: 'success' })
+              window.location.href="/adminPage"
             } else {
               setAlert({ label: `Error ${event.statusText}`, type: 'danger' })
             }
           })
     }
-    // const fetchData = async () => {
-    //     const {data} = await 
-    //     console.log(data);
-    // }
+
 
     return (
         <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>

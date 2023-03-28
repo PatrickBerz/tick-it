@@ -9,6 +9,7 @@ import { AdminLogin } from './components/adminLogin';
 import { SeatSelection } from './components/seatSelection';
 import { CheckOut } from './components/checkOut';
 import { OrderConfirmation } from './components/orderConfirmation';
+import {AdminPage} from './components/adminPage';
 
 const App = () => 
   <Router>
@@ -18,6 +19,7 @@ const App = () =>
           <Route path='/' element={<Home/>}/>
           <Route path='/adminLogin' element={<AdminLogin/>}/>
           <Route path='/seasonPass' element={<SeasonPass/>}/>
+          <Route path='/adminPage' element={<AdminPage/>}/>
           <Route path='/seatSelection' element={<SeatSelection/>}/>
           <Route path='/checkOut' element={<CheckOut/>}/>
           <Route path='/orderConfirmation' element={<OrderConfirmation/>}/>

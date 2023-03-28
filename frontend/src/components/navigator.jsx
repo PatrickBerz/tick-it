@@ -14,6 +14,7 @@ export default class Navigator extends Component{
                             <Nav.Link as={Link} to={"/"} >Home</Nav.Link>
                             <Nav.Link as={Link} to={"/seasonPass"} >Season Pass</Nav.Link>
                             <Nav.Link as={Link} to={"/adminLogin"} >Admin Login</Nav.Link>
+
                         </Nav>
                 </Container>
             </Navbar> 
