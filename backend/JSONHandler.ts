@@ -1,7 +1,5 @@
 import * as fs from 'fs';
 
-
-
 function serialize<T>(objects: Set<T>, destinationFileName: string): void { //Turn a set of objects and turn them into a json file, stored at the given destinationFileName.
     fs.writeFile(destinationFileName, '{ "objects": [', function(err) {if (err) console.error(err)});
     for (let object of objects) {
@@ -13,7 +11,6 @@ function serialize<T>(objects: Set<T>, destinationFileName: string): void { //Tu
 }
 
 function deserialize<T>(fileName: string): Set<T> { //Take the name of a json file, turn it into a set of objects and return that set.
-    
     var collection = new Set<T>();
     try {
         const data = fs.readFileSync(fileName, 'utf8');
@@ -34,4 +31,3 @@ function deserialize<T>(fileName: string): Set<T> { //Take the name of a json fi
 //function deserializeVenue(fileName: String){} - deserialize<SeatSection>
 //function deserializePurchases(fileName: String){} - deserialize<Purchase>
 //function deserializeSeasonHolders(fileName: String){} - deserialize<SeasonTicketHolder>
-
