@@ -22,7 +22,7 @@ router.post("/password", (req, res) => {
         res.status(200);
     }
     else{
-        res.status(500);
+        res.status(403);
     }
     // const str = [{
     //     "name": "tick-it",
