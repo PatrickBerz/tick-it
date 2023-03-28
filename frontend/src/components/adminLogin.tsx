@@ -13,7 +13,7 @@ export const AdminLogin = () =>{
         setValue(value);
         const data = fetch('http://localhost:4000/password', {
             method: 'POST',
-            mode: 'cors'
+            body: JSON.stringify({value})
         });
         const items = data;
         console.log(items)
