@@ -11,13 +11,12 @@ export const AdminLogin = () =>{
         e.preventDefault();
         console.log(value);
         setValue(value);
-        fetch('4000/password', {
+        const data = fetch('http://localhost:4000/password', {
             method: 'POST',
-            body:JSON.stringify({
-                val: value
-            })
-        })
-        
+            mode: 'cors'
+        });
+        const items = data;
+        console.log(items)
     }
     // const fetchData = async () => {
     //     const {data} = await 
