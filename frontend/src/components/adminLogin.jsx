@@ -23,7 +23,7 @@ export const AdminLogin = () =>{
             if (event.status === 200) {
               setAlert({ label: 'success', type: 'success' })
             } else {
-              setAlert({ label: `Error ${event.status}`, type: 'danger' })
+              setAlert({ label: `Error ${event.statusText}`, type: 'danger' })
             }
           })
     }
