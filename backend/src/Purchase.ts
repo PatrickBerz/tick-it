@@ -48,4 +48,10 @@ export class Purchase {
             this.tickets[index].setTicketStatus(TicketStatus.Paid);
         }
     }
+
+    returnTickets() {
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.Unsold);
+        }   
+    }
 }
