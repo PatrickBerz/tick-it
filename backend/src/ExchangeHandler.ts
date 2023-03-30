@@ -3,19 +3,19 @@ import { Purchase } from "./Purchase"; //Import Purchase class
 
 export class ExchangeHandler {
     //Exchange the tickets by making a new purchase
-    exchange(ogPurchase: Purchase, newTickets: Ticket[]) {
+    exchange(ogPurchase: Purchase, newTickets: Ticket[], onlineExchange: boolean) {
         //Mark the current tickets as Unsold so they are available
         ogPurchase.returnTickets();
 
         //Generate new purchase with the same Attendee as original
         let newPurchase = new Purchase(ogPurchase.getPurchaser(), newTickets);
 
-        this.refundOnline(ogPurchase, newPurchase); //How to get if online?
+        if (onlineExchange) { this.refundOnline(ogPurchase, newPurchase); }
 
         return newPurchase; //Return to system to go to check-out
     }
 
-    //A user has
+    //A user has opted for an exchange online with a card
     refundOnline(ogPurchase: Purchase, newPurchase : Purchase) {
         let oldPrice = ogPurchase.calcTotalPrice();
         let newPrice = newPurchase.calcTotalPrice();
