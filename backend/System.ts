@@ -15,11 +15,12 @@ export class System {
         let coll: Set<Seat> = new Set<Seat>();
         coll.add(obj);
         let data: string = defaultSerializer.serialize(obj) as unknown as string;
-        fs.writeFileSync("test1.json", data);
+        let datastr = JSON.stringify(data);
+        fs.writeFileSync("test1.json", datastr);
 
-        console.log("Serialized obj " + JSON.stringify(obj));
+        console.log("Serialized obj " + JSON.stringify(data));
 
-        const set = defaultSerializer.deserializeObject(data, Seat);
+        const set = defaultSerializer.deserialize(data, Seat);
         console.log("\n\n\n\n");
         console.log("Deserialized: " + JSON.stringify(set));
     }
