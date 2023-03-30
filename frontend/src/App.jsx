@@ -10,6 +10,8 @@ import { SeatSelection } from './components/seatSelection';
 import { CheckOut } from './components/checkOut';
 import { OrderConfirmation } from './components/orderConfirmation';
 import {AdminPage} from './components/adminPage';
+import {Listings } from './components/listings';
+import { TicketStuff } from './components/ticketStuff';
 
 const App = () => 
   <Router>
@@ -23,6 +25,8 @@ const App = () =>
           <Route path='/seatSelection' element={<SeatSelection/>}/>
           <Route path='/checkOut' element={<CheckOut/>}/>
           <Route path='/orderConfirmation' element={<OrderConfirmation/>}/>
+          <Route path='/listings' element={<Listings/>}/>
+          <Route path='/ticketStuff' element={<TicketStuff/>}/>
       </Routes>
     </div>
   </Router>
