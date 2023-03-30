@@ -1,7 +1,8 @@
 //import { serialize } from "./JSONHandler"
 //import { deserialize } from "./JSONHandler"
 import { JsonSerializer, throwError } from 'typescript-json-serializer';
-import { Seat } from "../frontend/src/Seat"
+import { Seat } from "../frontend/src/Seat";
+import * as fs from 'fs';
 
 export class System {
 
@@ -14,6 +15,7 @@ export class System {
         let coll: Set<Seat> = new Set<Seat>();
         coll.add(obj);
         let data: string = defaultSerializer.serialize(obj) as unknown as string;
+        fs.writeFileSync("test1.json", data);
 
         console.log("Serialized obj " + JSON.stringify(obj));
 
