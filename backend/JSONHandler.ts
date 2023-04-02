@@ -1,5 +1,8 @@
 import { JsonSerializer } from 'typescript-json-serializer';
 import { Seat } from "../frontend/src/Seat";
+import { Ticket } from "../frontend/src/Ticket";
+import { Performance } from "../frontend/src/Performance";
+import { SeatSection } from "../frontend/src/SeatSection";
 import * as fs from 'fs';
 
 export class JSONHandler {
@@ -20,42 +23,64 @@ export class JSONHandler {
     }
 
     deserialize(filePath: string, type: string) {
+        this.deserializedData = []; //Clear out any previous data
 
         //Retrieve the JSON data at the specified location
         const data = fs.readFileSync(filePath, 'utf8');
         console.log("\n\n\n\n");
         console.log("Deserialized: " + JSON.stringify(JSON.parse(data)));
         console.log("\n\n")
-        //let set2: Array<Seat> = JSON.parse(data);
         let dataSet : any[] = JSON.parse(data);
 
+        //Create the TypeScripts based off of the type given
         if (type == "seat") {
             for (var index in dataSet) {
                 let object = dataSet[index];
-                let newSeat = new Seat(object["section"], object["row"], object["seatNum"], object["accessible"], object["inSeasonSection"], object["defaultPrice"]);
+                let newSeat = new Seat(object["section"], object["row"], object["seatNum"], object["acessible"], object["inSeasonSection"], object["defaultPrice"]);
                 this.deserializedData.push(newSeat);
             }
-            /*let seat = set2[0];
-            console.log(seat);
-            let newSeat = new Seat(seat["section"], seat["row"], seat["seatNum"], seat["acessible"], seat["inSeasonSection"], seat["defaultPrice"]);
-        console.log(newSeat.getDefaultPrice());*/
+        } else if (type == "seatSection") {
+            for (var index in dataSet) {
+                let objectSection = dataSet[index];
+
+                //Deserialize the set of seats
+                let seats: Seat[] = [];
+                let dataSetOfSeats: any[] = JSON.parse(JSON.stringify(objectSection["seats"])); //Have to stringify to get parser to accept
+                //Build the set of seats in the seat section
+                for (var index in dataSetOfSeats) {
+                    let object = dataSetOfSeats[index];
+                    let newSeat = new Seat(object["section"], object["row"], object["seatNum"], object["acessible"], object["inSeasonSection"], object["defaultPrice"]);
+                    seats.push(newSeat);
+                }
+
+                //Create and push the new seat section
+                let newSeatSection = new SeatSection(objectSection["section"], seats);
+                this.deserializedData.push(newSeatSection);
+            }
         }
     }
 
     //TEST FUNCTION TO DEMONSTRATE WORKING
     checkData() {
         for (var index in this.deserializedData) {
-            console.log("SEAT ROW: " + this.deserializedData[index].getRow());
+            //console.log("SEAT ROW: " + this.deserializedData[index].getRow());
+            //console.log("SECTIONNUM: " + this.deserializedData[index].getSectionNum());
+            console.log(this.deserializedData[index]);
         }
     }
 }
 
 //CODE USED TO TEST
 let obj: Seat = new Seat("Orchestra", "B", 12, false, false, 29.99);
-let obj2: Seat = new Seat("Nodebleeds", "X", 3, false, false, 4.99);
+let obj2: Seat = new Seat("Nosebleeds", "X", 3, false, false, 4.99);
 let coll: Seat[] = [];
 coll.push(obj);
 coll.push(obj2);
-let sys: JSONHandler = new JSONHandler(coll, "test2.json");
-sys.deserialize("test2.json", "seat");
+
+let coll2: SeatSection[] = [];
+let obj3: SeatSection = new SeatSection("8", coll);
+coll2.push(obj3);
+
+let sys: JSONHandler = new JSONHandler(coll2, "test3.json");
+sys.deserialize("test3.json", "seatSection");
 sys.checkData();

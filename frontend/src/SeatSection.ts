@@ -1,15 +1,15 @@
 import { Seat } from "./Seat"; //Import Seat class
 
 export class SeatSection {
-    private sectionNum: number;
+    private section: string;
     private seats: Seat[];
 
-    constructor(sectionNum: number, seats: Seat[]) {
-        this.sectionNum = sectionNum;
+    constructor(sectionNum: string, seats: Seat[]) {
+        this.section = sectionNum;
         this.seats = seats;
     }
 
-    getSectionNum() { return this.sectionNum; }
+    getSectionNum() { return this.section; }
 
     getSeats() { return this.seats; }
 
