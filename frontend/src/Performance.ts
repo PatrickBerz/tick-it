@@ -13,8 +13,9 @@ export class Performance {
         
         this.show = show;
         this.dateTime = dateTime;
+        this.tickets = [];
 
-        this.tickets = this.makeTickets(this.show.getVenue())
+        //this.tickets = this.makeTickets(this.show.getVenue()) This breaks JSON
     }
 
     getShow() { return this.show}

@@ -7,14 +7,18 @@ import { Attendee } from "../frontend/src/Attendee";
 import { Venue } from "../frontend/src/Venue";
 import { SeasonTicketHolder } from "../frontend/src/SeasonTicketHolder";
 import { Show } from "../frontend/src/Show";
-//const {parse, stringify} = require('flatted'); Potential fix to serializing Tickets 
+import { Purchase } from "../frontend/src/Purchase";
 import * as fs from 'fs';
 
 export class JSONHandler {
     private deserializedData : any[] = [];
 
-    //Use the constructor to serialize any set of data to a given file path
-    constructor(dataSet: any[], filePath : string) {
+    constructor() {
+        this.deserializedData = [];
+    }
+
+    //Use to serialize any set of data to a given file path
+    serialize(dataSet: any[], filePath : string) {
         this.deserializedData = []; //Set data to empty
         
         //Instantiate a default serializer
@@ -123,20 +127,31 @@ export class JSONHandler {
 
         //Create the TypeScript Ticket objects
         for (var index in dataSet) {
-            let objectSeasonHolder = dataSet[index];
+            let objectTicket = dataSet[index];
 
             //TO DO
             //Deserialize and build the Perofrmance for the ticket
-            let performanceData: any = JSON.parse(JSON.stringify(objectSeasonHolder["seatAssignment"])); //Have to stringify to get parser to accept
-            //let perf = new Seat(Data["section"], seatData["row"], seatData["seatNum"], seatData["acessible"], seatData["inSeasonSection"], seatData["defaultPrice"]);
+            let performanceData: any = JSON.parse(JSON.stringify(objectTicket["performance"])); //Have to stringify to get parser to accept
+            //PERFORMANCE
+                //show data
+                    //venue data
+                        //seat sections
+                            //seats
+                    //show name
+                    //performance
+                        //CYCLE CONTINUES
+                //dateTime
+                //tickets
+                
 
             //Deserialize and build the Seat for the ticket
-            let seatData: any = JSON.parse(JSON.stringify(objectSeasonHolder["seatAssignment"])); //Have to stringify to get parser to accept
+            let seatData: any = JSON.parse(JSON.stringify(objectTicket["seatAssignment"])); //Have to stringify to get parser to accept
             let assignedSeat = new Seat(seatData["section"], seatData["row"], seatData["seatNum"], seatData["acessible"], seatData["inSeasonSection"], seatData["defaultPrice"]);
 
-        
-            let newSeasonHolder = new SeasonTicketHolder(objectSeasonHolder["name"], objectSeasonHolder["address"], objectSeasonHolder["phoneNum"], assignedSeat);
-            this.deserializedData.push(newSeasonHolder);
+            //let newTicket = new Ticket(performance, assignedSeat);
+            //newTicket.setTicketStatus(objectTicket["ticketStatus"]);
+            //newTicket.setPrice(objectTicket["price"]);
+            //this.deserializedData.push(newTicket);
         }
     }
 
@@ -155,7 +170,6 @@ export class JSONHandler {
 
             //Deserialize and build the set of seat sections in the venue
             let dataSetOfSeatSections: any[] = JSON.parse(JSON.stringify(objectVenue["seatSections"])); //Have to stringify to get parser to accept
-            
             //Create the TypeScript SeatSection objects
             for (var index in dataSetOfSeatSections) {
                 let objectSection = dataSetOfSeatSections[index];
@@ -183,7 +197,34 @@ export class JSONHandler {
     //TO - DO !!!!!!!!!!!!!!!
     //Create Purchase objects from JSON file
     deserializePurchase(filePath: string) {
+        this.deserializedData = []; //Clear out any previous data
 
+        //Retrieve the JSON data at the specified location
+        const data = fs.readFileSync(filePath, 'utf8');
+        let dataSet : any[] = JSON.parse(data);
+
+        //Create the TypeScript Purchase objects
+        for (var index in dataSet) {
+            let objectPurchase = dataSet[index];
+
+            //Deserialize and build the set of tickets in the purchase
+            let tickets: Ticket[] = [];
+            let dataSetOfSeats: any[] = JSON.parse(JSON.stringify(objectPurchase["tickets"])); //Have to stringify to get parser to accept
+            for (var index in dataSetOfSeats) {
+                let object = dataSetOfSeats[index];
+                //FIX NESTING
+            }
+
+            //Deserialize and build the attendee in the purchase
+            let attendeeData : any = JSON.parse(JSON.stringify(objectPurchase["purchaser"])); //Have to stringify to get parser to accept
+            let attendee = new Attendee(attendeeData["name"], attendeeData["address"], attendeeData["phoneNum"])
+
+            //Create and push the new seat section
+            let newPurchase = new Purchase(attendee);
+            newPurchase.setConfNum(objectPurchase["confNum"]);
+            newPurchase.updateTickets(tickets);
+            this.deserializedData.push(newPurchase);
+        }
     }
 
     //Create Season Ticket Holder objects from JSON file
@@ -232,7 +273,8 @@ coll.push(obj2);
 let coll2: SeatSection[] = [];
 let obj3: SeatSection = new SeatSection("8", coll);
 coll2.push(obj3);
-//let sys: JSONHandler = new JSONHandler(coll2, "test3.json");
+let sys: JSONHandler = new JSONHandler();
+sys.serialize(coll2, "test3.json");
 //sys.deserializeSeatSection("test3.json");
 //sys.checkData();
 
@@ -241,16 +283,16 @@ let coll3: Venue[] = []
 let obj4: Venue = new Venue(coll2);
 coll3.push(obj4);
 coll3.push(obj4);
-//let sys2: JSONHandler = new JSONHandler(coll3, "test4.json");
-//sys2.deserializeVenue("test4.json");
-//sys2.checkData();
+//sys.(coll3, "test4.json");
+//sys.deserializeVenue("test4.json");
+//sys.checkData();
 
 //TEST SEASON TICKET HOLDERS
 let coll4: SeasonTicketHolder[] = []
 let obj5: SeasonTicketHolder = new SeasonTicketHolder("Susan", "123 Sesame Street", "6064152452", obj);
 coll4.push(obj5);
-let sys3 : JSONHandler = new JSONHandler(coll4, "test4.json");
-//sys3.deserializeSeasonTicketHolder("test4.json");
+//sys.(coll4, "test4.json");
+//sys.deserializeSeasonTicketHolder("test4.json");
 
 //TEST TICKETS
 let coll5: Ticket[] = [];
@@ -259,4 +301,4 @@ let date: Date = new Date();
 let obj7: Performance = new Performance(obj8, date);
 let obj6: Ticket = new Ticket(obj7, obj);
 coll5.push(obj6);
-//let sys4 : JSONHandler = new JSONHandler(coll5, "test5.json");
+sys.serialize(coll5, "test5.json");

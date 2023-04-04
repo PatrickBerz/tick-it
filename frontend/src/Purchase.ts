@@ -16,6 +16,8 @@ export class Purchase {
 
     getConfNum() { return this.confNum; }
 
+    setConfNum(confNum: number) { this.confNum = confNum; }
+
     getPurchaser() { return this.purchaser; }
 
     getTickets() { return this.tickets; }
