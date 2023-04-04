@@ -283,9 +283,9 @@ let coll3: Venue[] = []
 let obj4: Venue = new Venue(coll2);
 coll3.push(obj4);
 coll3.push(obj4);
-//sys.(coll3, "test4.json");
-//sys.deserializeVenue("test4.json");
-//sys.checkData();
+sys.serialize(coll3, "test4.json");
+sys.deserializeVenue("test4.json");
+sys.checkData();
 
 //TEST SEASON TICKET HOLDERS
 let coll4: SeasonTicketHolder[] = []
@@ -298,7 +298,7 @@ coll4.push(obj5);
 let coll5: Ticket[] = [];
 let obj8: Show = new Show(obj4, "West Side Story");
 let date: Date = new Date();
-let obj7: Performance = new Performance(obj8, date);
-let obj6: Ticket = new Ticket(obj7, obj);
-coll5.push(obj6);
-sys.serialize(coll5, "test5.json");
+//let obj7: Performance = new Performance(obj8, date);
+//let obj6: Ticket = new Ticket(obj7, obj);
+//coll5.push(obj6);
+//sys.serialize(coll5, "test5.json");

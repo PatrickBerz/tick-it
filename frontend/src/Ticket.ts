@@ -1,5 +1,4 @@
 import { Seat } from "./Seat"; //Import Seat class
-import { Performance } from "./Performance" //Import Performance class
 
 export enum TicketStatus {
     Unsold,
@@ -10,12 +9,12 @@ export enum TicketStatus {
 
 export class Ticket {
 
-    private performance: Performance;
+    private performance: string;
     private seat: Seat;
     private ticketStatus: TicketStatus;
     private price: number;
 
-    constructor(performance:Performance, seat:Seat) {
+    constructor(performance:string, seat:Seat) {
         
         this.performance = performance;
         this.seat = seat;
@@ -31,5 +30,9 @@ export class Ticket {
     setPrice(price: number) { this.price = price; }
 
     getPrice() { return this.price; }
+
+    getPerformance() { return this.performance };
+
+    getSeat() { return this.seat };
 
 }
