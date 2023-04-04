@@ -184,7 +184,7 @@ export class JSONHandler {
                 }
     
                 //Create and push the new seat section
-                let newSeatSection = new SeatSection(objectSection["section"], seats);
+                let newSeatSection = new SeatSection(objectSection["sectionName"], seats);
                 seatSections.push(newSeatSection);
             }
 
@@ -274,7 +274,7 @@ let coll2: SeatSection[] = [];
 let obj3: SeatSection = new SeatSection("8", coll);
 coll2.push(obj3);
 let sys: JSONHandler = new JSONHandler();
-sys.serialize(coll2, "test3.json");
+//sys.serialize(coll2, "test3.json");
 //sys.deserializeSeatSection("test3.json");
 //sys.checkData();
 
@@ -283,9 +283,9 @@ let coll3: Venue[] = []
 let obj4: Venue = new Venue(coll2);
 coll3.push(obj4);
 coll3.push(obj4);
-sys.serialize(coll3, "test4.json");
-sys.deserializeVenue("test4.json");
-sys.checkData();
+//sys.serialize(coll3, "test4.json");
+//sys.deserializeVenue("test4.json");
+//sys.checkData();
 
 //TEST SEASON TICKET HOLDERS
 let coll4: SeasonTicketHolder[] = []
@@ -302,3 +302,7 @@ let date: Date = new Date();
 //let obj6: Ticket = new Ticket(obj7, obj);
 //coll5.push(obj6);
 //sys.serialize(coll5, "test5.json");
+
+//TEST NEW JSON VENUE STRUCTURE
+sys.deserializeVenue("sampleVenue.json");
+sys.checkData();
