@@ -3,11 +3,17 @@ import { Seat } from "../frontend/src/Seat";
 import { Ticket } from "../frontend/src/Ticket";
 import { Performance } from "../frontend/src/Performance";
 import { SeatSection } from "../frontend/src/SeatSection";
+import { Attendee } from "../frontend/src/Attendee";
+import { Venue } from "../frontend/src/Venue";
+import { SeasonTicketHolder } from "../frontend/src/SeasonTicketHolder";
+import { Show } from "../frontend/src/Show";
+//const {parse, stringify} = require('flatted'); Potential fix to serializing Tickets 
 import * as fs from 'fs';
 
 export class JSONHandler {
     private deserializedData : any[] = [];
 
+    //Use the constructor to serialize any set of data to a given file path
     constructor(dataSet: any[], filePath : string) {
         this.deserializedData = []; //Set data to empty
         
@@ -22,65 +28,235 @@ export class JSONHandler {
         console.log("Serialized obj " + JSON.stringify(dataSet));
     }
 
-    deserialize(filePath: string, type: string) {
+    //Create Seat objects from JSON file
+    deserializeSeat(filePath: string) {
         this.deserializedData = []; //Clear out any previous data
 
         //Retrieve the JSON data at the specified location
         const data = fs.readFileSync(filePath, 'utf8');
-        console.log("\n\n\n\n");
-        console.log("Deserialized: " + JSON.stringify(JSON.parse(data)));
-        console.log("\n\n")
         let dataSet : any[] = JSON.parse(data);
 
-        //Create the TypeScripts based off of the type given
-        if (type == "seat") {
-            for (var index in dataSet) {
-                let object = dataSet[index];
-                let newSeat = new Seat(object["section"], object["row"], object["seatNum"], object["acessible"], object["inSeasonSection"], object["defaultPrice"]);
-                this.deserializedData.push(newSeat);
-            }
-        } else if (type == "seatSection") {
-            for (var index in dataSet) {
-                let objectSection = dataSet[index];
+        //Create the TypeScript Seat objects
+        for (var index in dataSet) {
+            let object = dataSet[index];
+            let newSeat = new Seat(object["section"], object["row"], object["seatNum"], object["acessible"], object["inSeasonSection"], object["defaultPrice"]);
+            this.deserializedData.push(newSeat);
+        }
+    }
 
-                //Deserialize the set of seats
+    //Create Seat Section objects from JSON file
+    deserializeSeatSection(filePath: string) {
+        this.deserializedData = []; //Clear out any previous data
+
+        //Retrieve the JSON data at the specified location
+        const data = fs.readFileSync(filePath, 'utf8');
+        let dataSet : any[] = JSON.parse(data);
+
+        //Create the TypeScript Seat objects
+        for (var index in dataSet) {
+            let objectSection = dataSet[index];
+
+            //Deserialize and build the set of seats in the seat section
+            let seats: Seat[] = [];
+            let dataSetOfSeats: any[] = JSON.parse(JSON.stringify(objectSection["seats"])); //Have to stringify to get parser to accept
+            for (var index in dataSetOfSeats) {
+                let object = dataSetOfSeats[index];
+                let newSeat = new Seat(object["section"], object["row"], object["seatNum"], object["acessible"], object["inSeasonSection"], object["defaultPrice"]);
+                seats.push(newSeat);
+            }
+
+            //Create and push the new seat section
+            let newSeatSection = new SeatSection(objectSection["section"], seats);
+            this.deserializedData.push(newSeatSection);
+        }
+    }
+
+    //TO - DO !!!!!!!!!!!!!!!
+    deserializePerformance(filePath: string) {
+        this.deserializedData = []; //Clear out any previous data
+
+        //Retrieve the JSON data at the specified location
+        const data = fs.readFileSync(filePath, 'utf8');
+        let dataSet : any[] = JSON.parse(data);
+
+        for (var index in dataSet) {
+            let objectPerformance = dataSet[index];
+
+            //Deserialize and build the show in the performance
+
+            //Deserialize and build the date in the performance
+
+            //Deserialize and build the set of 
+        }
+
+    }
+
+    //Create Attendee objects from JSON file
+    deserializeAttendee(filePath: string) {
+        this.deserializedData = []; //Clear out any previous data
+
+        //Retrieve the JSON data at the specified location
+        const data = fs.readFileSync(filePath, 'utf8');
+        let dataSet : any[] = JSON.parse(data);
+
+        //Create the TypeScript Attendee objects
+        for (var index in dataSet) {
+            let object = dataSet[index];
+            let newAttendee = new Attendee(object["name"], object["address"], object["phoneNum"]);
+            this.deserializedData.push(newAttendee);
+        }
+    }
+
+    //TO - DO !!!!!!!!!!!!!!!
+    //Create Show objects from JSON file
+    deserializeShow(filePath: string) {
+
+    }
+
+    //Create Ticket objects from JSON file
+    deserializeTicket(filePath: string) {
+        this.deserializedData = []; //Clear out any previous data
+
+        //Retrieve the JSON data at the specified location
+        const data = fs.readFileSync(filePath, 'utf8');
+        let dataSet : any[] = JSON.parse(data);
+
+        //Create the TypeScript Ticket objects
+        for (var index in dataSet) {
+            let objectSeasonHolder = dataSet[index];
+
+            //TO DO
+            //Deserialize and build the Perofrmance for the ticket
+            let performanceData: any = JSON.parse(JSON.stringify(objectSeasonHolder["seatAssignment"])); //Have to stringify to get parser to accept
+            //let perf = new Seat(Data["section"], seatData["row"], seatData["seatNum"], seatData["acessible"], seatData["inSeasonSection"], seatData["defaultPrice"]);
+
+            //Deserialize and build the Seat for the ticket
+            let seatData: any = JSON.parse(JSON.stringify(objectSeasonHolder["seatAssignment"])); //Have to stringify to get parser to accept
+            let assignedSeat = new Seat(seatData["section"], seatData["row"], seatData["seatNum"], seatData["acessible"], seatData["inSeasonSection"], seatData["defaultPrice"]);
+
+        
+            let newSeasonHolder = new SeasonTicketHolder(objectSeasonHolder["name"], objectSeasonHolder["address"], objectSeasonHolder["phoneNum"], assignedSeat);
+            this.deserializedData.push(newSeasonHolder);
+        }
+    }
+
+    //Create Venue objects from JSON file
+    deserializeVenue(filePath: string) {
+        this.deserializedData = []; //Clear out any previous data
+
+        //Retrieve the JSON data at the specified location
+        const data = fs.readFileSync(filePath, 'utf8');
+        let dataSet : any[] = JSON.parse(data);
+
+        //Create the TypeScript Venue objects
+        for (var index in dataSet) {
+            let objectVenue = dataSet[index];
+            let seatSections: SeatSection[] = [];
+
+            //Deserialize and build the set of seat sections in the venue
+            let dataSetOfSeatSections: any[] = JSON.parse(JSON.stringify(objectVenue["seatSections"])); //Have to stringify to get parser to accept
+            
+            //Create the TypeScript SeatSection objects
+            for (var index in dataSetOfSeatSections) {
+                let objectSection = dataSetOfSeatSections[index];
                 let seats: Seat[] = [];
+                //Deserialize and build the set of seats in the seat section
                 let dataSetOfSeats: any[] = JSON.parse(JSON.stringify(objectSection["seats"])); //Have to stringify to get parser to accept
-                //Build the set of seats in the seat section
+                //Create the TypeScript Seat objects to put in SeatSection
                 for (var index in dataSetOfSeats) {
                     let object = dataSetOfSeats[index];
                     let newSeat = new Seat(object["section"], object["row"], object["seatNum"], object["acessible"], object["inSeasonSection"], object["defaultPrice"]);
                     seats.push(newSeat);
                 }
-
+    
                 //Create and push the new seat section
                 let newSeatSection = new SeatSection(objectSection["section"], seats);
-                this.deserializedData.push(newSeatSection);
+                seatSections.push(newSeatSection);
             }
+
+             //Create and push the new venu
+            let newVenue = new Venue(seatSections);
+            this.deserializedData.push(newVenue);
         }
     }
 
+    //TO - DO !!!!!!!!!!!!!!!
+    //Create Purchase objects from JSON file
+    deserializePurchase(filePath: string) {
+
+    }
+
+    //Create Season Ticket Holder objects from JSON file
+    deserializeSeasonTicketHolder(filePath: string) {
+        this.deserializedData = []; //Clear out any previous data
+
+        //Retrieve the JSON data at the specified location
+        const data = fs.readFileSync(filePath, 'utf8');
+        let dataSet : any[] = JSON.parse(data);
+
+        //Create the TypeScript SeasonTicketHolder objects
+        for (var index in dataSet) {
+            let objectSeasonHolder = dataSet[index];
+
+            //Deserialize and build the Seat for the season ticket holder
+            let seatData: any = JSON.parse(JSON.stringify(objectSeasonHolder["seatAssignment"])); //Have to stringify to get parser to accept
+            let assignedSeat = new Seat(seatData["section"], seatData["row"], seatData["seatNum"], seatData["acessible"], seatData["inSeasonSection"], seatData["defaultPrice"]);
+
+            let newSeasonHolder = new SeasonTicketHolder(objectSeasonHolder["name"], objectSeasonHolder["address"], objectSeasonHolder["phoneNum"], assignedSeat);
+            this.deserializedData.push(newSeasonHolder);
+        }
+    }
+
+    
     //TEST FUNCTION TO DEMONSTRATE WORKING
     checkData() {
+        console.log('\n\n\n\n');
         for (var index in this.deserializedData) {
             //console.log("SEAT ROW: " + this.deserializedData[index].getRow());
             //console.log("SECTIONNUM: " + this.deserializedData[index].getSectionNum());
             console.log(this.deserializedData[index]);
         }
+        console.log(this.deserializedData.length);
     }
 }
 
 //CODE USED TO TEST
+//TEST SEAT
 let obj: Seat = new Seat("Orchestra", "B", 12, false, false, 29.99);
 let obj2: Seat = new Seat("Nosebleeds", "X", 3, false, false, 4.99);
 let coll: Seat[] = [];
 coll.push(obj);
 coll.push(obj2);
 
+//TEST SEAT SECTION
 let coll2: SeatSection[] = [];
 let obj3: SeatSection = new SeatSection("8", coll);
 coll2.push(obj3);
+//let sys: JSONHandler = new JSONHandler(coll2, "test3.json");
+//sys.deserializeSeatSection("test3.json");
+//sys.checkData();
 
-let sys: JSONHandler = new JSONHandler(coll2, "test3.json");
-sys.deserialize("test3.json", "seatSection");
-sys.checkData();
+//TEST VENUE
+let coll3: Venue[] = []
+let obj4: Venue = new Venue(coll2);
+coll3.push(obj4);
+coll3.push(obj4);
+//let sys2: JSONHandler = new JSONHandler(coll3, "test4.json");
+//sys2.deserializeVenue("test4.json");
+//sys2.checkData();
+
+//TEST SEASON TICKET HOLDERS
+let coll4: SeasonTicketHolder[] = []
+let obj5: SeasonTicketHolder = new SeasonTicketHolder("Susan", "123 Sesame Street", "6064152452", obj);
+coll4.push(obj5);
+let sys3 : JSONHandler = new JSONHandler(coll4, "test4.json");
+//sys3.deserializeSeasonTicketHolder("test4.json");
+
+//TEST TICKETS
+let coll5: Ticket[] = [];
+let obj8: Show = new Show(obj4, "West Side Story");
+let date: Date = new Date();
+let obj7: Performance = new Performance(obj8, date);
+let obj6: Ticket = new Ticket(obj7, obj);
+coll5.push(obj6);
+//let sys4 : JSONHandler = new JSONHandler(coll5, "test5.json");
