@@ -25,6 +25,8 @@ export class Performance {
 
     getTickets() { return this.tickets}
 
+    setTickets(tickets: Ticket[]) { this.tickets = tickets };
+
     makeTickets(venue:Venue) {
         
         let tickets:Ticket[] = [];
@@ -36,6 +38,6 @@ export class Performance {
             });
         });
 
-        return tickets;
+        this.tickets = tickets;
     }
 }

@@ -1,4 +1,3 @@
-import { threadId } from "worker_threads";
 import { Attendee } from "./Attendee"; //Import Attendee class
 import { Ticket } from "./Ticket"; //Import Ticket class
 import { TicketStatus } from "./Ticket"; //Import TicketStatus enums

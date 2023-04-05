@@ -8,10 +8,8 @@ export class Show {
     private performances: Performance[];
 
     constructor(venue: Venue, showName: string) {
-        
         this.venue = venue;
         this.showName = showName;
-
         this.performances = [];
     }
     
@@ -20,6 +18,8 @@ export class Show {
     getVenue() { return this.venue}
 
     getPerformances() {return this.performances}
+
+    setPerformances(performances: Performance[]) { this.performances = performances};
 
     addPerformance(newPerf: Performance) { this.performances.push(newPerf) }
 }
