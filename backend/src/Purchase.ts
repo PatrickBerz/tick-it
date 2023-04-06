@@ -1,6 +1,7 @@
 import { Attendee } from "./Attendee"; //Import Attendee class
 import { Ticket } from "./Ticket"; //Import Ticket class
 import { TicketStatus } from "./Ticket"; //Import TicketStatus enums
+import { ConfNum } from "./ConfNum" //Import ConfNum class
 
 export class Purchase {
     private confNum: number;
@@ -9,7 +10,7 @@ export class Purchase {
 
     constructor(purchaser: Attendee, tickets: Ticket[]) {
         this.purchaser = purchaser;
-        this.confNum = 0; //Somehow get conf number
+        this.confNum = ConfNum.generateNum(); //Somehow get conf number
         this.tickets = tickets;
         this.reserveTickets();
     }
