@@ -9,7 +9,7 @@ export default class Navigator extends Component{
         <div>
             <Navbar bg='dark' variant='dark' style={{maxHeight:'50px'}} sticky='top'>
                 <Container>
-                    <Navbar.Brand as={Link} to={"/"} style={{color:'red'}} >TickIt</Navbar.Brand>
+                    <Navbar.Brand as={Link} to={"/"} style={{color:'#FF4057'}} >TickIt</Navbar.Brand>
                         <Nav className="me-auto">
                             <Nav.Link as={Link} to={"/"} >Home</Nav.Link>
                             <Nav.Link as={Link} to={"/seasonPass"} >Season Pass</Nav.Link>
