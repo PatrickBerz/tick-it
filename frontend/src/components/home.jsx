@@ -1,7 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo-tran.png';
-import { Stack, Image, Form } from 'react-bootstrap';
+import VBCplaceholder from './VBC.jpg';
+import { Stack, Image, Form, Card, Button } from 'react-bootstrap';
 import {Route, Routes, Link } from 'react-router-dom';
+import { visitFunctionBody } from 'typescript';
 
 export const Home = () =>{
     return (
@@ -16,35 +18,61 @@ export const Home = () =>{
             />
           </div> 
           <div>
-            <p style={{color:'white'}}>
-              show events here
-            </p>
-          </div> 
-          <div>
-
-            <Link 
-              to={"/seatSelection"}
-              state={{event: "SmallEvent1"}}>
-              <button type="button">
-                    Small Event 1
-              </button>
-            </Link>
-
-            <Link 
-              to={"/seatSelection"}
-              state={{event: "SmallEvent2"}}>
-              <button type="button">
-                    Small Event 2
-              </button>
-            </Link>
             
-            <Link 
-              to={"/seatSelection"}
-              state={{event: "LargeEvent1"}}>
-              <button type="button">
-                    Large Event 1
-              </button>
-            </Link>
+            <Stack className="mb-5" direction='horizontal' style={{justifyContent:'center'}} gap={3}>
+              <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={VBCplaceholder}/>
+                <Card.Body>
+                  <Card.Title>Small Event 1</Card.Title>
+                  <Card.Text>
+                    Civic Center Playhouse
+                  </Card.Text>
+                  <Link 
+                    to={"/seatSelection"}
+                    state={{event: "SmallEvent1"}}>
+                    <Button variant="primary">
+                          Purchase Tickets
+                    </Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+
+              {/*Cards*/}
+              
+              <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={VBCplaceholder}/>
+                <Card.Body>
+                  <Card.Title>Small Event 2</Card.Title>
+                  <Card.Text>
+                    Civic Center Playhouse
+                  </Card.Text>
+                  <Link 
+                    to={"/seatSelection"}
+                    state={{event: "SmallEvent2"}}>
+                    <Button variant="primary">
+                          Purchase Tickets
+                    </Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+
+              <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={VBCplaceholder}/>
+                <Card.Body>
+                  <Card.Title>Large Event 1</Card.Title>
+                  <Card.Text>
+                    Civic Center Concert Hall
+                  </Card.Text>
+                  <Link 
+                    to={"/seatSelection"}
+                    state={{event: "LargeEvent1"}}>
+                    <Button variant="primary">
+                          Purchase Tickets
+                    </Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Stack>
           </div>
         </Stack>
       </div>
