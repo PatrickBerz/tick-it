@@ -8,9 +8,9 @@ export class Purchase {
     private purchaser: Attendee;
     private tickets: Ticket[];
 
-    constructor(purchaser: Attendee, tickets: Ticket[]) {
+    constructor(purchaser: Attendee, confNum: number, tickets: Ticket[]) {
         this.purchaser = purchaser;
-        this.confNum = ConfNum.generateNum(); //Somehow get conf number
+        this.confNum = confNum;
         this.tickets = tickets;
         this.reserveTickets();
     }
