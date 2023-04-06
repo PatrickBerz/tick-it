@@ -1,7 +1,6 @@
 import { Attendee } from "./Attendee"; //Import Attendee class
 import { Ticket } from "./Ticket"; //Import Ticket class
 import { TicketStatus } from "./Ticket"; //Import TicketStatus enums
-import { ConfNum } from "./ConfNum" //Import ConfNum class
 
 export class Purchase {
     private confNum: number;
