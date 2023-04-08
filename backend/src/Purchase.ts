@@ -7,22 +7,29 @@ export class Purchase {
     private purchaser: Attendee;
     private tickets: Ticket[];
 
+    //Used to construct a new Purchase
     constructor(purchaser: Attendee) {
         this.purchaser = purchaser;
         this.confNum = 0;
         this.tickets = [];
     }
 
+    //Return the confirmation number of the purchase
     getConfNum() { return this.confNum; }
 
+    //Change the confirmation number of the purchase
     setConfNum(confNum: number) { this.confNum = confNum; }
 
+    //Return the purchaser of the purchase
     getPurchaser() { return this.purchaser; }
 
+    //Return the collection of tickets in the purchase
     getTickets() { return this.tickets; }
 
+    //Change the collection of tickets in the purchase
     updateTickets(newTickets: Ticket[]) { this.tickets = newTickets; }
 
+    //Calculate the total price of the purchase based on the ticket prices
     calcTotalPrice() {
         let totalPrice = 0.0;
         for (var index in this.tickets) {
@@ -30,12 +37,14 @@ export class Purchase {
         }
     }
 
+    //Mark the tickets in the purchase as Picked Up
     pickUpTickets() {
         for (var index in this.tickets) {
             this.tickets[index].setTicketStatus(TicketStatus.PickedUp);
         }
     }
 
+    //Mark the tickets in the purchase as Paid
     payTickets() {
         for (var index in this.tickets) {
             this.tickets[index].setTicketStatus(TicketStatus.Paid);

@@ -1,18 +1,19 @@
 import { JsonSerializer } from 'typescript-json-serializer';
-import { Seat } from "../frontend/src/Seat";
-import { Ticket } from "../frontend/src/Ticket";
-import { Performance } from "../frontend/src/Performance";
-import { SeatSection } from "../frontend/src/SeatSection";
-import { Attendee } from "../frontend/src/Attendee";
-import { Venue } from "../frontend/src/Venue";
-import { SeasonTicketHolder } from "../frontend/src/SeasonTicketHolder";
-import { Show } from "../frontend/src/Show";
-import { Purchase } from "../frontend/src/Purchase";
+import { Seat } from "./src/Seat";
+import { Ticket } from "./src/Ticket";
+import { Performance } from "./src/Performance";
+import { SeatSection } from "./src/SeatSection";
+import { Attendee } from "./src/Attendee";
+import { Venue } from "./src/Venue";
+import { SeasonTicketHolder } from "./src/SeasonTicketHolder";
+import { Show } from "./src/Show";
+import { Purchase } from "./src/Purchase";
 import * as fs from 'fs';
 
 export class JSONHandler {
     private deserializedData : any[] = [];
 
+    //Used to construct a new instance of the JSON Deserializer
     constructor() {
         this.deserializedData = [];
     }
