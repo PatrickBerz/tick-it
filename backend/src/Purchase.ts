@@ -7,47 +7,51 @@ export class Purchase {
     private purchaser: Attendee;
     private tickets: Ticket[];
 
-    //Used to construct a new Purchase
-    constructor(purchaser: Attendee) {
+    constructor(purchaser: Attendee, tickets: Ticket[]) {
         this.purchaser = purchaser;
-        this.confNum = 0;
-        this.tickets = [];
+        this.confNum = 0; //Somehow get conf number
+        this.tickets = tickets;
+        this.reserveTickets();
     }
 
-    //Return the confirmation number of the purchase
     getConfNum() { return this.confNum; }
 
-    //Change the confirmation number of the purchase
-    setConfNum(confNum: number) { this.confNum = confNum; }
-
-    //Return the purchaser of the purchase
     getPurchaser() { return this.purchaser; }
 
-    //Return the collection of tickets in the purchase
     getTickets() { return this.tickets; }
 
-    //Change the collection of tickets in the purchase
     updateTickets(newTickets: Ticket[]) { this.tickets = newTickets; }
 
-    //Calculate the total price of the purchase based on the ticket prices
     calcTotalPrice() {
         let totalPrice = 0.0;
         for (var index in this.tickets) {
             totalPrice += this.tickets[index].getPrice();
         }
+
+        return totalPrice;
     }
 
-    //Mark the tickets in the purchase as Picked Up
+    reserveTickets() {
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.Reserved);
+        }
+    }
+
     pickUpTickets() {
         for (var index in this.tickets) {
             this.tickets[index].setTicketStatus(TicketStatus.PickedUp);
         }
     }
 
-    //Mark the tickets in the purchase as Paid
     payTickets() {
         for (var index in this.tickets) {
             this.tickets[index].setTicketStatus(TicketStatus.Paid);
         }
+    }
+
+    returnTickets() {
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.Unsold);
+        }   
     }
 }
