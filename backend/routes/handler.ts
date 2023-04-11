@@ -10,13 +10,15 @@ router.use(cors({
 router.get("/ticketData", (req, res) => {
 
     let seat:Seat = new Seat("Orchestra", "A", 12, false, false, 15.99)
-    const ticket = [{
-        "performance": "Phantom of the Opera",
-        "seat": "A12",
-        "ticketStatus": "Reserved",
-        "price": "15.99"
-    }];
-    res.json(JSON.stringify(seat));
+    // const ticket = [{
+    //     "performance": "Phantom of the Opera",
+    //     "seat": "A12",
+    //     "ticketStatus": "Reserved",
+    //     "price": "15.99"
+    // }];
+    const data = { name: "John Doe", age: 30}
+    //res.json(JSON.stringify(seat));
+    res.json(data);
 });
 router.post("/password", (req, res) => {
     //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
