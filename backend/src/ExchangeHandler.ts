@@ -1,18 +1,18 @@
 import { Ticket } from "./Ticket"; //Import Ticket class
 import { Purchase } from "./Purchase"; //Import Purchase class
 
-export class ExchangeHandler {
+/*export class ExchangeHandler {
     //Exchange the tickets by making a new purchase
     exchange(ogPurchase: Purchase, newTickets: Ticket[], onlineExchange: boolean) {
         //Mark the current tickets as Unsold so they are available
-        ogPurchase.returnTickets();
+        //ogPurchase.returnTickets();
 
         //Generate new purchase with the same Attendee as original
-        let newPurchase = new Purchase(ogPurchase.getPurchaser(), newTickets);
+        //let newPurchase = new Purchase(ogPurchase.getPurchaser(), newTickets);
 
-        if (onlineExchange) { this.refundOnline(ogPurchase, newPurchase); }
+        //if (onlineExchange) { this.refundOnline(ogPurchase, newPurchase); }
 
-        return newPurchase; //Return to system to go to check-out
+        //return newPurchase; //Return to system to go to check-out
     }
 
     //A user has opted for an exchange online with a card
@@ -52,4 +52,4 @@ export class ExchangeHandler {
 
         }
     }
-}
+}*/
