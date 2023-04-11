@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const cors = require("cors")
+import { Seat } from "../src/Seat";
 
 router.use(cors({
     origin: '*'
@@ -8,13 +9,14 @@ router.use(cors({
 
 router.get("/ticketData", (req, res) => {
 
+    let seat:Seat = new Seat("Orchestra", "A", 12, false, false, 15.99)
     const ticket = [{
         "performance": "Phantom of the Opera",
         "seat": "A12",
         "ticketStatus": "Reserved",
         "price": "15.99"
     }];
-    res.json(JSON.stringify(ticket));
+    res.json(JSON.stringify(seat));
 });
 router.post("/password", (req, res) => {
     //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
