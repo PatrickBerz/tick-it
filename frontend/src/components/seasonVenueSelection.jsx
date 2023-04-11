@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stack, Image, Form } from 'react-bootstrap';
 import {useLocation, Link } from 'react-router-dom';
 
-export const CheckOut = () =>{
+export const SeasonVenueSelection = () =>{
     //TODO: try catch
     const location = useLocation();
     const state = location.state;
@@ -10,20 +10,25 @@ export const CheckOut = () =>{
         <div className='App-body'>
         <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
           <div>
-          <Form style={{color:'white'}}>Check Out!</Form>
-            <p style={{color:'white'}}>Event: {state.event}</p>
-            <p style={{color:'white'}}>Seat: {state.seat}</p>
+          <Form style={{color:'white'}}>Select a venue</Form>
+            <p style={{color:'white'}}></p>
             </div>
             <div>
             
                 <Link 
-                to={"/orderConfirmation"}
-                state={{event: state.event, seat: state.seat}}>
+                to={"/seasonSeatSelection"}
+                state={{venue: "Playhouse"}}>
                 <button type="button">
-                        Place order
+                        Playhouse
                 </button>
                 </Link>
-
+                <Link 
+                to={"/seasonSeatSelection"}
+                state={{venue: "Concert Hall"}}>
+                <button type="button">
+                        Concet Hall
+                </button>
+                </Link>
             </div>
         </Stack>
       </div>

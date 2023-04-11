@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Stack,Button, Alert } from 'react-bootstrap';
+import { Form, Stack,Button, Alert, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
 
@@ -31,9 +31,11 @@ export const AdminLogin = () =>{
 
 
     return (
-        <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
-            <div className='password-field' style={{marginTop:'150px'}}>
-                <Form onSubmit={onFormSubmit}>
+            
+            <div className="d-flex justify-content-center" >
+                <Form className='d-flex' onSubmit={onFormSubmit} style={{marginTop:'160px'}}>
+                    <Stack>
+                    <Form.Label style={{color:'white'}}>Enter Admin Password</Form.Label>
                     <Form.Control
                         type='password'
                         placeholder='Password'
@@ -42,17 +44,19 @@ export const AdminLogin = () =>{
                         style ={{maxWidth:'200px'}}
                     >
                     </Form.Control>
+                    
+
                     {alert &&
                         <Alert style={{ maxWidth: '200px', marginTop:5, paddingTop:'2px', maxHeight:'30px', }} key={alert.type} variant={alert.type}>
                         {alert.label}
                         </Alert>
                     }
-                    <Button variant="primary" type="submit" style={{marginTop:'5px'}}>
+                    </Stack>
+                    <Button variant="primary" type="submit" style={{marginLeft:'5px', marginTop:'32px', height:'38px'}}>
                     Submit
                     </Button>
                 </Form>
                 
             </div>
-        </Stack>
     )
 }

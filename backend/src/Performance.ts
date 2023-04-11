@@ -1,3 +1,4 @@
+import { Show } from "./Show"; //Import Show class
 import { Ticket } from "./Ticket"; //Import Ticket class
 import { TicketStatus } from "./Ticket"; //Import TicketStatus enum
 import { Venue } from "./Venue";
@@ -32,11 +33,10 @@ export class Performance {
     setTickets(tickets: Ticket[]) { this.tickets = tickets };
 
     //Generate a collection of tickets based on the Venue object
-    makeTickets(venue:Venue) {
-        
-        let tickets:Ticket[] = [];
+    private makeTickets(venue:Venue) {
+      let tickets:Ticket[] = [];
 
-        venue.getSections().forEach(section => {
+       venue.getSections().forEach(section => {
             section.getSeats().forEach(seat => {
                 let newTicket:Ticket = new Ticket(this.performanceName, seat);
                 tickets.push(newTicket);
