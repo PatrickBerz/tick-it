@@ -6,13 +6,15 @@ router.use(cors({
     origin: '*'
 }));
 
-router.get("/password", (req, res) => {
+router.get("/ticketData", (req, res) => {
 
-    const str = [{
-        "name": "tick-it",
-        "password": "AdminLog"
+    const ticket = [{
+        "performance": "Phantom of the Opera",
+        "seat": "A12",
+        "ticketStatus": "Reserved",
+        "price": "15.99"
     }];
-    res.end(JSON.stringify(str));
+    res.json(JSON.stringify(ticket));
 });
 router.post("/password", (req, res) => {
     //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
