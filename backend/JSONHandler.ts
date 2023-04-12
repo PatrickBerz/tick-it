@@ -294,6 +294,7 @@ export class JSONHandler {
             let newPurchase = new Purchase(attendee);
             newPurchase.setConfNum(objectPurchase["confNum"]);
             newPurchase.updateTickets(tickets);
+            newPurchase.setDate(objectPurchase["perfDateTime"]);
             this.deserializedData.push(newPurchase);
         }
     }
@@ -372,14 +373,17 @@ coll4.push(obj5);
 let coll5: Ticket[] = [];
 let obj6: Ticket = new Ticket("West Side Story", obj);
 coll5.push(obj6);
-sys.serialize(coll5, "test5.json");
-sys.deserializeTicket("test5.json");
-sys.checkData();
+//sys.serialize(coll5, "test5.json");
+//sys.deserializeTicket("test5.json");
+//sys.checkData();
 
 //TEST PURCHASE
-let obj9: Attendee = new Attendee("Susan", "123 Sesame Street", "6064135244");
+let obj9: Attendee = new Attendee("Susan Sawyer", "123 Sesame Street", "6064135244");
+let date: Date = new Date();
+let obj11: Performance = new Performance("West Side Story", "Playhouse", date);
 let obj10: Purchase = new Purchase(obj9);
 obj10.updateTickets(coll5);
+obj10.setDate(obj11.getDateTime());
 let coll6: Purchase[] = [];
 coll6.push(obj10);
 sys.serialize(coll6, "test6.json");
@@ -392,14 +396,12 @@ let venue: Venue = sys.getData()[0];
 //sys.checkData();
 
 //TEST PERFORMANCE
-let date: Date = new Date();
-let obj11: Performance = new Performance("West Side Story", "Playhouse", date);
 obj11.setTickets(coll5);
 let coll7: Performance[] = [];
 coll7.push(obj11);
-sys.serialize(coll7, "test7.json");
-sys.deserializePerformance("test7.json");
-sys.checkData();
+//sys.serialize(coll7, "test7.json");
+//sys.deserializePerformance("test7.json");
+//sys.checkData();
 
 //TEST SHOW
 let coll8: Show[] = [];

@@ -1,6 +1,4 @@
-import { Show } from "./Show"; //Import Show class
 import { Ticket } from "./Ticket"; //Import Ticket class
-import { TicketStatus } from "./Ticket"; //Import TicketStatus enum
 import { Venue } from "./Venue";
 
 export class Performance {
