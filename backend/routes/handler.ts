@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const cors = require("cors");
-import { JSONHandler } from "../JSONHandler"; 
-import { Seat } from "../src/Seat";
-import { Ticket } from "../src/Ticket";
-import { Purchase } from "../src/Purchase";
+//import { JSONHandler } from "../JSONHandler"; 
+// import { Seat } from "../src/Seat";
+// import { Ticket } from "../src/Ticket";
+// import { Purchase } from "../src/Purchase";
 
 router.use(cors({
     origin: '*'
@@ -19,6 +19,16 @@ router.get("/ticketData", (req, res) => {
     // let ticket: any[] = jsonhandler.getData() 
     // //const ticket = '[{"purchaser":{"name":"Susan","address":"123 Sesame Street","phoneNum":"6064135244"},"confNum":0,"tickets":[{"performance":"West Side Story","seat":{"section":"Orchestra","row":"B","seatNum":12,"acessible":false,"inSeasonSection":false,"defaultPrice":29.99},"ticketStatus":0,"price":29.99}]}]'
     // res.json(ticket);
+     // const ticket = [{
+    //     "performance": "Phantom of the Opera",
+    //     "seat": "A12",
+    //     "ticketStatus": "Reserved",
+    //     "price": "15.99"
+    // }];
+    const data = [{"purchaser":{"name":"Susan","address":"123 Sesame Street","phoneNum":"6064135244"},"confNum":0,"tickets":[{"performance":"West Side Story","seat":{"section":"Orchestra","row":"B","seatNum":12,"acessible":false,"inSeasonSection":false,"defaultPrice":29.99},"ticketStatus":0,"price":29.99}]}]
+
+    //res.json(JSON.stringify(seat));
+    //res.json(JSON.stringify(data));
 });
 router.post("/password", (req, res) => {
     //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
