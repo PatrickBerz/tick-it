@@ -14,42 +14,42 @@ export const AdminPage = () =>{
 
     }
     return (
-            <Stack direction='vertical' style={{color: 'white', alignItems:'center', marginTop:'80px' }} gap={1}>
-                    <div style={{fontSize:'30px'}}>Welcome, Admin</div>
-                    <Button onClick={ListingsSubmit} variant="primary"
+            <Stack direction='vertical' style={{color: 'white', alignItems:'center', marginTop:'60px' }} gap={1}>
+                    <div style={{fontSize:'30px', marginTop:'80px' }}>Welcome, Admin</div>
+                    <Button size='lg' onClick={ListingsSubmit} variant="primary"
                         style={{
-                            marginTop:'30px', 
-                            width: '160px', 
+                            marginTop:'60px', 
+                            width:'180px', 
                             borderRadius:'15px',
                             borderColor: '#FF4057' , 
                             backgroundColor:'#FF4057'
                             }}>
                         Manage Listings
                     </Button>
-                    <Button onClick={ticketStuffSubmit} variant="primary" type="submit" 
+                    <Button size='lg' onClick={ticketStuffSubmit} variant="primary" type="submit" 
                         style={{
-                            marginTop:'30px', 
-                            width:'160px', 
+                            marginTop:'40px', 
+                            width:'180px', 
                             borderRadius:'15px', 
                             borderColor: '#FF4057' , 
                             backgroundColor:'#FF4057' 
                             }}>
                         Ticket Stuff
                     </Button>
-                    <Button variant="primary" type="submit" 
+                    <Button size='lg' variant="primary" type="submit" 
                         style={{
-                            marginTop:'30px', 
-                            width:'160px', 
+                            marginTop:'40px', 
+                            width:'180px', 
                             borderRadius:'15px', 
                             borderColor: '#FF4057' , 
                             backgroundColor:'#FF4057'
                             }}>
-                        Season Ticket stuff
+                        Season Passes
                     </Button>
-                    <Button variant="primary" type="submit" 
+                    <Button size='lg' variant="primary" type="submit" 
                         style={{
-                            marginTop:'30px', 
-                            width:'160px', 
+                            marginTop:'40px', 
+                            width:'180px', 
                             borderRadius:'15px', 
                             borderColor: '#FF4057', 
                             backgroundColor:'#FF4057'

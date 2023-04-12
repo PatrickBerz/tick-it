@@ -40,7 +40,6 @@ export const AdminLogin = () =>{
                         type='password'
                         placeholder='Password'
                         onChange={(e) => setValue(e.target.value)}
-                        value = {value}
                         style ={{maxWidth:'200px'}}
                     >
                     </Form.Control>
