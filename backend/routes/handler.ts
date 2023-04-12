@@ -31,5 +31,16 @@ router.post("/password", (req, res) => {
     // res.end(JSON.stringify(str));
     res.end();
 });
+router.post("/confNum", (req, res) => {
+    let confNum = req.body.value;
+    console.log(confNum);
+    if (confNum == 12345) {
+        res.status(200);
+    }
+    else {
+        res.status(418);
+    }
+    res.end();
+});
 
 module.exports = router;

@@ -18,7 +18,7 @@
     "body-parser": "^1.20.2",
     "concurrently": "^7.6.0",
     "express": "^4.18.2",
-    "flatted": "^3.2.7"
-    "cors": "^2.8.5",
+    "flatted": "^3.2.7",
+    "cors": "^2.8.5"
   }
 }
