@@ -1,4 +1,4 @@
-import { JsonSerializer } from 'typescript-json-serializer';
+//import { JsonSerializer } from 'typescript-json-serializer';
 import { Seat } from "./src/Seat";
 import { Ticket } from "./src/Ticket";
 import { Performance } from "./src/Performance";
@@ -23,10 +23,11 @@ export class JSONHandler {
         this.deserializedData = []; //Set data to empty
         
         //Instantiate a default serializer
-        const defaultSerializer = new JsonSerializer();
+        //const defaultSerializer = new JsonSerializer();
 
         //Convert the data from TypeScript objects to JSON data and save to the specified file 
-        let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
+        //let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
+        let data: string = JSON.stringify(dataSet);
         let datastr = JSON.stringify(data);
         fs.writeFileSync(filePath, datastr);
 
@@ -203,12 +204,15 @@ export class JSONHandler {
         //Retrieve the JSON data at the specified location
         const data = fs.readFileSync(filePath, 'utf8');
         let dataSet : any[] = JSON.parse(data);
-
         //Create the TypeScript Ticket objects
         for (var index in dataSet) {
             let objectTicket = dataSet[index];
 
             //Deserialize and build the Seat for the ticket
+            console.log(JSON.parse(data))
+            
+            console.log("\n\n\n\n\n\n")
+            console.log(objectTicket + "\n\n")
             let seatData: any = JSON.parse(JSON.stringify(objectTicket["seat"])); //Have to stringify to get parser to accept
             let assignedSeat = new Seat(seatData["section"], seatData["row"], seatData["seatNum"], seatData["acessible"], seatData["inSeasonSection"], seatData["defaultPrice"]);
 
