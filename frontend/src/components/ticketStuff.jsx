@@ -106,7 +106,7 @@ export const TicketStuff = () => {
     return (
         
         <div style={{maxWidth:'100%', maxHeight:'100%', alignSelf:'center'}}>
-            <Table align='center' bordered responsive striped hover variant='dark' size='sm' style={{maxWidth:'90%', maxHeight:'90%', marginTop:'40px'}}>
+            <Table align='center' bordered responsive striped hover variant='dark' size='sm' style={{maxWidth:'90%', maxHeight:'70%', marginTop:'100px'}}>
                 <thead><tr><th style={{textAlign:'center', fontSize:'20px'}} colSpan={6}>Ticket Orders</th></tr></thead>
                     <tbody style={{ fontSize: '20px', color: "white"}}>
                     <tr>
