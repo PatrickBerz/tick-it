@@ -12,7 +12,53 @@ export const TicketStuff = () =>{
     //     .catch(err => console.log(err))
     // }, []);
     
-    let data = [{"purchaser":{"name":"Susan","address":"123 Sesame Street","phoneNum":"6064135244"},"confNum":0,"tickets":{"performance":"West Side Story","seat":{"section":"Orchestra","row":"B","seatNum":12,"acessible":false,"inSeasonSection":false,"defaultPrice":29.99},"ticketStatus":0,"price":29.99}}]
+    let data = [
+        {"purchaser":
+            {
+                "name":"Susan",
+            "address":"123 Sesame Street",
+            "phoneNum":"6064135244"
+            },
+            "confNum":0,
+            "tickets":
+                {
+                    "performance":"West Side Story",
+                "seat":
+                {
+                    "section":"Orchestra",
+                "row":"B",
+                "seatNum":12,
+                "acessible":false,
+                "inSeasonSection":false,
+                "defaultPrice":29.99},
+                "ticketStatus":0,
+                "price":29.99
+            }
+        },
+        {
+            "purchaser":
+            {
+                "name":"Hugh Janus",
+                "address":"Easy street",
+                "phoneNum":"6064135244"
+            },
+            "confNum":1,
+            "tickets":
+            {
+                "performance":"The Last Airbender",
+                "seat":
+                {
+                    "section":"Orchestra",
+                    "row":"B",
+                    "seatNum":24,
+                    "acessible":false,
+                    "inSeasonSection":false,
+                    "defaultPrice":29.99},
+                    "ticketStatus":0,
+                    "price":29.99
+                }
+            }
+        ]
 
 
     return (
