@@ -13,10 +13,6 @@ export const TicketStuff = () =>{
             setData(newData)
         }
         fetchData();
-        // fetch('http://localhost:4000/ticketData')
-        // .then(res => res.json())
-        // .then(data => setData(data))
-        // .catch(err => console.log(err))
     }, []);
 
     if (data) {
