@@ -38,7 +38,7 @@ export const TicketStuff = () =>{
                             <td style={{textAlign:'center'}}>{item.tickets.map((obj) => (
                                 obj.seat.row + obj.seat.seatNum + " "
                             ))}</td>
-                            <td style={{textAlign:'center'}}>{getTicketStatus(item.tickets[0].ticketStatus)}</td>
+                            <td style={{textAlign:'center'}}>{getTicketStatusText(item.tickets[0].ticketStatus)}</td>
                         </tr>
                         ))}
                     </tbody>
@@ -53,7 +53,7 @@ export const TicketStuff = () =>{
 
 }  
 
-function getTicketStatus(statusInt){
+function getTicketStatusText(statusInt){
     switch(statusInt){
         case 0:
             return "Unsold"
