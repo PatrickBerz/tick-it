@@ -1,5 +1,5 @@
 import { Form, Stack,Button, Alert } from 'react-bootstrap';
-import React, {useState, useEffect} from 'react';
+import React, {Table, useState, useEffect} from 'react';
 
 
 export const TicketStuff = () =>{
@@ -17,17 +17,22 @@ export const TicketStuff = () =>{
     //console.log(res)
     
     return (
-        <div style={{fontSize:'30px', color:"white"}}>
-           <h1>Ticket Records</h1> {
-                JSON.stringify(data[0]["purchaser"])
-                // data.map((data) => ( 
-                //     <ol key = { data } >
-                //         User_Name: { data.username }, 
-                //         Full_Name: { data.name }, 
-                //         User_Email: { data.email } 
-                //         </ol>
-                // ))
-            }
+        <div style={{maxWidth:'100%', maxHeight:'100%', alignSelf:'center'}}>
+            <Table align='center' bordered responsive striped hover variant='dark' size='sm' style={{maxWidth:'90%', maxHeight:'70%', marginTop:'100px'}}>
+                <thead><tr><th style={{textAlign:'center', fontSize:'20px'}} colSpan={6}>Ticket Orders</th></tr></thead>
+                    <tbody style={{ fontSize: '20px', color: "white"}}>
+                    <tr>
+                        <th style={{textAlign:'center'}}>Conf. #</th>
+                        <th style={{textAlign:'center'}} colSpan={2}>Purchaser</th>
+                        <th style={{textAlign:'center'}}>Show</th>
+                        <th style={{textAlign:'center'}}>Seat(s)</th>
+                        <th style={{textAlign:'center'}}>paid?</th>
+                    </tr>
+                    
+                    
+                </tbody>
+            </Table>
+           
         </div>
     )
 }
