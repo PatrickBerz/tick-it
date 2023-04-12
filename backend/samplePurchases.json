@@ -25,7 +25,7 @@
         "seat": {
           "section": "Orchestra",
           "row": "X",
-          "seatNum": 31,
+          "seatNum": 32,
           "accessible": false,
           "inSeasonSection": false,
           "defaultPrice": 59.67
@@ -38,7 +38,7 @@
         "seat": {
           "section": "Orchestra",
           "row": "X",
-          "seatNum": 31,
+          "seatNum": 33,
           "accessible": false,
           "inSeasonSection": false,
           "defaultPrice": 59.67
@@ -51,7 +51,7 @@
   {
     "confNum": 12345,
     "purchaser": {
-      "name": "Blarg",
+      "name": "Bron",
       "address": "123 Blargly St",
       "phoneNum": "555-867-5309"
     },
@@ -60,8 +60,8 @@
         "performance": "Aladdin or something",
         "seat": {
           "section": "Orchestra",
-          "row": "X",
-          "seatNum": 31,
+          "row": "F",
+          "seatNum": 12,
           "accessible": false,
           "inSeasonSection": false,
           "defaultPrice": 59.67
@@ -73,8 +73,8 @@
         "performance": "Aladdin or something",
         "seat": {
           "section": "Orchestra",
-          "row": "X",
-          "seatNum": 31,
+          "row": "F",
+          "seatNum": 13,
           "accessible": false,
           "inSeasonSection": false,
           "defaultPrice": 59.67
@@ -86,8 +86,8 @@
         "performance": "Aladdin or something",
         "seat": {
           "section": "Orchestra",
-          "row": "X",
-          "seatNum": 31,
+          "row": "F",
+          "seatNum": 14,
           "accessible": false,
           "inSeasonSection": false,
           "defaultPrice": 59.67

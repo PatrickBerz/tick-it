@@ -1,5 +1,5 @@
-import { Form, Stack,Button, Alert } from 'react-bootstrap';
-import React, {Table, useState, useEffect} from 'react';
+import { Form, Stack, Button, Alert, Table } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 
 
 export const TicketStuff = () =>{
@@ -19,17 +19,28 @@ export const TicketStuff = () =>{
     return (
         <div style={{maxWidth:'100%', maxHeight:'100%', alignSelf:'center'}}>
             <Table align='center' bordered responsive striped hover variant='dark' size='sm' style={{maxWidth:'90%', maxHeight:'70%', marginTop:'100px'}}>
-                <thead><tr><th style={{textAlign:'center', fontSize:'20px'}} colSpan={6}>Ticket Orders</th></tr></thead>
+                <thead><tr><th style={{textAlign:'center', fontSize:'20px'}} colSpan={5}>Ticket Orders</th></tr></thead>
                     <tbody style={{ fontSize: '20px', color: "white"}}>
                     <tr>
                         <th style={{textAlign:'center'}}>Conf. #</th>
-                        <th style={{textAlign:'center'}} colSpan={2}>Purchaser</th>
+                        <th style={{textAlign:'center'}}>Purchaser</th>
                         <th style={{textAlign:'center'}}>Show</th>
                         <th style={{textAlign:'center'}}>Seat(s)</th>
-                        <th style={{textAlign:'center'}}>paid?</th>
+                        <th style={{textAlign:'center'}}>Ticket Status</th>
                     </tr>
                     
                     
+                    {data.map((item, index) => (
+                        <tr key={index} style={{alignItems:'center'}}>
+                            <td style={{textAlign:'center'}}>{item.confNum}</td>
+                            <td>{item.purchaser.name}</td>
+                            <td>{item.tickets[0].performance}</td>
+                            <td style={{textAlign:'center'}}>{item.tickets.map((obj) => (
+                                obj.seat.row + obj.seat.seatNum + " "
+                            ))}</td>
+                            <td style={{textAlign:'center'}}>{item.tickets[0].ticketStatus}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
            
