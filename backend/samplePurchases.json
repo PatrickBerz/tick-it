@@ -17,7 +17,7 @@
           "inSeasonSection": false,
           "defaultPrice": 59.67
         },
-        "ticketStatus": "Reserved",
+        "ticketStatus": 1,
         "price": 3067.14
       },
       {
@@ -30,7 +30,7 @@
           "inSeasonSection": false,
           "defaultPrice": 59.67
         },
-        "ticketStatus": "Reserved",
+        "ticketStatus": 1,
         "price": 3067.14
       },
       {
@@ -43,7 +43,7 @@
           "inSeasonSection": false,
           "defaultPrice": 59.67
         },
-        "ticketStatus": "Reserved",
+        "ticketStatus": 1,
         "price": 3067.14
       }
     ]
@@ -66,7 +66,7 @@
           "inSeasonSection": false,
           "defaultPrice": 59.67
         },
-        "ticketStatus": "Reserved",
+        "ticketStatus": 3,
         "price": 3067.14
       },
       {
@@ -79,7 +79,7 @@
           "inSeasonSection": false,
           "defaultPrice": 59.67
         },
-        "ticketStatus": "Reserved",
+        "ticketStatus": 3,
         "price": 3067.14
       },
       {
@@ -92,7 +92,7 @@
           "inSeasonSection": false,
           "defaultPrice": 59.67
         },
-        "ticketStatus": "Reserved",
+        "ticketStatus": 3,
         "price": 3067.14
       }
     ]

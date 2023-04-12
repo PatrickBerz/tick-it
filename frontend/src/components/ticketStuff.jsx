@@ -1,7 +1,6 @@
 import { Form, Stack, Button, Alert, Table } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 
-
 export const TicketStuff = () =>{
     const [data,setData] = useState(null);
 
@@ -39,7 +38,7 @@ export const TicketStuff = () =>{
                             <td style={{textAlign:'center'}}>{item.tickets.map((obj) => (
                                 obj.seat.row + obj.seat.seatNum + " "
                             ))}</td>
-                            <td style={{textAlign:'center'}}>{item.tickets[0].ticketStatus}</td>
+                            <td style={{textAlign:'center'}}>{getTicketStatus(item.tickets[0].ticketStatus)}</td>
                         </tr>
                         ))}
                     </tbody>
@@ -52,4 +51,18 @@ export const TicketStuff = () =>{
         return null;
     }
 
+}  
+
+function getTicketStatus(statusInt){
+    switch(statusInt){
+        case 0:
+            return "Unsold"
+        case 1:
+            return "Reserved"
+        case 2:
+            return "Paid"
+        case 3:
+            return "Picked Up"
+
+    }
 }
