@@ -23,50 +23,72 @@ router.get("/ticketData", (req, res) => {
         {
             "ticket":
             {
-                "confNum": 0,
+                "confNum": 1,
                 "performance": "West Side Story",
+                "eventHall" : "Concert Hall",
+                "price": 29.99,
                 "seat":
                 {
                     "section": "Orchestra",
-                    "row": "B",
+                    "row": "C",
                     "seatNum": 12,
                     "acessible": false,
                     "inSeasonSection": false,
                     "defaultPrice": 29.99
                 },
-                "ticketStatus": 0,
-                "price": 29.99,
+                
                 "purchaser":
                 {
-                    "name": "Susan",
+                    "first": "Susan",
+                    "last": "Brooks",
                     "address": "123 Sesame Street",
                     "phoneNum": "6064135244"
                 },
+                "paymentStatus": 1,
+                "payment":
+                {
+                    "nameOnCard":"Susan s Brooks",
+                    "cardNumber":1234567891234567,
+                    "expDate": "03/19",
+                    "secCode": 876,
+                    "zip":45743
+                }
             },
 
         },
         {
             "ticket":
             {
-                "confNum": 1,
+                "confNum": 2,
                 "performance": "West Side Story",
+                "eventHall" : "Concert Hall",
+                "price": 29.99,
                 "seat":
                 {
                     "section": "Orchestra",
-                    "row": "B",
+                    "row": "C",
                     "seatNum": 13,
                     "acessible": false,
                     "inSeasonSection": false,
                     "defaultPrice": 29.99
                 },
-                "ticketStatus": 0,
-                "price": 29.99,
+                
                 "purchaser":
                 {
-                    "name": "Susan",
+                    "first": "Susan",
+                    "last": "Brooks",
                     "address": "123 Sesame Street",
                     "phoneNum": "6064135244"
                 },
+                "paymentStatus": 1,
+                "payment":
+                {
+                    "nameOnCard":"Susan s Brooks",
+                    "cardNumber":1234567891234567,
+                    "expDate": "03/19",
+                    "secCode": 876,
+                    "zip":45743
+                }
             },
 
         },
@@ -75,6 +97,8 @@ router.get("/ticketData", (req, res) => {
             {
                 "confNum": 3,
                 "performance": "Magic Mike",
+                "eventHall" : "playhouse",
+                "price": 29.99,
                 "seat":
                 {
                     "section": "Orchestra",
@@ -84,14 +108,23 @@ router.get("/ticketData", (req, res) => {
                     "inSeasonSection": false,
                     "defaultPrice": 29.99
                 },
-                "ticketStatus": 0,
-                "price": 29.99,
+                
                 "purchaser":
                 {
-                    "name": "Tom",
+                    "first": "Tom",
+                    "last": "smith",
                     "address": "Easy Street",
                     "phoneNum": "6064135244"
                 },
+                "paymentStatus": 0,
+                "payment":
+                {
+                    "nameOnCard":"Tom J Smith",
+                    "cardNumber":2345257687659065,
+                    "expDate": "02/12",
+                    "secCode": 678,
+                    "zip":35807
+                }
             },
 
         }
