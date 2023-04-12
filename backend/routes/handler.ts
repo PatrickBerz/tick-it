@@ -33,10 +33,12 @@ router.get("/ticketData", (req, res) => {
     let jsonhandler = new JSONHandler()
     
     //jsonhandler.deserializePurchase('../test6.json')
-    jsonhandler.deserializePurchase('../samplePurchases.json')
-    let ticket: any[] = jsonhandler.getData() 
+    jsonhandler.deserializePurchase(__dirname + "\\..\\samplePurchases.json")
+    let purchases: any[] = jsonhandler.getData() 
+    console.log(purchases)
+    console.log("\n\n")
     // //const ticket = '[{"purchaser":{"name":"Susan","address":"123 Sesame Street","phoneNum":"6064135244"},"confNum":0,"tickets":[{"performance":"West Side Story","seat":{"section":"Orchestra","row":"B","seatNum":12,"acessible":false,"inSeasonSection":false,"defaultPrice":29.99},"ticketStatus":0,"price":29.99}]}]'
-    res.json(ticket);
+    res.json(purchases);
     //res.end(JSON.stringify(seat))
 });
 router.post("/password", (req, res) => {
