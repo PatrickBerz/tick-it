@@ -8,6 +8,7 @@ export class Purchase {
     private tickets: Ticket[];
     private perfDateTime: Date;
 
+    //Used to construct a new Purchase
     constructor(purchaser: Attendee) {
         this.purchaser = purchaser;
         this.confNum = 0;
