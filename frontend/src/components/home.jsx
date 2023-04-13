@@ -6,16 +6,46 @@ import {Route, Routes, Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export const Home = () =>{
-  const [showModal, setShow] = useState(false);
 
+  const [showModal, setShow] = useState(false);
+  const [passState, setState] = useState({event:'',venue:''});
   const [value, setValue] = useState('');
   const [alert, setAlert] = useState(undefined);
+  
 
   const confNumModal = () => setShow(true);
   const handleClose = () => {
     setShow(false)
     setAlert(undefined); 
   }
+
+  const data = [
+    {
+      "show":
+      {
+          "performance": "West Side Story",
+          "venue" : "Civic Center Playhouse",
+          "date": "4/12/2023"
+      }   
+    },
+    {
+      "show":
+      {
+          "performance": "Titanic 2",
+          "venue" : "Civic Center Playhouse",
+          "date": "4/13/2023"
+      }   
+    },
+    {
+      "show":
+      {
+          "performance": "Die Hardest",
+          "venue" : "Civic Center Concert Hall",
+          "date": "4/14/2023"
+      },   
+    }
+  ]
+
   
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -53,17 +83,18 @@ export const Home = () =>{
           <div>
             
             <Stack className="mb-5 flex-wrap" direction='horizontal' style={{justifyContent:'center'}} gap={3}>
+            {data.map((item, index) => (
               <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={VBCplaceholder}/>
                 <Card.Body>
-                  <Card.Title>Small Event 1</Card.Title>
-                  <Card.Text>
-                    Civic Center Playhouse
+                  <Card.Title>{item.show.performance}</Card.Title>
+                  <Card.Text >
+                    {item.show.venue} <br /> {item.show.date}
                   </Card.Text>
                   <Stack direction='horizontal' gap={2}>
                   <Link 
                     to={"/seatSelection"}
-                    state={{event: "SmallEvent1"}}>
+                    state={{case:"purchase",event:"small event",venue: "Civic Center Playhouse"}}>
                     <Button size='sm' variant="primary" >
                           Purchase Tickets
                     </Button>
@@ -74,10 +105,12 @@ export const Home = () =>{
                     </Stack>
                 </Card.Body>
               </Card>
+            ))}
+              {/*  */}
 
-              {/*Cards*/}
+              {/* cards */}
               
-              <Card style={{ width: '18rem' }}>
+              {/* <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={VBCplaceholder}/>
                 <Card.Body>
                   <Card.Title>Small Event 2</Card.Title>
@@ -87,7 +120,7 @@ export const Home = () =>{
                   <Stack direction='horizontal' gap={2}>
                   <Link 
                     to={"/seatSelection"}
-                    state={{event: "SmallEvent2"}}>
+                    state={{case:"purchase",event:"small event2",venue: "Civic Center Playhouse"}}>
                     <Button size='sm' variant="primary">
                           Purchase Tickets
                     </Button>
@@ -109,18 +142,22 @@ export const Home = () =>{
                   <Stack direction='horizontal' gap={2}>
                   <Link 
                     to={"/seatSelection"}
-                    state={{event: "LargeEvent1"}}>
+                    state={{case:"purchase",event:"large event",venue: "Civic Center Concert Hall"}}>
                     <Button size='sm' variant="primary">
                           Purchase Tickets
                     </Button>
                   </Link>
-                  <Button size='sm' variant="primary" onClick={confNumModal}>
+                  <Button size='sm' variant="primary" onClick={() => {
+                    confNumModal()
+                    setState({event:"large event",venue: "Civic Center Concert Hall"})
+                    }}> 
                           Exchange Tickets
                     </Button>
                   </Stack>
                 </Card.Body>
-              </Card>
+              </Card> */}
             </Stack>
+            
             <Modal show={showModal} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Enter Confirmation Number</Modal.Title>
@@ -147,9 +184,11 @@ export const Home = () =>{
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
+                <Link to={"/seatSelection"} state={passState}>
                 <Button type='submit' variant="success" onClick={onFormSubmit}>
-                  Enter
+                  Enter 
                 </Button>
+                </Link>
               </Modal.Footer>
             </Modal>
           </div>
