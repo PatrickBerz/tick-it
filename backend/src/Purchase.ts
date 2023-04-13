@@ -58,4 +58,11 @@ export class Purchase {
             this.tickets[index].setTicketStatus(TicketStatus.Paid);
         }
     }
+
+    //Mark tickets in the purchase as Unsold
+    returnTickets() {
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.Unsold);
+        }
+    }
 }
