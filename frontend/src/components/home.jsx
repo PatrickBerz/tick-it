@@ -43,7 +43,48 @@ export const Home = () =>{
           "venue" : "Civic Center Concert Hall",
           "date": "4/14/2023"
       },   
-    }
+    },
+    {
+      "show":
+      {
+          "performance": "How I Met Your Mother Abridged",
+          "venue" : "Civic Center Concert Hall",
+          "date": "4/15/2023"
+      },   
+    },
+    {
+      "show":
+      {
+          "performance": "West Side Story",
+          "venue" : "Civic Center Playhouse",
+          "date": "4/12/2023"
+      }   
+    },
+    {
+      "show":
+      {
+          "performance": "Titanic 2",
+          "venue" : "Civic Center Playhouse",
+          "date": "4/13/2023"
+      }   
+    },
+    {
+      "show":
+      {
+          "performance": "Die Hardest",
+          "venue" : "Civic Center Concert Hall",
+          "date": "4/14/2023"
+      },   
+    },
+    {
+      "show":
+      {
+          "performance": "How I Met Your Mother Abridged",
+          "venue" : "Civic Center Concert Hall",
+          "date": "4/15/2023"
+      },   
+    },
+    
   ]
 
   
@@ -77,15 +118,14 @@ export const Home = () =>{
             <Form.Control
             placeholder="Enter to search for event"
             id="searchInput"
-            style={{marginTop:'-100px', width:'50vmin'}}
+            style={{marginTop:'-70px', width:'50vmin'}}
             />
           </div> 
-          <div>
-            
-            <Stack className="mb-5 flex-wrap" direction='horizontal' style={{justifyContent:'center'}} gap={3}>
+          <div className="square border border-secondary border-3" style={{maxWidth:'95%', maxHeight:'45rem' , padding:'35px',overflowY:'scroll', marginBottom:'30px', background:'#282634'}}>            
+          <Stack className="mb-5 flex-wrap" direction='horizontal' style={{justifyContent:'center'}} gap={3}>
             {data.map((item, index) => (
-              <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={VBCplaceholder}/>
+              <Card style={{ width: '18rem', height:'22rem'}}>
+                <Card.Img height={'50%'} variant="top" src={VBCplaceholder}/>
                 <Card.Body>
                   <Card.Title>{item.show.performance}</Card.Title>
                   <Card.Text >
