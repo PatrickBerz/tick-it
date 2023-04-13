@@ -4,6 +4,7 @@ import VBCplaceholder from './VBC.jpg';
 import { Stack, Alert, Image, Form, Card, Button, Modal, FormGroup } from 'react-bootstrap';
 import {Route, Routes, Link } from 'react-router-dom';
 import { useState } from 'react';
+import '../styles.css';
 
 export const Home = () =>{
 
@@ -111,7 +112,7 @@ export const Home = () =>{
 }
   
   return (
-        <div className='App-body'>
+        <div className='App-body '>
         <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
           <Image src={logo} className='App-logo-big' style={{marginTop:'-60px'}}></Image>
           <div>
@@ -121,7 +122,7 @@ export const Home = () =>{
             style={{marginTop:'-70px', width:'50vmin'}}
             />
           </div> 
-          <div className="square border border-secondary border-3" style={{maxWidth:'95%', maxHeight:'45rem' , padding:'35px',overflowY:'scroll', marginBottom:'30px', background:'#282634'}}>            
+          <div className="square border border-secondary border-3 container" style={{maxWidth:'95%', maxHeight:'45rem' , padding:'35px',overflowY:'auto', marginBottom:'30px', background:'#282634'}}>            
           <Stack className="mb-5 flex-wrap" direction='horizontal' style={{justifyContent:'center'}} gap={3}>
             {data.map((item, index) => (
               <Card style={{ width: '18rem', height:'22rem'}}>
