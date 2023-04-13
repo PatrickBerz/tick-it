@@ -1,5 +1,6 @@
 import { Ticket } from "./Ticket"; //Import Ticket class
 import { Purchase } from "./Purchase"; //Import Purchase class
+import { ConfNum } from "./ConfNum";
 
 export class ExchangeHandler {
     //Exchange the tickets by making a new purchase
@@ -10,6 +11,7 @@ export class ExchangeHandler {
         //Generate new purchase with the same Attendee as original
         let newPurchase = new Purchase(ogPurchase.getPurchaser());
         newPurchase.updateTickets(newTickets);
+        newPurchase.setConfNum(ConfNum.getNum()); 
 
         if (onlineExchange) { this.refundOnline(ogPurchase, newPurchase); }
 

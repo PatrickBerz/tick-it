@@ -1,4 +1,4 @@
-//import { JsonSerializer } from 'typescript-json-serializer';
+import { JsonSerializer } from 'typescript-json-serializer';
 import { Seat } from "./src/Seat";
 import { Ticket } from "./src/Ticket";
 import { Performance } from "./src/Performance";
@@ -23,11 +23,11 @@ export class JSONHandler {
         this.deserializedData = []; //Set data to empty
         
         //Instantiate a default serializer
-        //const defaultSerializer = new JsonSerializer();
+        const defaultSerializer = new JsonSerializer();
 
         //Convert the data from TypeScript objects to JSON data and save to the specified file 
-        //let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
-        let data: string = JSON.stringify(dataSet);
+        let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
+        //let data: string = JSON.stringify(dataSet);
         let datastr = JSON.stringify(data);
         fs.writeFileSync(filePath, datastr);
 
@@ -343,22 +343,22 @@ export class JSONHandler {
     }
 }
 
-// //CODE USED TO TEST
-// //TEST SEAT
-// let obj: Seat = new Seat("Orchestra", "B", 12, false, false, 29.99);
-// let obj2: Seat = new Seat("Nosebleeds", "X", 3, false, false, 4.99);
-// let coll: Seat[] = [];
-// coll.push(obj);
-// coll.push(obj2);
+//CODE USED TO TEST
+//TEST SEAT
+let obj: Seat = new Seat("Orchestra", "B", 12, false, false, 29.99);
+let obj2: Seat = new Seat("Nosebleeds", "X", 3, false, false, 4.99);
+let coll: Seat[] = [];
+coll.push(obj);
+coll.push(obj2);
 
 // //TEST SEAT SECTION
-// let coll2: SeatSection[] = [];
-// let obj3: SeatSection = new SeatSection("8", coll);
-// coll2.push(obj3);
-// let sys: JSONHandler = new JSONHandler();
-// //sys.serialize(coll2, "test3.json");
-// //sys.deserializeSeatSection("test3.json");
-// //sys.checkData();
+let coll2: SeatSection[] = [];
+let obj3: SeatSection = new SeatSection("8", coll);
+coll2.push(obj3);
+let sys: JSONHandler = new JSONHandler();
+sys.serialize(coll2, "test3.json");
+sys.deserializeSeatSection("test3.json");
+sys.checkData();
 
 // //TEST VENUE
 // let coll3: Venue[] = []
