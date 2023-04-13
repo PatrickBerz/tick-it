@@ -13,8 +13,15 @@ export const Home = () =>{
   const [value, setValue] = useState('');
   const [alert, setAlert] = useState(undefined);
   
+  const [selectedShow, setSelectedShow] = useState(null);
 
-  const confNumModal = () => setShow(true);
+  const handleSelectShow = (item) => {
+    setState({event:item.show.performance, venue:item.show.venue});
+  };
+
+  const confNumModal = () => {
+    setShow(true)
+  };
   const handleClose = () => {
     setShow(false)
     setAlert(undefined); 
@@ -124,8 +131,8 @@ export const Home = () =>{
           </div> 
           <div className="square border border-secondary border-3 container" style={{maxWidth:'95%', maxHeight:'45rem' , padding:'35px',overflowY:'auto', marginBottom:'30px', background:'#282634'}}>            
           <Stack className="mb-5 flex-wrap" direction='horizontal' style={{justifyContent:'center'}} gap={3}>
-            {data.map((item, index) => (
-              <Card style={{ width: '18rem', height:'22rem'}}>
+            {data.map((item,index) => (
+              <Card key={index} style={{ width: '18rem', height:'22rem'}}>
                 <Card.Img height={'50%'} variant="top" src={VBCplaceholder}/>
                 <Card.Body>
                   <Card.Title>{item.show.performance}</Card.Title>
@@ -135,15 +142,14 @@ export const Home = () =>{
                   <Stack direction='horizontal' gap={2}>
                   <Link 
                     to={"/seatSelection"}
-                    state={{case:"purchase",event:item.show.performance,venue:item.show.venue, date:item.show.date}}>
+                    state={{case:"purchase",event:item.show.performance,venue:item.show.venue, data:item}}>
                     <Button size='sm' variant="primary" >
                           Purchase Tickets
                     </Button>
                   </Link>
                     <Button size='sm' variant="primary" onClick={() =>{
                     confNumModal()
-                    setShow({event:item.show.performance, venue:item.show.venue})
-                    console.log(passState.event)
+                    handleSelectShow(item)
                     }}>
                           Exchange Tickets
                     </Button>
@@ -179,11 +185,15 @@ export const Home = () =>{
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Link to={"/seatSelection"} state={passState}>
-                <Button type='submit' variant="success" onClick={onFormSubmit}>
+                
+                <Button  type='submit' variant="success" onClick={onFormSubmit}>
+                <Link to={"/seatSelection"} state={{event:passState.event, venue:passState.venue}}>
+                  {passState.event}
+                </Link>
                   Enter 
                 </Button>
-                </Link>
+                
+                
               </Modal.Footer>
             </Modal>
           </div>
