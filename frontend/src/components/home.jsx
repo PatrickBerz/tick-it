@@ -185,14 +185,14 @@ export const Home = () =>{
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                
-                <Button  type='submit' variant="success" onClick={onFormSubmit}>
                 <Link to={"/seatSelection"} state={{event:passState.event, venue:passState.venue}}>
+
+                <Button  type='submit' variant="success" onClick={onFormSubmit}>
                   {passState.event}
-                </Link>
+                
                   Enter 
                 </Button>
-                
+                </Link>
                 
               </Modal.Footer>
             </Modal>
