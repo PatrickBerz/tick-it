@@ -33,7 +33,7 @@ router.get("/ticketData", (req, res) => {
     let jsonhandler = new JSONHandler()
     
     //jsonhandler.deserializePurchase('../test6.json')
-    jsonhandler.deserializePurchase(__dirname + "\\..\\samplePurchases.json")
+    jsonhandler.deserializePurchase(__dirname + "/../samplePurchases.json")
     let purchases: any[] = jsonhandler.getData() 
     console.log(purchases)
     console.log("\n\n")
