@@ -1,4 +1,4 @@
-import { JsonSerializer } from 'typescript-json-serializer';
+//import { JsonSerializer } from 'typescript-json-serializer';
 import { Seat } from "./src/Seat";
 import { Ticket } from "./src/Ticket";
 import { Performance } from "./src/Performance";
@@ -23,10 +23,11 @@ export class JSONHandler {
         this.deserializedData = []; //Set data to empty
         
         //Instantiate a default serializer
-        const defaultSerializer = new JsonSerializer();
+        //const defaultSerializer = new JsonSerializer();
 
         //Convert the data from TypeScript objects to JSON data and save to the specified file 
-        let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
+        //let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
+        let data: string = JSON.stringify(dataSet);
         let datastr = JSON.stringify(data);
         fs.writeFileSync(filePath, datastr);
 
@@ -203,12 +204,15 @@ export class JSONHandler {
         //Retrieve the JSON data at the specified location
         const data = fs.readFileSync(filePath, 'utf8');
         let dataSet : any[] = JSON.parse(data);
-
         //Create the TypeScript Ticket objects
         for (var index in dataSet) {
             let objectTicket = dataSet[index];
 
             //Deserialize and build the Seat for the ticket
+            console.log(JSON.parse(data))
+            
+            console.log("\n\n\n\n\n\n")
+            console.log(objectTicket + "\n\n")
             let seatData: any = JSON.parse(JSON.stringify(objectTicket["seat"])); //Have to stringify to get parser to accept
             let assignedSeat = new Seat(seatData["section"], seatData["row"], seatData["seatNum"], seatData["acessible"], seatData["inSeasonSection"], seatData["defaultPrice"]);
 
@@ -269,6 +273,9 @@ export class JSONHandler {
         //Create the TypeScript Purchase objects
         for (var index in dataSet) {
             let objectPurchase = dataSet[index];
+
+            console.log("Object: " + JSON.stringify(objectPurchase))
+            console.log("\n\n\n")
 
             //Deserialize and build the set of tickets in the purchase
             let tickets: Ticket[] = [];
@@ -335,77 +342,77 @@ export class JSONHandler {
     }
 }
 
-//CODE USED TO TEST
-//TEST SEAT
-let obj: Seat = new Seat("Orchestra", "B", 12, false, false, 29.99);
-let obj2: Seat = new Seat("Nosebleeds", "X", 3, false, false, 4.99);
-let coll: Seat[] = [];
-coll.push(obj);
-coll.push(obj2);
+// //CODE USED TO TEST
+// //TEST SEAT
+// let obj: Seat = new Seat("Orchestra", "B", 12, false, false, 29.99);
+// let obj2: Seat = new Seat("Nosebleeds", "X", 3, false, false, 4.99);
+// let coll: Seat[] = [];
+// coll.push(obj);
+// coll.push(obj2);
 
-//TEST SEAT SECTION
-let coll2: SeatSection[] = [];
-let obj3: SeatSection = new SeatSection("8", coll);
-coll2.push(obj3);
-let sys: JSONHandler = new JSONHandler();
-//sys.serialize(coll2, "test3.json");
-//sys.deserializeSeatSection("test3.json");
-//sys.checkData();
+// //TEST SEAT SECTION
+// let coll2: SeatSection[] = [];
+// let obj3: SeatSection = new SeatSection("8", coll);
+// coll2.push(obj3);
+// let sys: JSONHandler = new JSONHandler();
+// //sys.serialize(coll2, "test3.json");
+// //sys.deserializeSeatSection("test3.json");
+// //sys.checkData();
 
-//TEST VENUE
-let coll3: Venue[] = []
-let obj4: Venue = new Venue(coll2);
-coll3.push(obj4);
-coll3.push(obj4);
-//sys.serialize(coll3, "test4.json");
-//sys.deserializeVenue("test4.json");
-//sys.checkData();
+// //TEST VENUE
+// let coll3: Venue[] = []
+// let obj4: Venue = new Venue(coll2);
+// coll3.push(obj4);
+// coll3.push(obj4);
+// //sys.serialize(coll3, "test4.json");
+// //sys.deserializeVenue("test4.json");
+// //sys.checkData();
 
-//TEST SEASON TICKET HOLDERS
-let coll4: SeasonTicketHolder[] = []
-let obj5: SeasonTicketHolder = new SeasonTicketHolder("Susan", "123 Sesame Street", "6064152452", obj);
-coll4.push(obj5);
-//sys.(coll4, "test4.json");
-//sys.deserializeSeasonTicketHolder("test4.json");
+// //TEST SEASON TICKET HOLDERS
+// let coll4: SeasonTicketHolder[] = []
+// let obj5: SeasonTicketHolder = new SeasonTicketHolder("Susan", "123 Sesame Street", "6064152452", obj);
+// coll4.push(obj5);
+// //sys.(coll4, "test4.json");
+// //sys.deserializeSeasonTicketHolder("test4.json");
 
-//TEST TICKETS
-let coll5: Ticket[] = [];
-let obj6: Ticket = new Ticket("West Side Story", obj);
-coll5.push(obj6);
-sys.serialize(coll5, "test5.json");
-sys.deserializeTicket("test5.json");
-sys.checkData();
+// //TEST TICKETS
+// let coll5: Ticket[] = [];
+// let obj6: Ticket = new Ticket("West Side Story", obj);
+// coll5.push(obj6);
+// sys.serialize(coll5, "test5.json");
+// sys.deserializeTicket("test5.json");
+// sys.checkData();
 
-//TEST PURCHASE
-let obj9: Attendee = new Attendee("Susan", "123 Sesame Street", "6064135244");
-let obj10: Purchase = new Purchase(obj9);
-obj10.updateTickets(coll5);
-let coll6: Purchase[] = [];
-coll6.push(obj10);
-sys.serialize(coll6, "test6.json");
-sys.deserializePurchase("test6.json");
-//sys.checkData();
+// //TEST PURCHASE
+// let obj9: Attendee = new Attendee("Susan", "123 Sesame Street", "6064135244");
+// let obj10: Purchase = new Purchase(obj9);
+// obj10.updateTickets(coll5);
+// let coll6: Purchase[] = [];
+// coll6.push(obj10);
+// sys.serialize(coll6, "test6.json");
+// sys.deserializePurchase("test6.json");
+// //sys.checkData();
 
-//TEST NEW JSON VENUE STRUCTURE
-sys.deserializeVenue("sampleVenue.json");
-let venue: Venue = sys.getData()[0];
-//sys.checkData();
+// //TEST NEW JSON VENUE STRUCTURE
+// sys.deserializeVenue("sampleVenue.json");
+// let venue: Venue = sys.getData()[0];
+// //sys.checkData();
 
-//TEST PERFORMANCE
-let date: Date = new Date();
-let obj11: Performance = new Performance("West Side Story", "Playhouse", date);
-obj11.setTickets(coll5);
-let coll7: Performance[] = [];
-coll7.push(obj11);
-sys.serialize(coll7, "test7.json");
-sys.deserializePerformance("test7.json");
-sys.checkData();
+// //TEST PERFORMANCE
+// let date: Date = new Date();
+// let obj11: Performance = new Performance("West Side Story", "Playhouse", date);
+// obj11.setTickets(coll5);
+// let coll7: Performance[] = [];
+// coll7.push(obj11);
+// sys.serialize(coll7, "test7.json");
+// sys.deserializePerformance("test7.json");
+// sys.checkData();
 
-//TEST SHOW
-let coll8: Show[] = [];
-let obj12: Show = new Show(venue, "West Side Story: LIVE!");
-obj12.setPerformances(coll7);
-coll8.push(obj12);
-//sys.serialize(coll8, "test8.json");
-//sys.deserializeShow("test8.json");
-//sys.checkData();
+// //TEST SHOW
+// let coll8: Show[] = [];
+// let obj12: Show = new Show(venue, "West Side Story: LIVE!");
+// obj12.setPerformances(coll7);
+// coll8.push(obj12);
+// //sys.serialize(coll8, "test8.json");
+// //sys.deserializeShow("test8.json");
+// //sys.checkData();
