@@ -7,7 +7,7 @@ import React, {useState} from 'react';
 export const AdminPage = () =>{
     
      function ListingsSubmit(){
-        window.location.href="/listings"
+        window.location.href="/eventListings"
     }
     function ticketStuffSubmit(){
         window.location.href="/ticketStuff"

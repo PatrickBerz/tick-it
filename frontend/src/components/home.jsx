@@ -3,7 +3,6 @@ import logo from './logo-tran.png';
 import VBCplaceholder from './VBC.jpg';
 import { Stack, Image, Form, Card, Button } from 'react-bootstrap';
 import {Route, Routes, Link } from 'react-router-dom';
-import { visitFunctionBody } from 'typescript';
 
 export const Home = () =>{
     return (
