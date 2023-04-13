@@ -349,25 +349,25 @@ export class JSONHandler {
 // let obj3: SeatSection = new SeatSection("8", coll);
 // coll2.push(obj3);
 // let sys: JSONHandler = new JSONHandler();
-// sys.serialize(coll2, "test3.json");
-// sys.deserializeSeatSection("test3.json");
-// sys.checkData();
+// //sys.serialize(coll2, "test3.json");
+// //sys.deserializeSeatSection("test3.json");
+// //sys.checkData();
 
 // //TEST VENUE
 // let coll3: Venue[] = []
 // let obj4: Venue = new Venue(coll2);
 // coll3.push(obj4);
 // coll3.push(obj4);
-// sys.serialize(coll3, "test4.json");
-// sys.deserializeVenue("test4.json");
-// sys.checkData();
+// //sys.serialize(coll3, "test4.json");
+// //sys.deserializeVenue("test4.json");
+// //sys.checkData();
 
 // //TEST SEASON TICKET HOLDERS
 // let coll4: SeasonTicketHolder[] = []
 // let obj5: SeasonTicketHolder = new SeasonTicketHolder("Susan", "123 Sesame Street", "6064152452", obj);
 // coll4.push(obj5);
-// sys.(coll4, "test4.json");
-// sys.deserializeSeasonTicketHolder("test4.json");
+// //sys.(coll4, "test4.json");
+// //sys.deserializeSeasonTicketHolder("test4.json");
 
 // //TEST TICKETS
 // let coll5: Ticket[] = [];
@@ -375,7 +375,7 @@ export class JSONHandler {
 // coll5.push(obj6);
 // sys.serialize(coll5, "test5.json");
 // sys.deserializeTicket("test5.json");
-// sys.checkData();
+// //sys.checkData();
 
 // //TEST PURCHASE
 // let obj9: Attendee = new Attendee("Susan Sawyer", "123 Sesame Street", "6064135244");
@@ -408,6 +408,6 @@ export class JSONHandler {
 // let obj12: Show = new Show(venue, "West Side Story: LIVE!");
 // obj12.setPerformances(coll7);
 // coll8.push(obj12);
-// sys.serialize(coll8, "test8.json");
-// sys.deserializeShow("test8.json");
-// sys.checkData();
+// //sys.serialize(coll8, "test8.json");
+// //sys.deserializeShow("test8.json");
+// //sys.checkData();
