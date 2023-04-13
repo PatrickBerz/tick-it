@@ -6,12 +6,14 @@ export class Purchase {
     private confNum: number;
     private purchaser: Attendee;
     private tickets: Ticket[];
+    private perfDateTime: Date;
 
     //Used to construct a new Purchase
     constructor(purchaser: Attendee) {
         this.purchaser = purchaser;
         this.confNum = 0;
         this.tickets = [];
+        this.perfDateTime = new Date();
     }
 
     //Return the confirmation number of the purchase
@@ -28,6 +30,12 @@ export class Purchase {
 
     //Change the collection of tickets in the purchase
     updateTickets(newTickets: Ticket[]) { this.tickets = newTickets; }
+
+    //Change the date and time of the Performance on the Purchase
+    setDate(performanceDateTime: Date) { this.perfDateTime = performanceDateTime; }
+
+    //Return the date and time of the Performance on the Purchase
+    getDate() { return this.perfDateTime; }
 
     //Calculate the total price of the purchase based on the ticket prices
     calcTotalPrice() {
@@ -48,6 +56,13 @@ export class Purchase {
     payTickets() {
         for (var index in this.tickets) {
             this.tickets[index].setTicketStatus(TicketStatus.Paid);
+        }
+    }
+
+    //Mark tickets in the purchase as Unsold
+    returnTickets() {
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.Unsold);
         }
     }
 }

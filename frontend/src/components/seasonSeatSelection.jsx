@@ -16,7 +16,7 @@ export const SeasonSeatSelection = () =>{
             <div>
             
                 <Link 
-                to={"/checkOut"}
+                to={"/seasonPass"}
                 state={{event: state.venue, seat: "Seat1"}}>
                 <button type="button">
                         Seat 1
@@ -24,7 +24,7 @@ export const SeasonSeatSelection = () =>{
                 </Link>
                 
                 <Link 
-                to={"/checkOut"}
+                to={"/seasonPass"}
                 state={{event: state.venue, seat: "Seat2"}}>
                 <button type="button">
                         Seat 2
@@ -32,7 +32,7 @@ export const SeasonSeatSelection = () =>{
                 </Link>
                 
                 <Link 
-                to={"/checkOut"}
+                to={"/seasonPass"}
                 state={{event: state.venue, seat: "Seat3"}}>
                 <button type="button">
                         Seat 3

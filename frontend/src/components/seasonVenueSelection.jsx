@@ -8,7 +8,7 @@ export const SeasonVenueSelection = () =>{
     const state = location.state;
     return (
         <div className='App-body'>
-        <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
+        <Stack direction='vertical' style={{alignItems:'center', marginTop:'30px'}} gap={1}>
           <div>
           <Form style={{color:'white'}}>Select a venue</Form>
             <p style={{color:'white'}}></p>

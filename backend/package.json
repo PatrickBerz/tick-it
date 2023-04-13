@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/concurrently": "^7.0.0",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
     "@types/node": "^18.15.10",
     "nodemon": "^2.0.21",
     "ts-node": "^10.9.1"
@@ -17,8 +21,7 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "concurrently": "^7.6.0",
-    "express": "^4.18.2",
-    "flatted": "^3.2.7",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
   }
 }

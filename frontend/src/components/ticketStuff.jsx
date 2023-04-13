@@ -1,9 +1,8 @@
 import { Form, Stack, Button, Alert, Table } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 
-
-export const TicketStuff = () => {
-    const [data, setData] = useState([]);
+export const TicketStuff = () =>{
+    const [data,setData] = useState(null);
 
     const fetchData = () => {
       fetch(`http://localhost:4000/ticketData`)
@@ -18,120 +17,64 @@ export const TicketStuff = () => {
         });
     };
     useEffect(() => {
-      fetchData();
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:4000/ticketData')
+            const newData = await response.json()
+            console.log(JSON.stringify(newData))
+            setData(newData)
+        }
+        fetchData();
     }, []);
 
-    const ticket = [
-        {
-            "ticket":
-            {
-                "confNum": 0,
-                "performance": "West Side Story",
-                "seat":
-                {
-                    "section": "Orchestra",
-                    "row": "B",
-                    "seatNum": 12,
-                    "acessible": false,
-                    "inSeasonSection": false,
-                    "defaultPrice": 29.99
-                },
-                "ticketStatus": 0,
-                "price": 29.99,
-                "purchaser":
-                {
-                    "first": "Susan",
-                    "last": "brooks",
-                    "address": "123 Sesame Street",
-                    "phoneNum": "6064135244"
-                },
-            },
-
-        },
-        {
-            "ticket":
-            {
-                "confNum": 1,
-                "performance": "West Side Story",
-                "seat":
-                {
-                    "section": "Orchestra",
-                    "row": "B",
-                    "seatNum": 13,
-                    "acessible": false,
-                    "inSeasonSection": false,
-                    "defaultPrice": 29.99
-                },
-                "ticketStatus": 0,
-                "price": 29.99,
-                "purchaser":
-                {
-                    "first": "Susan",
-                    "last": "brooks",
-                    "address": "123 Sesame Street",
-                    "phoneNum": "6064135244"
-                },
-            },
-
-        },
-        {
-            "ticket":
-            {
-                "confNum": 3,
-                "performance": "Magic Mike",
-                "seat":
-                {
-                    "section": "Orchestra",
-                    "row": "C",
-                    "seatNum": 34,
-                    "acessible": false,
-                    "inSeasonSection": false,
-                    "defaultPrice": 29.99
-                },
-                "ticketStatus": 0,
-                "price": 29.99,
-                "purchaser":
-                {
-                    "first": "Tom",
-                    "last": "smith",
-                    "address": "Easy Street",
-                    "phoneNum": "6064135244"
-                },
-            },
-
-        }
-    ]
-
-    
-    return (
-        
-        <div style={{maxWidth:'100%', maxHeight:'100%', alignSelf:'center'}}>
-            <Table align='center' bordered responsive striped hover variant='dark' size='sm' style={{maxWidth:'90%', maxHeight:'70%', marginTop:'100px'}}>
-                <thead><tr><th style={{textAlign:'center', fontSize:'20px'}} colSpan={6}>Ticket Orders</th></tr></thead>
-                    <tbody style={{ fontSize: '20px', color: "white"}}>
-                    <tr>
-                        <th style={{textAlign:'center'}}>Conf. #</th>
-                        <th style={{textAlign:'center'}} colSpan={2}>Purchaser</th>
-                        <th style={{textAlign:'center'}}>Show</th>
-                        <th style={{textAlign:'center'}}>Seat(s)</th>
-                        <th style={{textAlign:'center'}}>paid?</th>
-                    </tr>
-                    
-                        {data.map((item, index) => (
-                        <tr key={index} style={{alignItems:'center'}}>
-                            <td style={{textAlign:'center'}}>{item.ticket.confNum}</td>
-                            <td>{item.ticket.purchaser.first} </td>
-                            <td>{item.ticket.purchaser.last} </td>
-                            <td>{item.ticket.performance}</td>
-                            <td style={{textAlign:'center'}}>{item.ticket.seat.seatNum}</td>
-                            <td style={{textAlign:'center'}}>{item.ticket.paymentStatus}</td>
+    if (data) {
+        console.log(JSON.stringify(data))
+        return (
+            <div style={{maxWidth:'100%', maxHeight:'100%', alignSelf:'center'}}>
+                <Table align='center' bordered responsive striped hover variant='dark' size='sm' style={{maxWidth:'90%', maxHeight:'70%', marginTop:'100px'}}>
+                    <thead><tr><th style={{textAlign:'center', fontSize:'20px'}} colSpan={5}>Ticket Orders</th></tr></thead>
+                        <tbody style={{ fontSize: '20px', color: "white"}}>
+                        <tr>
+                            <th style={{textAlign:'center'}}>Conf. #</th>
+                            <th style={{textAlign:'center'}}>Purchaser</th>
+                            <th style={{textAlign:'center'}}>Show</th>
+                            <th style={{textAlign:'center'}}>Seat(s)</th>
+                            <th style={{textAlign:'center'}}>Ticket Status</th>
                         </tr>
-                    ))}
-                    
-                </tbody>
-            </Table>
-           
-        </div>
-        
-    )
+                        
+                        
+                        {data.map((item, index) => (
+                            <tr key={index} style={{alignItems:'center'}}>
+                            <td style={{textAlign:'center'}}>{item.confNum}</td>
+                            <td>{item.purchaser.name}</td>
+                            <td>{item.tickets[0].performance}</td>
+                            <td style={{textAlign:'center'}}>{item.tickets.map((obj) => (
+                                obj.seat.row + obj.seat.seatNum + " "
+                            ))}</td>
+                            <td style={{textAlign:'center'}}>{getTicketStatusText(item.tickets[0].ticketStatus)}</td>
+                        </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            
+            </div>
+        )
+    }
+    else {
+        return null;
+    }
+
+}  
+
+function getTicketStatusText(statusInt){
+    switch(statusInt){
+        case 0:
+            return "Unsold"
+        case 1:
+            return "Reserved"
+        case 2:
+            return "Paid"
+        case 3:
+            return "Picked Up"
+
+    }
 }
