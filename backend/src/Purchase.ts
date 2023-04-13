@@ -6,12 +6,13 @@ export class Purchase {
     private confNum: number;
     private purchaser: Attendee;
     private tickets: Ticket[];
+    private perfDateTime: Date;
 
-    constructor(purchaser: Attendee, confNum: number, tickets: Ticket[]) {
+    constructor(purchaser: Attendee) {
         this.purchaser = purchaser;
-        this.confNum = confNum;
-        this.tickets = tickets;
-        this.reserveTickets();
+        this.confNum = 0;
+        this.tickets = [];
+        this.perfDateTime = new Date();
     }
 
     getConfNum() { return this.confNum; }
