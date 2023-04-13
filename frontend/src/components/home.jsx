@@ -125,9 +125,9 @@ export const Home = () =>{
   
   return (
         <div className='App-body '>
-        <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
-          <Image src={logo} className='App-logo-big' style={{marginTop:'-60px'}}></Image>
-          <div className="square border border-secondary border-3 container" style={{maxWidth:'95%', maxHeight:'45rem' , padding:'35px',overflowY:'auto', marginBottom:'30px', background:'#282634'}}>            
+        <Stack direction='vertical' style={{alignItems:'center'}} gap={0}>
+          <Image src={logo} className='App-logo-big' style={{marginTop:'-30px'}}></Image>
+          <div className="square border border-secondary border-3 container" style={{maxWidth:'95%', maxHeight:'45rem' , padding:'35px',overflowY:'auto', marginBottom:'30px', marginTop:'-70px', background:'#282634'}}>            
           <Stack className="mb-5 flex-wrap" direction='horizontal' style={{justifyContent:'center'}} gap={3}>
             {data.map((item,index) => (
               <Card key={index} style={{ width: '18rem', height:'22rem'}}>
