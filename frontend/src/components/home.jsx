@@ -96,6 +96,8 @@ export const Home = () =>{
   ]
 
   
+  const [isDisabled, setDisabled] = useState(true);
+  
   const onFormSubmit = (e) => {
     e.preventDefault();
     setValue(value);
@@ -110,8 +112,11 @@ export const Home = () =>{
     promise.then(event => {
         if (event.status === 200) {
           setAlert({ label: 'success', type: 'success' })
-          handleClose()
-          window.location.href="/seatSelection"
+          //handleClose()
+          //window.location.href="/seatSelection"
+          var x = document.getElementById("continueButton");
+          //un-disable var x
+          setDisabled(false);
         } else {
           setAlert({ label: `Error ${event.statusText}`, type: 'danger' })
         }
@@ -122,13 +127,6 @@ export const Home = () =>{
         <div className='App-body '>
         <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
           <Image src={logo} className='App-logo-big' style={{marginTop:'-60px'}}></Image>
-          <div>
-            <Form.Control
-            placeholder="Enter to search for event"
-            id="searchInput"
-            style={{marginTop:'-70px', width:'50vmin'}}
-            />
-          </div> 
           <div className="square border border-secondary border-3 container" style={{maxWidth:'95%', maxHeight:'45rem' , padding:'35px',overflowY:'auto', marginBottom:'30px', background:'#282634'}}>            
           <Stack className="mb-5 flex-wrap" direction='horizontal' style={{justifyContent:'center'}} gap={3}>
             {data.map((item,index) => (
@@ -180,16 +178,19 @@ export const Home = () =>{
                         </Alert>
                     }
                 </Form>
+                <Button  className="me-0" type='submit' variant="success" onClick={onFormSubmit}>                
+                  Enter 
+                </Button>
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Link to={"/seatSelection"} state={{event:passState.event, venue:passState.venue}}>
-                <Button  type='submit' variant="success" onClick={onFormSubmit}>                
-                  Enter 
-                </Button>
-                </Link>
+                  <Button id="continueButton" variant="primary" disabled={isDisabled}>
+                    <Link to={"/seatSelection"} style={{color:'white', textDecoration:'none'}} state={{event:passState.event, venue:passState.venue}}>                
+                        Continue 
+                    </Link>
+                  </Button>
                 
               </Modal.Footer>
             </Modal>
