@@ -301,6 +301,7 @@ export class JSONHandler {
             let newPurchase = new Purchase(attendee);
             newPurchase.setConfNum(objectPurchase["confNum"]);
             newPurchase.updateTickets(tickets);
+            newPurchase.setDate(objectPurchase["perfDateTime"]);
             this.deserializedData.push(newPurchase);
         }
     }
