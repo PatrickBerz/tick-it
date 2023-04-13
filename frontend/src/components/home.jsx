@@ -78,11 +78,11 @@ export const Home = () =>{
       },   
     },
     {
-      "show":
+      show:
       {
-          "performance": "How I Met Your Mother Abridged",
-          "venue" : "Civic Center Concert Hall",
-          "date": "4/15/2023"
+          performance: "How I Met Your Mother Abridged",
+          venue : "Civic Center Concert Hall",
+          date: "4/15/2023"
       },   
     },
     
@@ -135,69 +135,23 @@ export const Home = () =>{
                   <Stack direction='horizontal' gap={2}>
                   <Link 
                     to={"/seatSelection"}
-                    state={{case:"purchase",event:"small event",venue: "Civic Center Playhouse"}}>
+                    state={{case:"purchase",event:item.show.performance,venue:item.show.venue, date:item.show.date}}>
                     <Button size='sm' variant="primary" >
                           Purchase Tickets
                     </Button>
                   </Link>
-                    <Button size='sm' variant="primary" onClick={confNumModal}>
+                    <Button size='sm' variant="primary" onClick={() =>{
+                    confNumModal()
+                    setShow({event:item.show.performance, venue:item.show.venue})
+                    console.log(passState.event)
+                    }}>
                           Exchange Tickets
                     </Button>
                     </Stack>
                 </Card.Body>
               </Card>
             ))}
-              {/*  */}
-
-              {/* cards */}
-              
-              {/* <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={VBCplaceholder}/>
-                <Card.Body>
-                  <Card.Title>Small Event 2</Card.Title>
-                  <Card.Text>
-                    Civic Center Playhouse
-                  </Card.Text>
-                  <Stack direction='horizontal' gap={2}>
-                  <Link 
-                    to={"/seatSelection"}
-                    state={{case:"purchase",event:"small event2",venue: "Civic Center Playhouse"}}>
-                    <Button size='sm' variant="primary">
-                          Purchase Tickets
-                    </Button>
-                  </Link>
-                  <Button size='sm' variant="primary" onClick={confNumModal}>
-                          Exchange Tickets
-                    </Button>
-                  </Stack>
-                </Card.Body>
-              </Card>
-
-              <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={VBCplaceholder}/>
-                <Card.Body>
-                  <Card.Title>Large Event 1</Card.Title>
-                  <Card.Text>
-                    Civic Center Concert Hall
-                  </Card.Text>
-                  <Stack direction='horizontal' gap={2}>
-                  <Link 
-                    to={"/seatSelection"}
-                    state={{case:"purchase",event:"large event",venue: "Civic Center Concert Hall"}}>
-                    <Button size='sm' variant="primary">
-                          Purchase Tickets
-                    </Button>
-                  </Link>
-                  <Button size='sm' variant="primary" onClick={() => {
-                    confNumModal()
-                    setState({event:"large event",venue: "Civic Center Concert Hall"})
-                    }}> 
-                          Exchange Tickets
-                    </Button>
-                  </Stack>
-                </Card.Body>
-              </Card> */}
-            </Stack>
+          </Stack>
             
             <Modal show={showModal} onHide={handleClose}>
               <Modal.Header closeButton>
