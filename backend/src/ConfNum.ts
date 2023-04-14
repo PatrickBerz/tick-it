@@ -23,7 +23,7 @@ export class ConfNum {
         return currentNum;
     }
 
-    public static updateNum(){
+    private static updateNum(){
 
         let nextNum = ((this.multiplier * this.confirmationNum + this.increment) % this.modulo)
         this.confirmationNum = nextNum
