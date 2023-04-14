@@ -103,7 +103,14 @@ export class JSONHandler {
                 tickets.push(newTicket);
             }
 
-            let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], objectPerformance["dateTime"]);
+            let dummySeat = new Seat("NA", "NA", 0, false, false, 0);
+            let dummySeats : Seat[] = [];
+            dummySeats.push(dummySeat);
+            let dummySeatSectObj = new SeatSection("NA", dummySeats)
+            let dummySections: SeatSection[] = [];
+            dummySections.push(dummySeatSectObj);
+            let dummyVenue = new Venue(dummySections);
+            let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], objectPerformance["dateTime"], dummyVenue);
             newPerformance.setTickets(tickets);
             this.deserializedData.push(newPerformance);
         }
@@ -185,7 +192,7 @@ export class JSONHandler {
                     tickets.push(newTicket);
                 }
 
-                let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], objectPerformance["dateTime"]);
+                let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], objectPerformance["dateTime"], venue);
                 newPerformance.setTickets(tickets);
                 performances.push(newPerformance);
             }

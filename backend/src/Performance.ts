@@ -8,11 +8,12 @@ export class Performance {
     private tickets: Ticket[];
 
     //Used to construct a new Performance
-    constructor(performanceName: string, venueName: string, dateTime: Date) {
+    constructor(performanceName: string, venueName: string, dateTime: Date, venueObj: Venue) {
         this.performanceName = performanceName;
         this.venueName = venueName;
         this.dateTime = dateTime;
         this.tickets = [];
+        this.makeTickets(venueObj);
     }
 
     //Return the name of a performance
