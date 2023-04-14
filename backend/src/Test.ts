@@ -52,10 +52,37 @@ export class Test {
         for (var index in testPerf.getTickets()) {
             console.log("TICKET " + index + " : " + testPerf.getTickets()[index].getTicketStatus());
         }
-        console.log("\n \nPURCHASE TICKETS STATUS: ");
+        console.log("\nPURCHASE TICKETS STATUS: ");
         for (var index in testPur.getTickets()) {
             console.log("TICKET " + index + " : " + testPur.getTickets()[index].getTicketStatus());
         }
+
+        console.log("SERIALIZING. . .");
+        let Perfs: Performance[] = [];
+        Perfs.push(testPerf);
+        let Purs: Purchase[] = [];
+        Purs.push(testPur);
+        sys.serialize(Perfs, "testPerf.json");
+        sys.serialize(Purs, "testPur.json");
+
+        console.log("NOW DESERIALIZING. . .");
+        sys.deserializePerformance("testPerf.json");
+        let deserialPerf : Performance = sys.getData()[0];
+        sys.deserializePurchase("testPur.json");
+        let deserialPur : Purchase = sys.getData()[0];
+
+        //Edit the tickets in the purchase
+        deserialPur.pickUpTickets();
+
+        //Now let's see what the data says:
+        console.log("\nPERFORMANCE TICKETS STATUS: ");
+        for (var index in deserialPerf.getTickets()) {
+            console.log("TICKET " + index + " : " + deserialPerf.getTickets()[index].getTicketStatus());
+        }
+        console.log("\nPURCHASE TICKETS STATUS: ");
+        for (var index in deserialPur.getTickets()) {
+            console.log("TICKET " + index + " : " + deserialPur.getTickets()[index].getTicketStatus());
+        }   
     }
     
 }

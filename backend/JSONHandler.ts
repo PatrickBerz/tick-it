@@ -27,11 +27,10 @@ export class JSONHandler {
 
         //Convert the data from TypeScript objects to JSON data and save to the specified file 
         let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
-        //let data: string = JSON.stringify(dataSet);
         let datastr = JSON.stringify(data);
         fs.writeFileSync(filePath, datastr);
 
-        console.log("Serialized obj " + JSON.stringify(dataSet));
+        //console.log("Serialized obj " + JSON.stringify(dataSet));
     }
 
     //Create Seat objects from JSON file
