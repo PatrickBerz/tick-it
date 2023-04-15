@@ -1,4 +1,4 @@
-//import { JsonSerializer } from 'typescript-json-serializer';
+import { JsonSerializer } from 'typescript-json-serializer';
 import { Seat } from "./src/Seat";
 import { Ticket } from "./src/Ticket";
 import { Performance } from "./src/Performance";
@@ -23,11 +23,10 @@ export class JSONHandler {
         this.deserializedData = []; //Set data to empty
         
         //Instantiate a default serializer
-        //const defaultSerializer = new JsonSerializer();
+        const defaultSerializer = new JsonSerializer();
 
         //Convert the data from TypeScript objects to JSON data and save to the specified file 
-        //let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
-        let data: string = JSON.stringify(dataSet);
+        let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
         let datastr = JSON.stringify(data);
         fs.writeFileSync(filePath, datastr);
 
@@ -104,7 +103,14 @@ export class JSONHandler {
                 tickets.push(newTicket);
             }
 
-            let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], objectPerformance["dateTime"]);
+            let dummySeat = new Seat("NA", "NA", 0, false, false, 0);
+            let dummySeats : Seat[] = [];
+            dummySeats.push(dummySeat);
+            let dummySeatSectObj = new SeatSection("NA", dummySeats)
+            let dummySections: SeatSection[] = [];
+            dummySections.push(dummySeatSectObj);
+            let dummyVenue = new Venue(dummySections);
+            let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], objectPerformance["dateTime"], dummyVenue);
             newPerformance.setTickets(tickets);
             this.deserializedData.push(newPerformance);
         }
@@ -186,7 +192,7 @@ export class JSONHandler {
                     tickets.push(newTicket);
                 }
 
-                let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], objectPerformance["dateTime"]);
+                let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], objectPerformance["dateTime"], venue);
                 newPerformance.setTickets(tickets);
                 performances.push(newPerformance);
             }
@@ -343,28 +349,28 @@ export class JSONHandler {
     }
 }
 
-// //CODE USED TO TEST
-// //TEST SEAT
-// let obj: Seat = new Seat("Orchestra", "B", 12, false, false, 29.99);
-// let obj2: Seat = new Seat("Nosebleeds", "X", 3, false, false, 4.99);
-// let coll: Seat[] = [];
-// coll.push(obj);
-// coll.push(obj2);
+//CODE USED TO TEST
+//TEST SEAT
+let obj: Seat = new Seat("Orchestra", "B", 12, false, false, 29.99);
+let obj2: Seat = new Seat("Nosebleeds", "X", 3, false, false, 4.99);
+let coll: Seat[] = [];
+coll.push(obj);
+coll.push(obj2);
 
 // //TEST SEAT SECTION
-// let coll2: SeatSection[] = [];
-// let obj3: SeatSection = new SeatSection("8", coll);
-// coll2.push(obj3);
-// let sys: JSONHandler = new JSONHandler();
-// //sys.serialize(coll2, "test3.json");
-// //sys.deserializeSeatSection("test3.json");
-// //sys.checkData();
+let coll2: SeatSection[] = [];
+let obj3: SeatSection = new SeatSection("8", coll);
+coll2.push(obj3);
+let sys: JSONHandler = new JSONHandler();
+//sys.serialize(coll, "test3.json");
+//sys.deserializeSeatSection("test3.json");
+//sys.checkData();
 
 // //TEST VENUE
-// let coll3: Venue[] = []
-// let obj4: Venue = new Venue(coll2);
-// coll3.push(obj4);
-// coll3.push(obj4);
+//let coll3: Venue[] = []
+//let obj4: Venue = new Venue(coll2);
+//coll3.push(obj4);
+//coll3.push(obj4);
 // //sys.serialize(coll3, "test4.json");
 // //sys.deserializeVenue("test4.json");
 // //sys.checkData();
@@ -377,25 +383,26 @@ export class JSONHandler {
 // //sys.deserializeSeasonTicketHolder("test4.json");
 
 // //TEST TICKETS
-// let coll5: Ticket[] = [];
-// let obj6: Ticket = new Ticket("West Side Story", obj);
-// coll5.push(obj6);
+let coll5: Ticket[] = [];
+ let obj6: Ticket = new Ticket("West Side Story", obj);
+ coll5.push(obj6);
 // sys.serialize(coll5, "test5.json");
 // sys.deserializeTicket("test5.json");
 // //sys.checkData();
 
 // //TEST PURCHASE
-// let obj9: Attendee = new Attendee("Susan Sawyer", "123 Sesame Street", "6064135244");
-// let date: Date = new Date();
-// let obj11: Performance = new Performance("West Side Story", "Playhouse", date);
+let obj9: Attendee = new Attendee("Susan Sawyer", "123 Sesame Street", "6064135244");
+let date: Date = new Date();
+//FOR NEW PERFORMANCE TEST
+//let obj11: Performance = new Performance("West Side Story", "Playhouse", date, testVenue);
 // let obj10: Purchase = new Purchase(obj9);
 // obj10.updateTickets(coll5);
 // obj10.setDate(obj11.getDateTime());
 // let coll6: Purchase[] = [];
 // coll6.push(obj10);
-// sys.serialize(coll6, "test6.json");
-// sys.deserializePurchase("test6.json");
-// sys.checkData();
+//sys.serialize(coll6, "test6.json");
+//sys.deserializePurchase("test6.json");
+//sys.checkData();
 
 // //TEST NEW JSON VENUE STRUCTURE
 // sys.deserializeVenue("sampleVenue.json");
@@ -403,12 +410,21 @@ export class JSONHandler {
 // sys.checkData();
 
 // //TEST PERFORMANCE
-// obj11.setTickets(coll5);
-// let coll7: Performance[] = [];
-// coll7.push(obj11);
-// sys.serialize(coll7, "test7.json");
-// sys.deserializePerformance("test7.json");
-// sys.checkData();
+ //obj11.setTickets(coll5);
+
+ //NEW PERFORMANCE TEST
+ sys.deserializeVenue("sampleVenue.json");
+ let testVenue = sys.getData()[0];
+ let coll7: Performance[] = [];
+ let newPerf = new Performance("Oklahoma", "Playhouse", new Date(), testVenue);
+ coll7.push(newPerf);
+ //coll7.push(obj11);
+ //sys.serialize(coll7, "test7.json");
+ //sys.deserializePerformance("test7.json");
+ //coll7[0].setTickets(coll5); //This tests to make sure we can still override the venueTicket creation if tickets already exist in perf
+ sys.serialize(coll7, "newTestPerf.json");
+ sys.deserializePerformance("newTestPerf.json");
+ sys.checkData();
 
 // //TEST SHOW
 // let coll8: Show[] = [];

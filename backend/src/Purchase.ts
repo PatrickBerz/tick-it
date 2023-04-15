@@ -45,6 +45,13 @@ export class Purchase {
         }
     }
 
+    //Mark the tickets in the purchase as Reserved
+    reservedTickets() {
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.Reserved);
+        }
+    }
+
     //Mark the tickets in the purchase as Picked Up
     pickUpTickets() {
         for (var index in this.tickets) {
