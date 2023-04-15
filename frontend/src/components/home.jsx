@@ -12,7 +12,7 @@ export const Home = () =>{
   const [passState, setState] = useState({case:'',event:'',venue:'', date:''});
   const [value, setValue] = useState('');
   const [alert, setAlert] = useState(undefined);
-  
+  // const [data, setData] = useState([]);
   const [selectedShow, setSelectedShow] = useState(null);
 
   const handleSelectShow = (item) => {
@@ -26,6 +26,23 @@ export const Home = () =>{
     setShow(false)
     setAlert(undefined); 
   }
+ 
+
+  // const fetchData = () => {
+  //   fetch(`http://localhost:4000/ticketData`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       //console.log(data);
+  //       setData(data);
+  //       console.log(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const data = [
     {
