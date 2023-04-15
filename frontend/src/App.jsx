@@ -14,7 +14,7 @@ import {Listings } from './components/listings';
 import { TicketStuff } from './components/ticketStuff';
 import { SeasonSeatSelection } from './components/seasonSeatSelection';
 import { SeasonVenueSelection } from './components/seasonVenueSelection';
-
+import { SeasonPassStuff } from './components/seasonPassStuff';
 const App = () => 
   <Router>
     <div className="App">
@@ -31,6 +31,7 @@ const App = () =>
           <Route path='/ticketStuff' element={<TicketStuff/>}/>
           <Route path='/seasonSeatSelection' element={<SeasonSeatSelection/>}/>
           <Route path='/seasonVenueSelection' element={<SeasonVenueSelection/>}/>
+          <Route path='/seasonPassStuff' element={<SeasonPassStuff/>}/>
       </Routes>
     </div>
   </Router>
