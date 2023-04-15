@@ -4,14 +4,13 @@ import {useLocation, Link } from 'react-router-dom';
 
 export const SeatSelection = () =>{
     //TODO: try catch
-    const location = useLocation();
-    const state = location.state;
+    const { state } = useLocation();
     return (
         <div className='App-body'>
-        <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
+        <Stack direction='vertical' style={{alignItems:'center', marginTop:'60px'}} gap={1}>
           <div>
           <Form style={{color:'white'}}>Select a seat!</Form>
-            <p style={{color:'white'}}>Event: {state.event}</p>
+            <p style={{color:'white'}}>Event: {state.event} <br /> Venue: {state.venue}</p>
             </div>
             <div>
             

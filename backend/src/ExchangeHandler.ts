@@ -1,24 +1,39 @@
 import { Ticket } from "./Ticket"; //Import Ticket class
 import { Purchase } from "./Purchase"; //Import Purchase class
+import { ConfNum } from "./ConfNum";
+import { Performance } from "./Performance";
 
-/*export class ExchangeHandler {
+export class ExchangeHandler {
     //Exchange the tickets by making a new purchase
-    exchange(ogPurchase: Purchase, newTickets: Ticket[], onlineExchange: boolean) {
+    exchange(oldPerf: Performance, ogPurchase: Purchase, newTickets: Ticket[], onlineExchange: boolean) {
         //Mark the current tickets as Unsold so they are available
-        //ogPurchase.returnTickets();
-
+        ogPurchase.returnTickets();
+        
+        //Mark tickets in the old performance as Unsold so they are available
+        let perfTickets = oldPerf.getTickets();
+        let ogPurchaseTickets = ogPurchase.getTickets();
+        for (var index1 in ogPurchaseTickets) {
+            for (var index2 in perfTickets) {
+                if (perfTickets[index2].getSeat().equals(ogPurchaseTickets[index1].getSeat())) {
+                    perfTickets[index2].setTicketStatus(0);
+                }
+            }
+        }
+        
         //Generate new purchase with the same Attendee as original
-        //let newPurchase = new Purchase(ogPurchase.getPurchaser(), newTickets);
+        let newPurchase = new Purchase(ogPurchase.getPurchaser());
+        newPurchase.updateTickets(newTickets);
+        newPurchase.setConfNum(ConfNum.getNum()); 
 
-        //if (onlineExchange) { this.refundOnline(ogPurchase, newPurchase); }
+        if (onlineExchange) { this.refundOnline(ogPurchase, newPurchase); }
 
-        //return newPurchase; //Return to system to go to check-out
+        return newPurchase; //Return to system to go to check-out
     }
 
     //A user has opted for an exchange online with a card
     refundOnline(ogPurchase: Purchase, newPurchase : Purchase) {
-        let oldPrice = ogPurchase.calcTotalPrice();
-        let newPrice = newPurchase.calcTotalPrice();
+        let oldPrice: any = ogPurchase.calcTotalPrice();
+        let newPrice: any = newPurchase.calcTotalPrice();
         let refund = 0.0;
         let ticketPrice = 0.0;
 
@@ -52,4 +67,4 @@ import { Purchase } from "./Purchase"; //Import Purchase class
 
         }
     }
-}*/
+}

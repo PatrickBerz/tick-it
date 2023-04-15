@@ -1,0 +1,100 @@
+[
+  {
+    "confNum": 12346,
+    "purchaser": {
+      "name": "Blarg",
+      "address": "123 Blargly St",
+      "phoneNum": "555-867-5309"
+    },
+    "tickets": [
+      {
+        "performance": "Aladdin or something",
+        "seat": {
+          "section": "Orchestra",
+          "row": "X",
+          "seatNum": 31,
+          "accessible": false,
+          "inSeasonSection": false,
+          "defaultPrice": 59.67
+        },
+        "ticketStatus": 1,
+        "price": 3067.14
+      },
+      {
+        "performance": "Aladdin or something",
+        "seat": {
+          "section": "Orchestra",
+          "row": "X",
+          "seatNum": 32,
+          "accessible": false,
+          "inSeasonSection": false,
+          "defaultPrice": 59.67
+        },
+        "ticketStatus": 1,
+        "price": 3067.14
+      },
+      {
+        "performance": "Aladdin or something",
+        "seat": {
+          "section": "Orchestra",
+          "row": "X",
+          "seatNum": 33,
+          "accessible": false,
+          "inSeasonSection": false,
+          "defaultPrice": 59.67
+        },
+        "ticketStatus": 1,
+        "price": 3067.14
+      }
+    ]
+  },
+  {
+    "confNum": 12345,
+    "purchaser": {
+      "name": "Bron",
+      "address": "123 Blargly St",
+      "phoneNum": "555-867-5309"
+    },
+    "tickets": [
+      {
+        "performance": "Aladdin or something",
+        "seat": {
+          "section": "Orchestra",
+          "row": "F",
+          "seatNum": 12,
+          "accessible": false,
+          "inSeasonSection": false,
+          "defaultPrice": 59.67
+        },
+        "ticketStatus": 3,
+        "price": 3067.14
+      },
+      {
+        "performance": "Aladdin or something",
+        "seat": {
+          "section": "Orchestra",
+          "row": "F",
+          "seatNum": 13,
+          "accessible": false,
+          "inSeasonSection": false,
+          "defaultPrice": 59.67
+        },
+        "ticketStatus": 3,
+        "price": 3067.14
+      },
+      {
+        "performance": "Aladdin or something",
+        "seat": {
+          "section": "Orchestra",
+          "row": "F",
+          "seatNum": 14,
+          "accessible": false,
+          "inSeasonSection": false,
+          "defaultPrice": 59.67
+        },
+        "ticketStatus": 3,
+        "price": 3067.14
+      }
+    ]
+  }
+]

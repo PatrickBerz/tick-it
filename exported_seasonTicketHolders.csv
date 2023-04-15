@@ -1,0 +1,4 @@
+name,address,phoneNum,seatAssignment/section,seatAssignment/row,seatAssignment/seatNum,seatAssignment/acessible,seatAssignment/inSeasonSection,seatAssignment/defaultPrice
+Rodger,456 Sesame Street,6064152452,Orchestra,B,12,false,false,29.99,
+Rodger,456 Sesame Street,6064152452,Orchestra,B,12,false,false,29.99,
+Rodger,456 Sesame Street,6064152452,Orchestra,B,12,false,false,29.99,

@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const routesHandler = require('./routes/handler.ts');
+//const routesHandler = require('./routes/handler.ts');
+import routesHandler from "./routes/handler"
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:false}));

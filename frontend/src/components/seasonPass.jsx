@@ -25,8 +25,8 @@ export const SeasonPass = () =>{
     }
 
     return (
-        <div>
-            <h1 className="col-md-4 mt-4 mx-auto" style={{ color: 'white' }}>Buy a Season Pass ticket!</h1>
+        <div style={{ marginTop:'60px'}}>
+            <h1 className="col-md-4 mt-4 mx-auto" style={{ color: 'white'}}>Buy a Season Pass ticket!</h1>
 
             <Form className="col-md-4 mt-4 mx-auto">
                 {/*Row 1: First Name*/}

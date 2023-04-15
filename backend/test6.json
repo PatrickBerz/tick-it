@@ -1,7 +1,7 @@
 [
     {
         "purchaser": {
-            "name": "Susan",
+            "name": "Susan Sawyer",
             "address": "123 Sesame Street",
             "phoneNum": "6064135244"
         },
@@ -20,6 +20,7 @@
                 "ticketStatus": 0,
                 "price": 29.99
             }
-        ]
+        ],
+        "perfDateTime": "2023-04-12T19:33:44.087Z"
     }
 ]
