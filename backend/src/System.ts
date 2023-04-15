@@ -39,7 +39,8 @@ export class System {
     private initializePurchases(filePath : string) : Purchase[] 
     {
         this.deserializer.deserializePurchase(filePath);
-        return this.deserializer.getData();
+        let purchases : Purchase[] = this.deserializer.getData();
+        return purchases.sort((n1, n2) => n1.getConfNum() - n2.getConfNum());
     }
 
     private initializeSeasonHolders(filePath : string) : SeasonTicketHolder[] 
@@ -52,9 +53,26 @@ export class System {
     createPurchase(purchaser : Attendee) : Purchase 
     {
         let newPurchase = new Purchase(purchaser);
-        this.purchases.push(newPurchase);
+        this.insertIntoPurchases(newPurchase);
         return newPurchase;
     }
+
+    private insertIntoPurchases(purchase : Purchase, start? : number, end? : number)
+    {
+        if(this.purchases.length == 0) return this.purchases.push(purchase);
+        if(typeof start == 'undefined') start = 0;
+        if(typeof end == 'undefined') end = this.purchases.length;
+        var pivot = (start + end) >> 1;
+        var comp = purchase.getConfNum() - this.purchases[pivot].getConfNum();
+        if (end - start <= 1)
+        {
+            if (comp < 0) return this.purchases.splice(pivot - 1, 0, purchase);
+            else return this.purchases.splice(pivot, 0, purchase);
+        }
+        if (comp < 0) return this.insertIntoPurchases(purchase, start, pivot);
+        else if (comp > 0) return this.insertIntoPurchases(purchase, pivot, end);
+        else return this.purchases.splice(pivot, 0, purchase);
+    } 
     
     createVenue(seatSections : SeatSection[]) : Venue
     {
