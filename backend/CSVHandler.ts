@@ -11,6 +11,7 @@ import * as fs from 'fs';
 import * as csv from 'csv';
 import { JsonSerializer } from 'typescript-json-serializer';
 import { JSONHandler } from "./JSONHandler";
+let Papa = require('papaparse');
 let csvToJson = require('convert-csv-to-json');
 
 export class CSVHandler {
@@ -68,7 +69,20 @@ export class CSVHandler {
             console.log("DID NOT WORK!");
         }*/
     }
+
+    //Use to let ticket seller's export info from JSON database as CSV
+    exportCSV() {
+        //Get JSON objects
+        let JSONsys: JSONHandler = new JSONHandler();
+        let data : SeasonTicketHolder[] = [];
+        JSONsys.deserializeSeasonTicketHolder("./seasonTicketHolders.json");
+        data = JSONsys.getData();
+
+        let dataStr = Papa.unparse(data);
+        fs.writeFileSync("../exported_seasonTicketHolders.csv", dataStr);
+    }
 }
 
 let sys: CSVHandler = new CSVHandler();
 sys.importCSV("seasonTH.csv", "TESTCONVERSION.json");
+sys.exportCSV();
