@@ -5,6 +5,8 @@ import { Ticket } from "./Ticket";
 import { Performance } from "./Performance";
 import { JSONHandler } from "../JSONHandler";
 import { Seat } from "./Seat";
+import { SeatSection } from "./SeatSection";
+import { Venue } from "./Venue";
 
 export class Test {
     constructor() {
@@ -35,7 +37,8 @@ export class Test {
         }
 
         //BUILD PERFORMANCE
-        let testPerf = new Performance("West Side Story", "Concert Hall", new Date());
+        let SeatSections: SeatSection[] = []
+        let testPerf = new Performance("West Side Story", "Concert Hall", new Date(), new Venue(SeatSections));
         testPerf.setTickets(tickets);
 
         //BUILD PURCHASE
@@ -57,7 +60,7 @@ export class Test {
             console.log("TICKET " + index + " : " + testPur.getTickets()[index].getTicketStatus());
         }
 
-        console.log("SERIALIZING. . .");
+        /*console.log("SERIALIZING. . .");
         let Perfs: Performance[] = [];
         Perfs.push(testPerf);
         let Purs: Purchase[] = [];
@@ -72,16 +75,19 @@ export class Test {
         let deserialPur : Purchase = sys.getData()[0];
 
         //Edit the tickets in the purchase
-        deserialPur.pickUpTickets();
+        deserialPur.pickUpTickets();*/
+
+        //delete purchase to see if it deletes in performance
+        delete testPerf.getTickets[0];
 
         //Now let's see what the data says:
         console.log("\nPERFORMANCE TICKETS STATUS: ");
-        for (var index in deserialPerf.getTickets()) {
-            console.log("TICKET " + index + " : " + deserialPerf.getTickets()[index].getTicketStatus());
+        for (var index in testPerf.getTickets()) {
+            console.log("TICKET " + index + " : " + testPerf.getTickets()[index].getTicketStatus());
         }
         console.log("\nPURCHASE TICKETS STATUS: ");
-        for (var index in deserialPur.getTickets()) {
-            console.log("TICKET " + index + " : " + deserialPur.getTickets()[index].getTicketStatus());
+        for (var index in testPur.getTickets()) {
+            console.log("TICKET " + index + " : " + testPur.getTickets()[index].getTicketStatus());
         }   
     }
     

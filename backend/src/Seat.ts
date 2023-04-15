@@ -39,4 +39,15 @@ export class Seat {
 
     //Change if it is in a season section or not
     setIsSeasonSection(isSeasonSection: boolean) { this.inSeasonSection = isSeasonSection; }
+
+    //See if two seats are equal
+    equals(otherSeat : Seat) {
+        if (this.section == otherSeat.getSection() && 
+            this.row == otherSeat.getRow() 
+            && this.seatNum == otherSeat.getSeatNum()) {
+                return true;
+        } else {
+            return false;
+        }
+    }
 }
