@@ -137,14 +137,20 @@ export class System {
         return null;
     }
 
-    findPurchase(confNum : number) : Purchase | null
+    findPurchase(confNum : number, start? : number, end? : number) : Purchase | null
     {
-        for (var index in this.purchases) 
+        if(typeof start == 'undefined') start = 0;
+        if(typeof end == 'undefined') end = this.purchases.length;
+        var pivot = (start + end) >> 1;
+        var comp = confNum - this.purchases[pivot].getConfNum();
+        if (end - start <= 1)
         {
-            if (this.purchases[index].getConfNum() == confNum) 
-                return this.purchases[index];
+            if (comp !== 0) return null;
+            else return this.purchases[pivot];
         }
-        return null;
+        if (comp < 0) return this.findPurchase(confNum, start, pivot);
+        else if (comp > 0) return this.findPurchase(confNum, pivot, end);
+        else return this.purchases[pivot];
     }
 
     findPerformance(showName : string, dateTime : Date) : Performance | null
