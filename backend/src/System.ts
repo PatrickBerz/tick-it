@@ -28,9 +28,9 @@ export class System {
         this.seasonTicketHolders = this.initializeSeasonHolders(filePath + "seasonTicketHolders.json");
 
 
-        console.log(this.shows)
-        console.log(this.purchases)
-        console.log(this.seasonTicketHolders)
+        // console.log(this.shows)
+        // console.log(this.purchases)
+        // console.log(this.seasonTicketHolders)
     }
 
     //initializing each database from the given file

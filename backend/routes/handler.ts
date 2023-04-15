@@ -114,6 +114,7 @@ router.get("/showData"), (req: any, res: any) => {
     showList.forEach(show => {
         performanceList = performanceList.concat(show.getPerformances())
     }); 
+    console.log(JSON.stringify(performanceList))
     res.json(performanceList)
 
 }
@@ -242,5 +243,5 @@ export default router;
 
 let system:System = new System(__dirname + "/../")
 let purchase: Purchase | null = system.findPurchase(0)
-console.log("\n\n\n\n\n\nPURCHASE")
-console.log(purchase)
+// console.log("\n\n\n\n\n\nPURCHASE")
+// console.log(purchase)
