@@ -12,15 +12,20 @@ export const EventListings = () => {
     const [showModal, setShow] = useState(false)
     const [formError, setFormError] = useState(null)
     const [showData, setShowData] = useState([])
-    const [validated, setValidated] = useState(false)
+    const [alert, setAlert] = useState(undefined);
+
+    function handleBackButton() {
+        window.location.href = "/adminPage"
+
+    }
 
     const newEventModal = () => {
         setShow(true)
     };
     const handleClose = () => {
         setShow(false)
-        //setAlert(undefined)
-        setValidated(false)
+        setAlert(undefined)
+        
     }
 
     const handleTextChange = e => {
@@ -52,9 +57,8 @@ export const EventListings = () => {
         setFormError(null);
 
         console.log('form data', formData)
-
+        
         setShowData([
-            ...showData,
             {
                 show: {
                     performance: formData.performance,
@@ -63,33 +67,36 @@ export const EventListings = () => {
                 }
             }
         ])
+        //console.log('show data', showData.show.performance)
+
+        const promise = fetch('http://localhost:4000/showData', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify([showData])
+        });
+        console.log(promise)
+        promise.then(event => {
+            if (event.status === 200) {
+                setAlert({ label: 'success', type: 'success' })
+                handleClose()
+            } else {
+                setAlert({ label: `${event.statusText}`, type: 'danger' })
+            }
+        })
 
         setFormData({
             performance: '',
             venue: '',
             date: ''
         })
-        handleClose()
+
 
 
         //console.log('form data', showData.show.performance)
 
         // handleSelectShow()
 
-        // const promise = fetch('http://localhost:4000/confNum', {
-        //     method: 'POST',
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({ value })
-        // });
-        // console.log(promise)
-        // promise.then(event => {
-        //     if (event.status === 200) {
-        //         setAlert({ label: 'success', type: 'success' })
 
-        //     } else {
-        //         setAlert({ label: `Error ${event.statusText}`, type: 'danger' })
-        //     }
-        // })
 
     }
 
@@ -98,13 +105,20 @@ export const EventListings = () => {
     return (
         <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
             <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
-                <div >
+                <div className='d-flex justify-content-between'>
                     <Button style={{
                         borderColor: '#FF4057',
                         backgroundColor: '#FF4057',
                     }}
                         onClick={newEventModal}>
-                        Create Event
+                        Create Show
+                    </Button>
+                    <Button style={{
+                        borderColor: '#FF4057',
+                        backgroundColor: '#FF4057',
+                    }}
+                        onClick={handleBackButton}>
+                        Back
                     </Button>
                 </div>
                 <Table align='center' bordered responsive striped hover variant='dark' size='sm' style={{ maxHeight: '70%' }}>
@@ -141,6 +155,11 @@ export const EventListings = () => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={onFormSubmit} id='newShowForm' >
+                        {alert &&
+                            <Alert style={{ maxWidth: '200px', marginTop: 5, paddingTop: '2px', maxHeight: '30px', }} key={alert.type} variant={alert.type}>
+                                {alert.label}
+                            </Alert>
+                        }
                         {formError && <Alert variant='danger'>{formError}</Alert>
                         }
                         <Row className="mb-3">
