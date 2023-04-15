@@ -10,6 +10,10 @@ import { Seat } from "../src/Seat";
 import { SeasonTicketHolder } from "../src/SeasonTicketHolder";
 
 
+//FUNCTIONS NEEDED:
+//
+// Lookup performance by showName, venue, dateTime
+// Lookup purchase by confNum
 
 
 router.use(cors({
@@ -18,7 +22,7 @@ router.use(cors({
 
 
 //get list of season ticket holders
-//post new season ticket holder list
+//post new season ticket holder
 
 //post default prices for venue
 
@@ -55,6 +59,15 @@ router.post("/newDefaults"), (req, res) => {
     
 }
 
+router.get("/ticketData/:showName/:venue/:dateTime"), (req, res) => {
+    //call System function to lookup a show by show name/venue/dateTime
+    //return the JSONified list of tickets within that show
+    //req.params["showName"]
+}
+
+router.post("/exchange"), (req, res) => {
+    //need old conf num, new showName, new venue, new DateTime, new tickets
+}
 
 
 //OLD STUFF, not changed
@@ -70,6 +83,14 @@ router.get("/purchaseData", (req, res) => {
     // //const ticket = '[{"purchaser":{"name":"Susan","address":"123 Sesame Street","phoneNum":"6064135244"},"confNum":0,"tickets":[{"performance":"West Side Story","seat":{"section":"Orchestra","row":"B","seatNum":12,"acessible":false,"inSeasonSection":false,"defaultPrice":29.99},"ticketStatus":0,"price":29.99}]}]'
     res.json(purchases);
 });
+
+router.post("/newPurchase"), (req, res) => {
+    //need show name, dateTime, ticket list
+
+    //TODO: figure out where to make purchase
+    //pass all into System, where it makes a new purchase and adds to list?
+    //OR, make new purchase here, then pass to System to add to list
+}
 
 router.post("/password", (req, res) => {
     //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
