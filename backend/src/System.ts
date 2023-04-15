@@ -7,6 +7,11 @@ import { SeatSection } from "./SeatSection";
 import { Seat } from "./Seat";
 import { Performance } from "./Performance";
 import { JSONHandler } from "../JSONHandler";
+import { Ticket } from "./Ticket";
+import { ConfNum } from "./ConfNum";
+
+//NOT A SINGLETON
+//Needs to be able to handle a new start where there are no files to pull from
 
 export class System {
     private deserializer : JSONHandler = new JSONHandler();
@@ -17,10 +22,15 @@ export class System {
 
     //calls all the initializer functions
     constructor(filePath: string) {
-        this.venues = this.initializeVenues(filePath);
-        this.shows = this.initializeShows(filePath);
-        this.purchases = this.initializePurchases(filePath);
-        this.seasonTicketHolders = this.initializeSeasonHolders(filePath);
+        this.venues = this.initializeVenues(filePath + "/sampleVenue.json");
+        this.shows = this.initializeShows(filePath + "/test8.json");
+        this.purchases = this.initializePurchases(filePath + "/test6.json");
+        this.seasonTicketHolders = this.initializeSeasonHolders(filePath + "seasonTicketHolders.json");
+
+
+        console.log(this.shows)
+        console.log(this.purchases)
+        console.log(this.seasonTicketHolders)
     }
 
     //initializing each database from the given file
@@ -39,7 +49,8 @@ export class System {
     private initializePurchases(filePath : string) : Purchase[] 
     {
         this.deserializer.deserializePurchase(filePath);
-        return this.deserializer.getData();
+        let purchases : Purchase[] = this.deserializer.getData();
+        return purchases.sort((n1, n2) => n1.getConfNum() - n2.getConfNum());
     }
 
     private initializeSeasonHolders(filePath : string) : SeasonTicketHolder[] 
@@ -49,12 +60,33 @@ export class System {
     }
 
     //creating new objects for the database
-    createPurchase(purchaser : Attendee) : Purchase 
+    createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date)// : Purchase 
     {
         let newPurchase = new Purchase(purchaser);
-        this.purchases.push(newPurchase);
-        return newPurchase;
+        newPurchase.updateTickets(tickets)
+        newPurchase.setConfNum(ConfNum.getNum())
+        newPurchase.setDate(dateTime)
+        this.purchases.push(newPurchase)
+        //this.insertIntoPurchases(newPurchase);
+        //return newPurchase;
     }
+
+    // private insertIntoPurchases(purchase : Purchase, start? : number, end? : number)
+    // {
+    //     if(this.purchases.length == 0) return this.purchases.push(purchase);
+    //     if(typeof start == 'undefined') start = 0;
+    //     if(typeof end == 'undefined') end = this.purchases.length;
+    //     var pivot = (start + end) >> 1;
+    //     var comp = purchase.getConfNum() - this.purchases[pivot].getConfNum();
+    //     if (end - start <= 1)
+    //     {
+    //         if (comp < 0) return this.purchases.splice(pivot - 1, 0, purchase);
+    //         else return this.purchases.splice(pivot, 0, purchase);
+    //     }
+    //     if (comp < 0) return this.insertIntoPurchases(purchase, start, pivot);
+    //     else if (comp > 0) return this.insertIntoPurchases(purchase, pivot, end);
+    //     else return this.purchases.splice(pivot, 0, purchase);
+    // } 
     
     createVenue(seatSections : SeatSection[]) : Venue
     {
@@ -119,14 +151,20 @@ export class System {
         return null;
     }
 
-    findPurchase(confNum : number) : Purchase | null
+    findPurchase(confNum : number, start? : number, end? : number) : Purchase | null
     {
-        for (var index in this.purchases) 
+        if(typeof start == 'undefined') start = 0;
+        if(typeof end == 'undefined') end = this.purchases.length;
+        var pivot = (start + end) >> 1;
+        var comp = confNum - this.purchases[pivot].getConfNum();
+        if (end - start <= 1)
         {
-            if (this.purchases[index].getConfNum() == confNum) 
-                return this.purchases[index];
+            if (comp !== 0) return null;
+            else return this.purchases[pivot];
         }
-        return null;
+        if (comp < 0) return this.findPurchase(confNum, start, pivot);
+        else if (comp > 0) return this.findPurchase(confNum, pivot, end);
+        else return this.purchases[pivot];
     }
 
     findPerformance(showName : string, dateTime : Date) : Performance | null
@@ -135,8 +173,8 @@ export class System {
         if (show == null) return null; 
         for(var index in show.getPerformances())
         {
-            if(show.getPerformances[index].getDateTime() == dateTime)
-            return show.getPerformances[index];
+            if(show.getPerformances()[index].getDateTime() == dateTime)
+            return show.getPerformances()[index];
         }
         return null;
     }

@@ -336,6 +336,32 @@ export class JSONHandler {
     //Return the current deserializedData
     getData() { return this.deserializedData };
 
+    //Use if the ticket seller wants to export JSON info
+    exportJSON(seasonTicketHolders: SeasonTicketHolder[]) {
+        //Now serialize data
+        const defaultSerializer = new JsonSerializer();
+
+        //Convert the data from TypeScript objects to JSON data and save to the specified file 
+        let data: string = defaultSerializer.serialize(seasonTicketHolders) as unknown as string;
+        let datastr = JSON.stringify(data);
+        fs.writeFileSync("../exported_seasonTicketHolders.json", datastr);
+    }
+
+    //Use if the ticket seller wants to import JSON info to use in the backend
+    importJSON(filePath: string) {
+        //Retrieve the JSON data at the specified location
+        const newData = fs.readFileSync(filePath, 'utf8');
+        let dataSet : any[] = JSON.parse(newData);
+
+        //Now serialize data
+        const defaultSerializer = new JsonSerializer();
+
+        //Convert the data from TypeScript objects to JSON data and save to the specified file 
+        let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
+        let datastr = JSON.stringify(data);
+        fs.writeFileSync("./seasonTicketHolders.json", datastr);
+    }
+
     
     //TEST FUNCTION TO DEMONSTRATE WORKING
     checkData() {
@@ -376,9 +402,9 @@ let sys: JSONHandler = new JSONHandler();
 // //sys.checkData();
 
 // //TEST SEASON TICKET HOLDERS
-// let coll4: SeasonTicketHolder[] = []
-// let obj5: SeasonTicketHolder = new SeasonTicketHolder("Susan", "123 Sesame Street", "6064152452", obj);
-// coll4.push(obj5);
+//let coll4: SeasonTicketHolder[] = []
+//let obj5: SeasonTicketHolder = new SeasonTicketHolder("Susan", "123 Sesame Street", "6064152452", obj);
+//coll4.push(obj5);
 // //sys.(coll4, "test4.json");
 // //sys.deserializeSeasonTicketHolder("test4.json");
 
@@ -434,3 +460,15 @@ let date: Date = new Date();
 // //sys.serialize(coll8, "test8.json");
 // //sys.deserializeShow("test8.json");
 // //sys.checkData();
+
+// TEST JSON EXPORT
+let coll4: SeasonTicketHolder[] = []
+let obj5: SeasonTicketHolder = new SeasonTicketHolder("Susan", "123 Sesame Street", "6064152452", obj);
+coll4.push(obj5);
+obj5.setName("Amanda");
+coll4.push(obj5);
+obj5.setName("Rodger");
+obj5.setAddress("456 Sesame Street");
+coll4.push(obj5);
+sys.exportJSON(coll4);
+sys.importJSON("../exported_seasonTicketHolders.json")
