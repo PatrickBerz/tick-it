@@ -14,8 +14,12 @@ export const EventListings = () => {
     const [showData, setShowData] = useState([])
     const [alert, setAlert] = useState(undefined);
 
-    function handleBackButton() {
+    const handleBackButton = () => {
         window.location.href = "/adminPage"
+
+    }
+    function handleExport() {
+        console.log("yay export")
 
     }
 
@@ -25,7 +29,7 @@ export const EventListings = () => {
     const handleClose = () => {
         setShow(false)
         setAlert(undefined)
-        
+
     }
 
     const handleTextChange = e => {
@@ -57,7 +61,7 @@ export const EventListings = () => {
         setFormError(null);
 
         console.log('form data', formData)
-        
+
         setShowData([
             {
                 show: {
@@ -90,14 +94,6 @@ export const EventListings = () => {
             date: ''
         })
 
-
-
-        //console.log('form data', showData.show.performance)
-
-        // handleSelectShow()
-
-
-
     }
 
 
@@ -105,15 +101,22 @@ export const EventListings = () => {
     return (
         <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
             <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
-                <div className='d-flex justify-content-between'>
-                    <Button style={{
+                <div className='d-flex mb-2'>
+                    <Button className='p-2' style={{
                         borderColor: '#FF4057',
                         backgroundColor: '#FF4057',
                     }}
                         onClick={newEventModal}>
                         Create Show
                     </Button>
-                    <Button style={{
+                    <Button className='ms-2 p-2' style={{
+                        borderColor: '#FF4057',
+                        backgroundColor: '#FF4057',
+                    }}
+                        onClick={handleExport}>
+                        Export Data
+                    </Button>
+                    <Button className='ms-auto p-2' style={{
                         borderColor: '#FF4057',
                         backgroundColor: '#FF4057',
                     }}
