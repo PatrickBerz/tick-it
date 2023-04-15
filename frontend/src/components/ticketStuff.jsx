@@ -18,7 +18,7 @@ export const TicketStuff = () =>{
     };
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch('http://localhost:4000/ticketData')
+            const response = await fetch('http://localhost:4000/purchaseData')
             const newData = await response.json()
             console.log(JSON.stringify(newData))
             setData(newData)

@@ -9,14 +9,14 @@ import '../styles.css';
 export const Home = () => {
 
   const [showModal, setShow] = useState(false);
-  const [passState, setState] = useState({ event: '', venue: '' });
+  const [passState, setState] = useState({case:'',event:'',venue:'', date:''});
   const [value, setValue] = useState('');
   const [alert, setAlert] = useState(undefined);
 
   const [selectedShow, setSelectedShow] = useState(null);
 
   const handleSelectShow = (item) => {
-    setState({ event: item.show.performance, venue: item.show.venue });
+    setState({case:"exchange",event:item.show.performance, venue:item.show.venue, date:item.show.date});
   };
 
   const confNumModal = () => {
@@ -138,16 +138,16 @@ export const Home = () => {
                     {item.show.venue} <br /> {item.show.date}
                   </Card.Text>
                   <Stack direction='horizontal' gap={2}>
-                    <Link
-                      to={"/seatSelection"}
-                      state={{ case: "purchase", event: item.show.performance, venue: item.show.venue, data: item }}>
-                      <Button size='sm' variant="primary" >
-                        Purchase Tickets
-                      </Button>
-                    </Link>
-                    <Button size='sm' variant="primary" onClick={() => {
-                      confNumModal()
-                      handleSelectShow(item)
+                  <Link 
+                    to={"/seatSelection"}
+                    state={{case:"purchase",event:item.show.performance,venue:item.show.venue, date:item.show.date}}>
+                    <Button size='sm' variant="primary" >
+                          Purchase Tickets
+                    </Button>
+                  </Link>
+                    <Button size='sm' variant="primary" onClick={() =>{
+                    confNumModal()
+                    handleSelectShow(item)
                     }}>
                       Exchange Tickets
                     </Button>
@@ -170,32 +170,37 @@ export const Home = () => {
                     placeholder="Confirmation Number"
                     onChange={(e) => setValue(e.target.value)}
                     value={value}
-                  />
-                </FormGroup>
-                {alert &&
-                  <Alert style={{ maxWidth: '200px', marginTop: 5, paddingTop: '2px', maxHeight: '30px', }} key={alert.type} variant={alert.type}>
-                    {alert.label}
-                  </Alert>
-                }
-              </Form>
-              <Button className="me-0" type='submit' variant="success" onClick={onFormSubmit}>
-                Enter
-              </Button>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button id="continueButton" variant="primary" disabled={isDisabled}>
-                <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }} state={{ event: passState.event, venue: passState.venue }}>
-                  Continue
-                </Link>
-              </Button>
-
-            </Modal.Footer>
-          </Modal>
-        </div>
-      </Stack>
-    </div>
-  )
+                    />
+                  
+                  </FormGroup>
+                  <div className='d-inline-flex'>
+                  <Button className="me-2 mt-1" type='submit' variant="success" style={{width:'60px', height:'35px'}} onClick={onFormSubmit}>                
+                  Enter 
+                  </Button>
+                  {alert &&
+                        <Alert style={{ maxWidth: '200px', marginTop:5, paddingTop:'2px', maxHeight:'30px', }} key={alert.type} variant={alert.type}>
+                        {alert.label}
+                        </Alert>
+                    }
+                    
+                  </div>
+                </Form>
+                
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+                  <Button id="continueButton" variant="primary" disabled={isDisabled}>
+                    <Link to={"/seatSelection"} style={{color:'white', textDecoration:'none'}} state={{case:passState.case ,event:passState.event, venue:passState.venue, date:passState.date}}>                
+                        Continue 
+                    </Link>
+                  </Button>
+                
+              </Modal.Footer>
+            </Modal>
+          </div>
+        </Stack>
+      </div>
+    )
 }

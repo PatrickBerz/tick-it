@@ -3,6 +3,7 @@ where /q node
 if %ERRORLEVEL% neq 0 echo Please install node && pause && exit
 cd backend
 call npm install
+call npm install typescript-json-serializer --save
 echo npm backend installed
 start cmd /k call npx ts-node --esm index.ts
 echo backend started
