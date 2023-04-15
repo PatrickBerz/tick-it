@@ -129,14 +129,13 @@ export class System {
         return null;
     }
 
-    findPerformance(showName : string, venueName: string, dateTime : Date) : Performance | null
+    findPerformance(showName : string, dateTime : Date) : Performance | null
     {
         let show : Show | null = this.findShow(showName);
         if (show == null) return null; 
         for(var index in show.getPerformances())
         {
-            if(show.getPerformances[index].getVenueName() == venueName 
-            && show.getPerformances[index].getDateTime() == dateTime)
+            if(show.getPerformances[index].getDateTime() == dateTime)
             return show.getPerformances[index];
         }
         return null;
