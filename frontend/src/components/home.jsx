@@ -29,7 +29,7 @@ export const Home = () =>{
                   </Card.Text>
                   <Link 
                     to={"/seatSelection"}
-                    state={{event: "SmallEvent1"}}>
+                    state={{event: "SmallEvent1", venue: "playhouse"}}>
                     <Button variant="primary">
                           Purchase Tickets
                     </Button>
@@ -48,7 +48,7 @@ export const Home = () =>{
                   </Card.Text>
                   <Link 
                     to={"/seatSelection"}
-                    state={{event: "SmallEvent2"}}>
+                    state={{event: "SmallEvent2", venue: "playhouse"}}>
                     <Button variant="primary">
                           Purchase Tickets
                     </Button>
@@ -65,7 +65,7 @@ export const Home = () =>{
                   </Card.Text>
                   <Link 
                     to={"/seatSelection"}
-                    state={{event: "LargeEvent1"}}>
+                    state={{event: "LargeEvent1", venue: "concert hall"}}>
                     <Button variant="primary">
                           Purchase Tickets
                     </Button>
