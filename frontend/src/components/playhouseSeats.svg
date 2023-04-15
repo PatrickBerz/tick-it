@@ -12,10 +12,27 @@
 	.st7{fill:#FFFFFF;stroke:#DDDDDD;stroke-width:2.5;stroke-miterlimit:10;}
 	.st8{fill:#DFDFDF;}
 	.st9{fill:#3366CC;}
-
+  
+  .accessible {
+    fill: #D592F0;
+  }
 
   .seat:hover{
       fill:#bad455;
+  }
+
+  .taken {
+    fill: #ABABAB;
+  }
+  .taken:hover {
+    fill: #9C9C9C;
+  }
+
+  .season {
+    fill: #ABABAB;
+  }
+  .season:hover {
+    fill: #9C9C9C;
   }
 
   .active {
@@ -23,13 +40,6 @@
   }
   .active:hover {
       fill:#90A63C;
-  }
-
-  .taken {
-    fill: #ABABAB
-  }
-  .taken:hover {
-    fill: #9C9C9C
   }
 
 </style>
@@ -72,29 +82,29 @@
   </g>
   <g id="ALLSEATS">
     <g id="RISER1">
-      <g id="ROWA">
+      <g id="A">
         <circle class="st9 seat" cx="338" cy="402" r="5.5" id="RISE1-A-1"/>
         <circle class="st9 seat" cx="338" cy="387.7" r="5.5" id="RISE1-A-2"/>
       </g>
-      <g id="ROWB">
+      <g id="B">
         <circle class="st9 seat" cx="314.6" cy="402" r="5.5" id="RISE1-B-1"/>
         <circle class="st9 seat" cx="314.6" cy="387.7" r="5.5" id="RISE1-B-2"/>
         <circle class="st9 seat" cx="314.6" cy="373.4" r="5.5" id="RISE1-B-3"/>
       </g>
-      <g id="ROWC">
+      <g id="C">
         <circle class="st9 seat" cx="291.2" cy="402" r="5.5" id="RISE1-C-1"/>
         <circle class="st9 seat" cx="291.2" cy="387.7" r="5.5" id="RISE1-C-2"/>
         <circle class="st9 seat" cx="291.2" cy="373.4" r="5.5" id="RISE1-C-3"/>
         <circle class="st9 seat" cx="291.2" cy="359.1" r="5.5" id="RISE1-C-4"/>
       </g>
-      <g id="ROWD">
+      <g id="D">
         <circle class="st9 seat" cx="267.8" cy="402" r="5.5" id="RISE1-D-1"/>
         <circle class="st9 seat" cx="267.8" cy="387.7" r="5.5" id="RISE1-D-2"/>
         <circle class="st9 seat" cx="267.8" cy="373.4" r="5.5" id="RISE1-D-3"/>
         <circle class="st9 seat" cx="267.8" cy="359.1" r="5.5" id="RISE1-D-4"/>
         <circle class="st9 seat" cx="267.8" cy="344.8" r="5.5" id="RISE1-D-5"/>
       </g>
-      <g id="ROWE">
+      <g id="E">
         <circle class="st9 seat" cx="244.4" cy="402" r="5.5" id="RISE1-E-1"/>
         <circle class="st9 seat" cx="244.4" cy="387.7" r="5.5" id="RISE1-E-2"/>
         <circle class="st9 seat" cx="244.4" cy="373.4" r="5.5" id="RISE1-E-3"/>
@@ -102,7 +112,7 @@
         <circle class="st9 seat" cx="244.4" cy="344.8" r="5.5" id="RISE1-E-5"/>
         <circle class="st9 seat" cx="244.4" cy="330.5" r="5.5" id="RISE1-E-6"/>
       </g>
-      <g id="ROWF">
+      <g id="F">
         <circle class="st9 seat" cx="221" cy="402" r="5.5" id="RISE1-F-1"/>
         <circle class="st9 seat" cx="221" cy="387.7" r="5.5" id="RISE1-F-2"/>
         <circle class="st9 seat" cx="221" cy="373.4" r="5.5" id="RISE1-F-3"/>
@@ -111,7 +121,7 @@
         <circle class="st9 seat" cx="221" cy="330.5" r="5.5" id="RISE1-F-6"/>
         <circle class="st9 seat" cx="221" cy="316.2" r="5.5" id="RISE1-F-7"/>
       </g>
-      <g id="ROWG">
+      <g id="G">
         <circle class="st9 seat" cx="197.6" cy="402" r="5.5" id="RISE1-G-1"/>
         <circle class="st9 seat" cx="197.6" cy="387.7" r="5.5" id="RISE1-G-2"/>
         <circle class="st9 seat" cx="197.6" cy="373.4" r="5.5" id="RISE1-G-3"/>
@@ -123,95 +133,95 @@
       </g>
     </g>
     <g id="RISER2">
-      <g id="ROWA">
-        <circle class="st9 seat" cx="411.8" cy="261.2" r="5.5" id="RISE2-A-1"/>
-        <circle class="st9 seat" cx="426.1" cy="261.2" r="5.5" id="RISE2-A-2"/>
-        <circle class="st9 seat" cx="440.4" cy="261.2" r="5.5" id="RISE2-A-3"/>
-        <circle class="st9 seat" cx="454.7" cy="261.2" r="5.5" id="RISE2-A-4"/>
-        <circle class="st9 seat" cx="469.7" cy="261.2" r="5.5" id="RISE2-A-5"/>
+      <g id="A">
+        <circle class="st9 seat season accessible" cx="411.8" cy="261.2" r="5.5" id="RISE2-A-1"/>
+        <circle class="st9 seat season accessible" cx="426.1" cy="261.2" r="5.5" id="RISE2-A-2"/>
+        <circle class="st9 seat season accessible" cx="440.4" cy="261.2" r="5.5" id="RISE2-A-3"/>
+        <circle class="st9 seat season accessible" cx="454.7" cy="261.2" r="5.5" id="RISE2-A-4"/>
+        <circle class="st9 seat season accessible" cx="469.7" cy="261.2" r="5.5" id="RISE2-A-5"/>
       </g>
-      <g id="ROWB">
-        <circle class="st9 seat" cx="363" cy="281.2" r="5.5" id="RISE2-B-1"/>
-        <circle class="st9 seat" cx="373.1" cy="268.7" r="5.5" id="RISE2-B-2"/>
-        <circle class="st9 seat" cx="383.5" cy="258.9" r="5.5" id="RISE2-B-3"/>
-        <circle class="st9 seat" cx="393.8" cy="249.1" r="5.5" id="RISE2-B-4"/>
-        <circle class="st9 seat" cx="404.2" cy="239.2" r="5.5" id="RISE2-B-5"/>
-        <circle class="st9 seat" cx="426.1" cy="239.2" r="5.5" id="RISE2-B-6"/>
-        <circle class="st9 seat" cx="440.4" cy="239.2" r="5.5" id="RISE2-B-7"/>
-        <circle class="st9 seat" cx="454.7" cy="239.2" r="5.5" id="RISE2-B-8"/>
-        <circle class="st9 seat" cx="469.7" cy="239.2" r="5.5" id="RISE2-B-9"/>
+      <g id="B">
+        <circle class="st9 seat season" cx="363" cy="281.2" r="5.5" id="RISE2-B-1"/>
+        <circle class="st9 seat season" cx="373.1" cy="268.7" r="5.5" id="RISE2-B-2"/>
+        <circle class="st9 seat season" cx="383.5" cy="258.9" r="5.5" id="RISE2-B-3"/>
+        <circle class="st9 seat season" cx="393.8" cy="249.1" r="5.5" id="RISE2-B-4"/>
+        <circle class="st9 seat season" cx="404.2" cy="239.2" r="5.5" id="RISE2-B-5"/>
+        <circle class="st9 seat season" cx="426.1" cy="239.2" r="5.5" id="RISE2-B-6"/>
+        <circle class="st9 seat season" cx="440.4" cy="239.2" r="5.5" id="RISE2-B-7"/>
+        <circle class="st9 seat season" cx="454.7" cy="239.2" r="5.5" id="RISE2-B-8"/>
+        <circle class="st9 seat season" cx="469.7" cy="239.2" r="5.5" id="RISE2-B-9"/>
       </g>
-      <g id="ROWC">
-        <circle class="st9 seat" cx="340.9" cy="269" r="5.5" id="RISE2-C-1"/>
-        <circle class="st9 seat" cx="351" cy="256.5" r="5.5" id="RISE2-C-2"/>
-        <circle class="st9 seat" cx="361.4" cy="246.7" r="5.5" id="RISE2-C-3"/>
-        <circle class="st9 seat" cx="371.8" cy="236.9" r="5.5" id="RISE2-C-4"/>
-        <circle class="st9 seat" cx="382.2" cy="227" r="5.5" id="RISE2-C-5"/>
-        <circle class="st9 seat" cx="392.5" cy="217.2" r="5.5" id="RISE2-C-6"/>
-        <circle class="st9 seat" cx="411.8" cy="217.2" r="5.5" id="RISE2-C-7"/>
-        <circle class="st9 seat" cx="425.7" cy="217.2" r="5.5" id="RISE2-C-8"/>
-        <circle class="st9 seat" cx="440" cy="217.2" r="5.5" id="RISE2-C-9"/>
-        <circle class="st9 seat" cx="454.3" cy="217.2" r="5.5" id="RISE2-C-10"/>
-        <circle class="st9 seat" cx="469.2" cy="217.2" r="5.5" id="RISE2-C-11"/>
+      <g id="C">
+        <circle class="st9 seat season" cx="340.9" cy="269" r="5.5" id="RISE2-C-1"/>
+        <circle class="st9 seat season" cx="351" cy="256.5" r="5.5" id="RISE2-C-2"/>
+        <circle class="st9 seat season" cx="361.4" cy="246.7" r="5.5" id="RISE2-C-3"/>
+        <circle class="st9 seat season" cx="371.8" cy="236.9" r="5.5" id="RISE2-C-4"/>
+        <circle class="st9 seat season" cx="382.2" cy="227" r="5.5" id="RISE2-C-5"/>
+        <circle class="st9 seat season" cx="392.5" cy="217.2" r="5.5" id="RISE2-C-6"/>
+        <circle class="st9 seat season" cx="411.8" cy="217.2" r="5.5" id="RISE2-C-7"/>
+        <circle class="st9 seat season" cx="425.7" cy="217.2" r="5.5" id="RISE2-C-8"/>
+        <circle class="st9 seat season" cx="440" cy="217.2" r="5.5" id="RISE2-C-9"/>
+        <circle class="st9 seat season" cx="454.3" cy="217.2" r="5.5" id="RISE2-C-10"/>
+        <circle class="st9 seat season" cx="469.2" cy="217.2" r="5.5" id="RISE2-C-11"/>
       </g>
-      <g id="ROWD">
-        <circle class="st9 seat" cx="317.1" cy="254.2" r="5.5" id="RISE2-D-1"/>
-        <circle class="st9 seat" cx="327.2" cy="241.7" r="5.5" id="RISE2-D-2"/>
-        <circle class="st9 seat" cx="337.6" cy="231.9" r="5.5" id="RISE2-D-3"/>
-        <circle class="st9 seat" cx="348" cy="222" r="5.5" id="RISE2-D-4"/>
-        <circle class="st9 seat" cx="358.4" cy="212.2" r="5.5" id="RISE2-D-5"/>
-        <circle class="st9 seat" cx="368.8" cy="202.4" r="5.5" id="RISE2-D-6"/>
-        <circle class="st9 seat" cx="382.8" cy="195.2" r="5.5" id="RISE2-D-7"/>
-        <circle class="st9 seat" cx="397.1" cy="195.2" r="5.5" id="RISE2-D-8"/>
-        <circle class="st9 seat" cx="411.4" cy="195.2" r="5.5" id="RISE2-D-9"/>
-        <circle class="st9 seat" cx="425.7" cy="195.2" r="5.5" id="RISE2-D-10"/>
-        <circle class="st9 seat" cx="440" cy="195.2" r="5.5" id="RISE2-D-10"/>
-        <circle class="st9 seat" cx="454.3" cy="195.2" r="5.5" id="RISE2-D-11"/>
-        <circle class="st9 seat" cx="469.2" cy="195.2" r="5.5" id="RISE2-D-12"/>
+      <g id="D">
+        <circle class="st9 seat season" cx="317.1" cy="254.2" r="5.5" id="RISE2-D-1"/>
+        <circle class="st9 seat season" cx="327.2" cy="241.7" r="5.5" id="RISE2-D-2"/>
+        <circle class="st9 seat season" cx="337.6" cy="231.9" r="5.5" id="RISE2-D-3"/>
+        <circle class="st9 seat season" cx="348" cy="222" r="5.5" id="RISE2-D-4"/>
+        <circle class="st9 seat season" cx="358.4" cy="212.2" r="5.5" id="RISE2-D-5"/>
+        <circle class="st9 seat season" cx="368.8" cy="202.4" r="5.5" id="RISE2-D-6"/>
+        <circle class="st9 seat season" cx="382.8" cy="195.2" r="5.5" id="RISE2-D-7"/>
+        <circle class="st9 seat season" cx="397.1" cy="195.2" r="5.5" id="RISE2-D-8"/>
+        <circle class="st9 seat season" cx="411.4" cy="195.2" r="5.5" id="RISE2-D-9"/>
+        <circle class="st9 seat season" cx="425.7" cy="195.2" r="5.5" id="RISE2-D-10"/>
+        <circle class="st9 seat season" cx="440" cy="195.2" r="5.5" id="RISE2-D-10"/>
+        <circle class="st9 seat season" cx="454.3" cy="195.2" r="5.5" id="RISE2-D-11"/>
+        <circle class="st9 seat season" cx="469.2" cy="195.2" r="5.5" id="RISE2-D-12"/>
       </g>
-      <g id="ROWE">
-        <circle class="st9 seat" cx="299.2" cy="241" r="5.5" id="RISE2-E-1"/>
-        <circle class="st9 seat" cx="309.2" cy="228.5" r="5.5" id="RISE2-E-2"/>
-        <circle class="st9 seat" cx="319.6" cy="218.7" r="5.5" id="RISE2-E-3"/>
-        <circle class="st9 seat" cx="330" cy="208.9" r="5.5" id="RISE2-E-4"/>
-        <circle class="st9 seat" cx="340.4" cy="199" r="5.5" id="RISE2-E-5"/>
-        <circle class="st9 seat" cx="350.8" cy="189.2" r="5.5" id="RISE2-E-6"/>
-        <circle class="st9 seat" cx="366.3" cy="177" r="5.5" id="RISE2-E-7"/>
-        <circle class="st9 seat" cx="382.8" cy="173.2" r="5.5" id="RISE2-E-8"/>
-        <circle class="st9 seat" cx="397.1" cy="173.2" r="5.5" id="RISE2-E-9"/>
-        <circle class="st9 seat" cx="411.4" cy="173.2" r="5.5" id="RISE2-E-10"/>
-        <circle class="st9 seat" cx="425.7" cy="173.2" r="5.5" id="RISE2-E-11"/>
-        <circle class="st9 seat" cx="440" cy="173.2" r="5.5" id="RISE2-E-12"/>
-        <circle class="st9 seat" cx="454.3" cy="173.2" r="5.5" id="RISE2-E-13"/>
-        <circle class="st9 seat" cx="469.2" cy="173.2" r="5.5" id="RISE2-E-14"/>
+      <g id="E">
+        <circle class="st9 seat season" cx="299.2" cy="241" r="5.5" id="RISE2-E-1"/>
+        <circle class="st9 seat season" cx="309.2" cy="228.5" r="5.5" id="RISE2-E-2"/>
+        <circle class="st9 seat season" cx="319.6" cy="218.7" r="5.5" id="RISE2-E-3"/>
+        <circle class="st9 seat season" cx="330" cy="208.9" r="5.5" id="RISE2-E-4"/>
+        <circle class="st9 seat season" cx="340.4" cy="199" r="5.5" id="RISE2-E-5"/>
+        <circle class="st9 seat season" cx="350.8" cy="189.2" r="5.5" id="RISE2-E-6"/>
+        <circle class="st9 seat season" cx="366.3" cy="177" r="5.5" id="RISE2-E-7"/>
+        <circle class="st9 seat season" cx="382.8" cy="173.2" r="5.5" id="RISE2-E-8"/>
+        <circle class="st9 seat season" cx="397.1" cy="173.2" r="5.5" id="RISE2-E-9"/>
+        <circle class="st9 seat season" cx="411.4" cy="173.2" r="5.5" id="RISE2-E-10"/>
+        <circle class="st9 seat season" cx="425.7" cy="173.2" r="5.5" id="RISE2-E-11"/>
+        <circle class="st9 seat season" cx="440" cy="173.2" r="5.5" id="RISE2-E-12"/>
+        <circle class="st9 seat season" cx="454.3" cy="173.2" r="5.5" id="RISE2-E-13"/>
+        <circle class="st9 seat season" cx="469.2" cy="173.2" r="5.5" id="RISE2-E-14"/>
       </g>
-      <g id="ROWF">
-        <circle class="st9 seat" cx="280.5" cy="227.9" r="5.5" id="RISE2-F-1"/>
-        <circle class="st9 seat" cx="290.6" cy="215.5" r="5.5" id="RISE2-F-2"/>
-        <circle class="st9 seat" cx="301" cy="205.6" r="5.5" id="RISE2-F-3"/>
-        <circle class="st9 seat" cx="311.3" cy="195.8" r="5.5" id="RISE2-F-4"/>
-        <circle class="st9 seat" cx="321.7" cy="186" r="5.5" id="RISE2-F-5"/>
-        <circle class="st9 seat" cx="335.4" cy="174.6" r="5.5" id="RISE2-F-6"/>
-        <circle class="st9 seat" cx="345.8" cy="164.7" r="5.5" id="RISE2-F-7"/>
-        <circle class="st9 seat" cx="356.2" cy="154.9" r="5.5" id="RISE2-F-8"/>
-        <circle class="st9 seat" cx="382.8" cy="151.2" r="5.5" id="RISE2-F-9"/>
-        <circle class="st9 seat" cx="397.1" cy="151.2" r="5.5" id="RISE2-F-10"/>
-        <circle class="st9 seat" cx="411.4" cy="151.2" r="5.5" id="RISE2-F-11"/>
-        <circle class="st9 seat" cx="425.7" cy="151.2" r="5.5" id="RISE2-F-12"/>
-        <circle class="st9 seat" cx="440" cy="151.2" r="5.5" id="RISE2-F-13"/>
-        <circle class="st9 seat" cx="454.3" cy="151.2" r="5.5" id="RISE2-F-14"/>
-        <circle class="st9 seat" cx="469.2" cy="151.2" r="5.5" id="RISE2-F-15"/>
+      <g id="F">
+        <circle class="st9 seat season" cx="280.5" cy="227.9" r="5.5" id="RISE2-F-1"/>
+        <circle class="st9 seat season" cx="290.6" cy="215.5" r="5.5" id="RISE2-F-2"/>
+        <circle class="st9 seat season" cx="301" cy="205.6" r="5.5" id="RISE2-F-3"/>
+        <circle class="st9 seat season" cx="311.3" cy="195.8" r="5.5" id="RISE2-F-4"/>
+        <circle class="st9 seat season" cx="321.7" cy="186" r="5.5" id="RISE2-F-5"/>
+        <circle class="st9 seat season" cx="335.4" cy="174.6" r="5.5" id="RISE2-F-6"/>
+        <circle class="st9 seat season" cx="345.8" cy="164.7" r="5.5" id="RISE2-F-7"/>
+        <circle class="st9 seat season" cx="356.2" cy="154.9" r="5.5" id="RISE2-F-8"/>
+        <circle class="st9 seat season" cx="382.8" cy="151.2" r="5.5" id="RISE2-F-9"/>
+        <circle class="st9 seat season" cx="397.1" cy="151.2" r="5.5" id="RISE2-F-10"/>
+        <circle class="st9 seat season" cx="411.4" cy="151.2" r="5.5" id="RISE2-F-11"/>
+        <circle class="st9 seat season" cx="425.7" cy="151.2" r="5.5" id="RISE2-F-12"/>
+        <circle class="st9 seat season" cx="440" cy="151.2" r="5.5" id="RISE2-F-13"/>
+        <circle class="st9 seat season" cx="454.3" cy="151.2" r="5.5" id="RISE2-F-14"/>
+        <circle class="st9 seat season" cx="469.2" cy="151.2" r="5.5" id="RISE2-F-15"/>
       </g>
     </g>
     <g id="RISER3">
-      <g id="ROWA">
-        <circle class="st9 seat" cx="523.2" cy="260.9" r="5.5" id="RISE3-A-1"/>
-        <circle class="st9 seat" cx="538.2" cy="260.9" r="5.5" id="RISE3-A-2"/>
-        <circle class="st9 seat" cx="552.5" cy="260.9" r="5.5" id="RISE3-A-3"/>
-        <circle class="st9 seat" cx="566.8" cy="260.9" r="5.5" id="RISE3-A-4"/>
-        <circle class="st9 seat" cx="581.1" cy="260.9" r="5.5" id="RISE3-A-5"/>
+      <g id="A">
+        <circle class="st9 seat accessible" cx="523.2" cy="260.9" r="5.5" id="RISE3-A-1"/>
+        <circle class="st9 seat accessible" cx="538.2" cy="260.9" r="5.5" id="RISE3-A-2"/>
+        <circle class="st9 seat accessible" cx="552.5" cy="260.9" r="5.5" id="RISE3-A-3"/>
+        <circle class="st9 seat accessible" cx="566.8" cy="260.9" r="5.5" id="RISE3-A-4"/>
+        <circle class="st9 seat accessible" cx="581.1" cy="260.9" r="5.5" id="RISE3-A-5"/>
       </g>
-      <g id="ROWB">
+      <g id="B">
         <circle class="st9 seat" cx="523.2" cy="238.9" r="5.5" id="RISE3-B-1"/>
         <circle class="st9 seat" cx="538.2" cy="238.9" r="5.5" id="RISE3-B-2"/>
         <circle class="st9 seat" cx="552.5" cy="238.9" r="5.5" id="RISE3-B-3"/>
@@ -222,7 +232,7 @@
         <circle class="st9 seat" cx="619.8" cy="268.4" r="5.5" id="RISE3-B-8"/>
         <circle class="st9 seat" cx="629.9" cy="280.9" r="5.5" id="RISE3-B-9"/>
       </g>
-      <g id="ROWC">
+      <g id="C">
         <circle class="st9 seat" cx="523.7" cy="216.9" r="5.5" id="RISE3-C-1"/>
         <circle class="st9 seat" cx="538.6" cy="216.9" r="5.5" id="RISE3-C-2"/>
         <circle class="st9 seat" cx="552.9" cy="216.9" r="5.5" id="RISE3-C-3"/>
@@ -235,7 +245,7 @@
         <circle class="st9 seat" cx="641.9" cy="256.2" r="5.5" id="RISE3-C-10"/>
         <circle class="st9 seat" cx="652" cy="268.7" r="5.5" id="RISE3-C-11"/>
       </g>
-      <g id="ROWD">
+      <g id="D">
         <circle class="st9 seat" cx="523.7" cy="194.9" r="5.5" id="RISE3-D-1"/>
         <circle class="st9 seat" cx="538.6" cy="194.9" r="5.5" id="RISE3-D-2"/>
         <circle class="st9 seat" cx="552.9" cy="194.9" r="5.5" id="RISE3-D-3"/>
@@ -250,7 +260,7 @@
         <circle class="st9 seat" cx="665.7" cy="241.4" r="5.5" id="RISE3-D-12"/>
         <circle class="st9 seat" cx="675.8" cy="253.9" r="5.5" id="RISE3-D-13"/>
       </g>
-      <g id="ROWE">
+      <g id="E">
         <circle class="st9 seat" cx="523.7" cy="172.9" r="5.5" id="RISE3-E-1"/>
         <circle class="st9 seat" cx="538.6" cy="172.9" r="5.5" id="RISE3-E-2"/>
         <circle class="st9 seat" cx="552.9" cy="172.9" r="5.5" id="RISE3-E-3"/>
@@ -266,7 +276,7 @@
         <circle class="st9 seat" cx="683.7" cy="228.2" r="5.5" id="RISE3-E-13"/>
         <circle class="st9 seat" cx="693.7" cy="240.7" r="5.5" id="RISE3-E-14"/>
       </g>
-      <g id="ROWF">
+      <g id="F">
         <circle class="st9 seat" cx="523.7" cy="150.9" r="5.5" id="RISE3-F-1"/>
         <circle class="st9 seat" cx="538.6" cy="150.9" r="5.5" id="RISE3-F-2"/>
         <circle class="st9 seat" cx="552.9" cy="150.9" r="5.5" id="RISE3-F-3"/>
@@ -285,29 +295,29 @@
       </g>
     </g>
     <g id="RISER4">
-      <g id="ROWA">
+      <g id="A">
         <circle class="st9 seat" cx="651.9" cy="387.7" r="5.5" id="RISE4-A-1"/>
         <circle class="st9 seat" cx="651.9" cy="402" r="5.5" id="RISE4-A-2"/>
       </g>
-      <g id="ROWB">
+      <g id="B">
         <circle class="st9 seat" cx="675.3" cy="373.4" r="5.5" id="RISE4-B-1"/>
         <circle class="st9 seat" cx="675.3" cy="387.7" r="5.5" id="RISE4-B-2"/>
         <circle class="st9 seat" cx="675.3" cy="402" r="5.5" id="RISE4-B-3"/>
       </g>
-      <g id="ROWC">
+      <g id="C">
         <circle class="st9 seat" cx="698.7" cy="359.1" r="5.5" id="RISE4-C-1"/>
         <circle class="st9 seat" cx="698.7" cy="373.4" r="5.5" id="RISE4-C-2"/>
         <circle class="st9 seat" cx="698.7" cy="387.7" r="5.5" id="RISE4-C-3"/>
         <circle class="st9 seat" cx="698.7" cy="402" r="5.5" id="RISE4-C-4"/>
       </g>
-      <g id="ROWD">
+      <g id="D">
         <circle class="st9 seat" cx="722.1" cy="344.8" r="5.5" id="RISE4-D-1"/>
         <circle class="st9 seat" cx="722.1" cy="359.1" r="5.5" id="RISE4-D-2"/>
         <circle class="st9 seat" cx="722.1" cy="373.4" r="5.5" id="RISE4-D-3"/>
         <circle class="st9 seat" cx="722.1" cy="387.7" r="5.5" id="RISE4-D-4"/>
         <circle class="st9 seat" cx="722.1" cy="402" r="5.5" id="RISE4-D-5"/>
       </g>
-      <g id="ROWE">
+      <g id="E">
         <circle class="st9 seat" cx="745.5" cy="330.5" r="5.5" id="RISE4-E-1"/>
         <circle class="st9 seat" cx="745.5" cy="344.8" r="5.5" id="RISE4-E-2"/>
         <circle class="st9 seat" cx="745.5" cy="359.1" r="5.5" id="RISE4-E-3"/>
@@ -315,7 +325,7 @@
         <circle class="st9 seat" cx="745.5" cy="387.7" r="5.5" id="RISE4-E-5"/>
         <circle class="st9 seat" cx="745.5" cy="402" r="5.5" id="RISE4-E-6"/>
       </g>
-      <g id="ROWF">
+      <g id="F">
         <circle class="st9 seat" cx="768.9" cy="316.2" r="5.5" id="RISE4-F-1"/>
         <circle class="st9 seat" cx="768.9" cy="330.5" r="5.5" id="RISE4-F-2"/>
         <circle class="st9 seat" cx="768.9" cy="344.8" r="5.5" id="RISE4-F-3"/>
@@ -324,7 +334,7 @@
         <circle class="st9 seat" cx="768.9" cy="387.7" r="5.5" id="RISE4-F-6"/>
         <circle class="st9 seat" cx="768.9" cy="402" r="5.5" id="RISE4-F-7"/>
       </g>
-      <g id="ROWG">
+      <g id="G">
         <circle class="st9 seat" cx="792.3" cy="301.9" r="5.5" id="RISE4-G-1"/>
         <circle class="st9 seat" cx="792.3" cy="316.2" r="5.5" id="RISE4-G-2"/>
         <circle class="st9 seat" cx="792.3" cy="330.5" r="5.5" id="RISE4-G-3"/>
@@ -336,7 +346,7 @@
       </g>
     </g>
     <g id="LOGE1">
-      <g id="ROWA">
+      <g id="A">
         <circle class="st9 seat" cx="249.2" cy="203.5" r="5.5" id="LOGE1-A-1"/>
         <circle class="st9 seat" cx="259.4" cy="193.5" r="5.5" id="LOGE1-A-2"/>
         <circle class="st9 seat" cx="269.5" cy="183.4" r="5.5" id="LOGE1-A-3"/>
@@ -344,14 +354,14 @@
         <circle class="st9 seat" cx="289.8" cy="163.2" r="5.5" id="LOGE1-A-5"/>
         <circle class="st9 seat" cx="300" cy="153.2" r="5.5" id="LOGE1-A-6"/>
       </g>
-      <g id="ROWB">
+      <g id="B">
         <circle class="st9 seat" cx="242.9" cy="176.9" r="5.5" id="LOGE1-B-1"/>
         <circle class="st9 seat" cx="253" cy="166.8" r="5.5" id="LOGE1-B-2"/>
         <circle class="st9 seat" cx="263.2" cy="156.7" r="5.5" id="LOGE1-B-3"/>
         <circle class="st9 seat" cx="273.3" cy="146.6" r="5.5" id="LOGE1-B-4"/>
         <circle class="st9 seat" cx="283.5" cy="136.6" r="5.5" id="LOGE1-B-5"/>
       </g>
-      <g id="ROWC">
+      <g id="C">
         <circle class="st9 seat" cx="236.5" cy="150.2" r="5.5" id="LOGE1-C-1"/>
         <circle class="st9 seat" cx="246.7" cy="140.1" r="5.5" id="LOGE1-C-2"/>
         <circle class="st9 seat" cx="256.8" cy="130" r="5.5" id="LOGE1-C-3"/>
@@ -359,7 +369,7 @@
       </g>
     </g>
     <g id="LOGE2">
-      <g id="ROWA">
+      <g id="A">
         <circle class="st9 seat" cx="332.1" cy="125.4" r="5.5" id="LOGE2-A-1"/>
         <circle class="st9 seat" cx="346.8" cy="113.1" r="5.5" id="LOGE2-A-2"/>
         <circle class="st9 seat" cx="361.7" cy="103.1" r="5.5" id="LOGE2-A-3"/>
@@ -371,7 +381,7 @@
         <circle class="st9 seat" cx="454.1" cy="99.6" r="5.5" id="LOGE2-A-9"/>
         <circle class="st9 seat" cx="468.4" cy="99.6" r="5.5" id="LOGE2-A-10"/>
       </g>
-      <g id="ROWB">
+      <g id="B">
         <circle class="st9 seat" cx="314.2" cy="106.6" r="5.5" id="LOGE2-B-1"/>
         <circle class="st9 seat" cx="324.8" cy="97.8" r="5.5" id="LOGE2-B-2"/>
         <circle class="st9 seat" cx="335.8" cy="88.6" r="5.5" id="LOGE2-B-3"/>
@@ -385,7 +395,7 @@
         <circle class="st9 seat" cx="454.1" cy="76.2" r="5.5" id="LOGE2-B-11"/>
         <circle class="st9 seat" cx="468.4" cy="76.2" r="5.5" id="LOGE2-B-12"/>
       </g>
-      <g id="ROWC">
+      <g id="C">
         <circle class="st9 seat" cx="293.9" cy="88.3" r="5.5" id="LOGE2-C-1"/>
         <circle class="st9 seat" cx="304.5" cy="79.4" r="5.5" id="LOGE2-C-2"/>
         <circle class="st9 seat" cx="315.5" cy="70.2" r="5.5" id="LOGE2-C-3"/>
@@ -403,7 +413,7 @@
       </g>
     </g>
     <g id="LOGE3">
-      <g id="ROWA">
+      <g id="A">
         <circle class="st9 seat" cx="523.6" cy="99.3" r="5.5" id="LOGE3-A-1"/>
         <circle class="st9 seat" cx="537.9" cy="99.3" r="5.5" id="LOGE3-A-2"/>
         <circle class="st9 seat" cx="552.2" cy="99.3" r="5.5" id="LOGE3-A-3"/>
@@ -415,7 +425,7 @@
         <circle class="st9 seat" cx="645.2" cy="112.8" r="5.5" id="LOGE3-A-9"/>
         <circle class="st9 seat" cx="659.8" cy="125.1" r="5.5" id="LOGE3-A-10"/>
       </g>
-      <g id="ROWB">
+      <g id="B">
         <circle class="st9 seat" cx="523.6" cy="75.9" r="5.5" id="LOGE3-B-1"/>
         <circle class="st9 seat" cx="537.9" cy="75.9" r="5.5" id="LOGE3-B-2"/>
         <circle class="st9 seat" cx="552.2" cy="75.9" r="5.5" id="LOGE3-B-3"/>
@@ -429,7 +439,7 @@
         <circle class="st9 seat" cx="667.1" cy="97.5" r="5.5" id="LOGE3-B-11"/>
         <circle class="st9 seat" cx="677.7" cy="106.3" r="5.5" id="LOGE3-B-12"/>
       </g>
-      <g id="ROWC">
+      <g id="C">
         <circle class="st9 seat" cx="523.6" cy="52.5" r="5.5" id="LOGE3-C-1"/>
         <circle class="st9 seat" cx="537.9" cy="52.5" r="5.5" id="LOGE3-C-2"/>
         <circle class="st9 seat" cx="552.2" cy="52.5" r="5.5" id="LOGE3-C-3"/>
@@ -447,7 +457,7 @@
       </g>
     </g>
     <g id="LOGE4">
-      <g id="ROWA">
+      <g id="A">
         <circle class="st9 seat" cx="693.2" cy="153.4" r="5.5" id="LOGE4-A-1"/>
         <circle class="st9 seat" cx="703.3" cy="163.5" r="5.5" id="LOGE4-A-2"/>
         <circle class="st9 seat" cx="713.5" cy="173.6" r="5.5" id="LOGE4-A-3"/>
@@ -455,14 +465,14 @@
         <circle class="st9 seat" cx="733.8" cy="193.7" r="5.5" id="LOGE4-A-5"/>
         <circle class="st9 seat" cx="743.9" cy="203.8" r="5.5" id="LOGE4-A-6"/>
       </g>
-      <g id="ROWB">
+      <g id="B">
         <circle class="st9 seat" cx="709.7" cy="136.8" r="5.5" id="LOGE4-B-1"/>
         <circle class="st9 seat" cx="719.8" cy="146.9" r="5.5" id="LOGE4-B-2"/>
         <circle class="st9 seat" cx="730" cy="157" r="5.5" id="LOGE4-B-3"/>
         <circle class="st9 seat" cx="740.1" cy="167" r="5.5" id="LOGE4-B-4"/>
         <circle class="st9 seat" cx="750.3" cy="177.1" r="5.5" id="LOGE4-B-5"/>
       </g>
-      <g id="ROWC">
+      <g id="C">
         <circle class="st9 seat" cx="726.2" cy="120.2" r="5.5" id="LOGE4-C-1"/>
         <circle class="st9 seat" cx="736.3" cy="130.3" r="5.5" id="LOGE4-C-2"/>
         <circle class="st9 seat" cx="746.5" cy="140.4" r="5.5" id="LOGE4-C-3"/>

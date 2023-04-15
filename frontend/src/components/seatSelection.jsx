@@ -51,10 +51,10 @@ export const SeatSelection = () =>{
 
   const checkSeat = (e) => {
     //Did user just click a seat? Was it taken?
-    if (e.target.classList.contains("seat") && !e.target.classList.contains("taken")) {
+    if (e.target.classList.contains("seat") && !e.target.classList.contains("taken") && !e.target.classList.contains("season")) {
       //Disable the checkout button! A change was made! They'll need to confirm choices again
       setDisabled(true);
-      //Is a seat and not taken
+      //Is a seat and not taken and not season
       handleClickSeat(e)
     } else {
       //Is not a seat or is taken
@@ -68,8 +68,8 @@ export const SeatSelection = () =>{
         //concat a string
         str = str.concat(" | " + cart[i].id)
     }
-    //enable button
     setSeatIDs(str);
+    //enable button
     setDisabled(false);
   }
 
