@@ -1,17 +1,7 @@
 import { Seat } from "./src/Seat";
-import { Ticket } from "./src/Ticket";
-import { Performance } from "./src/Performance";
-import { SeatSection } from "./src/SeatSection";
-import { Attendee } from "./src/Attendee";
-import { Venue } from "./src/Venue";
 import { SeasonTicketHolder } from "./src/SeasonTicketHolder";
-import { Show } from "./src/Show";
-import { Purchase } from "./src/Purchase";
 import * as fs from 'fs';
-import * as csv from 'csv';
-import { JsonSerializer } from 'typescript-json-serializer';
 import { JSONHandler } from "./JSONHandler";
-let Papa = require('papaparse');
 let csvToJson = require('convert-csv-to-json');
 
 export class CSVHandler {
@@ -59,15 +49,6 @@ export class CSVHandler {
         //Now that we have the right form of data, use JSON Handler
         let JSONsys: JSONHandler = new JSONHandler();
         JSONsys.serialize(seasonTicketHolders, "./seasonTicketHolders.json");
-
-        /*console.log("TEST!!!!!!!!!!!!!!!!!!!");
-        JSONsys.deserializeSeasonTicketHolder("./seasonTicketHolders.json");
-        let testData: any[] = JSONsys.getData();
-        if (!testData[0].getSeatAssignment().getAcessible()) {
-            console.log("IT WORKED!");
-        } else {
-            console.log("DID NOT WORK!");
-        }*/
     }
 
     //Use to let ticket seller's export info from JSON database as CSV
@@ -77,9 +58,25 @@ export class CSVHandler {
         let data : SeasonTicketHolder[] = [];
         JSONsys.deserializeSeasonTicketHolder("./seasonTicketHolders.json");
         data = JSONsys.getData();
+        
+        //Manually convert information to CSV 
+        let header: string = "name,address,phoneNum,seatAssignment/section,seatAssignment/row,seatAssignment/seatNum,seatAssignment/acessible,seatAssignment/inSeasonSection,seatAssignment/defaultPrice";
+        let body : string = "";
+        for (var index in data) {
+            body = body.concat(("\n" + data[index].getName() + ","));
+            body = body.concat(data[index].getAddress() + ","); 
+            body = body.concat((data[index].getPhoneNum() + ","));
+            body = body.concat(data[index].getSeatAssignment().getSection() + ",");
+            body = body.concat(data[index].getSeatAssignment().getRow() + ",");
+            body = body.concat(data[index].getSeatAssignment().getSeatNum() + ",");
+            body = body.concat(data[index].getSeatAssignment().getAcessible() + ","); 
+            body = body.concat(data[index].getSeatAssignment().getInSeasonSection() + ","); 
+            body = body.concat(data[index].getSeatAssignment().getDefaultPrice() + ","); 
+        }
 
-        let dataStr = Papa.unparse(data);
-        fs.writeFileSync("../exported_seasonTicketHolders.csv", dataStr);
+        //Write the CSV-style string to the file
+        header = header.concat(body);
+        fs.writeFileSync("../exported_seasonTicketHolders.csv", header);
     }
 }
 
