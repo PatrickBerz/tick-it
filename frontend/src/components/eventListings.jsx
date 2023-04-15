@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Stack, Button, Alert, Table, Modal, FormGroup, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react'
+import DynamicTable from './tableComponent'
+
 
 export const EventListings = () => {
     const [formData, setFormData] = useState({
@@ -72,7 +74,6 @@ export const EventListings = () => {
                 }
             }
         ])
-        handleClose()
         //console.log('show data', showData.show.performance)
 
         // const promise = fetch('http://localhost:4000/showData', {
@@ -102,6 +103,7 @@ export const EventListings = () => {
     // Perf name, venue name, date/time, array of tickets
     return (
         <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
+            
             <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
                 <div className='d-flex mb-2'>
                     <Button className='p-2' style={{
@@ -114,7 +116,7 @@ export const EventListings = () => {
                     <Button className='ms-2 p-2' style={{
                         borderColor: '#FF4057',
                         backgroundColor: '#FF4057',
-                    }}
+                    }} // send file path
                         onClick={handleExport}>
                         Import Data 
                     </Button>
@@ -134,6 +136,7 @@ export const EventListings = () => {
                         Back
                     </Button>
                 </div>
+                {/* <DynamicTable/> */}
                 <Table align='center' bordered responsive striped hover variant='dark' size='sm' style={{ maxHeight: '70%' }}>
                     <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
                         Shows
@@ -146,6 +149,7 @@ export const EventListings = () => {
                             <th style={{ textAlign: 'center' }}>Venue</th>
                             <th style={{ textAlign: 'center' }}>Date</th>
                             <th style={{ textAlign: 'center' }}>Seats Left</th>
+                            <th></th>
                         </tr>
 
                         {showData.map((item, index) => (
@@ -154,6 +158,14 @@ export const EventListings = () => {
                                 <td>{item.show.venue} </td>
                                 <td>{item.show.date} </td>
                                 <td>number </td>
+                                <td>
+                        <button
+                            //onClick={context.handleItemDeleted.bind(context, i)}
+                        >
+                        
+                            Delete
+                        </button>
+                    </td>
                             </tr>
                         ))}
 
