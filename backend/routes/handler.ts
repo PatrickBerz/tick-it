@@ -119,7 +119,26 @@ router.get("/showData", (req: any, res: any) => {
 
 })
 
+router.post("/newShow", (req: any, res: any) => {
+    let data = req.body;
 
+    console.log(data)
+    let venue:Venue;
+    if(data.venueName === "Concert Hall") {
+        venue = System.getVenues[0]
+    }
+    else {
+        venue = System.getVenues[1]
+    }
+
+    System.createPerformance(data.performanceName, data.venueName, new Date(data.dateTime), venue)
+    res.status(200)
+    res.end()
+});
+
+router.post("/deleteShow", (req: any, res: any) => {
+
+});
 
 router.post("/exchange", (req: any, res: any) => {
     //need old conf num (already verified hopefully), new showName, new venue, new DateTime, new tickets
