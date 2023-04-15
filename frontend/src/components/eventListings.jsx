@@ -7,9 +7,10 @@ import { key } from 'localforage'
 
 export const EventListings = () => {
     const [formData, setFormData] = useState({
-        performance: '',
-        venue: '',
-        date: ''
+        performanceName: '',
+        venueName: '',
+        date: '',
+        time: ''
     });
 
     const [showModal, setShow] = useState(false)
@@ -38,13 +39,13 @@ export const EventListings = () => {
     const handleTextChange = e => {
         setFormData({
             ...formData,
-            performance: e.target.value
+            performanceName: e.target.value
         })
     }
     const handleSelectChange = e => {
         setFormData({
             ...formData,
-            venue: e.target.value
+            venueName: e.target.value
         })
     }
     const handleDateChange = e => {
@@ -53,69 +54,122 @@ export const EventListings = () => {
             date: e.target.value
         })
     }
-    const handleItemDeleted = (item, index) => {
-        console.log(item.show, index)
-        showData.splice(index, 1)
-        console.log(showData)
+    const handleTimeChange = e => {
+        setFormData({
+            ...formData,
+            time: e.target.value
+        })
+    }
+    const handleItemDeleted = (item) => {
+        console.log(item.performanceName)
+        //showData.splice(index, 1)
+        //console.log(showData)
+        let showDelete =
+        {
+            performance: {
+                performanceName: item.performanceName,
+                venueName: item.venueName,
+                dateTime: item.dateTime
+            }
+        }
+        console.log(showDelete)
+        const promise = fetch('http://localhost:4000/deleteShow', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ showDelete })
+        });
+        console.log(promise)
+        promise.then(event => {
+            if (event.status === 200) {
+                setAlert({ label: 'success', type: 'success' })
+                handleClose()
+            } else {
+                setAlert({ label: `${event.statusText}`, type: 'danger' })
+            }
+        })
+
+
+    }
+    const convertDate = (item) => {
+        const date = new Date(item)
+        const options = {
+            month: 'numeric',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        }
+
+        const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
+        return formattedDate
     }
 
+    function toISODate(dateStr, timeStr) {
+        // console.log(dateStr, timeStr)
+        const [year, month, day] = dateStr.split("-");
+        const [hour, minute] = timeStr.split(":");
+
+        const paddedMonth = (month.length === 1) ? `0${month}` : month;
+        const paddedDay = (day.length === 1) ? `0${day}` : day;
+        const paddedHour = (hour.length === 1) ? `0${hour}` : hour;
+        const paddedMinute = (minute.length === 1) ? `0${minute}` : minute;
+
+        return `${year}-${paddedMonth}-${paddedDay}T${paddedHour}:${paddedMinute}:00.000Z`;
+
+    }
     const onFormSubmit = (e) => {
         e.preventDefault()
-        if (!formData.performance || !formData.venue || !formData.date) {
+        if (!formData.performanceName || !formData.venueName || !formData.date || !formData.time) {
             setFormError('Please fill in all fields.');
             return;
         }
 
         setFormError(null);
 
+
         //console.log('form data', formData)
-
-        setShowData([
-            ...showData,
-            {
-                show: {
-                    performance: formData.performance,
-                    venue: formData.venue,
-                    date: formData.date
-                }
+        let dateTime = toISODate(formData.date, formData.time)
+        // console.log(dateTime)
+        // console.log(formData.performanceName)
+        // console.log(formData.venueName)
+        let newShow =
+        {
+            performance: {
+                performanceName: formData.performanceName,
+                venueName: formData.venueName,
+                dateTime: dateTime
             }
-        ])
-        //console.log('show data', showData.show.performance)
+        }
 
-        // const promise = fetch('http://localhost:4000/showData', {
-        //     method: 'POST',
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify([showData])
-        // });
-        // console.log(promise)
-        // promise.then(event => {
-        //     if (event.status === 200) {
-        //         setAlert({ label: 'success', type: 'success' })
-        //         handleClose()
-        //     } else {
-        //         setAlert({ label: `${event.statusText}`, type: 'danger' })
-        //     }
-        // })
+        console.log(newShow)
 
-        setFormData({
-            performance: '',
-            venue: '',
-            date: ''
+
+        const promise = fetch('http://localhost:4000/newShow', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ newShow })
+        });
+        console.log(promise)
+        promise.then(event => {
+            if (event.status === 200) {
+                setAlert({ label: 'success', type: 'success' })
+                handleClose()
+            } else {
+                setAlert({ label: `${event.statusText}`, type: 'danger' })
+            }
         })
 
+        setFormData({
+            performanceName: '',
+            venueName: '',
+            dateTime: ''
+        })
+        handleClose()
+
     }
-    // const fetchData = () => {
-    //     fetch(`http://localhost:4000/showData`)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             //console.log(data);
-    //             setShowData(data);
-    //             console.log(data);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err.message);
-    //         });
-    // };
+
+    
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/showData')
@@ -165,32 +219,32 @@ export const EventListings = () => {
                             Back
                         </Button>
                     </div>
-                    {/* <DynamicTable/> */}
-                    <Table align='center' bordered responsive striped hover variant='dark' size='sm' style={{ maxHeight: '70%' }}>
+
+                    <Table bordered responsive striped hover variant='dark' size='sm' style={{ maxHeight: '70%' }}>
                         <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
-                            Shows
+                            Performances
                         </th>
                         </tr>
                         </thead>
                         <tbody style={{ fontSize: '20px', color: "white" }}>
                             <tr>
-                                <th style={{ textAlign: 'center' }}>Venue</th>
-                                <th style={{ textAlign: 'center' }}>Show Name</th>
-                                <th style={{ textAlign: 'center' }}>Performances</th>
-                                <th style={{ textAlign: 'center' }}>Seats Left</th>
+                                <th >Performance Name</th>
+                                <th >Venue</th>
+                                <th >Date</th>
+                                <th >Seats Left</th>
                                 <th></th>
                             </tr>
 
                             {showData.map((item, index) => (
-                                <tr key={index} style={{ alignItems: 'center' }}>
-                                    <td style={{ textAlign: 'center' }}>{item.show.venue}</td>
-                                    <td>{item.show.venue} </td>
-                                    <td>{item.show.date} </td>
-                                    <td>number </td>
+                                <tr key={index}>
+                                    <td>{item.performanceName}</td>
+                                    <td>{item.venueName} </td>
+                                    <td>{convertDate(item.dateTime)} </td>
+                                    <td>{item.tickets.length} </td>
                                     <td>
                                         <Button
                                             size='sm'
-                                            onClick={() => { handleItemDeleted(item, index) }}>
+                                            onClick={() => { handleItemDeleted(item) }}>
                                             Delete
                                         </Button>
                                     </td>
@@ -218,25 +272,30 @@ export const EventListings = () => {
                             <Row className="mb-3">
                                 <Form.Group controlId="textValue">
                                     <Form.Label>Event Name</Form.Label>
-                                    <Form.Control required type="text" value={formData.performance} placeholder="Enter event name" onChange={handleTextChange} />
+                                    <Form.Control required type="text" value={formData.performanceName} placeholder="Enter event name" onChange={handleTextChange} />
                                 </Form.Group>
                             </Row>
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="selectValue">
                                     <Form.Label>Pick Venue </Form.Label>
-                                    <Form.Select required value={formData.venue} onChange={handleSelectChange} >
+                                    <Form.Select required value={formData.venueName} onChange={handleSelectChange} >
                                         <option value="">Select an option</option>
                                         <option value="Playhouse">Playhouse</option>
                                         <option value="Concert Hall">Concert Hall</option>
                                     </Form.Select>
                                 </Form.Group>
 
-
                                 <Form.Group as={Col} controlId="dateValue">
                                     <Form.Label>Date</Form.Label>
                                     <Form.Control type='date' required placeholder="MM/DD/YYYY" value={formData.date} onChange={handleDateChange} />
                                 </Form.Group>
 
+                            </Row>
+                            <Row>
+                                <Form.Group as={Col} controlId="dateValue">
+                                    <Form.Label>Date</Form.Label>
+                                    <Form.Control type='time' required placeholder="MM/DD/YYYY" value={formData.time} onChange={handleTimeChange} />
+                                </Form.Group>
                             </Row>
                             <Button variant="primary" type="submit" >
                                 Submit
