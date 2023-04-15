@@ -47,15 +47,15 @@ router.use(cors({
 //post file path for importing
 //post 0/1 for export csv vs json
 
-router.get("/seasonTickets"), (req: any, res: any) => {
+router.get("/seasonTickets", (req: any, res: any) => {
     //get list of season ticket holders from System
     let seasonTixList: SeasonTicketHolder[] = [ new SeasonTicketHolder("Richard Blargson", "5000 Fancy Boulevard", "123-555-5555", new Seat("Orchestra", "A", 15, false, true, 99999.99)),
                                                 new SeasonTicketHolder("Moneyton Blargson", "5001 Fancy Boulevard", "123-555-5556", new Seat("Orchestra", "A", 16, false, true, 99999.99))] 
     // let seasonTixList: SeasonTicketHolder[] = System.getSeasonHolders()
     res.json(seasonTixList)
-}
+})
 
-router.post("/newSeasonTicket"), (req: any, res: any) => {
+router.post("/newSeasonTicket", (req: any, res: any) => {
 
     //take in and parse new season ticket holder
     //call System function to add new holder to the list
@@ -66,9 +66,9 @@ router.post("/newSeasonTicket"), (req: any, res: any) => {
     let seat = new Seat(data.section, data.row, data.seatNum, data.accessible, true, data.defaultPrice)
     let newHolder: SeasonTicketHolder = new SeasonTicketHolder(data.name, data.address, data.phoneNum, seat)
     //system.addSeasonHolder(newHolder)
-}
+})
 
-router.post("/newDefaults"), (req: any, res: any) => {
+router.post("/newDefaults", (req: any, res: any) => {
 
     // parse defaults. Need venue name and assoc. array of section name to new default price
     // {
@@ -97,16 +97,16 @@ router.post("/newDefaults"), (req: any, res: any) => {
     //no need to call Sys function since returned venue should be a reference to the one in the list
     //definitely worth testing that to make sure
     
-}
+})
 
-router.get("/ticketData/:showName/:dateTime"), (req: any, res: any) => {
+router.get("/ticketData/:showName/:dateTime", (req: any, res: any) => {
     //call System function to lookup a show by show name/venue/dateTime
     //return the JSONified list of tickets within that show
     //req.params["showName"]
-}
+})
 
 
-router.get("/showData"), (req: any, res: any) => {
+router.get("/showData", (req: any, res: any) => {
 
     let system:System = new System(__dirname + "/../")
     let showList = system.getShows()
@@ -117,11 +117,11 @@ router.get("/showData"), (req: any, res: any) => {
     console.log(JSON.stringify(performanceList))
     res.json(performanceList)
 
-}
+})
 
 
 
-router.post("/exchange"), (req: any, res: any) => {
+router.post("/exchange", (req: any, res: any) => {
     //need old conf num (already verified hopefully), new showName, new venue, new DateTime, new tickets
 
     //Sys call to get purchase by confNum
@@ -129,7 +129,7 @@ router.post("/exchange"), (req: any, res: any) => {
 
     //create new purchase
     //pass new purchase to Sys
-}
+})
 
 
 
@@ -148,7 +148,7 @@ router.get("/purchaseData", (req: any, res: any) => {
     res.json(purchases);
 });
 
-router.post("/newPurchase"), (req: any, res: any) => {
+router.post("/newPurchase", (req: any, res: any) => {
     //need venue name, show name, dateTime, ticket list, attendee info, ticketStatus (paid, picked up, or not)
     let data = req.body
     // {
@@ -211,7 +211,7 @@ router.post("/newPurchase"), (req: any, res: any) => {
     }
 
     //Sys call to add purchase to list and reserialize
-}
+})
 
 router.post("/password", (req: any, res: any) => {
     //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
