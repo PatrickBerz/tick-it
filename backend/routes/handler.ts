@@ -12,6 +12,7 @@ import { Attendee } from "../src/Attendee";
 import { ConfNum } from "../src/ConfNum"
 import { Ticket } from "../src/Ticket";
 import { Performance } from "../src/Performance";
+import { System } from "../src/System";
 
 //FUNCTIONS NEEDED:
 //
@@ -36,6 +37,11 @@ router.use(cors({
 //get a performance's list of tickets
 //maybe? post new list of tickets for a single performance
 //post new purchase
+
+//get list of performances
+//post new performance
+//post deleted performance
+
 
 //post an exchange
 //post file path for importing
@@ -93,11 +99,26 @@ router.post("/newDefaults"), (req: any, res: any) => {
     
 }
 
-router.get("/ticketData/:showName/:venue/:dateTime"), (req: any, res: any) => {
+router.get("/ticketData/:showName/:dateTime"), (req: any, res: any) => {
     //call System function to lookup a show by show name/venue/dateTime
     //return the JSONified list of tickets within that show
     //req.params["showName"]
 }
+
+
+router.get("/showData"), (req: any, res: any) => {
+
+    let system:System = new System(__dirname + "/../")
+    let showList = system.getShows()
+    let performanceList: Performance[] = []
+    showList.forEach(show => {
+        performanceList = performanceList.concat(show.getPerformances())
+    }); 
+    res.json(performanceList)
+
+}
+
+
 
 router.post("/exchange"), (req: any, res: any) => {
     //need old conf num (already verified hopefully), new showName, new venue, new DateTime, new tickets
@@ -195,7 +216,7 @@ router.post("/password", (req: any, res: any) => {
     //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
     let password = req.body.value;
     console.log(password);
-    if (password == 'admin'){
+    if (password == 'admin') {
         res.status(200);
     }
     else{
@@ -217,3 +238,9 @@ router.post("/confNum", (req: any, res: any) => {
 });
 
 export default router;
+
+
+let system:System = new System(__dirname + "/../")
+let purchase: Purchase | null = system.findPurchase(0)
+console.log("\n\n\n\n\n\nPURCHASE")
+console.log(purchase)
