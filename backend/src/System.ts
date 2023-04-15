@@ -16,7 +16,7 @@ import { ConfNum } from "./ConfNum";
 export class System {
     private static deserializer : JSONHandler = new JSONHandler();
     private static venues : Venue[] = this.initializeVenues(__dirname + "/../" + "/sampleVenue.json");
-    private static shows : Show[] = this.initializeShows(__dirname + "/../" + "/shows.json");
+    private static shows : Show[] = this.initializeShows(__dirname + "/../" + "/test8.json");
     private static purchases : Purchase[] = this.initializePurchases(__dirname + "/../" + "/purchases.json");
     private static seasonTicketHolders : SeasonTicketHolder[] = this.initializeSeasonHolders(__dirname + "/../" + "/seasonTicketHolders.json");
 
@@ -175,7 +175,15 @@ export class System {
         }
         return null;
     }
+
+    public static removePerformance(perfToDelete: Performance) {
+        for (var index in this.shows) {
+            for (var index2 in this.shows[index].getPerformances()) {
+                if (this.shows[index].getPerformances()[index2].equals(perfToDelete)) {
+                    this.shows[index].getPerformances().splice(+index2, 1);
+                }
+            }
+        }
+    }
     
 }
-
-//const system = System.getInstance();
