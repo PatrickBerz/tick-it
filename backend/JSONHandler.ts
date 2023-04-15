@@ -350,6 +350,21 @@ export class JSONHandler {
         fs.writeFileSync("../exported_seasonTicketHolders.json", datastr);
     }
 
+    //Use if the ticket seller wants to import JSON info
+    importJSON(filePath: string) {
+        //Retrieve the JSON data at the specified location
+        const newData = fs.readFileSync(filePath, 'utf8');
+        let dataSet : any[] = JSON.parse(newData);
+
+        //Now serialize data
+        const defaultSerializer = new JsonSerializer();
+
+        //Convert the data from TypeScript objects to JSON data and save to the specified file 
+        let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
+        let datastr = JSON.stringify(data);
+        fs.writeFileSync("./seasonTicketHolders.json", datastr);
+    }
+
     
     //TEST FUNCTION TO DEMONSTRATE WORKING
     checkData() {
@@ -449,3 +464,4 @@ obj5.setName("Rodger");
 obj5.setAddress("456 Sesame Street");
 coll4.push(obj5);
 sys.exportJSON(coll4);
+sys.importJSON("../exported_seasonTicketHolders.json")
