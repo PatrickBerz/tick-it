@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Stack, Button, Alert, Table, Modal, FormGroup, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react'
 import DynamicTable from './tableComponent'
+import { key } from 'localforage'
 
 
 export const EventListings = () => {
@@ -52,6 +53,11 @@ export const EventListings = () => {
             date: e.target.value
         })
     }
+    const handleItemDeleted = (item, index) => {
+        console.log(item.show, index)
+        showData.splice(index,1)
+        console.log(showData)
+    }
 
     const onFormSubmit = (e) => {
         e.preventDefault()
@@ -62,7 +68,7 @@ export const EventListings = () => {
 
         setFormError(null);
 
-        console.log('form data', formData)
+        //console.log('form data', formData)
 
         setShowData([
             ...showData,
@@ -159,12 +165,11 @@ export const EventListings = () => {
                                 <td>{item.show.date} </td>
                                 <td>number </td>
                                 <td>
-                        <button
-                            //onClick={context.handleItemDeleted.bind(context, i)}
-                        >
-                        
+                        <Button
+                            size='sm'
+                            onClick={() =>{handleItemDeleted(item,index)}}>
                             Delete
-                        </button>
+                        </Button>
                     </td>
                             </tr>
                         ))}
