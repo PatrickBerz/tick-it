@@ -63,6 +63,7 @@ export const EventListings = () => {
         console.log('form data', formData)
 
         setShowData([
+            ...showData,
             {
                 show: {
                     performance: formData.performance,
@@ -71,22 +72,23 @@ export const EventListings = () => {
                 }
             }
         ])
+        handleClose()
         //console.log('show data', showData.show.performance)
 
-        const promise = fetch('http://localhost:4000/showData', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify([showData])
-        });
-        console.log(promise)
-        promise.then(event => {
-            if (event.status === 200) {
-                setAlert({ label: 'success', type: 'success' })
-                handleClose()
-            } else {
-                setAlert({ label: `${event.statusText}`, type: 'danger' })
-            }
-        })
+        // const promise = fetch('http://localhost:4000/showData', {
+        //     method: 'POST',
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify([showData])
+        // });
+        // console.log(promise)
+        // promise.then(event => {
+        //     if (event.status === 200) {
+        //         setAlert({ label: 'success', type: 'success' })
+        //         handleClose()
+        //     } else {
+        //         setAlert({ label: `${event.statusText}`, type: 'danger' })
+        //     }
+        // })
 
         setFormData({
             performance: '',
