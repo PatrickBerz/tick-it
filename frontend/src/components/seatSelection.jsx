@@ -20,7 +20,7 @@ export const SeatSelection = () =>{
 
   //Load the correct venue SVG for use in selecting seats
   const loadVenueSVG = () =>{
-    if (state.venue == "playhouse"){
+    if (state.venue == "Civic Center Playhouse"){
       return (
         <Playhouse style={{maxWidth:'100vh'}} onClick={checkSeat} />
       )
@@ -50,7 +50,7 @@ export const SeatSelection = () =>{
   }
 
   const checkSeat = (e) => {
-    //Did user just click a seat? Was it taken?
+    //Did user just click a seat? Was it taken? Was it a season pass seat?
     if (e.target.classList.contains("seat") && !e.target.classList.contains("taken") && !e.target.classList.contains("season")) {
       //Disable the checkout button! A change was made! They'll need to confirm choices again
       setDisabled(true);
