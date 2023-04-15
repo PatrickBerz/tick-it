@@ -370,17 +370,17 @@ export class JSONHandler {
 
 //CODE USED TO TEST
 //TEST SEAT
-//let obj: Seat = new Seat("Orchestra", "B", 12, false, false, 29.99);
-//let obj2: Seat = new Seat("Nosebleeds", "X", 3, false, false, 4.99);
-//let coll: Seat[] = [];
-//coll.push(obj);
-//coll.push(obj2);
+let obj: Seat = new Seat("Orchestra", "B", 12, false, false, 29.99);
+let obj2: Seat = new Seat("Nosebleeds", "X", 3, false, false, 4.99);
+let coll: Seat[] = [];
+coll.push(obj);
+coll.push(obj2);
 
 // //TEST SEAT SECTION
-//let coll2: SeatSection[] = [];
-//let obj3: SeatSection = new SeatSection("8", coll);
-//coll2.push(obj3);
-//let sys: JSONHandler = new JSONHandler();
+let coll2: SeatSection[] = [];
+let obj3: SeatSection = new SeatSection("8", coll);
+coll2.push(obj3);
+let sys: JSONHandler = new JSONHandler();
 //sys.serialize(coll, "test3.json");
 //sys.deserializeSeatSection("test3.json");
 //sys.checkData();
