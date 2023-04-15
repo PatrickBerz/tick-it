@@ -44,4 +44,16 @@ export class Performance {
 
         this.tickets = tickets;
     }
+
+    equals(compPerf: Performance) {
+        if (this.performanceName == compPerf.getPerformanceName() &&
+            this.venueName == compPerf.getVenueName() &&
+            this.dateTime == compPerf.getDateTime()
+            ) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    }
 }
