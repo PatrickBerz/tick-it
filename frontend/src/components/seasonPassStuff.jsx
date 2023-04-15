@@ -6,7 +6,7 @@ export const SeasonPassStuff = () =>{
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch('http://localhost:4000/ticketData')
+            const response = await fetch('http://localhost:4000/seasonTickets')
             const newData = await response.json()
             console.log(JSON.stringify(newData))
             setData(newData)
@@ -22,11 +22,10 @@ export const SeasonPassStuff = () =>{
                     <thead><tr><th style={{textAlign:'center', fontSize:'20px'}} colSpan={5}>Ticket Orders</th></tr></thead>
                         <tbody style={{ fontSize: '20px', color: "white"}}>
                         <tr>
-                            <th style={{textAlign:'center'}}>Conf. #</th>
-                            <th style={{textAlign:'center'}}>Purchaser</th>
-                            <th style={{textAlign:'center'}}>Show</th>
-                            <th style={{textAlign:'center'}}>Seat(s)</th>
-                            <th style={{textAlign:'center'}}>Ticket Status</th>
+                            <th style={{textAlign:'center'}}>Name</th>
+                            <th style={{textAlign:'center'}}>Address</th>
+                            <th style={{textAlign:'center'}}>Phone #</th>
+                            <th style={{textAlign:'center'}}>Seat</th>
                         </tr>
                         
                         
