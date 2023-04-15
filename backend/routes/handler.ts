@@ -217,5 +217,4 @@ router.post("/confNum", (req, res) => {
     res.end();
 });
 
-//module.exports = router;
 export default router;
