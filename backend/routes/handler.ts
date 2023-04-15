@@ -108,8 +108,8 @@ router.get("/ticketData/:showName/:dateTime"), (req: any, res: any) => {
 
 router.get("/showData"), (req: any, res: any) => {
 
-    let system:System = new System(__dirname + "/../")
-    let showList = system.getShows()
+    //const system = System.getInstance();
+    let showList = System.getShows()
     let performanceList: Performance[] = []
     showList.forEach(show => {
         performanceList = performanceList.concat(show.getPerformances())
@@ -240,7 +240,9 @@ router.post("/confNum", (req: any, res: any) => {
 export default router;
 
 
-let system:System = new System(__dirname + "/../")
-let purchase: Purchase | null = system.findPurchase(0)
+//let purchase: Purchase | null = system.findPurchase(0)
+//let testPurchase : Purchase = new Purchase(new Attendee("No thank you", "", ""));
+System.createPurchase(new Attendee("No thank you", "", ""), [], new Date());
+//let newPurchase : Purchase | null = 
 console.log("\n\n\n\n\n\nPURCHASE")
-console.log(purchase)
+console.log(System.getPurchases())

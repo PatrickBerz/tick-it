@@ -439,36 +439,36 @@ let date: Date = new Date();
  //obj11.setTickets(coll5);
 
  //NEW PERFORMANCE TEST
- sys.deserializeVenue("sampleVenue.json");
- let testVenue = sys.getData()[0];
- let coll7: Performance[] = [];
- let newPerf = new Performance("Oklahoma", "Playhouse", new Date(), testVenue);
- coll7.push(newPerf);
- //coll7.push(obj11);
- //sys.serialize(coll7, "test7.json");
- //sys.deserializePerformance("test7.json");
- //coll7[0].setTickets(coll5); //This tests to make sure we can still override the venueTicket creation if tickets already exist in perf
- sys.serialize(coll7, "newTestPerf.json");
- sys.deserializePerformance("newTestPerf.json");
- sys.checkData();
+//  //sys.deserializeVenue("sampleVenue.json");
+//  let testVenue = sys.getData()[0];
+//  let coll7: Performance[] = [];
+//  let newPerf = new Performance("Oklahoma", "Playhouse", new Date(), testVenue);
+//  coll7.push(newPerf);
+//  //coll7.push(obj11);
+//  //sys.serialize(coll7, "test7.json");
+//  //sys.deserializePerformance("test7.json");
+//  //coll7[0].setTickets(coll5); //This tests to make sure we can still override the venueTicket creation if tickets already exist in perf
+//  sys.serialize(coll7, "newTestPerf.json");
+//  sys.deserializePerformance("newTestPerf.json");
+//  sys.checkData();
 
-// //TEST SHOW
-// let coll8: Show[] = [];
-// let obj12: Show = new Show(venue, "West Side Story: LIVE!");
-// obj12.setPerformances(coll7);
-// coll8.push(obj12);
-// //sys.serialize(coll8, "test8.json");
-// //sys.deserializeShow("test8.json");
-// //sys.checkData();
+// // //TEST SHOW
+// // let coll8: Show[] = [];
+// // let obj12: Show = new Show(venue, "West Side Story: LIVE!");
+// // obj12.setPerformances(coll7);
+// // coll8.push(obj12);
+// // //sys.serialize(coll8, "test8.json");
+// // //sys.deserializeShow("test8.json");
+// // //sys.checkData();
 
-// TEST JSON EXPORT
-let coll4: SeasonTicketHolder[] = []
-let obj5: SeasonTicketHolder = new SeasonTicketHolder("Susan", "123 Sesame Street", "6064152452", obj);
-coll4.push(obj5);
-obj5.setName("Amanda");
-coll4.push(obj5);
-obj5.setName("Rodger");
-obj5.setAddress("456 Sesame Street");
-coll4.push(obj5);
-sys.exportJSON(coll4);
-sys.importJSON("../exported_seasonTicketHolders.json")
+// // TEST JSON EXPORT
+// let coll4: SeasonTicketHolder[] = []
+// let obj5: SeasonTicketHolder = new SeasonTicketHolder("Susan", "123 Sesame Street", "6064152452", obj);
+// coll4.push(obj5);
+// obj5.setName("Amanda");
+// coll4.push(obj5);
+// obj5.setName("Rodger");
+// obj5.setAddress("456 Sesame Street");
+// coll4.push(obj5);
+// sys.exportJSON(coll4);
+// sys.importJSON("../exported_seasonTicketHolders.json")
