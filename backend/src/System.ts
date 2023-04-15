@@ -14,53 +14,40 @@ import { ConfNum } from "./ConfNum";
 //Needs to be able to handle a new start where there are no files to pull from
 
 export class System {
-    private deserializer : JSONHandler = new JSONHandler();
-    private venues : Venue[] = [];
-    private shows : Show[] = [];
-    private purchases : Purchase[] = [];
-    private seasonTicketHolders : SeasonTicketHolder[] = [];
-
-    //calls all the initializer functions
-    constructor(filePath: string) {
-        this.venues = this.initializeVenues(filePath + "/sampleVenue.json");
-        this.shows = this.initializeShows(filePath + "/test8.json");
-        this.purchases = this.initializePurchases(filePath + "/test6.json");
-        this.seasonTicketHolders = this.initializeSeasonHolders(filePath + "seasonTicketHolders.json");
-
-
-        // console.log(this.shows)
-        // console.log(this.purchases)
-        // console.log(this.seasonTicketHolders)
-    }
+    private static deserializer : JSONHandler = new JSONHandler();
+    private static venues : Venue[] = this.initializeVenues(__dirname + "/../" + "/sampleVenue.json");
+    private static shows : Show[] = this.initializeShows(__dirname + "/../" + "/shows.json");
+    private static purchases : Purchase[] = this.initializePurchases(__dirname + "/../" + "/purchases.json");
+    private static seasonTicketHolders : SeasonTicketHolder[] = this.initializeSeasonHolders(__dirname + "/../" + "/seasonTicketHolders.json");
 
     //initializing each database from the given file
-    private initializeVenues(filePath : string) : Venue[] 
+    private static initializeVenues(filePath : string) : Venue[] 
     {
         this.deserializer.deserializeVenue(filePath);
         return this.deserializer.getData();
     }
 
-    private initializeShows(filePath : string) : Show[] 
+    private static initializeShows(filePath : string) : Show[] 
     {
         this.deserializer.deserializeShow(filePath);
         return this.deserializer.getData();
     }
 
-    private initializePurchases(filePath : string) : Purchase[] 
+    private static initializePurchases(filePath : string) : Purchase[] 
     {
         this.deserializer.deserializePurchase(filePath);
         let purchases : Purchase[] = this.deserializer.getData();
         return purchases.sort((n1, n2) => n1.getConfNum() - n2.getConfNum());
     }
 
-    private initializeSeasonHolders(filePath : string) : SeasonTicketHolder[] 
+    private static initializeSeasonHolders(filePath : string) : SeasonTicketHolder[] 
     {
         this.deserializer.deserializeSeasonTicketHolder(filePath);
         return this.deserializer.getData();
     }
 
     //creating new objects for the database
-    createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date)// : Purchase 
+    public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date)// : Purchase 
     {
         let newPurchase = new Purchase(purchaser);
         newPurchase.updateTickets(tickets)
@@ -88,28 +75,28 @@ export class System {
     //     else return this.purchases.splice(pivot, 0, purchase);
     // } 
     
-    createVenue(seatSections : SeatSection[]) : Venue
+    public static createVenue(seatSections : SeatSection[]) : Venue
     {
         let newVenue = new Venue(seatSections);
         this.venues.push(newVenue);
         return newVenue;
     }
 
-    createShow(venue : Venue, showName : string) : Show
+    public static createShow(venue : Venue, showName : string) : Show
     {
         let newShow = new Show(venue, showName);
         this.shows.push(newShow);
         return newShow;
     }
 
-    createSeasonHolder(name : string, address : string, phoneNum : string, seatAssignment : Seat) : SeasonTicketHolder
+    public static createSeasonHolder(name : string, address : string, phoneNum : string, seatAssignment : Seat) : SeasonTicketHolder
     {
         let newHolder = new SeasonTicketHolder(name, address, phoneNum, seatAssignment);
         this.seasonTicketHolders.push(newHolder);
         return newHolder;
     }
 
-    createPerformance(performanceName : string, venueName : string, dateTime : Date, venueObj : Venue) {
+    public static createPerformance(performanceName : string, venueName : string, dateTime : Date, venueObj : Venue) {
         let show : Show | null = this.findShow(performanceName);
         if (show == null) show = this.createShow(venueObj, performanceName);
         let performance : Performance = new Performance(performanceName, venueName, dateTime, venueObj);
@@ -119,27 +106,37 @@ export class System {
     }
 
     //whole buncha getters yeehaw
-    getVenues() : Venue[]
+    public static getVenues() : Venue[]
     {
         return this.venues;
     }
 
-    getShows() : Show[]
+    public static getShows() : Show[]
     {
         return this.shows;
     }
 
-    getPurchases() : Purchase[]
+    public static getPurchases() : Purchase[]
     {
         return this.purchases;
     }
 
-    getSeasonTicketHolders() : SeasonTicketHolder[]
+    public static getSeasonTicketHolders() : SeasonTicketHolder[]
     {
         return this.seasonTicketHolders;
     }
 
-    findShow(showName : string) : Show | null
+    //Find either of the two venues
+    public static findVenue(venueNum : number) : Venue | null
+    {
+        if (venueNum == 0) {
+            return this.venues[0];
+        } else if (venueNum == 1) {
+            return this.venues[1];
+        } else { return null; }
+    }
+
+    public static findShow(showName : string) : Show | null
     {
         for (var index in this.shows)
         {
@@ -151,7 +148,7 @@ export class System {
         return null;
     }
 
-    findPurchase(confNum : number, start? : number, end? : number) : Purchase | null
+    public static findPurchase(confNum : number, start? : number, end? : number) : Purchase | null
     {
         if(typeof start == 'undefined') start = 0;
         if(typeof end == 'undefined') end = this.purchases.length;
@@ -167,7 +164,7 @@ export class System {
         else return this.purchases[pivot];
     }
 
-    findPerformance(showName : string, dateTime : Date) : Performance | null
+    public static findPerformance(showName : string, dateTime : Date) : Performance | null
     {
         let show : Show | null = this.findShow(showName);
         if (show == null) return null; 
@@ -180,3 +177,5 @@ export class System {
     }
     
 }
+
+//const system = System.getInstance();
