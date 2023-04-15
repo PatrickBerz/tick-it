@@ -1,8 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stack, Image, Form, Button, ListGroup } from 'react-bootstrap';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {useLocation, Link } from 'react-router-dom';
 import {ReactComponent as Playhouse} from './playhouseSeats.svg';
+import {ReactComponent as ConcertHall} from './concertHall.svg';
+
 
 export const SeatSelection = () =>{
   //Load the previous state containing the venue name
@@ -10,6 +12,7 @@ export const SeatSelection = () =>{
   const state = location.state;
 
   const [passState, setState] = useState({case:'',event:'',venue:'', date:''});
+  const cart = []; // stores the selected seats to be passed to checkout
   const [seatIDs, setSeatIDs] = useState("ERROR!");
 
   //checkout button initially disabled
@@ -23,13 +26,10 @@ export const SeatSelection = () =>{
       )
     } else {
       return (
-        <p>Concert Hall here</p>
+        <ConcertHall style={{maxWidth:'100vh'}} onClick={checkSeat} />
       )
-
     }
   }
-
-  const selectedSeats = []; // stores the selected seats to be passed to checkout
 
   const handleClickSeat = (e) =>{
     console.log('Congrats! You clicked this seat: ', e.target.id)
@@ -39,14 +39,13 @@ export const SeatSelection = () =>{
       //add active class to e target
       e.target.classList.add("active");
       //add this seat to an array of selected seats
-      selectedSeats.push(e.target);
+      cart.push(e.target);
     } else {
       //remove active class from e target
       e.target.classList.remove("active");
       //remove this seat from the array of selected seats
-      //not working right, rework this
-      var i = selectedSeats.indexOf(e.target); //find it
-      selectedSeats.splice(i, 1); //remove it without leaving holes in the array
+      var i = cart.indexOf(e.target); //find it
+      cart.splice(i, 1); //remove it without leaving holes in the array
     }
   }
 
@@ -65,9 +64,9 @@ export const SeatSelection = () =>{
 
   const generateSeatList = () => {
     var str = "";
-    for (let i=0; i<selectedSeats.length; i++) {
+    for (let i=0; i<cart.length; i++) {
         //concat a string
-        str = str.concat(" " + selectedSeats[i].id)
+        str = str.concat(" | " + cart[i].id)
     }
     //enable button
     setSeatIDs(str);
@@ -76,13 +75,14 @@ export const SeatSelection = () =>{
 
   const createList = () => {
     return (
-      selectedSeats.map((item) => (
-                  
-        <ListGroup.Item>{item}.id</ListGroup.Item>
-
+      cart.map((item) => (
+        <ListGroup.Item key={item}>{item}.id</ListGroup.Item>
       ))
     )
   }
+
+  useEffect(()=>{
+    })
 
     return (
         <div className='App-body'>
@@ -97,7 +97,7 @@ export const SeatSelection = () =>{
               <ListGroup>
                 <ListGroup.Item><h2>Selected Seats</h2></ListGroup.Item>
                 <ListGroup.Item><i>Press Refresh to update</i></ListGroup.Item>
-                {createList()}
+                <div id="reloadThis">{createList()}</div>
               </ListGroup>
 
               {/**Submit buttons*/}
