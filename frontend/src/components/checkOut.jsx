@@ -86,7 +86,7 @@ export const CheckOut = () =>{
                   {/*Row 7: Expiration*/}
                   <Form.Group className="mb-3 mx-auto" controlId="formExpirationDate">
                       <Form.Label style={{ color: 'white' }}>Expiration Date</Form.Label>
-                      <Form.Control type="expirationDate" placeholder="MM/DD" />
+                      <Form.Control type="expirationDate" placeholder="MM/YY" />
                   </Form.Group>
                   {/*Row 8: Sec. Code*/}
                   <Form.Group className="mb-3 mx-auto" controlId="formSecCode">

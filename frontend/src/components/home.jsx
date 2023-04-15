@@ -15,8 +15,7 @@ export const Home = () => {
   const [alert, setAlert] = useState(undefined);
   const [showData, setShowData] = useState([])
 
-  // const [data, setData] = useState([]);
-  const [selectedShow, setSelectedShow] = useState(null);
+ 
 
   const handleSelectShow = (item) => {
     setState({ case: "exchange", event: item.show.performance, venue: item.show.venue, date: item.show.date });

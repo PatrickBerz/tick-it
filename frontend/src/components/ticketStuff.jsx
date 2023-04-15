@@ -4,6 +4,18 @@ import React, { useState, useEffect } from 'react';
 export const TicketStuff = () =>{
     const [data,setData] = useState(null);
 
+    const fetchData = () => {
+      fetch(`http://localhost:4000/ticketData`)
+        .then((response) => response.json())
+        .then((data) => {
+          //console.log(data);
+          setData(data);
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    };
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/purchaseData')
