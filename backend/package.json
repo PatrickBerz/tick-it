@@ -21,7 +21,9 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "concurrently": "^7.6.0",
+    "convert-csv-to-json": "^2.0.0",
     "cors": "^2.8.5",
+    "csv": "^6.2.8",
     "express": "^4.18.2"
   }
 }

@@ -331,16 +331,6 @@ export class JSONHandler {
 
     //Use if the ticket seller wants to export JSON info
     exportJSON(seasonTicketHolders: SeasonTicketHolder[]) {
-        //Only serialize names, addresses, and ticket assignments
-        /*let dataToExport: any[] = [];
-        for (var index in seasonTicketHolders) {
-            let newData :any[] = [];
-            newData.push(seasonTicketHolders[index].getName());
-            newData.push(seasonTicketHolders[index].getAddress());
-            newData.push((seasonTicketHolders[index].getSeatAssignment().getRow() + seasonTicketHolders[index].getSeatAssignment().getSeatNum()));
-            dataToExport.push(newData);
-        }*/
-
         //Now serialize data
         const defaultSerializer = new JsonSerializer();
 
@@ -350,7 +340,7 @@ export class JSONHandler {
         fs.writeFileSync("../exported_seasonTicketHolders.json", datastr);
     }
 
-    //Use if the ticket seller wants to import JSON info
+    //Use if the ticket seller wants to import JSON info to use in the backend
     importJSON(filePath: string) {
         //Retrieve the JSON data at the specified location
         const newData = fs.readFileSync(filePath, 'utf8');
