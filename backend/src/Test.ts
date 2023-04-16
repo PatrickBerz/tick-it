@@ -51,6 +51,9 @@ export class Test {
         testPur.updateTickets(boughtTickets);
         testPur.payTickets();
 
+        let foundSoldSeats = testPerf.findSoldSeats();
+        console.log(foundSoldSeats);
+
         // //Now let's see what the data says:
         // console.log("\nPERFORMANCE TICKETS STATUS: ");
         // for (var index in testPerf.getTickets()) {
@@ -84,11 +87,11 @@ export class Test {
         //Now let's see what the data says:
         console.log("\nPERFORMANCE TICKETS STATUS: ");
         for (var index in testPerf.getTickets()) {
-            console.log("TICKET " + index + " : " + testPerf.getTickets()[index].getTicketStatus());
+            //console.log("TICKET " + index + " : " + testPerf.getTickets()[index].getTicketStatus());
         }
         console.log("\nPURCHASE TICKETS STATUS: ");
         for (var index in testPur.getTickets()) {
-            console.log("TICKET " + index + " : " + testPur.getTickets()[index].getTicketStatus());
+            //console.log("TICKET " + index + " : " + testPur.getTickets()[index].getTicketStatus());
         }   
     }
 
@@ -105,4 +108,4 @@ export class Test {
 }
 
 let sys:Test = new Test();
-sys.testDeletePerformance();
+sys.testPurchaseTickets();

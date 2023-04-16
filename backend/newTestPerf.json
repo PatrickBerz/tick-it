@@ -34,7 +34,7 @@
                     "inSeasonSection": false,
                     "defaultPrice": 29.99
                 },
-                "ticketStatus": 0,
+                "ticketStatus": 2,
                 "price": 29.99
             }
         ]
@@ -54,7 +54,7 @@
                     "inSeasonSection": false,
                     "defaultPrice": 29.99
                 },
-                "ticketStatus": 0,
+                "ticketStatus": 1,
                 "price": 29.99
             }
         ]

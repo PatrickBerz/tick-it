@@ -1,5 +1,6 @@
 import { Ticket } from "./Ticket"; //Import Ticket class
 import { Venue } from "./Venue";
+import { Seat } from "./Seat";
 
 export class Performance {
     private performanceName: string;
@@ -45,6 +46,7 @@ export class Performance {
         this.tickets = tickets;
     }
 
+    //Used to tell if two Performances are equal or not
     equals(compPerf: Performance) {
         if (this.performanceName == compPerf.getPerformanceName() &&
             this.venueName == compPerf.getVenueName() &&
@@ -55,5 +57,17 @@ export class Performance {
             else {
                 return false;
             }
+    }
+
+    //Returns a list of all the seat objects under tickets that have been sold
+    findSoldSeats() {
+        let soldSeats : Seat[] = [];
+        this.tickets.forEach(ticket => {
+            //console.log(ticket.getTicketStatus());
+            if (ticket.getTicketStatus() != 0) {
+                soldSeats.push(ticket.getSeat());
+            }
+        });
+        return soldSeats;
     }
 }
