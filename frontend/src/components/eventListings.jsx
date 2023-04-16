@@ -87,9 +87,8 @@ export const EventListings = () => {
                 setAlert({ label: `${event.statusText}`, type: 'danger' })
             }
             
-            window.location.reload()
         })
-        
+        window.location.reload()        
 
     }
     const convertDate = (item) => {
@@ -171,6 +170,8 @@ export const EventListings = () => {
             dateTime: ''
         })
         handleClose()
+        window.location.reload()
+
 
     }
 
