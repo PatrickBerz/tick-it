@@ -97,7 +97,7 @@ export class Test {
 
     testDeletePerformance() {
         //let testDelete : Performance = new Performance("Oklahoma", "Playhouse", 
-          //              new Date("2023-04-14T17:29:22.490Z"), System.getVenues()[0]);
+          //            new Date("2023-04-14T17:29:22.490Z"), System.getVenues()[0]);
         let testDelete: Performance = System.getShows()[0].getPerformances()[0];
         console.log(System.getShows()[0].getPerformances()[0]);
         System.removePerformance(testDelete);
