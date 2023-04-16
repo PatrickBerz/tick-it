@@ -64,7 +64,8 @@ router.post("/newSeasonTicket", (req: any, res: any) => {
     //otherwise, set to 500
     let data = req.body
     let seat = new Seat(data.section, data.row, data.seatNum, data.accessible, true, data.defaultPrice)
-    let newHolder: SeasonTicketHolder = new SeasonTicketHolder(data.name, data.address, data.phoneNum, seat)
+    System.createSeasonHolder(data.name, data.address, data.phoneNum, seat);
+    //let newHolder: SeasonTicketHolder = new SeasonTicketHolder(data.name, data.address, data.phoneNum, seat)
     //system.addSeasonHolder(newHolder)
 })
 
