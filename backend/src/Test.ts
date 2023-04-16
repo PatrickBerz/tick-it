@@ -51,9 +51,6 @@ export class Test {
         testPur.updateTickets(boughtTickets);
         testPur.payTickets();
 
-        let foundSoldSeats = testPerf.findSoldSeats();
-        console.log(foundSoldSeats);
-
         // //Now let's see what the data says:
         // console.log("\nPERFORMANCE TICKETS STATUS: ");
         // for (var index in testPerf.getTickets()) {
@@ -87,19 +84,19 @@ export class Test {
         //Now let's see what the data says:
         console.log("\nPERFORMANCE TICKETS STATUS: ");
         for (var index in testPerf.getTickets()) {
-            //console.log("TICKET " + index + " : " + testPerf.getTickets()[index].getTicketStatus());
+            console.log("TICKET " + index + " : " + testPerf.getTickets()[index].getTicketStatus());
         }
         console.log("\nPURCHASE TICKETS STATUS: ");
         for (var index in testPur.getTickets()) {
-            //console.log("TICKET " + index + " : " + testPur.getTickets()[index].getTicketStatus());
+            console.log("TICKET " + index + " : " + testPur.getTickets()[index].getTicketStatus());
         }   
     }
 
     testDeletePerformance() {
-        //let testDelete : Performance = new Performance("Oklahoma", "Playhouse", 
-          //            new Date("2023-04-14T17:29:22.490Z"), System.getVenues()[0]);
-        let testDelete: Performance = System.getShows()[0].getPerformances()[0];
-        console.log(System.getShows()[0].getPerformances()[0]);
+        let testDelete : Performance = new Performance("West Side Story", "Playhouse", 
+                    new Date("2023-04-05T04:36:35.456Z"), System.getVenues()[0]);
+        //let testDelete: Performance = System.getShows()[0].getPerformances()[0];
+        console.log(System.getShows()[0].getPerformances());
         System.removePerformance(testDelete);
         console.log("\n AFTER DELETION: \n")
         console.log(System.getShows()[0].getPerformances()[0]);
@@ -108,4 +105,4 @@ export class Test {
 }
 
 let sys:Test = new Test();
-sys.testPurchaseTickets();
+sys.testDeletePerformance();
