@@ -91,7 +91,8 @@ export const EventListings = () => {
 
     }
     const convertDate = (item) => {
-        const date = new Date(item)
+        const oldDate = new Date(item)
+        const date = new Date(oldDate.getTime() + 300*60000);
         const options = {
             month: 'numeric',
             day: 'numeric',
@@ -102,7 +103,9 @@ export const EventListings = () => {
         }
 
         const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
+        //const formattedDate = date.toLocaleDateString('en-US', options)
         return formattedDate
+        //return new Date(date.getTime() + 300*60000);
     }
 
     function toISODate(dateStr, timeStr) {

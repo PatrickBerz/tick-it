@@ -110,11 +110,12 @@ router.get("/showData", (req: any, res: any) => {
 
     //const system = System.getInstance();
     let showList = System.getShows()
+    //console.log("Shows: " + JSON.stringify(showList))
     let performanceList: Performance[] = []
     showList.forEach(show => {
         performanceList = performanceList.concat(show.getPerformances())
     }); 
-    console.log(JSON.stringify(performanceList))
+    //console.log("Performance data: " + JSON.stringify(performanceList))
     res.json(performanceList)
 
 })
@@ -122,16 +123,19 @@ router.get("/showData", (req: any, res: any) => {
 router.post("/newShow", (req: any, res: any) => {
     let data = req.body;
 
-    console.log(data)
+    console.log("Incoming data: " + JSON.stringify(data))
+    console.log("Incoming Perf name: " + data.newShow.performance.performanceName)
     let venue:Venue;
-    if(data.venueName === "Concert Hall") {
-        venue = System.getVenues[0]
-    }
-    else {
-        venue = System.getVenues[1]
-    }
+    let newPerf = data.newShow.performance
+    // if(data.venueName === "Concert Hall") {
+    //     venue = System.getVenues[0]
+    // }
+    // else {
+    //     venue = System.getVenues[1]
+    // }
+    venue = System.getVenues()[0]
 
-    System.createPerformance(data.performanceName, data.venueName, new Date(data.dateTime), venue)
+    System.createPerformance(newPerf.performanceName, newPerf.venueName, new Date(newPerf.dateTime), venue)
     res.status(200)
     res.end()
 });
@@ -262,7 +266,7 @@ export default router;
 
 //let purchase: Purchase | null = system.findPurchase(0)
 //let testPurchase : Purchase = new Purchase(new Attendee("No thank you", "", ""));
-System.createPurchase(new Attendee("No thank you", "", ""), [], new Date());
+//System.createPurchase(new Attendee("No thank you", "", ""), [], new Date());
 //let newPurchase : Purchase | null = 
-console.log("\n\n\n\n\n\nPURCHASE")
-console.log(System.getPurchases())
+//console.log("\n\n\n\n\n\nPURCHASE")
+//console.log(System.getPurchases())
