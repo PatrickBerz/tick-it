@@ -24,7 +24,7 @@ export class Performance {
     getVenueName() { return this.venueName };
 
     //Return the date and time
-    getDateTime() { return this.dateTime}
+    getDateTime() { return new Date(this.dateTime)}
 
     //Return the collection of tickets
     getTickets() { return this.tickets}
