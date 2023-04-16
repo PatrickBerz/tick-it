@@ -10,7 +10,7 @@ import { SeatSelection } from './components/seatSelection';
 import { CheckOut } from './components/checkOut';
 import { OrderConfirmation } from './components/orderConfirmation';
 import {AdminPage} from './components/adminPage';
-import {Listings } from './components/listings';
+import {EventListings } from './components/eventListings';
 import { TicketStuff } from './components/ticketStuff';
 import { SeasonSeatSelection } from './components/seasonSeatSelection';
 import { SeasonVenueSelection } from './components/seasonVenueSelection';
@@ -27,7 +27,7 @@ const App = () =>
           <Route path='/seatSelection' element={<SeatSelection/>}/>
           <Route path='/checkOut' element={<CheckOut/>}/>
           <Route path='/orderConfirmation' element={<OrderConfirmation/>}/>
-          <Route path='/listings' element={<Listings/>}/>
+          <Route path='/eventListings' element={<EventListings/>}/>
           <Route path='/ticketStuff' element={<TicketStuff/>}/>
           <Route path='/seasonSeatSelection' element={<SeasonSeatSelection/>}/>
           <Route path='/seasonVenueSelection' element={<SeasonVenueSelection/>}/>
