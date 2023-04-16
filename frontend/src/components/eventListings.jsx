@@ -171,7 +171,7 @@ export const EventListings = () => {
             dateTime: ''
         })
         handleClose()
-        window.location.reload()
+        setTimeout(() => { window.location.reload(); }, 500);
 
 
     }
