@@ -53,50 +53,26 @@ export const SeatSelection = () =>{
  const checkTakenSeats = () => {
   // Cycle through the takenSeatData array, assemble the id strings, check against svg
 
-    
-    let currentPerformance =
-    {
-        performance: {
-            performanceName: state.event,
-            venueName: state.venue,
-            dateTime: state.datetime
-        }
-    }
-
-    console.log(currentPerformance)
-
-    const promise = fetch('http://localhost:4000/currentPerformance', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ currentPerformance })
-    });
-
-
+  console.log("length of takenSeatData: ", takenSeatData.length); // DEBUG
   for (let i=0; i<takenSeatData.length; i++){
     
-    //use the seat object to assemble a string representation of the seat id
-    console.log(takenSeatData[i]); // DEBUG
+    // Use the JSON seat object to assemble a string representation of the seat id
+    const thisSeatSection = takenSeatData[i].section;
+    const thisSeatRow = takenSeatData[i].row;
+    const thisSeatNum = takenSeatData[i].seatNum;
 
-    /*
+    // Concat a string with the section, row, num to create the seat id
+    var thisSeatID = "";
+    thisSeatID = thisSeatID.concat(thisSeatSection, "-", thisSeatRow, "-", thisSeatNum);
 
-    const thisSeat = takenSeatData[i].getSeat();
-    const thisSeatSection = thisSeat.getSection();
-    const thisSeatRow = thisSeat.getRow();
-    const thisSeatNum = thisSeat.getSeatNum();
-
-    const thisSeatID = "";
-    thisSeatID.concat(thisSeatSection, "-", thisSeatRow, "-", thisSeatNum);
-
+    // Do stuff to grab the OG SVG
     const playhouseSvg = playhouseRef.current;
     const seatElement = playhouseSvg.getElementById(thisSeatID);
 
+    // Mark this seat as taken
     seatElement.classList.add("taken");
-
-    */
-    
   }
  }
-
  
   /*
   * FUNCTION if the cart is empty, disable the checkout button
@@ -139,8 +115,9 @@ export const SeatSelection = () =>{
   }
 
   /*
+  * FUNCTION handler for removing a list item using the button component
   const handleRemoveButton = (index) => {
-    console.log("wants to remove this one: ", listData[index]);
+    console.log("wants to remove this one: ", listData[index]); // DEBUG
     //handleRemoveFromList(listData[index]);
     var x = venue.getElementById(listData[index]);
     console.log("trying to remove this object: ", x);
@@ -177,19 +154,35 @@ export const SeatSelection = () =>{
   };
 
   
-
   /*
-  * USEEFFECT get data from backend...? Put it in takenSeatData
-  */   
+  * USEEFFECT only on the first render
+  */
   useEffect(() => {
+    
     const fetchData = async () => {
-      var url = "http://localhost:4000/soldSeats/" + state.venue + "/" + state.datetime
-      url = url.replace(/\s+/g, '')
-      console.log("URL", url)
-      const response = await fetch(url)
-      const newData = await response.json()
-      console.log(JSON.stringify(newData))
-      setTakenSeatData(newData)
+
+      // NOTE: hardcoded in. Needs to be updated with state values
+      let currentPerformance =
+      {
+          performance: {
+              performanceName: "West Side Story",
+              venueName: "Concert Hall",
+              dateTime: "2023-04-05T04:36:35.456Z"
+          }
+      }
+  
+      const promise = fetch('http://localhost:4000/currentPerformance', {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ currentPerformance })
+      })
+      .then(
+        response => response.json(),
+        error => console.log('An error occured', error)
+      )
+      .then(res =>
+        setTakenSeatData(res)
+      )
     }
     fetchData();
   }, []);
@@ -202,7 +195,7 @@ export const SeatSelection = () =>{
         <Stack direction='horizontal' style={{justifyContent:'center'}} gap={5}>
 
           {/**load the correct venue SVG for use*/}
-          {loadVenueSVG()} 
+          {loadVenueSVG()}
           {checkTakenSeats()}
 
           <div className="d-grid gap-2">

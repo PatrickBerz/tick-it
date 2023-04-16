@@ -13212,20 +13212,20 @@
         "performances": [
             {
                 "performanceName": "West Side Story",
-                "venueName": "Playhouse",
+                "venueName": "Concert Hall",
                 "dateTime": "2023-04-05T04:36:35.456Z",
                 "tickets": [
                     {
                         "performance": "West Side Story",
                         "seat": {
-                            "section": "Orchestra",
+                            "section": "RISE1",
                             "row": "B",
-                            "seatNum": 12,
+                            "seatNum": 1,
                             "acessible": false,
                             "inSeasonSection": false,
                             "defaultPrice": 29.99
                         },
-                        "ticketStatus": 0,
+                        "ticketStatus": 1,
                         "price": 29.99
                     }
                 ]
