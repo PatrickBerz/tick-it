@@ -43,10 +43,10 @@
     fill: #9C9C9C;
   }
 
-  .active {
+  .selected {
       fill:#bad455;
   }
-  .active:hover {
+  .selected:hover {
       fill:#90A63C;
   }
 

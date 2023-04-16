@@ -7,61 +7,115 @@ import {ReactComponent as ConcertHall} from './concertHall.svg';
 
 
 export const SeatSelection = () =>{
-  //Load the previous state containing the venue name
+  // Load previous state
   const location = useLocation();
   const state = location.state;
 
-  const [passState, setState] = useState({case:'',event:'',venue:'', date:''});
-  const cart = []; // stores the selected seats to be passed to checkout
-  const [seatIDs, setSeatIDs] = useState("ERROR!");
+  // States
+  const [passState, setState] = useState({case: state.case,event: state.event, venue: state.venue, date: state.date, seats: []}); // controls the state to be passed to checkout
+  //const cart = []; // stores the currently selected seats (full objects)
+  //const [seatIDs, setSeatIDs] = useState("ERROR!"); // controls the string of seats passed to checkout
+  const [listData, setListData] = useState([]); // controls the visual list of seats
+  const [isDisabled, setDisabled] = useState(true); // controls whether the checkout button is disabled
 
-  //checkout button initially disabled
-  const [isDisabled, setDisabled] = useState(true);
-
-  //Load the correct venue SVG for use in selecting seats
+  /*
+  * FUNCTION load the correct component depending on the venue state
+  * RETURN the react component containing the correct SVG, or otherwise an error statement
+  */
   const loadVenueSVG = () =>{
     if (state.venue == "Civic Center Playhouse"){
       return (
-        <Playhouse style={{maxWidth:'100vh'}} onClick={checkSeat} />
+        <Playhouse style={{maxWidth:'100vh'}} onClick={handleClickMap} />
+      )
+    } else if (state.venue == "Civic Center Concert Hall") {
+      return (
+        <ConcertHall style={{maxWidth:'100vh'}} onClick={handleClickMap} />
       )
     } else {
       return (
-        <ConcertHall style={{maxWidth:'100vh'}} onClick={checkSeat} />
+        <div>
+          <p style={{color: "white"}}>Error! Could not load venue. Please return to home and try again.</p>
+          <Link to="../">
+            <Button variant="primary">Return to Home</Button>
+          </Link>
+        </div>
       )
     }
   }
 
-  const handleClickSeat = (e) =>{
-    console.log('Congrats! You clicked this seat: ', e.target.id)
-    // If not active, turn the clicked seat to active by adding the active class
-    // Add the seat to an array of selected seats
-    if (!e.target.classList.contains("active")){
-      //add active class to e target
-      e.target.classList.add("active");
-      //add this seat to an array of selected seats
-      cart.push(e.target);
+  /*
+  * FUNCTION check which seats are taken and add the corresponding class
+  */
+ const checkTakenSeats = () => {
+    //fetch
+ }
+
+ 
+  /*
+  * FUNCTION if the cart is empty, disable the checkout button
+  
+  const checkIfCartEmpty = () => {
+    if (listData.length == 0) {
+      setDisabled(true);
     } else {
-      //remove active class from e target
-      e.target.classList.remove("active");
-      //remove this seat from the array of selected seats
-      var i = cart.indexOf(e.target); //find it
-      cart.splice(i, 1); //remove it without leaving holes in the array
+      setDisabled(false);
+    }
+ }*/
+
+  /*
+  * FUNCTION adds an item to the end of the list
+  * PARAM the sseat (event.target) to be added
+  */
+  const handleAddToList = (seat) => {
+    // Add the selected class to this seat SVG element
+    seat.classList.add("selected");
+    // Add this seat to the cart
+    //cart.push(seat.id);
+    setListData([...listData, seat.id]);
+  }
+  
+  /*
+  * FUNCTION removes an item from the list
+  * PARAM the seat (event.target) to be removed
+  */
+  const handleRemoveFromList = (seat) => {
+    // Remove the selected class from the SVG element
+    seat.classList.remove("selected");
+    // Remove this seat from the cart
+    //var i = cart.indexOf(seat.id); // Find it
+    //cart.splice(i, 1); // Remove it
+
+    const newData = [...listData];
+    var i = newData.indexOf(seat.id); // Find it
+    newData.splice(i, 1); // Remove it
+    setListData(newData);
+  }
+
+  /*
+  const handleRemoveButton = (index) => {
+    console.log("wants to remove this one: ", listData[index]);
+    //handleRemoveFromList(listData[index]);
+    var x = venue.getElementById(listData[index]);
+    console.log("trying to remove this object: ", x);
+  }*/
+
+  /*
+  * FUNCTION what happens when a seat is clicked
+  * PARAM the event variable
+  */
+  const seatClicked = (e) =>{
+    // If the seat is not already selected
+    if (!e.target.classList.contains("selected")){
+      // Add this seat to the list
+      handleAddToList(e.target);
+    } else {
+      handleRemoveFromList(e.target);
     }
   }
 
-  const checkSeat = (e) => {
-    //Did user just click a seat? Was it taken? Was it a season pass seat?
-    if (e.target.classList.contains("seat") && !e.target.classList.contains("taken") && !e.target.classList.contains("season")) {
-      //Disable the checkout button! A change was made! They'll need to confirm choices again
-      setDisabled(true);
-      //Is a seat and not taken and not season
-      handleClickSeat(e)
-    } else {
-      //Is not a seat or is taken
-      console.log('Click a free seat next time, bud')
-    }
-  };
 
+  /*
+  * FUNCTION
   const generateSeatList = () => {
     var str = "";
     for (let i=0; i<cart.length; i++) {
@@ -69,52 +123,68 @@ export const SeatSelection = () =>{
         str = str.concat(" | " + cart[i].id)
     }
     setSeatIDs(str);
-    //enable button
+    console.log(listData);
+    //enable checkout button
     setDisabled(false);
   }
+  */
 
-  const createList = () => {
-    return (
-      cart.map((item) => (
-        <ListGroup.Item key={item}>{item}.id</ListGroup.Item>
-      ))
+  /*
+  * FUNCTION handles the onClick event when a user clicks on the svg map
+  * PARAM the event variable
+  */
+  const handleClickMap = (e) => {
+    // As long as what they clicked IS a seat, is NOT taken, and is NOT a season pass seat...
+    if (e.target.classList.contains("seat") && !e.target.classList.contains("taken") && !e.target.classList.contains("season")) {
+      // Make sure the checkout button is disabled until they confirm their choices again
+      setDisabled(true);
+      // Do clicking a seat stuff
+      seatClicked(e);
+    } else {
+      // Otherwise, don't do anything
+    }
+  };
+
+  /*
+  * RETURN create visual components here
+  */
+  return (
+      <div className='App-body'>
+        <Stack direction='horizontal' style={{justifyContent:'center'}} gap={5}>
+
+          {/**load the correct venue SVG for use*/}
+          {loadVenueSVG()} 
+
+          <div className="d-grid gap-2">
+            {/**List of selected seats, updates automatically*/}
+            <ListGroup>
+              <ListGroup.Item><h2>Selected Seats</h2></ListGroup.Item>
+              <ListGroup.Item><i>Click seat again to remove</i></ListGroup.Item>
+              {listData.map((item, index) => (
+                <ListGroup.Item key={index}>
+                  {item}
+                  {/*<Button className="ms-2 btn-sm" variant="danger" onClick={() => handleRemoveButton(index)}>
+                    Remove
+                  </Button>*/}
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+
+            {/**Submit buttons
+            <Button variant="success" onClick={generateSeatList}>
+              Refresh Selection
+            </Button>*/}
+            
+            <Link 
+              to={"/checkOut"}
+              style={{color:'white', textDecoration:'none'}} 
+              state={{event: state.event, venue: state.venue, seats: listData}}>
+                <Button variant="primary">Check Out</Button>
+            </Link>
+
+          </div>
+
+        </Stack>
+      </div>
     )
-  }
-
-  useEffect(()=>{
-    })
-
-    return (
-        <div className='App-body'>
-          <Stack direction='horizontal' style={{justifyContent:'center'}} gap={5}>
-
-            {/**load the correct venue SVG for use*/}
-            {loadVenueSVG()} 
-
-            <div className="d-grid gap-2">
-
-            {/**display a list of selected seats*/}
-              <ListGroup>
-                <ListGroup.Item><h2>Selected Seats</h2></ListGroup.Item>
-                <ListGroup.Item><i>Press Refresh to update</i></ListGroup.Item>
-                <div id="reloadThis">{createList()}</div>
-              </ListGroup>
-
-              {/**Submit buttons*/}
-              <Button variant="success" onClick={generateSeatList}>
-                Refresh Selection
-              </Button>
-
-              <Button variant="primary" disabled={isDisabled}>
-                <Link 
-                  to={"/checkOut"}
-                  style={{color:'white', textDecoration:'none'}} 
-                  state={{event: state.event, venue: state.venue, seats: seatIDs}}>
-                    Check Out
-                </Link>
-              </Button>
-            </div>
-          </Stack>
-        </div>
-      )
 }
