@@ -143,6 +143,31 @@ router.post("/newShow", (req: any, res: any) => {
 
 router.post("/deleteShow", (req: any, res: any) => {
 
+    let data = req.body
+
+    console.log("Incoming data: " + JSON.stringify(data))
+    console.log("Incoming Perf name: " + data.showDelete.performance.performanceName)
+    let venue:Venue;
+    let newPerf = data.showDelete.performance
+    
+    // if(data.venueName === "Concert Hall") {
+    //     venue = System.getVenues[0]
+    
+    // }
+    // else {
+    //     venue = System.getVenues[1]
+    // }
+    venue = System.getVenues()[0]
+    //let perfToDelete = new Performance(newPerf.performanceName, newPerf.venueName, new Date(newPerf.dateTime), venue)
+    //let perfToDelete = System.findPerformance(newPerf.performanceName, new Date(newPerf.dateTime))
+    let perfToDelete = System.findPerformance(new Performance(newPerf.performanceName, newPerf.venueName, new Date(newPerf.dateTime), venue))
+    if (perfToDelete != null) {
+        System.removePerformance(perfToDelete)
+        console.log("REMOVING PERFORMANCE")
+    }
+    else {
+        console.log("DIDN'T FIND IT")
+    }
 });
 
 router.post("/exchange", (req: any, res: any) => {
