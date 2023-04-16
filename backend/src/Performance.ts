@@ -48,7 +48,7 @@ export class Performance {
     equals(compPerf: Performance) {
         if (this.performanceName == compPerf.getPerformanceName() &&
             this.venueName == compPerf.getVenueName() &&
-            this.dateTime === compPerf.getDateTime()
+            this.dateTime.toISOString() === compPerf.getDateTime().toISOString()
             ) {
                 return true;
             }
