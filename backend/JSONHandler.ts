@@ -110,7 +110,7 @@ export class JSONHandler {
             let dummySections: SeatSection[] = [];
             dummySections.push(dummySeatSectObj);
             let dummyVenue = new Venue(dummySections);
-            let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], objectPerformance["dateTime"], dummyVenue);
+            let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], new Date(objectPerformance["dateTime"]), dummyVenue);
             newPerformance.setTickets(tickets);
             this.deserializedData.push(newPerformance);
         }
@@ -192,7 +192,7 @@ export class JSONHandler {
                     tickets.push(newTicket);
                 }
 
-                let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], objectPerformance["dateTime"], venue);
+                let newPerformance: Performance = new Performance(objectPerformance["performanceName"], objectPerformance["venueName"], new Date(objectPerformance["dateTime"]), venue);
                 newPerformance.setTickets(tickets);
                 performances.push(newPerformance);
             }
@@ -307,7 +307,7 @@ export class JSONHandler {
             let newPurchase = new Purchase(attendee);
             newPurchase.setConfNum(objectPurchase["confNum"]);
             newPurchase.updateTickets(tickets);
-            newPurchase.setDate(objectPurchase["perfDateTime"]);
+            newPurchase.setDate(new Date(objectPurchase["perfDateTime"]));
             this.deserializedData.push(newPurchase);
         }
     }
