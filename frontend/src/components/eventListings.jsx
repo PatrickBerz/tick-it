@@ -86,15 +86,15 @@ export const EventListings = () => {
             } else {
                 setAlert({ label: `${event.statusText}`, type: 'danger' })
             }
-            
+
         })
-        window.location.reload()        
+        window.location.reload()
 
     }
     const convertDate = (item) => {
         const oldDate = new Date(item)
         //Shift time 300 minutes (5 hours) to get it out of GMT
-        const date = new Date(oldDate.getTime() + 300*60000);
+        const date = new Date(oldDate.getTime() + 300 * 60000);
         const options = {
             month: 'numeric',
             day: 'numeric',
@@ -175,7 +175,7 @@ export const EventListings = () => {
 
     }
 
-    
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/showData')
@@ -314,7 +314,7 @@ export const EventListings = () => {
 
         )
     }
-    else{
+    else {
         return (
             <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
 
@@ -402,7 +402,7 @@ export const EventListings = () => {
                     </Modal.Body>
                 </Modal>
             </div>
-    )
-}
+        )
+    }
 
 }
