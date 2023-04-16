@@ -8,14 +8,14 @@ import '../styles.css';
 
 export const Home = () =>{
   const [showModal, setShow] = useState(false);
-  const [passState, setState] = useState({case:'',event:'',venue:'', date:''});
+  const [passState, setState] = useState({case:'',event:'',venue:'', datetime:''});
   const [value, setValue] = useState('');
   const [alert, setAlert] = useState(undefined);
   
   const [selectedShow, setSelectedShow] = useState(null);
 
   const handleSelectShow = (item) => {
-    setState({case:"exchange",event:item.show.performance, venue:item.show.venue, date:item.show.date});
+    setState({case:"exchange",event:item.show.performance, venue:item.show.venue, datetime:item.show.datetime});
   };
 
   const confNumModal = () => {
@@ -32,7 +32,7 @@ export const Home = () =>{
       {
           "performance": "West Side Story",
           "venue" : "Civic Center Playhouse",
-          "date": "4/12/2023"
+          "datetime": "2023-04-12T18:18:00.000Z"
       }   
     },
     {
@@ -40,7 +40,7 @@ export const Home = () =>{
       {
           "performance": "Titanic 2",
           "venue" : "Civic Center Playhouse",
-          "date": "4/13/2023"
+          "datetime": "2023-04-13T18:18:00.000Z"
       }   
     },
     {
@@ -48,7 +48,7 @@ export const Home = () =>{
       {
           "performance": "Die Hardest",
           "venue" : "Civic Center Concert Hall",
-          "date": "4/14/2023"
+          "datetime": "2023-04-14T18:18:00.000Z"
       },   
     },
     {
@@ -56,7 +56,7 @@ export const Home = () =>{
       {
           "performance": "How I Met Your Mother Abridged",
           "venue" : "Civic Center Concert Hall",
-          "date": "4/15/2023"
+          "datetime": "2023-04-15T18:18:00.000Z"
       },   
     },
     {
@@ -64,7 +64,7 @@ export const Home = () =>{
       {
           "performance": "West Side Story",
           "venue" : "Civic Center Playhouse",
-          "date": "4/12/2023"
+          "datetime": "2023-04-15T18:18:00.000Z"
       }   
     },
     {
@@ -72,7 +72,7 @@ export const Home = () =>{
       {
           "performance": "Titanic 2",
           "venue" : "Civic Center Playhouse",
-          "date": "4/13/2023"
+          "datetime": "2023-04-13T18:18:00.000Z"
       }   
     },
     {
@@ -80,7 +80,7 @@ export const Home = () =>{
       {
           "performance": "Die Hardest",
           "venue" : "Civic Center Concert Hall",
-          "date": "4/14/2023"
+          "datetime": "2023-04-14T18:18:00.000Z"
       },   
     },
     {
@@ -88,7 +88,7 @@ export const Home = () =>{
       {
           performance: "How I Met Your Mother Abridged",
           venue : "Civic Center Concert Hall",
-          date: "4/15/2023"
+          datetime: "2023-04-15T18:18:00.000Z"
       },   
     },
     
@@ -134,12 +134,12 @@ export const Home = () =>{
                 <Card.Body>
                   <Card.Title>{item.show.performance}</Card.Title>
                   <Card.Text >
-                    {item.show.venue} <br /> {item.show.date}
+                    {item.show.venue} <br /> {item.show.datetime}
                   </Card.Text>
                   <Stack direction='horizontal' gap={2}>
                   <Link 
                     to={"/seatSelection"}
-                    state={{case:"purchase",event:item.show.performance,venue:item.show.venue, date:item.show.date}}>
+                    state={{case:"purchase",event:item.show.performance,venue:item.show.venue, datetime:item.show.datetime}}>
                     <Button size='sm' variant="primary" >
                           Purchase Tickets
                     </Button>
@@ -191,7 +191,7 @@ export const Home = () =>{
                   Close
                 </Button>
                   <Button id="continueButton" variant="primary" disabled={isDisabled}>
-                    <Link to={"/seatSelection"} style={{color:'white', textDecoration:'none'}} state={{case:passState.case ,event:passState.event, venue:passState.venue, date:passState.date}}>                
+                    <Link to={"/seatSelection"} style={{color:'white', textDecoration:'none'}} state={{case:passState.case ,event:passState.event, venue:passState.venue, datetime:passState.datetime}}>                
                         Continue 
                     </Link>
                   </Button>

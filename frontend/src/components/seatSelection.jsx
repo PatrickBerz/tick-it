@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stack, Image, Form, Button, ListGroup } from 'react-bootstrap';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {useLocation, Link } from 'react-router-dom';
 import {ReactComponent as Playhouse} from './playhouseSeats.svg';
 import {ReactComponent as ConcertHall} from './concertHall.svg';
@@ -13,10 +13,14 @@ export const SeatSelection = () =>{
 
   // States
   const [passState, setState] = useState({case: state.case,event: state.event, venue: state.venue, date: state.date, seats: []}); // controls the state to be passed to checkout
-  //const cart = []; // stores the currently selected seats (full objects)
-  //const [seatIDs, setSeatIDs] = useState("ERROR!"); // controls the string of seats passed to checkout
   const [listData, setListData] = useState([]); // controls the visual list of seats
   const [isDisabled, setDisabled] = useState(true); // controls whether the checkout button is disabled
+  
+  const [takenSeatData, setTakenSeatData] = useState([]) // controls the taken seats from 
+
+  // Used for referencing the svg again
+  const playhouseRef = useRef(null);
+  const concertHallRef = useRef(null);
 
   /*
   * FUNCTION load the correct component depending on the venue state
@@ -25,11 +29,11 @@ export const SeatSelection = () =>{
   const loadVenueSVG = () =>{
     if (state.venue == "Civic Center Playhouse"){
       return (
-        <Playhouse style={{maxWidth:'100vh'}} onClick={handleClickMap} />
+        <Playhouse style={{maxWidth:'100vh'}} onClick={handleClickMap} ref={playhouseRef} />
       )
     } else if (state.venue == "Civic Center Concert Hall") {
       return (
-        <ConcertHall style={{maxWidth:'100vh'}} onClick={handleClickMap} />
+        <ConcertHall style={{maxWidth:'100vh'}} onClick={handleClickMap} ref={concertHallRef} />
       )
     } else {
       return (
@@ -47,7 +51,50 @@ export const SeatSelection = () =>{
   * FUNCTION check which seats are taken and add the corresponding class
   */
  const checkTakenSeats = () => {
-    //fetch
+  // Cycle through the takenSeatData array, assemble the id strings, check against svg
+
+    
+    let currentPerformance =
+    {
+        performance: {
+            performanceName: state.event,
+            venueName: state.venue,
+            dateTime: state.datetime
+        }
+    }
+
+    console.log(currentPerformance)
+
+    const promise = fetch('http://localhost:4000/currentPerformance', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ currentPerformance })
+    });
+
+
+  for (let i=0; i<takenSeatData.length; i++){
+    
+    //use the seat object to assemble a string representation of the seat id
+    console.log(takenSeatData[i]); // DEBUG
+
+    /*
+
+    const thisSeat = takenSeatData[i].getSeat();
+    const thisSeatSection = thisSeat.getSection();
+    const thisSeatRow = thisSeat.getRow();
+    const thisSeatNum = thisSeat.getSeatNum();
+
+    const thisSeatID = "";
+    thisSeatID.concat(thisSeatSection, "-", thisSeatRow, "-", thisSeatNum);
+
+    const playhouseSvg = playhouseRef.current;
+    const seatElement = playhouseSvg.getElementById(thisSeatID);
+
+    seatElement.classList.add("taken");
+
+    */
+    
+  }
  }
 
  
@@ -113,22 +160,6 @@ export const SeatSelection = () =>{
     }
   }
 
-
-  /*
-  * FUNCTION
-  const generateSeatList = () => {
-    var str = "";
-    for (let i=0; i<cart.length; i++) {
-        //concat a string
-        str = str.concat(" | " + cart[i].id)
-    }
-    setSeatIDs(str);
-    console.log(listData);
-    //enable checkout button
-    setDisabled(false);
-  }
-  */
-
   /*
   * FUNCTION handles the onClick event when a user clicks on the svg map
   * PARAM the event variable
@@ -145,6 +176,24 @@ export const SeatSelection = () =>{
     }
   };
 
+  
+
+  /*
+  * USEEFFECT get data from backend...? Put it in takenSeatData
+  */   
+  useEffect(() => {
+    const fetchData = async () => {
+      var url = "http://localhost:4000/soldSeats/" + state.venue + "/" + state.datetime
+      url = url.replace(/\s+/g, '')
+      console.log("URL", url)
+      const response = await fetch(url)
+      const newData = await response.json()
+      console.log(JSON.stringify(newData))
+      setTakenSeatData(newData)
+    }
+    fetchData();
+  }, []);
+
   /*
   * RETURN create visual components here
   */
@@ -154,6 +203,7 @@ export const SeatSelection = () =>{
 
           {/**load the correct venue SVG for use*/}
           {loadVenueSVG()} 
+          {checkTakenSeats()}
 
           <div className="d-grid gap-2">
             {/**List of selected seats, updates automatically*/}
@@ -169,11 +219,6 @@ export const SeatSelection = () =>{
                 </ListGroup.Item>
               ))}
             </ListGroup>
-
-            {/**Submit buttons
-            <Button variant="success" onClick={generateSeatList}>
-              Refresh Selection
-            </Button>*/}
             
             <Link 
               to={"/checkOut"}
