@@ -86,12 +86,15 @@ export const EventListings = () => {
             } else {
                 setAlert({ label: `${event.statusText}`, type: 'danger' })
             }
+            
         })
-
+        window.location.reload()        
 
     }
     const convertDate = (item) => {
-        const date = new Date(item)
+        const oldDate = new Date(item)
+        //Shift time 300 minutes (5 hours) to get it out of GMT
+        const date = new Date(oldDate.getTime() + 300*60000);
         const options = {
             month: 'numeric',
             day: 'numeric',
@@ -102,6 +105,7 @@ export const EventListings = () => {
         }
 
         const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
+        //const formattedDate = date.toLocaleDateString('en-US', options)
         return formattedDate
     }
 
@@ -166,6 +170,8 @@ export const EventListings = () => {
             dateTime: ''
         })
         handleClose()
+        window.location.reload()
+
 
     }
 
@@ -308,4 +314,95 @@ export const EventListings = () => {
 
         )
     }
+    else{
+        return (
+            <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
+
+                <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
+                    <div className='d-flex mb-2'>
+                        <Button className='p-2' style={{
+                            borderColor: '#FF4057',
+                            backgroundColor: '#FF4057',
+                        }}
+                            onClick={newEventModal}>
+                            Create Show
+                        </Button>
+                        <Button className='ms-2 p-2' style={{
+                            borderColor: '#FF4057',
+                            backgroundColor: '#FF4057',
+                        }} // send file path
+                            onClick={handleExport}>
+                            Import Data
+                        </Button>
+                        <Button className='ms-2 p-2' style={{
+                            borderColor: '#FF4057',
+                            backgroundColor: '#FF4057',
+                        }} //0 or 1
+                            onClick={handleExport}>
+                            Export Data
+                        </Button>
+
+                        <Button className='ms-auto p-2' style={{
+                            borderColor: '#FF4057',
+                            backgroundColor: '#FF4057',
+                        }}
+                            onClick={handleBackButton}>
+                            Back
+                        </Button>
+                    </div>
+
+                </Stack>
+
+                <Modal show={showModal} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Enter Event Data</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={onFormSubmit} id='newShowForm' >
+                            {alert &&
+                                <Alert style={{ maxWidth: '200px', marginTop: 5, paddingTop: '2px', maxHeight: '30px', }} key={alert.type} variant={alert.type}>
+                                    {alert.label}
+                                </Alert>
+                            }
+                            {formError && <Alert variant='danger'>{formError}</Alert>
+                            }
+                            <Row className="mb-3">
+                                <Form.Group controlId="textValue">
+                                    <Form.Label>Event Name</Form.Label>
+                                    <Form.Control required type="text" value={formData.performanceName} placeholder="Enter event name" onChange={handleTextChange} />
+                                </Form.Group>
+                            </Row>
+                            <Row className="mb-3">
+                                <Form.Group as={Col} controlId="selectValue">
+                                    <Form.Label>Pick Venue </Form.Label>
+                                    <Form.Select required value={formData.venueName} onChange={handleSelectChange} >
+                                        <option value="">Select an option</option>
+                                        <option value="Playhouse">Playhouse</option>
+                                        <option value="Concert Hall">Concert Hall</option>
+                                    </Form.Select>
+                                </Form.Group>
+
+                                <Form.Group as={Col} controlId="dateValue">
+                                    <Form.Label>Date</Form.Label>
+                                    <Form.Control type='date' required placeholder="MM/DD/YYYY" value={formData.date} onChange={handleDateChange} />
+                                </Form.Group>
+
+                            </Row>
+                            <Row>
+                                <Form.Group as={Col} controlId="dateValue">
+                                    <Form.Label>Date</Form.Label>
+                                    <Form.Control type='time' required placeholder="MM/DD/YYYY" value={formData.time} onChange={handleTimeChange} />
+                                </Form.Group>
+                            </Row>
+                            <Button variant="primary" type="submit" >
+                                Submit
+                            </Button>
+
+                        </Form>
+                    </Modal.Body>
+                </Modal>
+            </div>
+    )
+}
+
 }

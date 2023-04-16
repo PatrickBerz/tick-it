@@ -16,7 +16,7 @@ import { ConfNum } from "./ConfNum";
 export class System {
     private static deserializer : JSONHandler = new JSONHandler();
     private static venues : Venue[] = this.initializeVenues(__dirname + "/../" + "/sampleVenue.json");
-    private static shows : Show[] = this.initializeShows(__dirname + "/../" + "/shows.json");
+    private static shows : Show[] = this.initializeShows(__dirname + "/../" + "/test8.json");
     private static purchases : Purchase[] = this.initializePurchases(__dirname + "/../" + "/purchases.json");
     private static seasonTicketHolders : SeasonTicketHolder[] = this.initializeSeasonHolders(__dirname + "/../" + "/seasonTicketHolders.json");
 
@@ -140,7 +140,7 @@ export class System {
     {
         for (var index in this.shows)
         {
-            if (this.shows[index].getShowName() == showName)
+            if (this.shows[index].getShowName() === showName)
             {
                 return this.shows[index];
             }
@@ -164,18 +164,51 @@ export class System {
         else return this.purchases[pivot];
     }
 
-    public static findPerformance(showName : string, dateTime : Date) : Performance | null
-    {
-        let show : Show | null = this.findShow(showName);
-        if (show == null) return null; 
-        for(var index in show.getPerformances())
-        {
-            if(show.getPerformances()[index].getDateTime() == dateTime)
-            return show.getPerformances()[index];
+    // public static findPerformance(showName : string, dateTime : Date) : Performance | null
+    // {
+    //     let show : Show | null = this.findShow(showName);
+    //     console.log("SHOW: " + JSON.stringify(show?.getPerformances()))
+    //     if (show == null) return null; 
+    //     for(var index in show.getPerformances())
+    //     {
+    //         if(show.getPerformances()[index].getDateTime() === dateTime)
+    //         return show.getPerformances()[index];
+    //     }
+    //     return null;
+    // }
+
+    public static findPerformance(perfToFind: Performance) {
+        for (var index in this.shows) {
+            for (var index2 in this.shows[index].getPerformances()) {
+                // console.log("IN LOOP")
+                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getPerformanceName()))
+                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getDateTime()))
+                // console.log(perfToFind.getDateTime())
+                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getVenueName()))
+                
+                // console.log("COMP SHOW")
+                // console.log(JSON.stringify(perfToFind.getPerformanceName()))
+                // console.log(JSON.stringify(perfToFind.getDateTime()))
+                // console.log(typeof(perfToFind.getDateTime()))
+                // console.log(JSON.stringify(perfToFind.getVenueName()))
+                if (this.shows[index].getPerformances()[index2].equals(perfToFind)) {
+                    //console.log("FOUND THE PERFORMANCE TO DELETE")
+                    //this.shows[index].getPerformances().splice(+index2, 1);
+                    return this.shows[index].getPerformances()[index2]
+                }
+            }
         }
-        return null;
+    }
+
+    public static removePerformance(perfToDelete: Performance) {
+        for (var index in this.shows) {
+            for (var index2 in this.shows[index].getPerformances()) {
+                if (this.shows[index].getPerformances()[index2].equals(perfToDelete)) {
+                    console.log("Deleted Performance")
+                    this.shows[index].getPerformances().splice(+index2, 1);
+                }
+            }
+        }
     }
     
 }
-
-//const system = System.getInstance();

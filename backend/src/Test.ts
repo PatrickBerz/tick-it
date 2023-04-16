@@ -7,6 +7,7 @@ import { JSONHandler } from "../JSONHandler";
 import { Seat } from "./Seat";
 import { SeatSection } from "./SeatSection";
 import { Venue } from "./Venue";
+import { System } from "./System";
 
 export class Test {
     constructor() {
@@ -50,15 +51,15 @@ export class Test {
         testPur.updateTickets(boughtTickets);
         testPur.payTickets();
 
-        //Now let's see what the data says:
-        console.log("\nPERFORMANCE TICKETS STATUS: ");
-        for (var index in testPerf.getTickets()) {
-            console.log("TICKET " + index + " : " + testPerf.getTickets()[index].getTicketStatus());
-        }
-        console.log("\nPURCHASE TICKETS STATUS: ");
-        for (var index in testPur.getTickets()) {
-            console.log("TICKET " + index + " : " + testPur.getTickets()[index].getTicketStatus());
-        }
+        // //Now let's see what the data says:
+        // console.log("\nPERFORMANCE TICKETS STATUS: ");
+        // for (var index in testPerf.getTickets()) {
+        //     console.log("TICKET " + index + " : " + testPerf.getTickets()[index].getTicketStatus());
+        // }
+        // console.log("\nPURCHASE TICKETS STATUS: ");
+        // for (var index in testPur.getTickets()) {
+        //     console.log("TICKET " + index + " : " + testPur.getTickets()[index].getTicketStatus());
+        // }
 
         /*console.log("SERIALIZING. . .");
         let Perfs: Performance[] = [];
@@ -78,7 +79,7 @@ export class Test {
         deserialPur.pickUpTickets();*/
 
         //delete purchase to see if it deletes in performance
-        delete testPerf.getTickets[0];
+        //delete testPerf.getTickets[0];
 
         //Now let's see what the data says:
         console.log("\nPERFORMANCE TICKETS STATUS: ");
@@ -90,8 +91,18 @@ export class Test {
             console.log("TICKET " + index + " : " + testPur.getTickets()[index].getTicketStatus());
         }   
     }
+
+    testDeletePerformance() {
+        let testDelete : Performance = new Performance("West Side Story", "Playhouse", 
+                    new Date("2023-04-05T04:36:35.456Z"), System.getVenues()[0]);
+        //let testDelete: Performance = System.getShows()[0].getPerformances()[0];
+        console.log(System.getShows()[0].getPerformances());
+        System.removePerformance(testDelete);
+        console.log("\n AFTER DELETION: \n")
+        console.log(System.getShows()[0].getPerformances()[0]);
+    }
     
 }
 
 let sys:Test = new Test();
-sys.testPurchaseTickets();
+sys.testDeletePerformance();

@@ -6,9 +6,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import '../styles.css';
 
-
-export const Home = () => {
-
+export const Home = () =>{
   const [showModal, setShow] = useState(false);
   const [passState, setState] = useState({ case: '', event: '', venue: '', date: '' });
   const [value, setValue] = useState('');
@@ -28,7 +26,7 @@ export const Home = () => {
     setShow(false)
     setAlert(undefined);
   }
-
+  
 
   useEffect(() => {
     const fetchData = async () => {
