@@ -238,9 +238,17 @@ router.post("/confNum", (req: any, res: any) => {
 });
 
 router.post("/currentPerformance", (req: any, res: any) => {
-    let performance = System.findPerformance(req.params.showName, req.params.dateTime);
-    let foundSoldSeats = performance?.findSoldSeats();
-    res.json(foundSoldSeats);
+    let data = req.body.currentPerformance.performance;
+    let currentPerf : Performance = new Performance(data.performanceName, data.venueName, new Date(data.dateTime), System.getVenues()[0]);
+    let perf = System.findPerformance(currentPerf);
+    if (perf != null) {
+        let foundSoldSeats = perf.findSoldSeats();
+        res.status(200);
+        res.json(foundSoldSeats);
+    } else {
+        res.status(500);
+        res.end();
+    }
 });
 
 export default router;
