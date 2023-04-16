@@ -88,7 +88,8 @@ export const EventListings = () => {
             }
             
         })
-        window.location.reload()        
+        setTimeout(() => { window.location.reload(); }, 500);
+        
 
     }
     const convertDate = (item) => {
