@@ -40,7 +40,7 @@ export const SeasonPassStuff = () => {
                             backgroundColor: '#FF4057',
                         }}
                             onClick={newEventModal}>
-                            Create Show
+                            Add Pass
                         </Button>
                         <Button className='ms-2 p-2' style={{
                             borderColor: '#FF4057',
@@ -66,7 +66,7 @@ export const SeasonPassStuff = () => {
                         </Button>
                     </div>
                     <Table bordered responsive striped hover variant='dark' size='sm' style={{ maxHeight: '70%' }}>
-                        <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={5}>Ticket Orders</th></tr></thead>
+                        <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={5}>Season Pass Holders</th></tr></thead>
                         <tbody style={{ fontSize: '20px', color: "white" }}>
                             <tr>
                                 <th style={{ textAlign: 'center' }}>Name</th>
