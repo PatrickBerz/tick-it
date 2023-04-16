@@ -237,7 +237,7 @@ router.post("/confNum", (req: any, res: any) => {
     res.end();
 });
 
-router.get("/soldSeats/:showName/:dateTime", (req: any, res: any) => {
+router.post("/currentPerformance", (req: any, res: any) => {
     let performance = System.findPerformance(req.params.showName, req.params.dateTime);
     let foundSoldSeats = performance?.findSoldSeats();
     res.json(foundSoldSeats);
