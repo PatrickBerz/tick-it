@@ -4,7 +4,7 @@ import {useLocation, Link } from 'react-router-dom';
 
 export const CheckOut = () =>{
   const location = useLocation();
-  const state = location.state;
+  const state = location.state; 
 
   var payOnline = true;
 
@@ -14,12 +14,10 @@ export const CheckOut = () =>{
       /*Switch the value of payOnline*/
       if (payOnline){
           /*User clicked pay at door*/
-          console.log("hide!");
           payOnline = false;
           x.style.display = "none";
       } else {
           /*User clicked pay online*/
-          console.log("show!");
           payOnline = true;
           x.style.display = "block";
       }
@@ -29,7 +27,8 @@ export const CheckOut = () =>{
       <div>
           <h1 className="col-md-4 mt-4 mx-auto" style={{ color: 'white' }}>Check Out!</h1>
           <p className="col-md-4 mt-4 mx-auto" style={{color:'white'}}>Event: {state.event}</p>
-          <p className="col-md-4 mx-auto" style={{color:'white'}}>Seat: {state.seat}</p>
+          <p className="col-md-4 mt-4 mx-auto" style={{color:'white'}}>Venue: {state.venue}</p>
+          <p className="col-md-4 mt-4 mx-auto" style={{color:'white'}}>Seats: {state.seats}</p>
 
           <Form className="col-md-4 mt-4 mx-auto">
               {/*Row 1: First Name*/}
