@@ -192,51 +192,29 @@ router.post("/newPurchase", (req: any, res: any) => {
     //                     "address": "123 address blvd",
     //                     "phoneNum": "123-444-1234"
     //                 }
-    //     "ticketStatus": 1 
+    //     "ticketStatus": 1
     // }
 
-    //TODO: figure out where to make purchase
-    //pass all into System, where it makes a new purchase and adds to list?
-    //OR, make new purchase here, then pass to System to add to list
+    let attendeeData = data.attendee
+    let attendee = new Attendee(attendeeData.name, attendeeData.address, attendeeData.phoneNum)
+    let perfToFind = new Performance(data.showName, data.venueName, data.dateTime, System.getVenues()[0])
 
-    //NOTE: This is SUPER ugly and probably O(N^2)
-
-    /*let newPurchase: Purchase = new Purchase(new Attendee(data.attendee.name, data.attendee.address, data.attendee.phoneNum))
-    newPurchase.setConfNum(ConfNum.getNum())
+    let perf = System.findPerformance(perfToFind)
     let newTickets: Ticket[] = [];
-    //Sys call to get performance from showName, venue name, dateTime
-    // let perf: Performance = new Performance()
-    // data.ticketList.forEach(purchTicket => {
-    //     perf.getTickets().forEach(perfTicket => {
-    //         if (purchTicket.sectionName == perfTicket.getSeat().getSection() &&
-    //             purchTicket.row == perfTicket.getSeat().getRow() && 
-    //             purchTicket.seatNum == perfTicket.getSeat().getSeatNum()) {
 
-    //                 newTickets.push(perfTicket)
-    //             }
-    //     });
-    // });
+    data.ticketList.forEach(purchTicket => {
+        if(perf) {
+            perf.getTickets().forEach(perfTicket => {
+                if (purchTicket.getSeat().equals(perfTicket.getSeat())) {
 
-
-    //TODO: Error checking?
-    newPurchase.updateTickets(newTickets)
-    switch(data.ticketStatus){
-        case 1: {
-            newPurchase.reservedTickets()
-            break;
+                        newTickets.push(perfTicket)
+                    }
+            });
         }
-        case 2: {
-            newPurchase.payTickets()
-            break;
-        }
-        case 3: {
-            newPurchase.pickUpTickets()
-            break;
-        }
-    }*/
+    })
+    
+    System.createPurchase(attendee, newTickets, new Date(data.dateTime), data.ticketStatus)
 
-    //Pass info into System so System can add the purchase and serialize the info again
-    System.createPurchase(new Attendee(data.attendee.name, data.attendee.address, data.attendee.phoneNum), data.tickets, data.dateTime, data.TicketStatus);
 })
 
 router.post("/password", (req: any, res: any) => {
@@ -295,11 +273,3 @@ router.post("/currentTickets", (req: any, res: any) => {
 });
 
 export default router;
-
-
-//let purchase: Purchase | null = system.findPurchase(0)
-//let testPurchase : Purchase = new Purchase(new Attendee("No thank you", "", ""));
-//System.createPurchase(new Attendee("No thank you", "", ""), [], new Date());
-//let newPurchase : Purchase | null = 
-//console.log("\n\n\n\n\n\nPURCHASE")
-//console.log(System.getPurchases())
