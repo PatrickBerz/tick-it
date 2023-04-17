@@ -73,26 +73,27 @@ export const EventListings = () => {
             price: '29.99'
         }
     ]
+
     const [playhouseSections, setPlayhouseSections] = useState(phSections)
     const [concertHallSections, setConcertHallSections] = useState(chSections)
 
     function handlePhPriceChange(index, value) {
         const updatedSections = [...playhouseSections];
         updatedSections[index] = {
-          ...updatedSections[index],
-          price: value,
+            ...updatedSections[index],
+            price: value,
         };
         setPlayhouseSections(updatedSections);
-      }
+    }
 
-      function handleChPriceChange(index, value) {
+    function handleChPriceChange(index, value) {
         const updatedSections = [...concertHallSections];
         updatedSections[index] = {
-          ...updatedSections[index],
-          price: value,
+            ...updatedSections[index],
+            price: value,
         };
         setConcertHallSections(updatedSections);
-      }
+    }
 
 
 
@@ -119,9 +120,11 @@ export const EventListings = () => {
             date: '',
             time: ''
         })
+        setPlayhouseSections(phSections)
+        setConcertHallSections(chSections)
 
     }
-   
+
 
 
     const handleTextChange = e => {
@@ -220,20 +223,24 @@ export const EventListings = () => {
         }
 
         setFormError(null);
-
+        console.log(playhouseSections)
 
         //console.log('form data', formData)
         let dateTime = toISODate(formData.date, formData.time)
         // console.log(dateTime)
         // console.log(formData.performanceName)
         // console.log(formData.venueName)
+
         let newShow =
         {
             performance: {
                 performanceName: formData.performanceName,
                 venueName: formData.venueName,
-                dateTime: dateTime
+                dateTime: dateTime,
+                sections: formData.venueName === 'Playhouse' ? playhouseSections : concertHallSections
+                
             }
+
         }
 
         console.log(newShow)
@@ -259,8 +266,10 @@ export const EventListings = () => {
             venueName: '',
             dateTime: ''
         })
+        setPlayhouseSections(phSections)
+        setConcertHallSections(chSections)
         handleClose()
-        setTimeout(() => { window.location.reload(); }, 500);
+        //setTimeout(() => { window.location.reload(); }, 500);
 
 
     }
@@ -406,7 +415,7 @@ export const EventListings = () => {
                                             <Col sm='4'>
                                                 <InputGroup size='sm'>
                                                     <InputGroup.Text>$</InputGroup.Text>
-                                                    <Form.Control type="number" step={"0.01"} value={section.price} placeholder="Price" onChange={e => { handlePhPriceChange(index,e.target.value) }} />
+                                                    <Form.Control type="number" step={"0.01"} value={section.price} placeholder="Price" onChange={e => { handlePhPriceChange(index, e.target.value) }} />
                                                 </InputGroup>
                                             </Col>
                                         </Row>
@@ -422,7 +431,7 @@ export const EventListings = () => {
                                             <Col sm='4'>
                                                 <InputGroup size='sm'>
                                                     <InputGroup.Text>$</InputGroup.Text>
-                                                    <Form.Control type="number" step={"0.01"} value={section.price} placeholder="Price" onChange={e => { handleChPriceChange(index,e.target.value) }} />
+                                                    <Form.Control type="number" step={"0.01"} value={section.price} placeholder="Price" onChange={e => { handleChPriceChange(index, e.target.value) }} />
                                                 </InputGroup>
                                             </Col>
                                         </Row>
