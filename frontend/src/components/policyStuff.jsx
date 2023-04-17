@@ -58,7 +58,7 @@ export const PolicyStuff = () => {
         console.log(newPrice)
 
 
-        const promise = fetch('http://localhost:4000/', {
+        const promise = fetch('http://localhost:4000/newDefault', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ newPrice })

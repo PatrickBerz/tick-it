@@ -47,6 +47,7 @@ router.use(cors({
 //post file path for importing
 //post 0/1 for export csv vs json
 
+//handle get request to return the list of season ticket holders
 router.get("/seasonTickets", (req: any, res: any) => {
     //get list of season ticket holders from System
     let seasonTixList: SeasonTicketHolder[] = [ new SeasonTicketHolder("Richard Blargson", "5000 Fancy Boulevard", "123-555-5555", new Seat("Orchestra", "A", 15, false, true, 99999.99)),
@@ -55,6 +56,7 @@ router.get("/seasonTickets", (req: any, res: any) => {
     res.json(seasonTixList)
 })
 
+//handle post request to add a season ticket holder
 router.post("/newSeasonTicket", (req: any, res: any) => {
 
     //take in and parse new season ticket holder
@@ -69,7 +71,8 @@ router.post("/newSeasonTicket", (req: any, res: any) => {
     //system.addSeasonHolder(newHolder)
 })
 
-router.post("/newDefaults", (req: any, res: any) => {
+//handle post request to update default price of a section of a venue
+router.post("/newDefault", (req: any, res: any) => {
 
     // parse defaults. Need venue name and assoc. array of section name to new default price
     // {
@@ -80,7 +83,24 @@ router.post("/newDefaults", (req: any, res: any) => {
     //                  "Section3": 23.99
     //                  ]
     // }
-    let data = req.body
+    let data = req.body.newPrice
+
+    let venue: Venue;
+    // if(data.venueName === "Concert Hall") {
+    //     venue = System.getVenues[0]
+    // }
+    // else {
+    //     venue = System.getVenues[1]
+    // }
+    venue = System.getVenues()[0]
+    let sectionList = venue.getSections()
+    sectionList.forEach((section) => {
+
+        if (section.getSectionNum() === data.section) {
+            section.setDefaultPrice(data.sectionPrice)
+            console.log("Set new default price of: " + data.sectionPrice + " for: " + data.section)
+        }
+    })
 
     //call Sys class to get old venue of same name
     //Replace declaration with Sys function call
@@ -100,12 +120,11 @@ router.post("/newDefaults", (req: any, res: any) => {
     
 })
 
-router.get("/ticketData/:showName/:dateTime", (req: any, res: any) => {
-    //call System function to lookup a show by show name/venue/dateTime
-    //return the JSONified list of tickets within that show
-    //req.params["showName"]
-})
+// handle get request for venue section default prices
+router.get("/venueDefaults", (req:any, res:any) => {
 
+    let venueList = System.getVenues()
+})
 
 router.get("/showData", (req: any, res: any) => {
 
