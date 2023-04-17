@@ -17,38 +17,37 @@ export const EventListings = () => {
     const [formError, setFormError] = useState(null)
     const [showData, setShowData] = useState([])
     const [alert, setAlert] = useState(undefined);
-    const [PlayhouseSections, setPlayhouseSections] = useState(
-        [
-            {
-                sectionName: 'Riser1',
-                price: '19.99'
-            },
-            {
-                sectionName: 'Riser3',
-                price: '19.99'
-            },
-            {
-                sectionName: 'Riser4',
-                price: '19.99'
-            },
-            {
-                sectionName: 'Lodge1',
-                price: '9.99'
-            },
-            {
-                sectionName: 'Lodge2',
-                price: '9.99'
-            },
-            {
-                sectionName: 'Lodge3',
-                price: '9.99'
-            },
-            {
-                sectionName: 'Lodge4',
-                price: '9.99'
-            }
-        ])
-    const ConcertHallSections = [
+    const phSections = [
+        {
+            sectionName: 'Riser1',
+            price: '19.99'
+        },
+        {
+            sectionName: 'Riser3',
+            price: '19.99'
+        },
+        {
+            sectionName: 'Riser4',
+            price: '19.99'
+        },
+        {
+            sectionName: 'Lodge1',
+            price: '9.99'
+        },
+        {
+            sectionName: 'Lodge2',
+            price: '9.99'
+        },
+        {
+            sectionName: 'Lodge3',
+            price: '9.99'
+        },
+        {
+            sectionName: 'Lodge4',
+            price: '9.99'
+        }
+    ]
+    const chSections = [
         {
             sectionName: 'Orchestra',
             price: '49.99'
@@ -74,6 +73,26 @@ export const EventListings = () => {
             price: '29.99'
         }
     ]
+    const [playhouseSections, setPlayhouseSections] = useState(phSections)
+    const [concertHallSections, setConcertHallSections] = useState(chSections)
+
+    function handlePhPriceChange(index, value) {
+        const updatedSections = [...playhouseSections];
+        updatedSections[index] = {
+          ...updatedSections[index],
+          price: value,
+        };
+        setPlayhouseSections(updatedSections);
+      }
+
+      function handleChPriceChange(index, value) {
+        const updatedSections = [...concertHallSections];
+        updatedSections[index] = {
+          ...updatedSections[index],
+          price: value,
+        };
+        setConcertHallSections(updatedSections);
+      }
 
 
 
@@ -102,12 +121,7 @@ export const EventListings = () => {
         })
 
     }
-    const PlayhousePriceChange = e => {
-        setPlayhouseSections({
-            ...PlayhouseSections,
-            price: e.target.value
-        })
-    }
+   
 
 
     const handleTextChange = e => {
@@ -385,14 +399,14 @@ export const EventListings = () => {
                                 <Form.Label column sm='2' className='mb-0' style={{ fontSize: '18px' }}>Sections</Form.Label>
                             </Form.Group>
                             {formData.venueName == "Playhouse" && (
-                                PlayhouseSections.map((index, key) => (
-                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row} key={key}>
+                                playhouseSections.map((section, index) => (
+                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row} key={section.sectionName}>
                                         <Row>
-                                            <Form.Label column sm='2' >{index.sectionName}</Form.Label>
+                                            <Form.Label column sm='2' >{section.sectionName}</Form.Label>
                                             <Col sm='4'>
                                                 <InputGroup size='sm'>
                                                     <InputGroup.Text>$</InputGroup.Text>
-                                                    <Form.Control type="number" value={index.price} placeholder="Price" onChange={setPlayhouseSections} />
+                                                    <Form.Control type="number" step={"0.01"} value={section.price} placeholder="Price" onChange={e => { handlePhPriceChange(index,e.target.value) }} />
                                                 </InputGroup>
                                             </Col>
                                         </Row>
@@ -400,15 +414,15 @@ export const EventListings = () => {
                                 ))
                             )}
                             {formData.venueName == "Concert Hall" && (
-                                ConcertHallSections.map((index, key) => (
-                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row}>
+                                concertHallSections.map((section, index) => (
+                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row} key={section.sectionName}>
 
                                         <Row>
-                                            <Form.Label column sm='2' >{index.sectionName}</Form.Label>
+                                            <Form.Label column sm='2' >{section.sectionName}</Form.Label>
                                             <Col sm='4'>
                                                 <InputGroup size='sm'>
                                                     <InputGroup.Text>$</InputGroup.Text>
-                                                    <Form.Control type="number" value={index.price} placeholder="Price" onChange={() => { PlayhousePriceChange(index) }} />
+                                                    <Form.Control type="number" step={"0.01"} value={section.price} placeholder="Price" onChange={e => { handleChPriceChange(index,e.target.value) }} />
                                                 </InputGroup>
                                             </Col>
                                         </Row>
