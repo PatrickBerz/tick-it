@@ -73,6 +73,7 @@ export class System {
         }
         this.purchases.push(newPurchase);
         this.deserializer.serialize(this.purchases, this.purchasePath);
+        this.deserializer.serialize(this.shows, this.showPath);
         //this.insertIntoPurchases(newPurchase);
         //return newPurchase;
     }
@@ -228,6 +229,8 @@ export class System {
                 if (this.shows[index].getPerformances()[index2].equals(perfToDelete)) {
                     console.log("Deleted Performance")
                     this.shows[index].getPerformances().splice(+index2, 1);
+                    this.deserializer.serialize(this.purchases, this.purchasePath);
+                    this.deserializer.serialize(this.shows, this.showPath);
                 }
             }
         }
