@@ -85,7 +85,7 @@ export const Home = () => {
                     <Stack direction='horizontal' gap={2}>
                       <Link
                         to={"/seatSelection"}
-                        state={{ case: "purchase", event: item.performanceName, venue: item.venueName, date: item.dateTime }}>
+                        state={{ case: "purchase", event: item.performanceName, venue: item.venueName, datetime: item.dateTime }}>
                         <Button size='sm' variant="primary" >
                           Purchase Tickets
                         </Button>

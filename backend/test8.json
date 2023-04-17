@@ -13212,40 +13212,40 @@
         "performances": [
             {
                 "performanceName": "West Side Story",
-                "venueName": "Playhouse",
+                "venueName": "Concert Hall",
                 "dateTime": "2023-04-05T04:36:35.456Z",
                 "tickets": [
                     {
                         "performance": "West Side Story",
                         "seat": {
                             "section": "Orchestra",
-                            "row": "B",
+                            "row": "G",
                             "seatNum": 12,
                             "acessible": false,
                             "inSeasonSection": false,
                             "defaultPrice": 29.99
                         },
-                        "ticketStatus": 0,
+                        "ticketStatus": 1,
                         "price": 29.99
                     }
                 ]
             },
             {
-                "performanceName": "West Side Story",
+                "performanceName": "West Side Story AGAIN",
                 "venueName": "Playhouse",
                 "dateTime": "2024-04-05T04:36:35.456Z",
                 "tickets": [
                     {
-                        "performance": "West Side Story",
+                        "performance": "West Side Story AGAIN",
                         "seat": {
-                            "section": "Orchestra",
+                            "section": "Riser1",
                             "row": "B",
-                            "seatNum": 12,
+                            "seatNum": 1,
                             "acessible": false,
                             "inSeasonSection": false,
                             "defaultPrice": 29.99
                         },
-                        "ticketStatus": 0,
+                        "ticketStatus": 1,
                         "price": 29.99
                     }
                 ]
