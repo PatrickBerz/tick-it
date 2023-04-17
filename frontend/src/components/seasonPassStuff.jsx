@@ -5,7 +5,6 @@ export const SeasonPassStuff = () => {
     const [data, setData] = useState(null);
     const [showModal, setShow] = useState(false)
     const [alert, setAlert] = useState(undefined);
-    const [importAlert, setImportAlert] = useState(undefined);
 
     const [formError, setFormError] = useState(null)
     const [importModal, setImportModal] = useState(false)
@@ -54,7 +53,7 @@ export const SeasonPassStuff = () => {
                     setFileContents(contents)
                 }
             } else {
-                setImportAlert("Please upload valid file type")
+                console.log("Please upload valid file type")
             }
         }
 
@@ -69,10 +68,10 @@ export const SeasonPassStuff = () => {
         console.log(promise)
         promise.then(event => {
             if (event.status === 200) {
-                setImportAlert({ label: 'success', type: 'success' })
+                console.log({ label: 'success', type: 'success' })
                 setImportModal(false)
             } else {
-                setImportAlert({ label: `${event.statusText}`, type: 'danger' })
+                console.log({ label: `${event.statusText}`, type: 'danger' })
             }
         })
 
@@ -287,11 +286,7 @@ export const SeasonPassStuff = () => {
                 </Modal>
                 <Modal show={importModal} onHide={handleCloseImport}>
                     <Modal.Header closeButton></Modal.Header>
-                    {alert &&
-                        <Alert style={{ maxWidth: '200px', marginTop: 5, paddingTop: '2px', maxHeight: '30px', }} key={alert.type} variant={alert.type}>
-                            {alert.label}
-                        </Alert>
-                    }
+                    
                     <Modal.Body>
                         <Form onSubmit={handleImportSubmit}>
                             <Form.Group controlId="formFile">
