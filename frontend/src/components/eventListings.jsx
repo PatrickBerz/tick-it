@@ -269,11 +269,28 @@ export const EventListings = () => {
         setPlayhouseSections(phSections)
         setConcertHallSections(chSections)
         handleClose()
-        //setTimeout(() => { window.location.reload(); }, 500);
+        setTimeout(() => { window.location.reload(); }, 500);
 
 
     }
-
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:4000/phSections')
+            const newData = await response.json()
+            console.log(JSON.stringify(newData))
+            setShowData(newData)
+        }
+        fetchData();
+    }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:4000/chSections')
+            const newData = await response.json()
+            console.log(JSON.stringify(newData))
+            setShowData(newData)
+        }
+        fetchData();
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
