@@ -155,51 +155,6 @@ export const Home = () => {
         <Stack direction='vertical' style={{ alignItems: 'center' }} gap={0}>
           <Image src={logo} className='App-logo-big' style={{ marginTop: '-30px' }}></Image>
           <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '35px', overflowY: 'auto', marginBottom: '30px', marginTop: '-70px', background: '#282634' }}>
-            <Stack className="mb-5 flex-wrap" direction='horizontal' style={{ justifyContent: 'center' }} gap={3}>
-            </Stack>
-
-            <Modal show={showModal} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Enter Confirmation Number</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <p>Enter the Confirmation Number given to you with your purchase</p>
-                <Form onSubmit={onFormSubmit}>
-                  <FormGroup>
-                    <Form.Control
-                      type="name"
-                      placeholder="Confirmation Number"
-                      onChange={(e) => setValue(e.target.value)}
-                      value={value}
-                    />
-
-                  </FormGroup>
-                  <div className='d-inline-flex'>
-                    <Button className="me-2 mt-1" type='submit' variant="success" style={{ width: '60px', height: '35px' }} onClick={onFormSubmit}>
-                      Enter
-                    </Button>
-                    {alert &&
-                      <Alert style={{ maxWidth: '200px', marginTop: 5, paddingTop: '2px', maxHeight: '30px', }} key={alert.type} variant={alert.type}>
-                        {alert.label}
-                      </Alert>
-                    }
-
-                  </div>
-                </Form>
-
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Close
-                </Button>
-                <Button id="continueButton" variant="primary" disabled={isDisabled}>
-                  <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }} state={{ case: passState.case, event: passState.event, venue: passState.venue, date: passState.date }}>
-                    Continue
-                  </Link>
-                </Button>
-
-              </Modal.Footer>
-            </Modal>
           </div>
         </Stack>
       </div>
