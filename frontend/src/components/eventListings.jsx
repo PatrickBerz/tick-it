@@ -1,10 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Form, Stack, Button, Alert, Table, Modal, FormGroup, Row, Col } from 'react-bootstrap'
+import { Form, Stack, Button, Alert, Table, Modal, InputGroup, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 
 
 
 export const EventListings = () => {
+
     const [formData, setFormData] = useState({
         performanceName: '',
         venueName: '',
@@ -16,12 +17,73 @@ export const EventListings = () => {
     const [formError, setFormError] = useState(null)
     const [showData, setShowData] = useState([])
     const [alert, setAlert] = useState(undefined);
+    const [PlayhouseSections, setPlayhouseSections] = useState(
+        [
+            {
+                sectionName: 'Riser1',
+                price: '19.99'
+            },
+            {
+                sectionName: 'Riser3',
+                price: '19.99'
+            },
+            {
+                sectionName: 'Riser4',
+                price: '19.99'
+            },
+            {
+                sectionName: 'Lodge1',
+                price: '9.99'
+            },
+            {
+                sectionName: 'Lodge2',
+                price: '9.99'
+            },
+            {
+                sectionName: 'Lodge3',
+                price: '9.99'
+            },
+            {
+                sectionName: 'Lodge4',
+                price: '9.99'
+            }
+        ])
+    const ConcertHallSections = [
+        {
+            sectionName: 'Orchestra',
+            price: '49.99'
+        },
+        {
+            sectionName: 'Balcony1',
+            price: '29.99'
+        },
+        {
+            sectionName: 'Balcony2',
+            price: '29.99'
+        },
+        {
+            sectionName: 'Balcony3',
+            price: '29.99'
+        },
+        {
+            sectionName: 'Balcony4',
+            price: '29.99'
+        },
+        {
+            sectionName: 'Balcony5',
+            price: '29.99'
+        }
+    ]
+
+
+
+
 
     const handleBackButton = () => {
         window.location.href = "/adminPage"
 
     }
-    function handleExport() {
+    const handleExport = () => {
         console.log("yay export")
 
     }
@@ -32,8 +94,21 @@ export const EventListings = () => {
     const handleClose = () => {
         setShow(false)
         setAlert(undefined)
+        setFormData({
+            performanceName: '',
+            venueName: '',
+            date: '',
+            time: ''
+        })
 
     }
+    const PlayhousePriceChange = e => {
+        setPlayhouseSections({
+            ...PlayhouseSections,
+            price: e.target.value
+        })
+    }
+
 
     const handleTextChange = e => {
         setFormData({
@@ -107,6 +182,8 @@ export const EventListings = () => {
         //const formattedDate = date.toLocaleDateString('en-US', options)
         return formattedDate
     }
+
+
 
     function toISODate(dateStr, timeStr) {
         // console.log(dateStr, timeStr)
@@ -277,13 +354,13 @@ export const EventListings = () => {
                             }
                             <Row className="mb-3">
                                 <Form.Group controlId="textValue">
-                                    <Form.Label>Event Name</Form.Label>
+                                    <Form.Label style={{ fontSize: '18px' }}>Event Name</Form.Label>
                                     <Form.Control required type="text" value={formData.performanceName} placeholder="Enter event name" onChange={handleTextChange} />
                                 </Form.Group>
                             </Row>
                             <Row className="mb-3">
-                                <Form.Group as={Col} controlId="selectValue">
-                                    <Form.Label>Pick Venue </Form.Label>
+                                <Form.Group as={Col} controlId="selectVenue">
+                                    <Form.Label style={{ fontSize: '18px' }}>Pick Venue </Form.Label>
                                     <Form.Select required value={formData.venueName} onChange={handleSelectChange} >
                                         <option value="">Select an option</option>
                                         <option value="Playhouse">Playhouse</option>
@@ -292,18 +369,54 @@ export const EventListings = () => {
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="dateValue">
-                                    <Form.Label>Date</Form.Label>
+                                    <Form.Label style={{ fontSize: '18px' }}>Date</Form.Label>
                                     <Form.Control type='date' required placeholder="MM/DD/YYYY" value={formData.date} onChange={handleDateChange} />
                                 </Form.Group>
 
                             </Row>
                             <Row>
-                                <Form.Group as={Col} controlId="timeValue">
-                                    <Form.Label>Date</Form.Label>
+                                <Form.Group as={Col} controlId="timeValue" >
+                                    <Form.Label style={{ fontSize: '18px' }}>Date</Form.Label>
                                     <Form.Control type='time' required value={formData.time} onChange={handleTimeChange} />
                                 </Form.Group>
+                                <Form.Group as={Col}></Form.Group>
                             </Row>
-                            <Button variant="primary" type="submit" >
+                            <Form.Group>
+                                <Form.Label column sm='2' className='mb-0' style={{ fontSize: '18px' }}>Sections</Form.Label>
+                            </Form.Group>
+                            {formData.venueName == "Playhouse" && (
+                                PlayhouseSections.map((index, key) => (
+                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row} key={key}>
+                                        <Row>
+                                            <Form.Label column sm='2' >{index.sectionName}</Form.Label>
+                                            <Col sm='4'>
+                                                <InputGroup size='sm'>
+                                                    <InputGroup.Text>$</InputGroup.Text>
+                                                    <Form.Control type="number" value={index.price} placeholder="Price" onChange={setPlayhouseSections} />
+                                                </InputGroup>
+                                            </Col>
+                                        </Row>
+                                    </Form.Group>
+                                ))
+                            )}
+                            {formData.venueName == "Concert Hall" && (
+                                ConcertHallSections.map((index, key) => (
+                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row}>
+
+                                        <Row>
+                                            <Form.Label column sm='2' >{index.sectionName}</Form.Label>
+                                            <Col sm='4'>
+                                                <InputGroup size='sm'>
+                                                    <InputGroup.Text>$</InputGroup.Text>
+                                                    <Form.Control type="number" value={index.price} placeholder="Price" onChange={() => { PlayhousePriceChange(index) }} />
+                                                </InputGroup>
+                                            </Col>
+                                        </Row>
+                                    </Form.Group>
+                                ))
+                            )}
+
+                            <Button className='mt-3' variant="primary" type="submit" >
                                 Submit
                             </Button>
 
@@ -316,10 +429,10 @@ export const EventListings = () => {
     }
     else {
         return (
-            <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
+            <div className='d-flex' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
 
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
-                    <div className='d-flex mb-2'>
+                    <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>
                         <Button className='p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -349,6 +462,25 @@ export const EventListings = () => {
                             onClick={handleBackButton}>
                             Back
                         </Button>
+                    </div>
+                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
+
+                        <Table bordered responsive striped hover variant='dark' size='sm' >
+                            <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
+                                Performances
+                            </th>
+                            </tr>
+                            </thead>
+                            <tbody style={{ fontSize: '20px', color: "white" }}>
+                                <tr>
+                                    <th >Performance Name</th>
+                                    <th >Venue</th>
+                                    <th >Date</th>
+                                    <th >Seats Left</th>
+                                    <th></th>
+                                </tr>
+                            </tbody>
+                        </Table>
                     </div>
 
                 </Stack>
