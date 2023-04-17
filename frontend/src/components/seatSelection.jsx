@@ -12,10 +12,8 @@ export const SeatSelection = () =>{
   const state = location.state;
 
   // States
-  const [passState, setState] = useState({case: state.case,event: state.event, venue: state.venue, date: state.date, seats: []}); // controls the state to be passed to checkout
   const [listData, setListData] = useState([]); // controls the visual list of seats
   const [isDisabled, setDisabled] = useState(true); // controls whether the checkout button is disabled
-  
   const [takenSeatData, setTakenSeatData] = useState([]) // controls the taken seats from 
 
   // Used for referencing the svg again
@@ -227,7 +225,7 @@ export const SeatSelection = () =>{
             <Link 
               to={"/checkOut"}
               style={{color:'white', textDecoration:'none'}} 
-              state={{event: state.event, venue: state.venue, seats: listData}}>
+              state={{ case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: listData }}>
                 <Button variant="primary">Check Out</Button>
             </Link>
 
