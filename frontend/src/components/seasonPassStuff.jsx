@@ -141,13 +141,14 @@ export const SeasonPassStuff = () => {
             <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
 
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
-                    <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>                        <Button className=' p-2' style={{
-                        borderColor: '#FF4057',
-                        backgroundColor: '#FF4057',
-                    }} // send file path
-                        onClick={handleExport}>
-                        Import Data
-                    </Button>
+                <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>                        
+                <Button className=' p-2' style={{
+                            borderColor: '#FF4057',
+                            backgroundColor: '#FF4057',
+                        }} // send file path
+                            onClick={handleExport}>
+                            Import Data
+                        </Button>
                         <Button className='ms-2 p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
