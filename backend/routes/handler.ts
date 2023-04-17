@@ -48,9 +48,9 @@ router.use(cors({
 
 router.get("/seasonTickets", (req: any, res: any) => {
     //get list of season ticket holders from System
-    let seasonTixList: SeasonTicketHolder[] = [ new SeasonTicketHolder("Richard Blargson", "5000 Fancy Boulevard", "123-555-5555", new Seat("Orchestra", "A", 15, false, true, 99999.99)),
-                                                new SeasonTicketHolder("Moneyton Blargson", "5001 Fancy Boulevard", "123-555-5556", new Seat("Orchestra", "A", 16, false, true, 99999.99))] 
-    // let seasonTixList: SeasonTicketHolder[] = System.getSeasonHolders()
+    //let seasonTixList: SeasonTicketHolder[] = [ new SeasonTicketHolder("Richard Blargson", "5000 Fancy Boulevard", "123-555-5555", new Seat("Orchestra", "A", 15, false, true, 99999.99)),
+                                                //new SeasonTicketHolder("Moneyton Blargson", "5001 Fancy Boulevard", "123-555-5556", new Seat("Orchestra", "A", 16, false, true, 99999.99))] 
+    let seasonTixList: SeasonTicketHolder[] = System.getSeasonTicketHolders();
     res.json(seasonTixList)
 })
 
@@ -103,6 +103,7 @@ router.get("/ticketData/:showName/:dateTime", (req: any, res: any) => {
     //call System function to lookup a show by show name/venue/dateTime
     //return the JSONified list of tickets within that show
     //req.params["showName"]
+    let data = req.body;
 })
 
 
