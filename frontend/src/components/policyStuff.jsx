@@ -100,7 +100,7 @@ export const PolicyStuff = () => {
     if (data) {
         console.log(JSON.stringify(data))
         return (
-            <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
+            <div className='d-flex' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
 
 
