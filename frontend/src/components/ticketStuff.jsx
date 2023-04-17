@@ -4,7 +4,22 @@ import React, { useState, useEffect } from 'react';
 export const TicketStuff = () => {
     const [data, setData] = useState(null);
     const [showModal, setShow] = useState(false)
+    const [formData, setFormData] = useState(
+        {
+            name: '',
+            address: '',
+            phoneNum: '',
+            section: '',
+            row: '',
+            seatNum: ''
+        }
+    )
+    
 
+    const handleItemEdit = (item) => {
+        setFormData({ name: item.name, address: item.address, phoneNum: item.phoneNum, section: item.seatAssignment.section, row: item.seatAssignment.row, seatNum: item.seatAssignment.seatNum })
+        setShow(true)
+    }
 
     const handleBackButton = () => {
         window.location.href = "/adminPage"
@@ -71,23 +86,31 @@ export const TicketStuff = () => {
                             <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={5}>Ticket Purchases</th></tr></thead>
                             <tbody style={{ fontSize: '20px', color: "white" }}>
                                 <tr>
-                                    <th style={{ textAlign: 'center' }}>Conf. #</th>
-                                    <th style={{ textAlign: 'center' }}>Purchaser</th>
-                                    <th style={{ textAlign: 'center' }}>Show</th>
-                                    <th style={{ textAlign: 'center' }}>Seat(s)</th>
-                                    <th style={{ textAlign: 'center' }}>Ticket Status</th>
+                                    <th >Conf. #</th>
+                                    <th>Purchaser</th>
+                                    <th >Show</th>
+                                    <th >Seat(s)</th>
+                                    <th >Ticket Status</th>
+                                    <th >Edit</th>
                                 </tr>
 
 
                                 {data.map((item, index) => (
-                                    <tr key={index} style={{ alignItems: 'center' }}>
-                                        <td style={{ textAlign: 'center' }}>{item.confNum}</td>
+                                    <tr key={index}>
+                                        <td>{item.confNum}</td>
                                         <td>{item.purchaser.name}</td>
                                         <td>{item.tickets[0].performance}</td>
-                                        <td style={{ textAlign: 'center' }}>{item.tickets.map((obj) => (
+                                        <td>{item.tickets.map((obj) => (
                                             obj.seat.row + obj.seat.seatNum + " "
                                         ))}</td>
                                         <td style={{ textAlign: 'center' }}>{getTicketStatusText(item.tickets[0].ticketStatus)}</td>
+                                        <td style={{ textAlign: 'center' }}>
+                                            <Button
+                                                size='sm'
+                                                onClick={() => { handleItemEdit(item) }}>
+                                                Edit
+                                            </Button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
