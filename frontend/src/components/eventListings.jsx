@@ -17,62 +17,8 @@ export const EventListings = () => {
     const [formError, setFormError] = useState(null)
     const [showData, setShowData] = useState([])
     const [alert, setAlert] = useState(undefined);
-    const phSections = [
-        {
-            sectionName: 'Riser1',
-            price: '19.99'
-        },
-        {
-            sectionName: 'Riser3',
-            price: '19.99'
-        },
-        {
-            sectionName: 'Riser4',
-            price: '19.99'
-        },
-        {
-            sectionName: 'Lodge1',
-            price: '9.99'
-        },
-        {
-            sectionName: 'Lodge2',
-            price: '9.99'
-        },
-        {
-            sectionName: 'Lodge3',
-            price: '9.99'
-        },
-        {
-            sectionName: 'Lodge4',
-            price: '9.99'
-        }
-    ]
-    const chSections = [
-        {
-            sectionName: 'Orchestra',
-            price: '49.99'
-        },
-        {
-            sectionName: 'Balcony1',
-            price: '29.99'
-        },
-        {
-            sectionName: 'Balcony2',
-            price: '29.99'
-        },
-        {
-            sectionName: 'Balcony3',
-            price: '29.99'
-        },
-        {
-            sectionName: 'Balcony4',
-            price: '29.99'
-        },
-        {
-            sectionName: 'Balcony5',
-            price: '29.99'
-        }
-    ]
+    var phSections = []
+    var chSections = []
 
     const [playhouseSections, setPlayhouseSections] = useState(phSections)
     const [concertHallSections, setConcertHallSections] = useState(chSections)
@@ -94,10 +40,6 @@ export const EventListings = () => {
         };
         setConcertHallSections(updatedSections);
     }
-
-
-
-
 
     const handleBackButton = () => {
         window.location.href = "/adminPage"
@@ -276,18 +218,18 @@ export const EventListings = () => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/phSections')
-            const newData = await response.json()
-            console.log(JSON.stringify(newData))
-            setShowData(newData)
+            const phData = await response.json()
+            console.log(JSON.stringify(phData))
+            phSections=(phData)
         }
         fetchData();
     }, []);
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/chSections')
-            const newData = await response.json()
-            console.log(JSON.stringify(newData))
-            setShowData(newData)
+            const chData = await response.json()
+            console.log(JSON.stringify(chData))
+            chSections=(chData)
         }
         fetchData();
     }, []);
