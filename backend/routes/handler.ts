@@ -137,6 +137,19 @@ router.get("/showData", (req: any, res: any) => {
 
 })
 
+router.get("/phSections", (req:any, res:any) => {
+
+    let venueList = System.getVenues()
+
+    let playHouse: {[k: string]: any} = {}
+    venueList[1].getSections().forEach((section) => {
+        playHouse[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
+        //console.log(section.getSeats()[0].getDefaultPrice())
+    });
+
+    res.json(playHouse)
+})
+
 router.post("/newShow", (req: any, res: any) => {
     let data = req.body;
 
