@@ -75,55 +75,30 @@ router.post("/newSeasonTicket", (req: any, res: any) => {
 router.post("/newDefault", (req: any, res: any) => {
 
     console.log("Got a new default")
-    // parse defaults. Need venue name and assoc. array of section name to new default price
-    // {
-    //     "venueName": "Playhouse",
-    //     "sections": [
-    //                  "Section1": 23.99,
-    //                  "Section2": 33.99,
-    //                  "Section3": 23.99
-    //                  ]
-    // }
+    
     let data = req.body.newPrice
     console.log(JSON.stringify(req.body))
 
     let venue: Venue;
-    // if(data.venueName === "Concert Hall") {
-    //     venue = System.getVenues[0]
-    // }
-    // else {
-    //     venue = System.getVenues[1]
-    // }
-    venue = System.getVenues()[0]
+    if(data.venueName === "Concert Hall") {
+        venue = System.getVenues()[0]
+    }
+    else {
+        venue = System.getVenues()[1]
+    }
+    //venue = System.getVenues()[0]
     let sectionList = venue.getSections()
     sectionList.forEach((section) => {
 
         if (section.getSectionNum() === data.section) {
             section.setDefaultPrice(data.sectionPrice)
-            console.log("Set new default price of: " + data.sectionPrice + " for: " + data.section)
+            //console.log("Set new default price of: " + data.sectionPrice + " for: " + data.section)
             res.status(200)
             res.end()
         }
     })
     res.status(500)
     res.end()
-
-    //call Sys class to get old venue of same name
-    //Replace declaration with Sys function call
-    //let venue:Venue = new Venue();
-
-    // let sectionList = venue.getSections()
-    // data.sections.forEach(sectionName => {
-    //     sectionList.forEach((section) => {
-    //         if (section.getSectionNum() == sectionName) {
-    //             section.setDefaultPrice(data.sections[sectionName])
-    //         }
-    //     });
-    // });
-
-    //no need to call Sys function since returned venue should be a reference to the one in the list
-    //definitely worth testing that to make sure
-    
 })
 
 // handle get request for venue section default prices
@@ -137,9 +112,11 @@ router.get("/venueDefaults", (req:any, res:any) => {
         concertHall[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
     })
 
-    let playHouse: {[k: string]: any} = {
-        "test": 123
-    }
+    let playHouse: {[k: string]: any} = {}
+    venueList[1].getSections().forEach((section) => {
+        playHouse[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
+        console.log(section.getSeats()[0].getDefaultPrice())
+    });
 
     venueDefaults.push(concertHall)
     venueDefaults.push(playHouse)

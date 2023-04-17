@@ -143,14 +143,14 @@ export const PolicyStuff = () => {
                                 </tr>
 
 
-                                {Object.keys(data[0]).map((item, index) => (
+                                {Object.keys(data[1]).map((item, index) => (
                                     <tr key={index} >
-                                        <td >{"TEST"}</td>
-                                        <td>{"TEST2"}</td>
+                                        <td >{item}</td>
+                                        <td>{data[1][item]}</td>
                                         <td style={{ textAlign: 'center' }}>
                                             <Button
                                                 size='sm'
-                                                onClick={() => { handleItemEdit(item) }}>
+                                                onClick={() => { handleItemEdit("Playhouse",item,index) }}>
                                                 Edit
                                             </Button>
                                         </td>
