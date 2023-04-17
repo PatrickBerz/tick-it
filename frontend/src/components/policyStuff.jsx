@@ -7,17 +7,20 @@ export const PolicyStuff = () => {
     const [alert, setAlert] = useState(undefined);
     const [formError, setFormError] = useState(null)
 
-    const [formData, setFormData] = useState({
-        sectionPrice: ''
-    });
+    const [formData, setFormData] = useState(
+        {
+            venueName: '',
+            sectionName: '',
+            sectionPrice: ''
+        }
+    )
+
     const handleClose = () => {
         setShow(false)
         setAlert(undefined)
-
     }
     const handleBackButton = () => {
         window.location.href = "/adminPage"
-
     }
     function handleExport() {
         console.log("yay export")
@@ -25,11 +28,13 @@ export const PolicyStuff = () => {
     }
     const handleTextChange = e => {
         setFormData({
-            sectionPrice: e.target.value
+            ...formData,
+            sectionPrice:  e.target.value
         })
     }
 
-    const handleItemEdit = () => {
+    const handleItemEdit = (item) => {
+        setFormData({venueName:item.confNum, sectionName:item.sectionName}) 
         setShow(true)
     };
 
@@ -45,10 +50,9 @@ export const PolicyStuff = () => {
 
         let newPrice =
         {
-            venueName: "",
-            section: {
-                sectionPrice: formData.sectionPrice,
-            }
+            venueName: formData.venueName,
+            section: formData.sectionName,
+            sectionPrice: formData.sectionPrice
         }
 
         console.log(newPrice)
@@ -69,9 +73,13 @@ export const PolicyStuff = () => {
             }
         })
 
-        setFormData({
-            sectionPrice: ''
-        })
+        setFormData(
+            {
+                venueName: "",
+                sectionName: "",
+                sectionPrice: ""
+            }
+        )
         handleClose()
         setTimeout(() => { window.location.reload(); }, 500);
 
@@ -98,30 +106,30 @@ export const PolicyStuff = () => {
 
 
                     <div className='d-flex ' direction='horizontal' style={{ width: '70%', alignSelf: 'center' }}>
-                        
-                            <Button className='p-2' style={{
-                                borderColor: '#FF4057',
-                                backgroundColor: '#FF4057',
-                            }} // send file path
-                                onClick={handleExport}>
-                                Import Data
-                            </Button>
-                            <Button className='ms-2 p-2' style={{
-                                borderColor: '#FF4057',
-                                backgroundColor: '#FF4057',
-                            }} //0 or 1
-                                onClick={handleExport}>
-                                Export Data
-                            </Button>
 
-                            <Button className='ms-auto p-2' style={{
-                                borderColor: '#FF4057',
-                                backgroundColor: '#FF4057',
-                            }}
-                                onClick={handleBackButton}>
-                                Back
-                            </Button>
-                        
+                        <Button className='p-2' style={{
+                            borderColor: '#FF4057',
+                            backgroundColor: '#FF4057',
+                        }} // send file path
+                            onClick={handleExport}>
+                            Import Data
+                        </Button>
+                        <Button className='ms-2 p-2' style={{
+                            borderColor: '#FF4057',
+                            backgroundColor: '#FF4057',
+                        }} //0 or 1
+                            onClick={handleExport}>
+                            Export Data
+                        </Button>
+
+                        <Button className='ms-auto p-2' style={{
+                            borderColor: '#FF4057',
+                            backgroundColor: '#FF4057',
+                        }}
+                            onClick={handleBackButton}>
+                            Back
+                        </Button>
+
                     </div>
 
                     <Stack className='d-flex justify-content-between ' direction='horizontal' gap={4} style={{ width: '70%', alignSelf: 'center' }}>
@@ -180,7 +188,7 @@ export const PolicyStuff = () => {
                 </Stack>
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Enter Event Data</Modal.Title>
+                        <Modal.Title>Enter New Default Price</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={onFormSubmit} id='newShowForm' >
@@ -193,8 +201,8 @@ export const PolicyStuff = () => {
                             }
                             <Row className="mb-3">
                                 <Form.Group controlId="textValue">
-                                    <Form.Label>Event Name</Form.Label>
-                                    <Form.Control required type="text" value={formData.performanceName} placeholder="Enter event name" onChange={handleTextChange} />
+                                    <Form.Label>{formData.venueName}</Form.Label>
+                                    <Form.Control required type="text" value={formData.sectionPrice} placeholder="Enter new price" onChange={handleTextChange} />
                                 </Form.Group>
                             </Row>
 
