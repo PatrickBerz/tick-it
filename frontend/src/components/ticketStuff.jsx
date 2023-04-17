@@ -34,7 +34,7 @@ export const TicketStuff = () => {
             <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
 
-                    <div className='d-flex mb-2'>
+                    <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>
                         <Button className='p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -65,32 +65,36 @@ export const TicketStuff = () => {
                             Back
                         </Button>
                     </div>
-                    <Table bordered responsive striped hover variant='dark' size='sm' style={{ maxHeight: '70%' }}>
-                        <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={5}>Ticket Purchases</th></tr></thead>
-                        <tbody style={{ fontSize: '20px', color: "white" }}>
-                            <tr>
-                                <th style={{ textAlign: 'center' }}>Conf. #</th>
-                                <th style={{ textAlign: 'center' }}>Purchaser</th>
-                                <th style={{ textAlign: 'center' }}>Show</th>
-                                <th style={{ textAlign: 'center' }}>Seat(s)</th>
-                                <th style={{ textAlign: 'center' }}>Ticket Status</th>
-                            </tr>
+                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
 
-
-                            {data.map((item, index) => (
-                                <tr key={index} style={{ alignItems: 'center' }}>
-                                    <td style={{ textAlign: 'center' }}>{item.confNum}</td>
-                                    <td>{item.purchaser.name}</td>
-                                    <td>{item.tickets[0].performance}</td>
-                                    <td style={{ textAlign: 'center' }}>{item.tickets.map((obj) => (
-                                        obj.seat.row + obj.seat.seatNum + " "
-                                    ))}</td>
-                                    <td style={{ textAlign: 'center' }}>{getTicketStatusText(item.tickets[0].ticketStatus)}</td>
+                        <Table bordered responsive striped hover variant='dark' size='sm' >
+                            <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={5}>Ticket Purchases</th></tr></thead>
+                            <tbody style={{ fontSize: '20px', color: "white" }}>
+                                <tr>
+                                    <th style={{ textAlign: 'center' }}>Conf. #</th>
+                                    <th style={{ textAlign: 'center' }}>Purchaser</th>
+                                    <th style={{ textAlign: 'center' }}>Show</th>
+                                    <th style={{ textAlign: 'center' }}>Seat(s)</th>
+                                    <th style={{ textAlign: 'center' }}>Ticket Status</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </Table>
+
+
+                                {data.map((item, index) => (
+                                    <tr key={index} style={{ alignItems: 'center' }}>
+                                        <td style={{ textAlign: 'center' }}>{item.confNum}</td>
+                                        <td>{item.purchaser.name}</td>
+                                        <td>{item.tickets[0].performance}</td>
+                                        <td style={{ textAlign: 'center' }}>{item.tickets.map((obj) => (
+                                            obj.seat.row + obj.seat.seatNum + " "
+                                        ))}</td>
+                                        <td style={{ textAlign: 'center' }}>{getTicketStatusText(item.tickets[0].ticketStatus)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </div>
                 </Stack>
+
 
             </div>
         )
