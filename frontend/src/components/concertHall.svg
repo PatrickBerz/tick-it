@@ -98,16 +98,16 @@
       <path id="GRAY_SHAPE" class="st8" d="M631.1,781.8L631.1,781.8L631.1,781.8c0,0-222.9,113.1-503.4,0l0,0l0,0 c0,0.5,0,0.9,0.1,1.4l0.1,1.9l0,0l1.5,30.6l0.3,4.7c0,0.1,0,0.3,0,0.3l0,0l0,0c266.3,86.9,495.5,1.4,499.2,0l0,0l0.2-3 l1.8-30.5l0,0l0.1-2C631.1,783.9,631.1,782.8,631.1,781.8z"/>
       <path id="ELEVATOR" class="st8" d="M479.2,853.4c-10.5,1.3-21.5,2.6-32.9,3.5h-2.8v55.9l39-4.5V853L479.2,853.4z"/>
     </g>
-    <path id="UPBAL1" class="st9" d="M203.2,840.7c-24.1-5.3-48.6-11.9-73.5-20l0,0l0,0l0,0l0,0l0,0l0,0c0.1,0.8,7,66.1,8,72.4 l0.3,1.9l1.8,0.5c19,5.5,38.6,10.5,58.3,14.8l3.6,0.8l0,0l1,0.2c0.1,0,0.3,0.1,0.4,0.1L203.2,840.7z"/>
-    <path id="UPBAL2" class="st9" d="M316.7,857.3c-36.1-2.7-74.2-7.9-113.5-16.6v70.7c36.6,7.8,73.6,13.5,110,16.8l1.9,0.2l0,0h0.5 l0.9,0.1l0,0h0.2V857.3z"/>
-    <path id="UPBAL3" class="st9" d="M482.5,908.4l-39,4.5l0,0l0,0v-55.7c-38.2,2.9-81,3.6-126.8,0.2v71.2l1.2,0.1 c31.6,2.7,53.4,2.8,61.5,2.8c8.1,0.1,30.2-0.1,62.3-2.8l1.3-0.1l0,0l0,0l0,0l0,0l0.6-0.1l0,0l0,0l0.8-0.1l0,0l1.9-0.2 c12.1-1.1,24.2-2.5,36.3-4.1L482.5,908.4L482.5,908.4z"/>
-    <path id="UPBAL4" class="st9" d="M557.5,840.5c-21.1,4.6-46.3,9.2-74.9,12.7V924c24.7-3.3,49.6-7.6,74.2-12.9l0.7-0.2V840.5z"/>
-    <path id="UPBAL5" class="st9" d="M628.9,820.7L628.9,820.7c-0.8,0.3-10.8,4-28.6,9.1c-11.3,3.2-25.7,7-42.9,10.7V911l0.2-0.1 l0,0l1.4-0.3l0,0l2.3-0.5c19.4-4.3,38.7-9.2,57.4-14.6l1.8-0.5l0.3-1.9c1-6.3,5.1-32.8,7.9-70.7L628.9,820.7z"/>
-    <path id="LOBAL1" class="st9" d="M203.2,703.7l-1.4-0.5l0,0l-2.1-0.7c-33.5-10.8-57.4-21.4-65.5-25.2l-3.9-1.8l-0.4,4.3 c-1.2,15.1-2.1,30.6-2.5,46.5c-0.2,7.9-0.3,15.9-0.3,24c0,0.1,0,0.1,0,0.2c0,4.6,0,9.2,0.1,13.9v1.7c0,2.1,0.5,15.4,0.5,15.7 l0,0c25.7,10.4,50.9,18.8,75.5,25.6L203.2,703.7z"/>
-    <path id="LOBAL2" class="st9" d="M316.7,728.2l-0.5-0.1l-2.4-0.3c-35.8-4.3-72.6-12.3-109.6-23.9l-1.1-0.3v103.8 c39.6,11,77.6,17.7,113.5,21.3L316.7,728.2z"/>
-    <path id="LOBAL3" class="st9" d="M443.5,728h-0.4l-2.2,0.2c-20,2.2-39.7,3.3-58.6,3.1h-3.2H376c-18.6,0.2-38-0.9-57.7-3 l-1.7-0.2v100.6c46.1,4.6,88.8,4,126.8,0.5L443.5,728z"/>
-    <path id="LOBAL4" class="st9" d="M557.5,703l-2.3,0.7c-36.9,11.6-73.8,19.7-109.6,24l-2,0.2v101.3 c45.1-4.1,83.7-12.3,113.9-20.8V703z"/>
-    <path id="LOBAL5" class="st9" d="M631.4,750.3c0-7.6-0.1-15.1-0.3-22.5c-0.1-3.1-0.2-6.3-0.3-9.4c-0.2-5.2-0.4-10.5-0.7-15.6 c-0.4-7.8-0.9-15.4-1.5-23l-0.4-4.3l-3.9,1.8c-8,3.8-31.6,14.2-64.6,24.9l-2.1,0.7l0,0l-0.2,0.1v105.5 c46.8-13.1,73.7-26.7,73.7-26.7l0,0c0.1-3,0.1-4.8,0.1-7v-2.4c0-2,0-4.5,0.1-8.1C631.4,759.7,631.4,754.9,631.4,750.3z"/>
+    <path id="Balcony1" class="st9" d="M203.2,840.7c-24.1-5.3-48.6-11.9-73.5-20l0,0l0,0l0,0l0,0l0,0l0,0c0.1,0.8,7,66.1,8,72.4 l0.3,1.9l1.8,0.5c19,5.5,38.6,10.5,58.3,14.8l3.6,0.8l0,0l1,0.2c0.1,0,0.3,0.1,0.4,0.1L203.2,840.7z"/>
+    <path id="Balcony2" class="st9" d="M316.7,857.3c-36.1-2.7-74.2-7.9-113.5-16.6v70.7c36.6,7.8,73.6,13.5,110,16.8l1.9,0.2l0,0h0.5 l0.9,0.1l0,0h0.2V857.3z"/>
+    <path id="Balcony3" class="st9" d="M482.5,908.4l-39,4.5l0,0l0,0v-55.7c-38.2,2.9-81,3.6-126.8,0.2v71.2l1.2,0.1 c31.6,2.7,53.4,2.8,61.5,2.8c8.1,0.1,30.2-0.1,62.3-2.8l1.3-0.1l0,0l0,0l0,0l0,0l0.6-0.1l0,0l0,0l0.8-0.1l0,0l1.9-0.2 c12.1-1.1,24.2-2.5,36.3-4.1L482.5,908.4L482.5,908.4z"/>
+    <path id="Balcony4" class="st9" d="M557.5,840.5c-21.1,4.6-46.3,9.2-74.9,12.7V924c24.7-3.3,49.6-7.6,74.2-12.9l0.7-0.2V840.5z"/>
+    <path id="Balcony5" class="st9" d="M628.9,820.7L628.9,820.7c-0.8,0.3-10.8,4-28.6,9.1c-11.3,3.2-25.7,7-42.9,10.7V911l0.2-0.1 l0,0l1.4-0.3l0,0l2.3-0.5c19.4-4.3,38.7-9.2,57.4-14.6l1.8-0.5l0.3-1.9c1-6.3,5.1-32.8,7.9-70.7L628.9,820.7z"/>
+    <path id="Balcony1" class="st9" d="M203.2,703.7l-1.4-0.5l0,0l-2.1-0.7c-33.5-10.8-57.4-21.4-65.5-25.2l-3.9-1.8l-0.4,4.3 c-1.2,15.1-2.1,30.6-2.5,46.5c-0.2,7.9-0.3,15.9-0.3,24c0,0.1,0,0.1,0,0.2c0,4.6,0,9.2,0.1,13.9v1.7c0,2.1,0.5,15.4,0.5,15.7 l0,0c25.7,10.4,50.9,18.8,75.5,25.6L203.2,703.7z"/>
+    <path id="Balcony2" class="st9" d="M316.7,728.2l-0.5-0.1l-2.4-0.3c-35.8-4.3-72.6-12.3-109.6-23.9l-1.1-0.3v103.8 c39.6,11,77.6,17.7,113.5,21.3L316.7,728.2z"/>
+    <path id="Balcony3" class="st9" d="M443.5,728h-0.4l-2.2,0.2c-20,2.2-39.7,3.3-58.6,3.1h-3.2H376c-18.6,0.2-38-0.9-57.7-3 l-1.7-0.2v100.6c46.1,4.6,88.8,4,126.8,0.5L443.5,728z"/>
+    <path id="Balcony4" class="st9" d="M557.5,703l-2.3,0.7c-36.9,11.6-73.8,19.7-109.6,24l-2,0.2v101.3 c45.1-4.1,83.7-12.3,113.9-20.8V703z"/>
+    <path id="Balcony5" class="st9" d="M631.4,750.3c0-7.6-0.1-15.1-0.3-22.5c-0.1-3.1-0.2-6.3-0.3-9.4c-0.2-5.2-0.4-10.5-0.7-15.6 c-0.4-7.8-0.9-15.4-1.5-23l-0.4-4.3l-3.9,1.8c-8,3.8-31.6,14.2-64.6,24.9l-2.1,0.7l0,0l-0.2,0.1v105.5 c46.8-13.1,73.7-26.7,73.7-26.7l0,0c0.1-3,0.1-4.8,0.1-7v-2.4c0-2,0-4.5,0.1-8.1C631.4,759.7,631.4,754.9,631.4,750.3z"/>
     <g id="BALCONY_LINES">
       <line class="st10" x1="325.8" y1="809" x2="325.8" y2="827.3"/>
       <path class="st10" d="M433.6,809c0,0-53.9,4.8-107.8,0"/>
@@ -974,562 +974,562 @@
   <path id="PIT_00000067917678202470743610000017674580857525008040_" class="st17"/>
   <g id="Balcony5">
     <g id="A">
-      <circle class="st18 seat" id="LOBAL5-A-6" cx="622.1" cy="688.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-A-5" cx="612.3" cy="693.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-A-4" cx="601.3" cy="698.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-A-3" cx="589.4" cy="703.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-A-2" cx="577.1" cy="707.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-A-1" cx="564.8" cy="710" r="4"/>
+      <circle class="st18 seat" id="Balcony5-A-6" cx="622.1" cy="688.4" r="4"/>
+      <circle class="st18 seat" id="Balcony5-A-5" cx="612.3" cy="693.9" r="4"/>
+      <circle class="st18 seat" id="Balcony5-A-4" cx="601.3" cy="698.9" r="4"/>
+      <circle class="st18 seat" id="Balcony5-A-3" cx="589.4" cy="703.5" r="4"/>
+      <circle class="st18 seat" id="Balcony5-A-2" cx="577.1" cy="707.2" r="4"/>
+      <circle class="st18 seat" id="Balcony5-A-1" cx="564.8" cy="710" r="4"/>
     </g>
     <g id="B">
-      <circle class="st18 seat" id="LOBAL5-B-6" cx="623.1" cy="703.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-B-5" cx="613.4" cy="708.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-B-4" cx="602.3" cy="713.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-B-3" cx="590.4" cy="718.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-B-2" cx="578.1" cy="722" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-B-1" cx="565.8" cy="724.8" r="4"/>
+      <circle class="st18 seat" id="Balcony5-B-6" cx="623.1" cy="703.2" r="4"/>
+      <circle class="st18 seat" id="Balcony5-B-5" cx="613.4" cy="708.7" r="4"/>
+      <circle class="st18 seat" id="Balcony5-B-4" cx="602.3" cy="713.7" r="4"/>
+      <circle class="st18 seat" id="Balcony5-B-3" cx="590.4" cy="718.3" r="4"/>
+      <circle class="st18 seat" id="Balcony5-B-2" cx="578.1" cy="722" r="4"/>
+      <circle class="st18 seat" id="Balcony5-B-1" cx="565.8" cy="724.8" r="4"/>
     </g>
     <g id="C">
-      <circle class="st18 seat" id="LOBAL5-C-6" cx="623.1" cy="719.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-C-5" cx="613.4" cy="724.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-C-4" cx="602.3" cy="729.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-C-3" cx="590.4" cy="734.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-C-2" cx="578.1" cy="738" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-C-1" cx="565.8" cy="740.8" r="4"/>
+      <circle class="st18 seat" id="Balcony5-C-6" cx="623.1" cy="719.2" r="4"/>
+      <circle class="st18 seat" id="Balcony5-C-5" cx="613.4" cy="724.7" r="4"/>
+      <circle class="st18 seat" id="Balcony5-C-4" cx="602.3" cy="729.8" r="4"/>
+      <circle class="st18 seat" id="Balcony5-C-3" cx="590.4" cy="734.3" r="4"/>
+      <circle class="st18 seat" id="Balcony5-C-2" cx="578.1" cy="738" r="4"/>
+      <circle class="st18 seat" id="Balcony5-C-1" cx="565.8" cy="740.8" r="4"/>
     </g>
     <g id="D">
-      <circle class="st18 seat" id="LOBAL5-D-6" cx="623.5" cy="735.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-D-5" cx="613.8" cy="741.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-D-4" cx="602.7" cy="746.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-D-3" cx="590.8" cy="751" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-D-2" cx="578.5" cy="754.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-D-1" cx="566.2" cy="757.5" r="4"/>
+      <circle class="st18 seat" id="Balcony5-D-6" cx="623.5" cy="735.9" r="4"/>
+      <circle class="st18 seat" id="Balcony5-D-5" cx="613.8" cy="741.4" r="4"/>
+      <circle class="st18 seat" id="Balcony5-D-4" cx="602.7" cy="746.4" r="4"/>
+      <circle class="st18 seat" id="Balcony5-D-3" cx="590.8" cy="751" r="4"/>
+      <circle class="st18 seat" id="Balcony5-D-2" cx="578.5" cy="754.7" r="4"/>
+      <circle class="st18 seat" id="Balcony5-D-1" cx="566.2" cy="757.5" r="4"/>
     </g>
     <g id="E">
-      <circle class="st18 seat" id="LOBAL5-E-6" cx="623.1" cy="750.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-E-5" cx="613.4" cy="756.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-E-4" cx="602.3" cy="761.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-E-3" cx="590.4" cy="765.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-E-2" cx="578.1" cy="769.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-E-1" cx="565.8" cy="772.3" r="4"/>
+      <circle class="st18 seat" id="Balcony5-E-6" cx="623.1" cy="750.7" r="4"/>
+      <circle class="st18 seat" id="Balcony5-E-5" cx="613.4" cy="756.2" r="4"/>
+      <circle class="st18 seat" id="Balcony5-E-4" cx="602.3" cy="761.2" r="4"/>
+      <circle class="st18 seat" id="Balcony5-E-3" cx="590.4" cy="765.8" r="4"/>
+      <circle class="st18 seat" id="Balcony5-E-2" cx="578.1" cy="769.5" r="4"/>
+      <circle class="st18 seat" id="Balcony5-E-1" cx="565.8" cy="772.3" r="4"/>
     </g>
     <g id="F">
-      <circle class="st18 seat accessible" id="LOBAL5-F-6" cx="623.5" cy="774.2" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL5-F-5" cx="613.8" cy="779.6" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL5-F-4" cx="602.7" cy="784.7" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL5-F-3" cx="590.8" cy="789.2" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL5-F-2" cx="578.5" cy="793" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL5-F-1" cx="566.2" cy="795.8" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony5-F-6" cx="623.5" cy="774.2" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony5-F-5" cx="613.8" cy="779.6" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony5-F-4" cx="602.7" cy="784.7" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony5-F-3" cx="590.8" cy="789.2" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony5-F-2" cx="578.5" cy="793" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony5-F-1" cx="566.2" cy="795.8" r="4"/>
     </g>
     <g id="K">
-      <circle class="st18 seat" id="UPBAL5-E-6" cx="614.5" cy="887.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-E-5" cx="604.8" cy="891.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-E-4" cx="595.1" cy="894.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-E-3" cx="585.2" cy="896.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-E-2" cx="575.2" cy="899.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-E-1" cx="565.1" cy="901.3" r="4"/>
+      <circle class="st18 seat" id="Balcony5-K-6" cx="614.5" cy="887.8" r="4"/>
+      <circle class="st18 seat" id="Balcony5-K-5" cx="604.8" cy="891.2" r="4"/>
+      <circle class="st18 seat" id="Balcony5-K-4" cx="595.1" cy="894.3" r="4"/>
+      <circle class="st18 seat" id="Balcony5-K-3" cx="585.2" cy="896.9" r="4"/>
+      <circle class="st18 seat" id="Balcony5-K-2" cx="575.2" cy="899.2" r="4"/>
+      <circle class="st18 seat" id="Balcony5-K-1" cx="565.1" cy="901.3" r="4"/>
     </g>
     <g id="J">
-      <circle class="st18 seat" id="UPBAL5-D-6" cx="614.5" cy="876.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-D-5" cx="604.8" cy="879.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-D-4" cx="595.1" cy="882.7" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-D-3" cx="585.2" cy="885.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-D-2" cx="575.2" cy="887.7" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-D-1" cx="565.1" cy="889.7" r="4"/>
+      <circle class="st18 seat" id="Balcony5-J-6" cx="614.5" cy="876.2" r="4"/>
+      <circle class="st18 seat" id="Balcony5-J-5" cx="604.8" cy="879.6" r="4"/>
+      <circle class="st18 seat" id="Balcony5-J-4" cx="595.1" cy="882.7" r="4"/>
+      <circle class="st18 seat" id="Balcony5-J-3" cx="585.2" cy="885.3" r="4"/>
+      <circle class="st18 seat" id="Balcony5-J-2" cx="575.2" cy="887.7" r="4"/>
+      <circle class="st18 seat" id="Balcony5-J-1" cx="565.1" cy="889.7" r="4"/>
     </g>
     <g id="I">
-      <circle class="st18 seat" id="UPBAL5-C-6" cx="614.5" cy="863.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-C-5" cx="604.8" cy="867.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-C-4" cx="595.1" cy="870.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-C-3" cx="585.2" cy="872.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-C-2" cx="575.2" cy="875.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-C-1" cx="565.1" cy="877.1" r="4"/>
+      <circle class="st18 seat" id="Balcony5-I-6" cx="614.5" cy="863.6" r="4"/>
+      <circle class="st18 seat" id="Balcony5-I-5" cx="604.8" cy="867.1" r="4"/>
+      <circle class="st18 seat" id="Balcony5-I-4" cx="595.1" cy="870.1" r="4"/>
+      <circle class="st18 seat" id="Balcony5-I-3" cx="585.2" cy="872.8" r="4"/>
+      <circle class="st18 seat" id="Balcony5-I-2" cx="575.2" cy="875.1" r="4"/>
+      <circle class="st18 seat" id="Balcony5-I-1" cx="565.1" cy="877.1" r="4"/>
     </g>
     <g id="H">
-      <circle class="st18 seat" id="UPBAL5-B-6" cx="615.5" cy="850.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-B-5" cx="605.8" cy="853.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-B-4" cx="596.1" cy="856.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-B-3" cx="586.2" cy="859.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-B-2" cx="576.2" cy="861.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-B-1" cx="566.1" cy="863.8" r="4"/>
+      <circle class="st18 seat" id="Balcony5-H-6" cx="615.5" cy="850.4" r="4"/>
+      <circle class="st18 seat" id="Balcony5-H-5" cx="605.8" cy="853.8" r="4"/>
+      <circle class="st18 seat" id="Balcony5-H-4" cx="596.1" cy="856.9" r="4"/>
+      <circle class="st18 seat" id="Balcony5-H-3" cx="586.2" cy="859.5" r="4"/>
+      <circle class="st18 seat" id="Balcony5-H-2" cx="576.2" cy="861.8" r="4"/>
+      <circle class="st18 seat" id="Balcony5-H-1" cx="566.1" cy="863.8" r="4"/>
     </g>
     <g id="G">
-      <circle class="st18 seat" id="UPBAL5-A-6" cx="616.2" cy="836.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-A-5" cx="606.6" cy="840.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-A-4" cx="596.8" cy="843.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-A-3" cx="586.9" cy="846" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-A-2" cx="576.9" cy="848.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-A-1" cx="566.8" cy="850.4" r="4"/>
+      <circle class="st18 seat" id="Balcony5-G-6" cx="616.2" cy="836.9" r="4"/>
+      <circle class="st18 seat" id="Balcony5-G-5" cx="606.6" cy="840.3" r="4"/>
+      <circle class="st18 seat" id="Balcony5-G-4" cx="596.8" cy="843.4" r="4"/>
+      <circle class="st18 seat" id="Balcony5-G-3" cx="586.9" cy="846" r="4"/>
+      <circle class="st18 seat" id="Balcony5-G-2" cx="576.9" cy="848.4" r="4"/>
+      <circle class="st18 seat" id="Balcony5-G-1" cx="566.8" cy="850.4" r="4"/>
     </g>
   </g>
   <g id="Balcony4">
     <g id="A">
-      <circle class="st18 seat" id="LOBAL4-A-10" cx="549.6" cy="715.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-A-9" cx="539.2" cy="719.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-A-8" cx="528.6" cy="723.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-A-7" cx="517.8" cy="727.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-A-6" cx="506.8" cy="730.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-A-5" cx="495.8" cy="733" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-A-4" cx="484.6" cy="735.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-A-3" cx="473.4" cy="736.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-A-2" cx="462.1" cy="738.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-A-1" cx="450.8" cy="739.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-A-10" cx="549.6" cy="715.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-A-9" cx="539.2" cy="719.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-A-8" cx="528.6" cy="723.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-A-7" cx="517.8" cy="727.4" r="4"/>
+      <circle class="st18 seat" id="Balcony4-A-6" cx="506.8" cy="730.4" r="4"/>
+      <circle class="st18 seat" id="Balcony4-A-5" cx="495.8" cy="733" r="4"/>
+      <circle class="st18 seat" id="Balcony4-A-4" cx="484.6" cy="735.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-A-3" cx="473.4" cy="736.9" r="4"/>
+      <circle class="st18 seat" id="Balcony4-A-2" cx="462.1" cy="738.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-A-1" cx="450.8" cy="739.2" r="4"/>
     </g>
     <g id="B">
-      <circle class="st18 seat" id="LOBAL4-B-10" cx="549.9" cy="730" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-B-9" cx="539.5" cy="734.6" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-B-8" cx="528.9" cy="738.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-B-7" cx="518.1" cy="742.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-B-6" cx="507.2" cy="745.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-B-5" cx="496.1" cy="747.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-B-4" cx="484.9" cy="750" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-B-3" cx="473.7" cy="751.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-B-2" cx="462.4" cy="753.1" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-B-1" cx="451.1" cy="754" r="4"/>
+      <circle class="st18 seat" id="Balcony4-B-10" cx="549.9" cy="730" r="4"/>
+      <circle class="st18 seat" id="Balcony4-B-9" cx="539.5" cy="734.6" r="4"/>
+      <circle class="st18 seat" id="Balcony4-B-8" cx="528.9" cy="738.7" r="4"/>
+      <circle class="st18 seat" id="Balcony4-B-7" cx="518.1" cy="742.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-B-6" cx="507.2" cy="745.3" r="4"/>
+      <circle class="st18 seat" id="Balcony4-B-5" cx="496.1" cy="747.9" r="4"/>
+      <circle class="st18 seat" id="Balcony4-B-4" cx="484.9" cy="750" r="4"/>
+      <circle class="st18 seat" id="Balcony4-B-3" cx="473.7" cy="751.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-B-2" cx="462.4" cy="753.1" r="4"/>
+      <circle class="st18 seat" id="Balcony4-B-1" cx="451.1" cy="754" r="4"/>
     </g>
     <g id="D">
-      <circle class="st18 seat" id="LOBAL4-D-10" cx="549.9" cy="759.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-D-9" cx="539.5" cy="764.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-D-8" cx="528.9" cy="768.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-D-7" cx="518.1" cy="772" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-D-6" cx="507.2" cy="775" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-D-5" cx="496.1" cy="777.6" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-D-4" cx="484.9" cy="779.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-D-3" cx="473.7" cy="781.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-D-2" cx="462.4" cy="782.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-D-1" cx="451.1" cy="783.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-D-10" cx="549.9" cy="759.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-D-9" cx="539.5" cy="764.4" r="4"/>
+      <circle class="st18 seat" id="Balcony4-D-8" cx="528.9" cy="768.4" r="4"/>
+      <circle class="st18 seat" id="Balcony4-D-7" cx="518.1" cy="772" r="4"/>
+      <circle class="st18 seat" id="Balcony4-D-6" cx="507.2" cy="775" r="4"/>
+      <circle class="st18 seat" id="Balcony4-D-5" cx="496.1" cy="777.6" r="4"/>
+      <circle class="st18 seat" id="Balcony4-D-4" cx="484.9" cy="779.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-D-3" cx="473.7" cy="781.5" r="4"/>
+      <circle class="st18 seat" id="Balcony4-D-2" cx="462.4" cy="782.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-D-1" cx="451.1" cy="783.8" r="4"/>
     </g>
     <g id="E">
-      <circle class="st18 seat" id="LOBAL4-E-10" cx="549.9" cy="777.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-E-9" cx="539.5" cy="782.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-E-8" cx="528.9" cy="786.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-E-7" cx="518.1" cy="789.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-E-6" cx="507.2" cy="792.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-E-5" cx="496.1" cy="794.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-E-4" cx="484.9" cy="796.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-E-3" cx="473.7" cy="797.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-E-2" cx="462.4" cy="798.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-E-1" cx="451.1" cy="799.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-E-10" cx="549.9" cy="777.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-E-9" cx="539.5" cy="782.3" r="4"/>
+      <circle class="st18 seat" id="Balcony4-E-8" cx="528.9" cy="786.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-E-7" cx="518.1" cy="789.5" r="4"/>
+      <circle class="st18 seat" id="Balcony4-E-6" cx="507.2" cy="792.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-E-5" cx="496.1" cy="794.5" r="4"/>
+      <circle class="st18 seat" id="Balcony4-E-4" cx="484.9" cy="796.3" r="4"/>
+      <circle class="st18 seat" id="Balcony4-E-3" cx="473.7" cy="797.7" r="4"/>
+      <circle class="st18 seat" id="Balcony4-E-2" cx="462.4" cy="798.9" r="4"/>
+      <circle class="st18 seat" id="Balcony4-E-1" cx="451.1" cy="799.8" r="4"/>
     </g>
     <g id="F">
-      <circle class="st18 seat" id="LOBAL4-F-10" cx="549.9" cy="795.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-F-9" cx="539.5" cy="800.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-F-8" cx="528.9" cy="803.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-F-7" cx="518.1" cy="806.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-F-6" cx="507.2" cy="809.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-F-5" cx="496.1" cy="811.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-F-4" cx="484.9" cy="812.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-F-3" cx="473.7" cy="814" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-F-2" cx="462.4" cy="815" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-F-1" cx="451.1" cy="815.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-F-10" cx="549.9" cy="795.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-F-9" cx="539.5" cy="800.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-F-8" cx="528.9" cy="803.9" r="4"/>
+      <circle class="st18 seat" id="Balcony4-F-7" cx="518.1" cy="806.9" r="4"/>
+      <circle class="st18 seat" id="Balcony4-F-6" cx="507.2" cy="809.4" r="4"/>
+      <circle class="st18 seat" id="Balcony4-F-5" cx="496.1" cy="811.3" r="4"/>
+      <circle class="st18 seat" id="Balcony4-F-4" cx="484.9" cy="812.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-F-3" cx="473.7" cy="814" r="4"/>
+      <circle class="st18 seat" id="Balcony4-F-2" cx="462.4" cy="815" r="4"/>
+      <circle class="st18 seat" id="Balcony4-F-1" cx="451.1" cy="815.8" r="4"/>
     </g>
     <g id="C">
-      <circle class="st18 seat" id="LOBAL4-C-10" cx="549.6" cy="744.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-C-9" cx="539.2" cy="749.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-C-8" cx="528.6" cy="753.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-C-7" cx="517.8" cy="757.1" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-C-6" cx="506.8" cy="760.1" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-C-5" cx="495.8" cy="762.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-C-4" cx="484.6" cy="764.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-C-3" cx="473.4" cy="766.6" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-C-2" cx="462.1" cy="767.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL4-C-1" cx="450.8" cy="768.9" r="4"/>
+      <circle class="st18 seat" id="Balcony4-C-10" cx="549.6" cy="744.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-C-9" cx="539.2" cy="749.4" r="4"/>
+      <circle class="st18 seat" id="Balcony4-C-8" cx="528.6" cy="753.5" r="4"/>
+      <circle class="st18 seat" id="Balcony4-C-7" cx="517.8" cy="757.1" r="4"/>
+      <circle class="st18 seat" id="Balcony4-C-6" cx="506.8" cy="760.1" r="4"/>
+      <circle class="st18 seat" id="Balcony4-C-5" cx="495.8" cy="762.7" r="4"/>
+      <circle class="st18 seat" id="Balcony4-C-4" cx="484.6" cy="764.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-C-3" cx="473.4" cy="766.6" r="4"/>
+      <circle class="st18 seat" id="Balcony4-C-2" cx="462.1" cy="767.9" r="4"/>
+      <circle class="st18 seat" id="Balcony4-C-1" cx="450.8" cy="768.9" r="4"/>
     </g>
     <g id="K">
-      <circle class="st18 seat" id="UPBAL4-E-6" cx="549" cy="904.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-E-5" cx="537.5" cy="907.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-E-4" cx="525.9" cy="909.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-E-3" cx="514.2" cy="911.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-E-2" cx="502.5" cy="913.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-E-1" cx="490.7" cy="914.7" r="4"/>
+      <circle class="st18 seat" id="Balcony4-K-6" cx="549" cy="904.6" r="4"/>
+      <circle class="st18 seat" id="Balcony4-K-5" cx="537.5" cy="907.4" r="4"/>
+      <circle class="st18 seat" id="Balcony4-K-4" cx="525.9" cy="909.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-K-3" cx="514.2" cy="911.9" r="4"/>
+      <circle class="st18 seat" id="Balcony4-K-2" cx="502.5" cy="913.6" r="4"/>
+      <circle class="st18 seat" id="Balcony4-K-1" cx="490.7" cy="914.7" r="4"/>
     </g>
     <g id="J">
-      <circle class="st18 seat" id="UPBAL4-D-6" cx="549" cy="892.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-D-5" cx="537.5" cy="895" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-D-4" cx="525.9" cy="897.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-D-3" cx="514.2" cy="899.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-D-2" cx="502.5" cy="901.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-D-1" cx="490.7" cy="902.3" r="4"/>
+      <circle class="st18 seat" id="Balcony4-J-6" cx="549" cy="892.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-J-5" cx="537.5" cy="895" r="4"/>
+      <circle class="st18 seat" id="Balcony4-J-4" cx="525.9" cy="897.4" r="4"/>
+      <circle class="st18 seat" id="Balcony4-J-3" cx="514.2" cy="899.5" r="4"/>
+      <circle class="st18 seat" id="Balcony4-J-2" cx="502.5" cy="901.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-J-1" cx="490.7" cy="902.3" r="4"/>
     </g>
     <g id="I">
-      <circle class="st18 seat" id="UPBAL4-C-5" cx="549.1" cy="880.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-C-5" cx="537.6" cy="883" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-C-4" cx="526" cy="885.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-C-3" cx="514.4" cy="887.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-C-2" cx="502.6" cy="889.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-C-1" cx="490.8" cy="890.3" r="4"/>
+      <circle class="st18 seat" id="Balcony4-I-6" cx="549.1" cy="880.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-I-5" cx="537.6" cy="883" r="4"/>
+      <circle class="st18 seat" id="Balcony4-I-4" cx="526" cy="885.4" r="4"/>
+      <circle class="st18 seat" id="Balcony4-I-3" cx="514.4" cy="887.5" r="4"/>
+      <circle class="st18 seat" id="Balcony4-I-2" cx="502.6" cy="889.1" r="4"/>
+      <circle class="st18 seat" id="Balcony4-I-1" cx="490.8" cy="890.3" r="4"/>
     </g>
     <g id="H">
-      <circle class="st18 seat" id="UPBAL4-B-6" cx="549" cy="867" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-B-5" cx="537.5" cy="869.7" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-B-4" cx="525.9" cy="872.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-B-3" cx="514.2" cy="874.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-B-2" cx="502.5" cy="875.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-B-1" cx="490.7" cy="877.1" r="4"/>
+      <circle class="st18 seat" id="Balcony4-H-6" cx="549" cy="867" r="4"/>
+      <circle class="st18 seat" id="Balcony4-H-5" cx="537.5" cy="869.7" r="4"/>
+      <circle class="st18 seat" id="Balcony4-H-4" cx="525.9" cy="872.2" r="4"/>
+      <circle class="st18 seat" id="Balcony4-H-3" cx="514.2" cy="874.3" r="4"/>
+      <circle class="st18 seat" id="Balcony4-H-2" cx="502.5" cy="875.9" r="4"/>
+      <circle class="st18 seat" id="Balcony4-H-1" cx="490.7" cy="877.1" r="4"/>
     </g>
     <g id="G">
-      <circle class="st18 seat" id="UPBAL4-A-6" cx="549" cy="854.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-A-5" cx="537.5" cy="857.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-A-4" cx="525.9" cy="859.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-A-3" cx="514.2" cy="861.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-A-2" cx="502.5" cy="863.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL4-A-1" cx="490.7" cy="864.7" r="4"/>
+      <circle class="st18 seat" id="Balcony4-G-6" cx="549" cy="854.5" r="4"/>
+      <circle class="st18 seat" id="Balcony4-G-5" cx="537.5" cy="857.3" r="4"/>
+      <circle class="st18 seat" id="Balcony4-G-4" cx="525.9" cy="859.8" r="4"/>
+      <circle class="st18 seat" id="Balcony4-G-3" cx="514.2" cy="861.9" r="4"/>
+      <circle class="st18 seat" id="Balcony4-G-2" cx="502.5" cy="863.5" r="4"/>
+      <circle class="st18 seat" id="Balcony4-G-1" cx="490.7" cy="864.7" r="4"/>
     </g>
   </g>
   <g id="Balcony1">
     <g id="A">
-      <circle class="st18 seat" id="LOBAL1-A-1" cx="137.4" cy="688.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL1-A-2" cx="147.1" cy="693.6" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL1-A-3" cx="158.1" cy="698.7" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL1-A-4" cx="170" cy="703.2" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL1-A-5" cx="182.3" cy="707" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL1-A-6" cx="194.6" cy="709.8" r="4"/>
+      <circle class="st18 seat" id="Balcony1-A-1" cx="137.4" cy="688.2" r="4"/>
+      <circle class="st18 seat" id="Balcony1-A-2" cx="147.1" cy="693.6" r="3.8"/>
+      <circle class="st18 seat" id="Balcony1-A-3" cx="158.1" cy="698.7" r="3.7"/>
+      <circle class="st18 seat" id="Balcony1-A-4" cx="170" cy="703.2" r="3.7"/>
+      <circle class="st18 seat" id="Balcony1-A-5" cx="182.3" cy="707" r="3.8"/>
+      <circle class="st18 seat" id="Balcony1-A-6" cx="194.6" cy="709.8" r="4"/>
     </g>
     <g id="B">
-      <circle class="st18 seat" id="LOBAL1-B-1" cx="136.3" cy="703" r="4"/>
-      <circle class="st18 seat" id="LOBAL1-B-2" cx="146" cy="708.4" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL1-B-3" cx="157.1" cy="713.5" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL1-B-4" cx="169" cy="718" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL1-B-5" cx="181.3" cy="721.7" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL1-B-6" cx="193.6" cy="724.6" r="4"/>
+      <circle class="st18 seat" id="Balcony1-B-1" cx="136.3" cy="703" r="4"/>
+      <circle class="st18 seat" id="Balcony1-B-2" cx="146" cy="708.4" r="3.8"/>
+      <circle class="st18 seat" id="Balcony1-B-3" cx="157.1" cy="713.5" r="3.7"/>
+      <circle class="st18 seat" id="Balcony1-B-4" cx="169" cy="718" r="3.7"/>
+      <circle class="st18 seat" id="Balcony1-B-5" cx="181.3" cy="721.7" r="3.8"/>
+      <circle class="st18 seat" id="Balcony1-B-6" cx="193.6" cy="724.6" r="4"/>
     </g>
     <g id="C">
-      <circle class="st18 seat" id="LOBAL1-C-1" cx="136.3" cy="719" r="4"/>
-      <circle class="st18 seat" id="LOBAL1-C-" cx="146" cy="724.4" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL1-C-3" cx="157.1" cy="729.5" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL1-C-4" cx="169" cy="734" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL1-C-5" cx="181.3" cy="737.8" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL1-C-6" cx="193.6" cy="740.6" r="4"/>
+      <circle class="st18 seat" id="Balcony1-C-1" cx="136.3" cy="719" r="4"/>
+      <circle class="st18 seat" id="Balcony1-C-" cx="146" cy="724.4" r="3.8"/>
+      <circle class="st18 seat" id="Balcony1-C-3" cx="157.1" cy="729.5" r="3.7"/>
+      <circle class="st18 seat" id="Balcony1-C-4" cx="169" cy="734" r="3.7"/>
+      <circle class="st18 seat" id="Balcony1-C-5" cx="181.3" cy="737.8" r="3.8"/>
+      <circle class="st18 seat" id="Balcony1-C-6" cx="193.6" cy="740.6" r="4"/>
     </g>
     <g id="D">
-      <circle class="st18 seat" id="LOBAL1-D-1" cx="135.9" cy="735.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL1-D-2" cx="145.6" cy="741.1" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL1-D-3" cx="156.7" cy="746.2" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL1-D-4" cx="168.6" cy="750.7" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL1-D-5" cx="180.9" cy="754.5" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL1-D-6" cx="193.2" cy="757.3" r="4"/>
+      <circle class="st18 seat" id="Balcony1-D-1" cx="135.9" cy="735.7" r="4"/>
+      <circle class="st18 seat" id="Balcony1-D-2" cx="145.6" cy="741.1" r="3.8"/>
+      <circle class="st18 seat" id="Balcony1-D-3" cx="156.7" cy="746.2" r="3.7"/>
+      <circle class="st18 seat" id="Balcony1-D-4" cx="168.6" cy="750.7" r="3.7"/>
+      <circle class="st18 seat" id="Balcony1-D-5" cx="180.9" cy="754.5" r="3.8"/>
+      <circle class="st18 seat" id="Balcony1-D-6" cx="193.2" cy="757.3" r="4"/>
     </g>
     <g id="E">
-      <circle class="st18 seat" id="LOBAL1-E-1" cx="136.3" cy="750.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL1-E-2" cx="146" cy="755.9" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL1-E-3" cx="157.1" cy="761" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL1-E-4" cx="169" cy="765.5" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL1-E-5" cx="181.3" cy="769.2" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL1-E-6" cx="193.6" cy="772" r="4"/>
+      <circle class="st18 seat" id="Balcony1-E-1" cx="136.3" cy="750.5" r="4"/>
+      <circle class="st18 seat" id="Balcony1-E-2" cx="146" cy="755.9" r="3.8"/>
+      <circle class="st18 seat" id="Balcony1-E-3" cx="157.1" cy="761" r="3.7"/>
+      <circle class="st18 seat" id="Balcony1-E-4" cx="169" cy="765.5" r="3.7"/>
+      <circle class="st18 seat" id="Balcony1-E-5" cx="181.3" cy="769.2" r="3.8"/>
+      <circle class="st18 seat" id="Balcony1-E-6" cx="193.6" cy="772" r="4"/>
     </g>
     <g id="F">
-      <circle class="st18 seat accessible" id="LOBAL1-F-1" cx="135.9" cy="773.9" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL1-F-2" cx="145.6" cy="779.3" r="3.8"/>
-      <circle class="st18 seat accessible" id="LOBAL1-F-3" cx="156.7" cy="784.4" r="3.7"/>
-      <circle class="st18 seat accessible" id="LOBAL1-F-4" cx="168.6" cy="788.9" r="3.7"/>
-      <circle class="st18 seat accessible" id="LOBAL1-F-5" cx="180.9" cy="792.7" r="3.8"/>
-      <circle class="st18 seat accessible" id="LOBAL1-F-6" cx="193.2" cy="795.5" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony1-F-1" cx="135.9" cy="773.9" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony1-F-2" cx="145.6" cy="779.3" r="3.8"/>
+      <circle class="st18 seat accessible" id="Balcony1-F-3" cx="156.7" cy="784.4" r="3.7"/>
+      <circle class="st18 seat accessible" id="Balcony1-F-4" cx="168.6" cy="788.9" r="3.7"/>
+      <circle class="st18 seat accessible" id="Balcony1-F-5" cx="180.9" cy="792.7" r="3.8"/>
+      <circle class="st18 seat accessible" id="Balcony1-F-6" cx="193.2" cy="795.5" r="4"/>
     </g>
     <g id="K">
-      <circle class="st18 seat" id="UPBAL1-E-1" cx="144.9" cy="887.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-E-2" cx="154.6" cy="891" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-E-3" cx="164.4" cy="894" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-E-4" cx="174.3" cy="896.7" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-E-5" cx="184.2" cy="899" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-E-6" cx="194.3" cy="901" r="4"/>
+      <circle class="st18 seat" id="Balcony1-K-1" cx="144.9" cy="887.5" r="4"/>
+      <circle class="st18 seat" id="Balcony1-K-2" cx="154.6" cy="891" r="4"/>
+      <circle class="st18 seat" id="Balcony1-K-3" cx="164.4" cy="894" r="3.9"/>
+      <circle class="st18 seat" id="Balcony1-K-4" cx="174.3" cy="896.7" r="3.9"/>
+      <circle class="st18 seat" id="Balcony1-K-5" cx="184.2" cy="899" r="4"/>
+      <circle class="st18 seat" id="Balcony1-K-6" cx="194.3" cy="901" r="4"/>
     </g>
     <g id="J">
-      <circle class="st18 seat" id="UPBAL1-D-1" cx="144.9" cy="875.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-D-2" cx="154.6" cy="879.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-D-3" cx="164.4" cy="882.4" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-D-4" cx="174.3" cy="885.1" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-D-5" cx="184.2" cy="887.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-D-6" cx="194.3" cy="889.4" r="4"/>
+      <circle class="st18 seat" id="Balcony1-J-1" cx="144.9" cy="875.9" r="4"/>
+      <circle class="st18 seat" id="Balcony1-J-2" cx="154.6" cy="879.4" r="4"/>
+      <circle class="st18 seat" id="Balcony1-J-3" cx="164.4" cy="882.4" r="3.9"/>
+      <circle class="st18 seat" id="Balcony1-J-4" cx="174.3" cy="885.1" r="3.9"/>
+      <circle class="st18 seat" id="Balcony1-J-5" cx="184.2" cy="887.4" r="4"/>
+      <circle class="st18 seat" id="Balcony1-J-6" cx="194.3" cy="889.4" r="4"/>
     </g>
     <g id="I">
-      <circle class="st18 seat" id="UPBAL1-C-1" cx="144.9" cy="863.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-C-2" cx="154.6" cy="866.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-C-3" cx="164.4" cy="869.8" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-C-4" cx="174.3" cy="872.5" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-C-5" cx="184.2" cy="874.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-C-6" cx="194.3" cy="876.8" r="4"/>
+      <circle class="st18 seat" id="Balcony1-I-1" cx="144.9" cy="863.3" r="4"/>
+      <circle class="st18 seat" id="Balcony1-I-2" cx="154.6" cy="866.8" r="4"/>
+      <circle class="st18 seat" id="Balcony1-I-3" cx="164.4" cy="869.8" r="3.9"/>
+      <circle class="st18 seat" id="Balcony1-I-4" cx="174.3" cy="872.5" r="3.9"/>
+      <circle class="st18 seat" id="Balcony1-I-5" cx="184.2" cy="874.8" r="4"/>
+      <circle class="st18 seat" id="Balcony1-I-6" cx="194.3" cy="876.8" r="4"/>
     </g>
     <g id="H">
-      <circle class="st18 seat" id="UPBAL1-B-1" cx="143.9" cy="850.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-B-2" cx="153.6" cy="853.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-B-3" cx="163.4" cy="856.6" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-B-4" cx="173.3" cy="859.2" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-B-5" cx="183.2" cy="861.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-B-6" cx="193.3" cy="863.6" r="4"/>
+      <circle class="st18 seat" id="Balcony1-H-1" cx="143.9" cy="850.1" r="4"/>
+      <circle class="st18 seat" id="Balcony1-H-2" cx="153.6" cy="853.5" r="4"/>
+      <circle class="st18 seat" id="Balcony1-H-3" cx="163.4" cy="856.6" r="3.9"/>
+      <circle class="st18 seat" id="Balcony1-H-4" cx="173.3" cy="859.2" r="3.9"/>
+      <circle class="st18 seat" id="Balcony1-H-5" cx="183.2" cy="861.6" r="4"/>
+      <circle class="st18 seat" id="Balcony1-H-6" cx="193.3" cy="863.6" r="4"/>
     </g>
     <g id="G">
-      <circle class="st18 seat" id="UPBAL1-A-1" cx="143.2" cy="836.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-A-2" cx="152.9" cy="840.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-A-3" cx="162.6" cy="843.1" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-A-4" cx="172.5" cy="845.8" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-A-5" cx="182.5" cy="848.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-A-6" cx="192.6" cy="850.1" r="4"/>
+      <circle class="st18 seat" id="Balcony1-G-1" cx="143.2" cy="836.6" r="4"/>
+      <circle class="st18 seat" id="Balcony1-G-2" cx="152.9" cy="840.1" r="4"/>
+      <circle class="st18 seat" id="Balcony1-G-3" cx="162.6" cy="843.1" r="3.9"/>
+      <circle class="st18 seat" id="Balcony1-G-4" cx="172.5" cy="845.8" r="3.9"/>
+      <circle class="st18 seat" id="Balcony1-G-5" cx="182.5" cy="848.1" r="4"/>
+      <circle class="st18 seat" id="Balcony1-G-6" cx="192.6" cy="850.1" r="4"/>
     </g>
   </g>
   <g id="Balcony2">
     <g id="A">
-      <circle class="st18 seat" id="LOBAL2-A-1" cx="209.8" cy="714.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL2-A-2" cx="220.2" cy="719.5" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-A-3" cx="230.8" cy="723.6" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-A-4" cx="241.6" cy="727.1" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-A-5" cx="252.6" cy="730.2" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-A-6" cx="263.6" cy="732.8" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-A-7" cx="274.8" cy="734.9" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-A-8" cx="286" cy="736.6" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-A-9" cx="297.3" cy="737.9" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-A-10" cx="308.6" cy="738.9" r="4"/>
+      <circle class="st18 seat" id="Balcony2-A-1" cx="209.8" cy="714.9" r="4"/>
+      <circle class="st18 seat" id="Balcony2-A-2" cx="220.2" cy="719.5" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-A-3" cx="230.8" cy="723.6" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-A-4" cx="241.6" cy="727.1" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-A-5" cx="252.6" cy="730.2" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-A-6" cx="263.6" cy="732.8" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-A-7" cx="274.8" cy="734.9" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-A-8" cx="286" cy="736.6" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-A-9" cx="297.3" cy="737.9" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-A-10" cx="308.6" cy="738.9" r="4"/>
     </g>
     <g id="B">
-      <circle class="st18 seat" id="LOBAL2-B-1" cx="209.5" cy="729.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL2-B-2" cx="219.9" cy="734.4" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-B-3" cx="230.5" cy="738.4" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-B-4" cx="241.3" cy="742" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-B-5" cx="252.2" cy="745" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-B-6" cx="263.3" cy="747.6" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-B-7" cx="274.5" cy="749.8" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-B-8" cx="285.7" cy="751.5" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-B-9" cx="297" cy="752.8" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-B-10" cx="308.3" cy="753.8" r="4"/>
+      <circle class="st18 seat" id="Balcony2-B-1" cx="209.5" cy="729.8" r="4"/>
+      <circle class="st18 seat" id="Balcony2-B-2" cx="219.9" cy="734.4" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-B-3" cx="230.5" cy="738.4" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-B-4" cx="241.3" cy="742" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-B-5" cx="252.2" cy="745" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-B-6" cx="263.3" cy="747.6" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-B-7" cx="274.5" cy="749.8" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-B-8" cx="285.7" cy="751.5" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-B-9" cx="297" cy="752.8" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-B-10" cx="308.3" cy="753.8" r="4"/>
     </g>
     <g id="D">
-      <circle class="st18 seat" id="LOBAL2-D-1" cx="209.5" cy="759.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL2-D-2" cx="219.9" cy="764.1" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-D-3" cx="230.5" cy="768.2" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-D-4" cx="241.3" cy="771.7" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-D-5" cx="252.2" cy="774.8" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-D-6" cx="263.3" cy="777.3" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-D-7" cx="274.5" cy="779.5" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-D-8" cx="285.7" cy="781.2" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-D-9" cx="297" cy="782.5" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-D-10" cx="308.3" cy="783.5" r="4"/>
+      <circle class="st18 seat" id="Balcony2-D-1" cx="209.5" cy="759.5" r="4"/>
+      <circle class="st18 seat" id="Balcony2-D-2" cx="219.9" cy="764.1" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-D-3" cx="230.5" cy="768.2" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-D-4" cx="241.3" cy="771.7" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-D-5" cx="252.2" cy="774.8" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-D-6" cx="263.3" cy="777.3" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-D-7" cx="274.5" cy="779.5" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-D-8" cx="285.7" cy="781.2" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-D-9" cx="297" cy="782.5" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-D-10" cx="308.3" cy="783.5" r="4"/>
     </g>
     <g id="E">
-      <circle class="st18 seat" id="LOBAL2-E-1" cx="209.5" cy="777.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL2-E-2" cx="219.9" cy="782" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-E-3" cx="230.5" cy="785.9" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-E-4" cx="241.3" cy="789.2" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-E-5" cx="252.2" cy="791.9" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-E-6" cx="263.3" cy="794.2" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-E-7" cx="274.5" cy="796" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-E-8" cx="285.7" cy="797.5" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-E-9" cx="297" cy="798.6" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-E-10" cx="308.3" cy="799.5" r="4"/>
+      <circle class="st18 seat" id="Balcony2-E-1" cx="209.5" cy="777.5" r="4"/>
+      <circle class="st18 seat" id="Balcony2-E-2" cx="219.9" cy="782" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-E-3" cx="230.5" cy="785.9" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-E-4" cx="241.3" cy="789.2" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-E-5" cx="252.2" cy="791.9" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-E-6" cx="263.3" cy="794.2" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-E-7" cx="274.5" cy="796" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-E-8" cx="285.7" cy="797.5" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-E-9" cx="297" cy="798.6" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-E-10" cx="308.3" cy="799.5" r="4"/>
     </g>
     <g id="F">
-      <circle class="st18 seat" id="LOBAL2-F-1" cx="209.5" cy="794.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL2-F-2" cx="219.9" cy="799" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-F-3" cx="230.5" cy="802.8" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-F-4" cx="241.3" cy="805.9" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-F-5" cx="252.2" cy="808.5" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-F-6" cx="263.3" cy="810.6" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-F-7" cx="274.5" cy="812.3" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-F-8" cx="285.7" cy="813.6" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-F-9" cx="297" cy="814.6" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-F-10" cx="308.3" cy="815.5" r="4"/>
+      <circle class="st18 seat" id="Balcony2-F-1" cx="209.5" cy="794.5" r="4"/>
+      <circle class="st18 seat" id="Balcony2-F-2" cx="219.9" cy="799" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-F-3" cx="230.5" cy="802.8" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-F-4" cx="241.3" cy="805.9" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-F-5" cx="252.2" cy="808.5" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-F-6" cx="263.3" cy="810.6" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-F-7" cx="274.5" cy="812.3" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-F-8" cx="285.7" cy="813.6" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-F-9" cx="297" cy="814.6" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-F-10" cx="308.3" cy="815.5" r="4"/>
     </g>
     <g id="C">
-      <circle class="st18 seat" id="LOBAL2-C-1" cx="209.8" cy="744.6" r="4"/>
-      <circle class="st18 seat" id="LOBAL2-C-2" cx="220.2" cy="749.2" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-C-3" cx="230.8" cy="753.2" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-C-4" cx="241.6" cy="756.8" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-C-5" cx="252.6" cy="759.8" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-C-6" cx="263.6" cy="762.4" r="3.7"/>
-      <circle class="st18 seat" id="LOBAL2-C-7" cx="274.8" cy="764.6" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-C-8" cx="286" cy="766.3" r="3.8"/>
-      <circle class="st18 seat" id="LOBAL2-C-9" cx="297.3" cy="767.6" r="3.9"/>
-      <circle class="st18 seat" id="LOBAL2-C-10" cx="308.6" cy="768.6" r="4"/>
+      <circle class="st18 seat" id="Balcony2-C-1" cx="209.8" cy="744.6" r="4"/>
+      <circle class="st18 seat" id="Balcony2-C-2" cx="220.2" cy="749.2" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-C-3" cx="230.8" cy="753.2" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-C-4" cx="241.6" cy="756.8" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-C-5" cx="252.6" cy="759.8" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-C-6" cx="263.6" cy="762.4" r="3.7"/>
+      <circle class="st18 seat" id="Balcony2-C-7" cx="274.8" cy="764.6" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-C-8" cx="286" cy="766.3" r="3.8"/>
+      <circle class="st18 seat" id="Balcony2-C-9" cx="297.3" cy="767.6" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-C-10" cx="308.6" cy="768.6" r="4"/>
     </g>
     <g id="K">
-      <circle class="st18 seat" id="UPBAL2-E-1" cx="210.4" cy="904.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-E-2" cx="221.2" cy="906.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-E-3" cx="232" cy="909" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-E-4" cx="242.8" cy="911.1" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-E-5" cx="253.6" cy="912.9" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-E-6" cx="264.5" cy="914.5" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-E-7" cx="275.4" cy="916" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-E-8" cx="286.3" cy="917.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-E-9" cx="297.3" cy="918.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-E-10" cx="308.3" cy="919.4" r="4"/>
+      <circle class="st18 seat" id="Balcony2-K-1" cx="210.4" cy="904.3" r="4"/>
+      <circle class="st18 seat" id="Balcony2-K-2" cx="221.2" cy="906.8" r="4"/>
+      <circle class="st18 seat" id="Balcony2-K-3" cx="232" cy="909" r="4"/>
+      <circle class="st18 seat" id="Balcony2-K-4" cx="242.8" cy="911.1" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-K-5" cx="253.6" cy="912.9" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-K-6" cx="264.5" cy="914.5" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-K-7" cx="275.4" cy="916" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-K-8" cx="286.3" cy="917.3" r="4"/>
+      <circle class="st18 seat" id="Balcony2-K-9" cx="297.3" cy="918.4" r="4"/>
+      <circle class="st18 seat" id="Balcony2-K-10" cx="308.3" cy="919.4" r="4"/>
     </g>
     <g id="J">
-      <circle class="st18 seat" id="UPBAL2-D-1" cx="210.4" cy="891.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-D-2" cx="221.2" cy="894.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-D-3" cx="232" cy="896.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-D-4" cx="242.8" cy="898.3" r="3.9"/>
-      <ellipse transform="matrix(0.9806 -0.1961 0.1961 0.9806 -171.5752 67.2314)" class="st18 seat" id="UPBAL2-D-5" cx="253.7" cy="900" rx="3.9" ry="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-D-6" cx="264.5" cy="901.5" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-D-7" cx="275.5" cy="902.9" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-D-8" cx="286.4" cy="904.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-D-9" cx="297.3" cy="905.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-D-10" cx="308.3" cy="906.1" r="4"/>
+      <circle class="st18 seat" id="Balcony2-J-1" cx="210.4" cy="891.9" r="4"/>
+      <circle class="st18 seat" id="Balcony2-J-2" cx="221.2" cy="894.3" r="4"/>
+      <circle class="st18 seat" id="Balcony2-J-3" cx="232" cy="896.4" r="4"/>
+      <circle class="st18 seat" id="Balcony2-J-4" cx="242.8" cy="898.3" r="3.9"/>
+      <ellipse transform="matrix(0.9806 -0.1961 0.1961 0.9806 -171.5752 67.2314)" class="st18 seat" id="Balcony2-J-5" cx="253.7" cy="900" rx="3.9" ry="3.9"/>
+      <circle class="st18 seat" id="Balcony2-J-6" cx="264.5" cy="901.5" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-J-7" cx="275.5" cy="902.9" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-J-8" cx="286.4" cy="904.1" r="4"/>
+      <circle class="st18 seat" id="Balcony2-J-9" cx="297.3" cy="905.1" r="4"/>
+      <circle class="st18 seat" id="Balcony2-J-10" cx="308.3" cy="906.1" r="4"/>
     </g>
     <g id="I">
-      <circle class="st18 seat" id="UPBAL2-C-1" cx="210.3" cy="879.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-C-2" cx="221.1" cy="882.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-C-3" cx="231.9" cy="884.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-C-4" cx="242.7" cy="885.9" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-C-5" cx="253.6" cy="887.5" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-C-6" cx="264.5" cy="888.9" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-C-7" cx="275.4" cy="890.2" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-C-8" cx="286.4" cy="891.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-C-9" cx="297.3" cy="892.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-C-10" cx="308.3" cy="893.5" r="4"/>
+      <circle class="st18 seat" id="Balcony2-I-1" cx="210.3" cy="879.9" r="4"/>
+      <circle class="st18 seat" id="Balcony2-I-2" cx="221.1" cy="882.2" r="4"/>
+      <circle class="st18 seat" id="Balcony2-I-3" cx="231.9" cy="884.2" r="4"/>
+      <circle class="st18 seat" id="Balcony2-I-4" cx="242.7" cy="885.9" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-I-5" cx="253.6" cy="887.5" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-I-6" cx="264.5" cy="888.9" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-I-7" cx="275.4" cy="890.2" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-I-8" cx="286.4" cy="891.3" r="4"/>
+      <circle class="st18 seat" id="Balcony2-I-9" cx="297.3" cy="892.4" r="4"/>
+      <circle class="st18 seat" id="Balcony2-I-10" cx="308.3" cy="893.5" r="4"/>
     </g>
     <g id="H">
-      <circle class="st18 seat" id="UPBAL2-B-1" cx="210.4" cy="866.7" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-B-2" cx="221" cy="869.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-B-3" cx="231.8" cy="871.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-B-4" cx="242.6" cy="873.7" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-B-5" cx="253.5" cy="875.5" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-B-6" cx="264.5" cy="877.1" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-B-7" cx="275.5" cy="878.4" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL2-B-8" cx="286.4" cy="879.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-B-9" cx="297.4" cy="880.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-B-10" cx="308.3" cy="880.8" r="4"/>
+      <circle class="st18 seat" id="Balcony2-H-1" cx="210.4" cy="866.7" r="4"/>
+      <circle class="st18 seat" id="Balcony2-H-2" cx="221" cy="869.3" r="4"/>
+      <circle class="st18 seat" id="Balcony2-H-3" cx="231.8" cy="871.6" r="4"/>
+      <circle class="st18 seat" id="Balcony2-H-4" cx="242.6" cy="873.7" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-H-5" cx="253.5" cy="875.5" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-H-6" cx="264.5" cy="877.1" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-H-7" cx="275.5" cy="878.4" r="3.9"/>
+      <circle class="st18 seat" id="Balcony2-H-8" cx="286.4" cy="879.5" r="4"/>
+      <circle class="st18 seat" id="Balcony2-H-9" cx="297.4" cy="880.3" r="4"/>
+      <circle class="st18 seat" id="Balcony2-H-10" cx="308.3" cy="880.8" r="4"/>
     </g>
     <g id="G">
-      <circle class="st18 seat" id="UPBAL2-A-1" cx="210.4" cy="854.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-A-2" cx="221.1" cy="856.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-A-3" cx="231.9" cy="859.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-A-4" cx="242.7" cy="861" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-A-5" cx="253.6" cy="862.7" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-A-6" cx="264.5" cy="864.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-A-7" cx="275.4" cy="865.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-A-8" cx="286.4" cy="866.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-A-9" cx="297.3" cy="867.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL2-A-10" cx="308.3" cy="868.4" r="4"/>
+      <circle class="st18 seat" id="Balcony2-G-1" cx="210.4" cy="854.3" r="4"/>
+      <circle class="st18 seat" id="Balcony2-G-2" cx="221.1" cy="856.8" r="4"/>
+      <circle class="st18 seat" id="Balcony2-G-3" cx="231.9" cy="859.1" r="4"/>
+      <circle class="st18 seat" id="Balcony2-G-4" cx="242.7" cy="861" r="4"/>
+      <circle class="st18 seat" id="Balcony2-G-5" cx="253.6" cy="862.7" r="4"/>
+      <circle class="st18 seat" id="Balcony2-G-6" cx="264.5" cy="864.2" r="4"/>
+      <circle class="st18 seat" id="Balcony2-G-7" cx="275.4" cy="865.4" r="4"/>
+      <circle class="st18 seat" id="Balcony2-G-8" cx="286.4" cy="866.5" r="4"/>
+      <circle class="st18 seat" id="Balcony2-G-9" cx="297.3" cy="867.5" r="4"/>
+      <circle class="st18 seat" id="Balcony2-G-10" cx="308.3" cy="868.4" r="4"/>
     </g>
   </g>
   <g id="Balcony3">
     <g id="A">
-      <circle class="st18 seat" id="LOBAL3-A-10" cx="435.8" cy="741.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-A-9" cx="423.5" cy="743.8" r="4"/>
-      <ellipse class="st18 seat" id="LOBAL3-A-8" cx="411.1" cy="745.2" rx="4" ry="4"/>
-      <ellipse class="st18 seat" id="LOBAL3-A-7" cx="398.7" cy="745.7" rx="4" ry="4"/>
-      <path class="st18 seat" id="LOBAL3-A-6" d="M389.6,743.6c-1.2-1.8-3.7-2.4-5.5-1.1c-1.8,1.2-2.4,3.7-1.1,5.5c1.2,1.8,3.7,2.4,5.5,1.1 C390.3,748,390.8,745.5,389.6,743.6z"/>
-      <path class="st18 seat" id="LOBAL3-A-5" d="M377.2,743.4c-1.2-1.9-3.6-2.5-5.5-1.3s-2.5,3.6-1.3,5.5s3.6,2.5,5.5,1.3 C377.8,747.8,378.4,745.3,377.2,743.4z"/>
-      <path class="st18 seat" id="LOBAL3-A-4" d="M364.9,742.9c-1.1-1.9-3.6-2.5-5.5-1.4s-2.5,3.6-1.4,5.5s3.6,2.5,5.5,1.4C365.4,747.2,366,744.8,364.9,742.9 z"/>
-      <path class="st18 seat" id="LOBAL3-A-3" d="M352.5,742c-1.1-1.9-3.5-2.6-5.4-1.5s-2.6,3.5-1.5,5.4s3.5,2.6,5.4,1.5C352.9,746.4,353.6,744,352.5,742z"/>
-      <path class="st18 seat" id="LOBAL3-A-2" d="M340.2,741c-1-1.9-3.5-2.7-5.4-1.6s-2.7,3.5-1.6,5.4c1,1.9,3.5,2.7,5.4,1.6 C340.5,745.4,341.2,742.9,340.2,741z"/>
-      <path class="st18 seat" id="LOBAL3-A-1" d="M327.8,739.7c-1-2-3.4-2.7-5.4-1.7s-2.7,3.4-1.7,5.4s3.4,2.7,5.4,1.7C328.1,744.1,328.8,741.6,327.8,739.7z"/>
+      <circle class="st18 seat" id="Balcony3-A-10" cx="435.8" cy="741.7" r="4"/>
+      <circle class="st18 seat" id="Balcony3-A-9" cx="423.5" cy="743.8" r="4"/>
+      <ellipse class="st18 seat" id="Balcony3-A-8" cx="411.1" cy="745.2" rx="4" ry="4"/>
+      <ellipse class="st18 seat" id="Balcony3-A-7" cx="398.7" cy="745.7" rx="4" ry="4"/>
+      <path class="st18 seat" id="Balcony3-A-6" d="M389.6,743.6c-1.2-1.8-3.7-2.4-5.5-1.1c-1.8,1.2-2.4,3.7-1.1,5.5c1.2,1.8,3.7,2.4,5.5,1.1 C390.3,748,390.8,745.5,389.6,743.6z"/>
+      <path class="st18 seat" id="Balcony3-A-5" d="M377.2,743.4c-1.2-1.9-3.6-2.5-5.5-1.3s-2.5,3.6-1.3,5.5s3.6,2.5,5.5,1.3 C377.8,747.8,378.4,745.3,377.2,743.4z"/>
+      <path class="st18 seat" id="Balcony3-A-4" d="M364.9,742.9c-1.1-1.9-3.6-2.5-5.5-1.4s-2.5,3.6-1.4,5.5s3.6,2.5,5.5,1.4C365.4,747.2,366,744.8,364.9,742.9 z"/>
+      <path class="st18 seat" id="Balcony3-A-3" d="M352.5,742c-1.1-1.9-3.5-2.6-5.4-1.5s-2.6,3.5-1.5,5.4s3.5,2.6,5.4,1.5C352.9,746.4,353.6,744,352.5,742z"/>
+      <path class="st18 seat" id="Balcony3-A-2" d="M340.2,741c-1-1.9-3.5-2.7-5.4-1.6s-2.7,3.5-1.6,5.4c1,1.9,3.5,2.7,5.4,1.6 C340.5,745.4,341.2,742.9,340.2,741z"/>
+      <path class="st18 seat" id="Balcony3-A-1" d="M327.8,739.7c-1-2-3.4-2.7-5.4-1.7s-2.7,3.4-1.7,5.4s3.4,2.7,5.4,1.7C328.1,744.1,328.8,741.6,327.8,739.7z"/>
     </g>
     <g id="B">
-      <circle class="st18 seat" id="LOBAL3-B-10" cx="436.1" cy="755.6" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-B-9" cx="423.9" cy="757.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-B-8" cx="411.5" cy="758.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-B-7" cx="399" cy="759.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-B-6" cx="386.6" cy="759.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-B-5" cx="374.2" cy="759.1" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-B-4" cx="361.8" cy="758.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-B-3" cx="349.4" cy="758.1" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-B-2" cx="337" cy="757.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-B-1" cx="324.6" cy="756.4" r="4"/>
+      <circle class="st18 seat" id="Balcony3-B-10" cx="436.1" cy="755.6" r="4"/>
+      <circle class="st18 seat" id="Balcony3-B-9" cx="423.9" cy="757.7" r="4"/>
+      <circle class="st18 seat" id="Balcony3-B-8" cx="411.5" cy="758.9" r="4"/>
+      <circle class="st18 seat" id="Balcony3-B-7" cx="399" cy="759.4" r="4"/>
+      <circle class="st18 seat" id="Balcony3-B-6" cx="386.6" cy="759.4" r="4"/>
+      <circle class="st18 seat" id="Balcony3-B-5" cx="374.2" cy="759.1" r="4"/>
+      <circle class="st18 seat" id="Balcony3-B-4" cx="361.8" cy="758.7" r="4"/>
+      <circle class="st18 seat" id="Balcony3-B-3" cx="349.4" cy="758.1" r="4"/>
+      <circle class="st18 seat" id="Balcony3-B-2" cx="337" cy="757.3" r="4"/>
+      <circle class="st18 seat" id="Balcony3-B-1" cx="324.6" cy="756.4" r="4"/>
     </g>
     <g id="D">
-      <circle class="st18 seat" id="LOBAL3-D-10" cx="436.1" cy="785.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-D-9" cx="423.9" cy="787.6" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-D-8" cx="411.5" cy="789" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-D-7" cx="399.1" cy="789.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-D-6" cx="386.6" cy="790" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-D-5" cx="374.2" cy="789.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-D-4" cx="361.8" cy="789.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-D-3" cx="349.4" cy="788.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-D-2" cx="337" cy="787.6" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-D-1" cx="324.6" cy="786.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-D-10" cx="436.1" cy="785.3" r="4"/>
+      <circle class="st18 seat" id="Balcony3-D-9" cx="423.9" cy="787.6" r="4"/>
+      <circle class="st18 seat" id="Balcony3-D-8" cx="411.5" cy="789" r="4"/>
+      <circle class="st18 seat" id="Balcony3-D-7" cx="399.1" cy="789.8" r="4"/>
+      <circle class="st18 seat" id="Balcony3-D-6" cx="386.6" cy="790" r="4"/>
+      <circle class="st18 seat" id="Balcony3-D-5" cx="374.2" cy="789.9" r="4"/>
+      <circle class="st18 seat" id="Balcony3-D-4" cx="361.8" cy="789.5" r="4"/>
+      <circle class="st18 seat" id="Balcony3-D-3" cx="349.4" cy="788.7" r="4"/>
+      <circle class="st18 seat" id="Balcony3-D-2" cx="337" cy="787.6" r="4"/>
+      <circle class="st18 seat" id="Balcony3-D-1" cx="324.6" cy="786.2" r="4"/>
     </g>
     <g id="E">
-      <circle class="st18 seat" id="LOBAL3-E-10" cx="436.1" cy="800.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-E-9" cx="423.8" cy="801.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-E-8" cx="411.4" cy="802.6" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-E-7" cx="399" cy="803.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-E-6" cx="386.6" cy="803.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-E-5" cx="374.2" cy="803.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-E-4" cx="361.8" cy="803.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-E-3" cx="349.4" cy="803.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-E-2" cx="337" cy="802.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-E-1" cx="324.6" cy="801.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-E-10" cx="436.1" cy="800.3" r="4"/>
+      <circle class="st18 seat" id="Balcony3-E-9" cx="423.8" cy="801.7" r="4"/>
+      <circle class="st18 seat" id="Balcony3-E-8" cx="411.4" cy="802.6" r="4"/>
+      <circle class="st18 seat" id="Balcony3-E-7" cx="399" cy="803.3" r="4"/>
+      <circle class="st18 seat" id="Balcony3-E-6" cx="386.6" cy="803.7" r="4"/>
+      <circle class="st18 seat" id="Balcony3-E-5" cx="374.2" cy="803.8" r="4"/>
+      <circle class="st18 seat" id="Balcony3-E-4" cx="361.8" cy="803.7" r="4"/>
+      <circle class="st18 seat" id="Balcony3-E-3" cx="349.4" cy="803.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-E-2" cx="337" cy="802.4" r="4"/>
+      <circle class="st18 seat" id="Balcony3-E-1" cx="324.6" cy="801.2" r="4"/>
     </g>
     <g id="F">
-      <circle class="st18 seat accessible" id="LOBAL3-F-8" cx="423.1" cy="819.3" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL3-F-7" cx="410.6" cy="820.6" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL3-F-6" cx="398.1" cy="821.7" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL3-F-5" cx="385.6" cy="822.1" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL3-F-4" cx="373.1" cy="822" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL3-F-3" cx="360.6" cy="821.5" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL3-F-2" cx="348.1" cy="820.5" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL3-F-1" cx="335.6" cy="819.2" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony3-F-8" cx="423.1" cy="819.3" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony3-F-7" cx="410.6" cy="820.6" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony3-F-6" cx="398.1" cy="821.7" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony3-F-5" cx="385.6" cy="822.1" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony3-F-4" cx="373.1" cy="822" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony3-F-3" cx="360.6" cy="821.5" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony3-F-2" cx="348.1" cy="820.5" r="4"/>
+      <circle class="st18 seat accessible" id="Balcony3-F-1" cx="335.6" cy="819.2" r="4"/>
     </g>
     <g id="C">
-      <circle class="st18 seat" id="LOBAL3-C-10" cx="435.8" cy="770.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-C-9" cx="423.5" cy="773" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-C-8" cx="411.2" cy="774.6" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-C-7" cx="398.8" cy="775.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-C-6" cx="386.3" cy="775.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-C-5" cx="373.9" cy="775.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-C-4" cx="361.4" cy="775.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-C-3" cx="349" cy="774.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-C-2" cx="336.6" cy="772.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL3-C-1" cx="324.3" cy="771.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-C-10" cx="435.8" cy="770.5" r="4"/>
+      <circle class="st18 seat" id="Balcony3-C-9" cx="423.5" cy="773" r="4"/>
+      <circle class="st18 seat" id="Balcony3-C-8" cx="411.2" cy="774.6" r="4"/>
+      <circle class="st18 seat" id="Balcony3-C-7" cx="398.8" cy="775.5" r="4"/>
+      <circle class="st18 seat" id="Balcony3-C-6" cx="386.3" cy="775.9" r="4"/>
+      <circle class="st18 seat" id="Balcony3-C-5" cx="373.9" cy="775.8" r="4"/>
+      <circle class="st18 seat" id="Balcony3-C-4" cx="361.4" cy="775.3" r="4"/>
+      <circle class="st18 seat" id="Balcony3-C-3" cx="349" cy="774.3" r="4"/>
+      <circle class="st18 seat" id="Balcony3-C-2" cx="336.6" cy="772.9" r="4"/>
+      <circle class="st18 seat" id="Balcony3-C-1" cx="324.3" cy="771.2" r="4"/>
     </g>
     <g id="G">
-      <circle class="st18 seat" id="UPBAL3-A-10" cx="435.9" cy="867.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-A-9" cx="423.7" cy="869.7" r="4"/>
-      <ellipse class="st18 seat" id="UPBAL3-A-8" cx="411.3" cy="871.1" rx="4" ry="4"/>
-      <ellipse class="st18 seat" id="UPBAL3-A-7" cx="398.9" cy="871.6" rx="4" ry="4"/>
-      <path class="st18 seat" id="UPBAL3-A-6" d="M389.8,869.5c-1.2-1.8-3.7-2.4-5.5-1.1c-1.8,1.2-2.4,3.7-1.1,5.5c1.2,1.8,3.7,2.4,5.5,1.1 C390.5,873.9,391,871.4,389.8,869.5z"/>
-      <path class="st18 seat" id="UPBAL3-A-5" d="M377.4,869.3c-1.2-1.9-3.6-2.5-5.5-1.3s-2.5,3.6-1.3,5.5s3.6,2.5,5.5,1.3C378,873.7,378.6,871.2,377.4,869.3 z"/>
-      <path class="st18 seat" id="UPBAL3-A-4" d="M365,868.8c-1.1-1.9-3.6-2.5-5.5-1.4s-2.5,3.6-1.4,5.5s3.6,2.5,5.5,1.4C365.5,873.1,366.2,870.6,365,868.8z"/>
-      <path class="st18 seat" id="UPBAL3-A-3" d="M352.7,867.9c-1.1-1.9-3.5-2.6-5.4-1.5s-2.6,3.5-1.5,5.4s3.5,2.6,5.4,1.5 C353.1,872.3,353.8,869.8,352.7,867.9z"/>
-      <path class="st18 seat" id="UPBAL3-A-2" d="M340.3,866.9c-1-1.9-3.5-2.7-5.4-1.6c-1.9,1-2.7,3.5-1.6,5.4c1,1.9,3.5,2.7,5.4,1.6 C340.6,871.3,341.4,868.8,340.3,866.9z"/>
-      <path class="st18 seat" id="UPBAL3-A-1" d="M328,865.6c-1-2-3.4-2.7-5.4-1.7s-2.7,3.4-1.7,5.4s3.4,2.7,5.4,1.7C328.2,870,329,867.5,328,865.6z"/>
+      <circle class="st18 seat" id="Balcony3-G-10" cx="435.9" cy="867.6" r="4"/>
+      <circle class="st18 seat" id="Balcony3-G-9" cx="423.7" cy="869.7" r="4"/>
+      <ellipse class="st18 seat" id="Balcony3-G-8" cx="411.3" cy="871.1" rx="4" ry="4"/>
+      <ellipse class="st18 seat" id="Balcony3-G-7" cx="398.9" cy="871.6" rx="4" ry="4"/>
+      <path class="st18 seat" id="Balcony3-G-6" d="M389.8,869.5c-1.2-1.8-3.7-2.4-5.5-1.1c-1.8,1.2-2.4,3.7-1.1,5.5c1.2,1.8,3.7,2.4,5.5,1.1 C390.5,873.9,391,871.4,389.8,869.5z"/>
+      <path class="st18 seat" id="Balcony3-G-5" d="M377.4,869.3c-1.2-1.9-3.6-2.5-5.5-1.3s-2.5,3.6-1.3,5.5s3.6,2.5,5.5,1.3C378,873.7,378.6,871.2,377.4,869.3 z"/>
+      <path class="st18 seat" id="Balcony3-G-4" d="M365,868.8c-1.1-1.9-3.6-2.5-5.5-1.4s-2.5,3.6-1.4,5.5s3.6,2.5,5.5,1.4C365.5,873.1,366.2,870.6,365,868.8z"/>
+      <path class="st18 seat" id="Balcony3-G-3" d="M352.7,867.9c-1.1-1.9-3.5-2.6-5.4-1.5s-2.6,3.5-1.5,5.4s3.5,2.6,5.4,1.5 C353.1,872.3,353.8,869.8,352.7,867.9z"/>
+      <path class="st18 seat" id="Balcony3-G-2" d="M340.3,866.9c-1-1.9-3.5-2.7-5.4-1.6c-1.9,1-2.7,3.5-1.6,5.4c1,1.9,3.5,2.7,5.4,1.6 C340.6,871.3,341.4,868.8,340.3,866.9z"/>
+      <path class="st18 seat" id="Balcony3-G-1" d="M328,865.6c-1-2-3.4-2.7-5.4-1.7s-2.7,3.4-1.7,5.4s3.4,2.7,5.4,1.7C328.2,870,329,867.5,328,865.6z"/>
     </g>
     <g id="H">
-      <circle class="st18 seat" id="UPBAL3-B-10" cx="436.3" cy="881.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-B-9" cx="424" cy="883.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-B-8" cx="411.7" cy="884.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-B-7" cx="399.2" cy="885.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-B-6" cx="386.8" cy="885.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-B-5" cx="374.4" cy="885" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-B-4" cx="362" cy="884.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-B-3" cx="349.6" cy="883.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-B-2" cx="337.2" cy="883.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-B-1" cx="324.8" cy="882.3" r="4"/>
+      <circle class="st18 seat" id="Balcony3-H-10" cx="436.3" cy="881.5" r="4"/>
+      <circle class="st18 seat" id="Balcony3-H-9" cx="424" cy="883.6" r="4"/>
+      <circle class="st18 seat" id="Balcony3-H-8" cx="411.7" cy="884.8" r="4"/>
+      <circle class="st18 seat" id="Balcony3-H-7" cx="399.2" cy="885.3" r="4"/>
+      <circle class="st18 seat" id="Balcony3-H-6" cx="386.8" cy="885.3" r="4"/>
+      <circle class="st18 seat" id="Balcony3-H-5" cx="374.4" cy="885" r="4"/>
+      <circle class="st18 seat" id="Balcony3-H-4" cx="362" cy="884.5" r="4"/>
+      <circle class="st18 seat" id="Balcony3-H-3" cx="349.6" cy="883.9" r="4"/>
+      <circle class="st18 seat" id="Balcony3-H-2" cx="337.2" cy="883.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-H-1" cx="324.8" cy="882.3" r="4"/>
     </g>
     <g id="J">
-      <circle class="st18 seat" id="UPBAL3-D-10" cx="436.3" cy="907.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-D-9" cx="424.1" cy="909.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-D-8" cx="411.7" cy="910.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-D-7" cx="399.2" cy="911.7" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-D-6" cx="386.8" cy="911.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-D-5" cx="374.4" cy="911.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-D-4" cx="361.9" cy="911.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-D-3" cx="349.5" cy="910.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-D-2" cx="337.2" cy="909.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-D-1" cx="324.8" cy="908" r="4"/>
+      <circle class="st18 seat" id="Balcony3-J-10" cx="436.3" cy="907.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-J-9" cx="424.1" cy="909.5" r="4"/>
+      <circle class="st18 seat" id="Balcony3-J-8" cx="411.7" cy="910.9" r="4"/>
+      <circle class="st18 seat" id="Balcony3-J-7" cx="399.2" cy="911.7" r="4"/>
+      <circle class="st18 seat" id="Balcony3-J-6" cx="386.8" cy="911.9" r="4"/>
+      <circle class="st18 seat" id="Balcony3-J-5" cx="374.4" cy="911.8" r="4"/>
+      <circle class="st18 seat" id="Balcony3-J-4" cx="361.9" cy="911.4" r="4"/>
+      <circle class="st18 seat" id="Balcony3-J-3" cx="349.5" cy="910.6" r="4"/>
+      <circle class="st18 seat" id="Balcony3-J-2" cx="337.2" cy="909.5" r="4"/>
+      <circle class="st18 seat" id="Balcony3-J-1" cx="324.8" cy="908" r="4"/>
     </g>
     <g id="K">
-      <circle class="st18 seat" id="UPBAL3-E-10" cx="436.3" cy="920.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-E-9" cx="423.9" cy="921.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-E-8" cx="411.6" cy="922.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-E-7" cx="399.2" cy="923.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-E-6" cx="386.8" cy="923.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-E-5" cx="374.3" cy="923.7" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-E-4" cx="361.9" cy="923.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-E-3" cx="349.5" cy="923.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-E-2" cx="337.1" cy="922.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-E-1" cx="324.8" cy="921" r="4"/>
+      <circle class="st18 seat" id="Balcony3-K-10" cx="436.3" cy="920.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-K-9" cx="423.9" cy="921.6" r="4"/>
+      <circle class="st18 seat" id="Balcony3-K-8" cx="411.6" cy="922.5" r="4"/>
+      <circle class="st18 seat" id="Balcony3-K-7" cx="399.2" cy="923.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-K-6" cx="386.8" cy="923.6" r="4"/>
+      <circle class="st18 seat" id="Balcony3-K-5" cx="374.3" cy="923.7" r="4"/>
+      <circle class="st18 seat" id="Balcony3-K-4" cx="361.9" cy="923.5" r="4"/>
+      <circle class="st18 seat" id="Balcony3-K-3" cx="349.5" cy="923.1" r="4"/>
+      <circle class="st18 seat" id="Balcony3-K-2" cx="337.1" cy="922.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-K-1" cx="324.8" cy="921" r="4"/>
     </g>
     <g id="I">
-      <circle class="st18 seat" id="UPBAL3-C-10" cx="435.9" cy="893.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-C-9" cx="423.7" cy="895.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-C-8" cx="411.4" cy="897.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-C-7" cx="399" cy="898.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-C-6" cx="386.5" cy="898.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-C-5" cx="374.1" cy="898.7" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-C-4" cx="361.6" cy="898.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-C-3" cx="349.2" cy="897.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-C-2" cx="336.8" cy="895.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL3-C-1" cx="324.5" cy="894.1" r="4"/>
+      <circle class="st18 seat" id="Balcony3-I-10" cx="435.9" cy="893.4" r="4"/>
+      <circle class="st18 seat" id="Balcony3-I-9" cx="423.7" cy="895.9" r="4"/>
+      <circle class="st18 seat" id="Balcony3-I-8" cx="411.4" cy="897.5" r="4"/>
+      <circle class="st18 seat" id="Balcony3-I-7" cx="399" cy="898.4" r="4"/>
+      <circle class="st18 seat" id="Balcony3-I-6" cx="386.5" cy="898.8" r="4"/>
+      <circle class="st18 seat" id="Balcony3-I-5" cx="374.1" cy="898.7" r="4"/>
+      <circle class="st18 seat" id="Balcony3-I-4" cx="361.6" cy="898.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-I-3" cx="349.2" cy="897.2" r="4"/>
+      <circle class="st18 seat" id="Balcony3-I-2" cx="336.8" cy="895.8" r="4"/>
+      <circle class="st18 seat" id="Balcony3-I-1" cx="324.5" cy="894.1" r="4"/>
     </g>
   </g>
 </svg>
