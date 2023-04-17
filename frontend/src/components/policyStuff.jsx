@@ -22,10 +22,6 @@ export const PolicyStuff = () => {
     const handleBackButton = () => {
         window.location.href = "/adminPage"
     }
-    function handleExport() {
-        console.log("yay export")
-
-    }
     const handleTextChange = e => {
         setFormData({
             ...formData,
@@ -107,21 +103,7 @@ export const PolicyStuff = () => {
 
                     <div className='d-flex ' style={{ width: '80%', alignSelf: 'center' }}>
 
-                        <Button className='p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} // send file path
-                            onClick={handleExport}>
-                            Import Data
-                        </Button>
-                        <Button className='ms-2 p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} //0 or 1
-                            onClick={handleExport}>
-                            Export Data
-                        </Button>
-
+                        
                         <Button className='ms-auto p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -202,7 +184,7 @@ export const PolicyStuff = () => {
                             <Row className="mb-3">
                                 <Form.Group controlId="textValue">
                                     <Form.Label>{formData.venueName}</Form.Label>
-                                    <Form.Control required type="text" value={formData.sectionPrice} placeholder="Enter new price" onChange={handleTextChange} />
+                                    <Form.Control required type="number" step={'0.01'} value={formData.sectionPrice} placeholder="Enter new price" onChange={handleTextChange} />
                                 </Form.Group>
                             </Row>
 
