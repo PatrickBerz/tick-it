@@ -11,7 +11,9 @@ export const AdminPage = () =>{
     }
     function ticketStuffSubmit(){
         window.location.href="/ticketStuff"
-
+    }
+    function policyStuffSubmit(){
+        window.location.href="/policyStuff"
     }
     return (
             <Stack direction='vertical' style={{color: 'white', alignItems:'center', marginTop:'60px' }} gap={1}>
@@ -46,7 +48,7 @@ export const AdminPage = () =>{
                             }}>
                         Season Passes
                     </Button>
-                    <Button size='lg' variant="primary" type="submit" 
+                    <Button size='lg' onClick={policyStuffSubmit} variant="primary" type="submit" 
                         style={{
                             marginTop:'40px', 
                             width:'180px', 
