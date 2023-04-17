@@ -18,7 +18,6 @@ import { System } from "../src/System";
 //
 // Lookup performance by showName, venue, dateTime
 // Lookup purchase by confNum
-// Add purchase to list
 // Add performance to list
 // Add season ticket holder to list
 // Basically, add everything to lists
@@ -260,7 +259,7 @@ router.post("/newPurchase", (req: any, res: any) => {
     }*/
 
     //Pass info into System so System can add the purchase and serialize the info again
-    System.createPurchase(new Attendee(data.attendee.name, data.attendee.address, data.attendee.phoneNum), data.tickets, data.dateTime);
+    System.createPurchase(new Attendee(data.attendee.name, data.attendee.address, data.attendee.phoneNum), data.tickets, data.dateTime, data.TicketStatus);
 })
 
 router.post("/password", (req: any, res: any) => {

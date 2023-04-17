@@ -7,7 +7,7 @@ import { SeatSection } from "./SeatSection";
 import { Seat } from "./Seat";
 import { Performance } from "./Performance";
 import { JSONHandler } from "../JSONHandler";
-import { Ticket } from "./Ticket";
+import { Ticket, TicketStatus } from "./Ticket";
 import { ConfNum } from "./ConfNum";
 
 //NOT A SINGLETON
@@ -51,12 +51,26 @@ export class System {
     }
 
     //creating new objects for the database
-    public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date)// : Purchase 
+    public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date, ticketStatus: TicketStatus)// : Purchase 
     {
         let newPurchase = new Purchase(purchaser);
         newPurchase.updateTickets(tickets);
         newPurchase.setConfNum(ConfNum.getNum());
         newPurchase.setDate(dateTime);
+        switch(ticketStatus) {
+            case 1: {
+                newPurchase.reservedTickets()
+                break;
+            }
+            case 2: {
+                newPurchase.payTickets()
+                break;
+            }
+            case 3: {
+                newPurchase.pickUpTickets()
+                break;
+            }
+        }
         this.purchases.push(newPurchase);
         this.deserializer.serialize(this.purchases, this.purchasePath);
         //this.insertIntoPurchases(newPurchase);
