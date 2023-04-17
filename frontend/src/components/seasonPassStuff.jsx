@@ -6,6 +6,18 @@ export const SeasonPassStuff = () => {
     const [showModal, setShow] = useState(false)
     const [alert, setAlert] = useState(undefined);
     const [formError, setFormError] = useState(null)
+    const [importModal, setImportModal] = useState(false)
+    const [selectedFile, setSelectedFile] = useState(null)
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:4000/seasonTickets')
+            const newData = await response.json()
+            console.log(JSON.stringify(newData))
+            setData(newData)
+        }
+        fetchData();
+    }, []);
+
 
     const [formData, setFormData] = useState(
         {
@@ -21,20 +33,47 @@ export const SeasonPassStuff = () => {
         setShow(false)
         setAlert(undefined)
     }
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch('http://localhost:4000/seasonTickets')
-            const newData = await response.json()
-            console.log(JSON.stringify(newData))
-            setData(newData)
-        }
-        fetchData();
-    }, []);
+
 
     const handleBackButton = () => {
         window.location.href = "/adminPage"
 
     }
+    const handleFileChange = (e) => {
+        const file = e.target.files
+        console.log(file)
+        setSelectedFile(file)
+    }
+    const handleImportSubmit = (e) => {
+        e.preventDefault()
+        const promise = fetch('http://localhost:4000/importPath', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ selectedFile })
+        });
+        console.log(promise)
+        promise.then(event => {
+            if (event.status === 200) {
+                setAlert({ label: 'success', type: 'success' })
+                setImportModal(false)
+            } else {
+                setAlert({ label: `${event.statusText}`, type: 'danger' })
+            }
+        })
+
+        setSelectedFile(null)
+        setImportModal(false)
+
+        setTimeout(() => { window.location.reload(); }, 500);
+    }
+
+    function handleImportModal() {
+        setImportModal(true)
+    }
+    function handleCloseImport() {
+        setImportModal(false)
+    }
+
     function handleExport() {
         console.log("yay export")
 
@@ -62,24 +101,7 @@ export const SeasonPassStuff = () => {
             phoneNum: e.target.value
         })
     }
-    const handleSectionChange = e => {
-        setFormData({
-            ...formData,
-            section: e.target.value
-        })
-    }
-    const handleRowChange = e => {
-        setFormData({
-            ...formData,
-            row: e.target.value
-        })
-    }
-    const handleSeatChange = e => {
-        setFormData({
-            ...formData,
-            seatNum: e.target.value
-        })
-    }
+
     const onFormSubmit = (e) => {
         e.preventDefault()
         if (!formData.name) {
@@ -130,9 +152,8 @@ export const SeasonPassStuff = () => {
         )
         handleClose()
         setTimeout(() => { window.location.reload(); }, 500);
-
-
     }
+
 
 
     if (data) {
@@ -146,7 +167,7 @@ export const SeasonPassStuff = () => {
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
                         }} // send file path
-                            onClick={handleExport}>
+                            onClick={handleImportModal}>
                             Import Data
                         </Button>
                         <Button className='ms-2 p-2' style={{
@@ -229,23 +250,36 @@ export const SeasonPassStuff = () => {
 
                             </Row>
                             <Row>
-                                <Form.Group as={Col} controlId="dateValue">
+                                <Form.Group as={Col} controlId="sectionValue">
                                     <Form.Label>Section</Form.Label>
-                                    <Form.Control type='text' required value={formData.section} onChange={handleSectionChange} />
+                                    <Form.Control plaintext readOnly defaultValue={formData.section} />
                                 </Form.Group>
-                                <Form.Group as={Col} controlId="dateValue">
+                                <Form.Group as={Col} controlId="rowValue">
                                     <Form.Label>Row</Form.Label>
-                                    <Form.Control type='text' required value={formData.row} onChange={handleRowChange} />
+                                    <Form.Control plaintext readOnly defaultValue={formData.row} />
                                 </Form.Group>
-                                <Form.Group as={Col} controlId="dateValue">
+                                <Form.Group as={Col} controlId="seatValue">
                                     <Form.Label>Seat #</Form.Label>
-                                    <Form.Control type='text' required value={formData.seatNum} onChange={handleSeatChange} />
+                                    <Form.Control plaintext readOnly defaultValue={formData.seatNum} />
                                 </Form.Group>
                             </Row>
-                            <Button className='mt-2' variant="primary" type="submit" >
+                            <Button className='mt-2' variant="success" type="submit" >
                                 Submit
                             </Button>
 
+                        </Form>
+                    </Modal.Body>
+                </Modal>
+                <Modal show={importModal} onHide={handleCloseImport}>
+                    <Modal.Header closeButton></Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={handleImportSubmit}>
+                            <Form.Group controlId="formFile">
+                                <Form.Label>Select a file</Form.Label>
+                                <Form.Control type='file' accept='.csv,.json' onChange={handleFileChange}></Form.Control>
+                                <Form.Text className='text-muted'>Only CSV and JSON are allowed</Form.Text>
+                            </Form.Group>
+                            <Button type='submit' variant='success' disabled={!selectedFile}>Submit</Button>
                         </Form>
                     </Modal.Body>
                 </Modal>
@@ -299,7 +333,6 @@ export const SeasonPassStuff = () => {
     }
 
 }
-
 function getTicketStatusText(statusInt) {
     switch (statusInt) {
         case 0:
