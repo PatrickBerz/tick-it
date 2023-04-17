@@ -141,14 +141,13 @@ export const SeasonPassStuff = () => {
             <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
 
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
-                    <div className='d-flex mb-2'>
-                        <Button className=' p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} // send file path
-                            onClick={handleExport}>
-                            Import Data
-                        </Button>
+                    <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>                        <Button className=' p-2' style={{
+                        borderColor: '#FF4057',
+                        backgroundColor: '#FF4057',
+                    }} // send file path
+                        onClick={handleExport}>
+                        Import Data
+                    </Button>
                         <Button className='ms-2 p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -165,35 +164,37 @@ export const SeasonPassStuff = () => {
                             Back
                         </Button>
                     </div>
-                    <Table bordered responsive striped hover variant='dark' size='sm' style={{ maxHeight: '70%' }}>
-                        <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={5}>Season Pass Holders</th></tr></thead>
-                        <tbody style={{ fontSize: '20px', color: "white" }}>
-                            <tr>
-                                <th >Name</th>
-                                <th >Address</th>
-                                <th>Phone #</th>
-                                <th>Seat</th>
-                                <th>Options</th>
-                            </tr>
-
-
-                            {data.map((item, index) => (
-                                <tr key={index} style={{ alignItems: 'center' }}>
-                                    <td >{item.name}</td>
-                                    <td>{item.address}</td>
-                                    <td >{item.phoneNum}</td>
-                                    <td>{item.seatAssignment.section} {item.seatAssignment.row}{item.seatAssignment.seatNum}</td>
-                                    <td style={{ textAlign: 'center' }}>
-                                        <Button
-                                            size='sm'
-                                            onClick={() => { handleItemEdit(item) }}>
-                                            Edit
-                                        </Button>
-                                    </td>
+                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
+                        <Table bordered responsive striped hover variant='dark' size='sm' style={{ maxHeight: '70%' }}>
+                            <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={5}>Season Pass Holders</th></tr></thead>
+                            <tbody style={{ fontSize: '20px', color: "white" }}>
+                                <tr>
+                                    <th >Name</th>
+                                    <th >Address</th>
+                                    <th>Phone #</th>
+                                    <th>Seat</th>
+                                    <th>Options</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </Table>
+
+
+                                {data.map((item, index) => (
+                                    <tr key={index} style={{ alignItems: 'center' }}>
+                                        <td >{item.name}</td>
+                                        <td>{item.address}</td>
+                                        <td >{item.phoneNum}</td>
+                                        <td>{item.seatAssignment.section} {item.seatAssignment.row}{item.seatAssignment.seatNum}</td>
+                                        <td style={{ textAlign: 'center' }}>
+                                            <Button
+                                                size='sm'
+                                                onClick={() => { handleItemEdit(item) }}>
+                                                Edit
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </div>
                 </Stack>
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
