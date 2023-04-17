@@ -972,7 +972,97 @@
     </g>
   </g>
   <path id="PIT_00000067917678202470743610000017674580857525008040_" class="st17"/>
-  <g id="LOBAL4">
+  <g id="Balcony5">
+    <g id="A">
+      <circle class="st18 seat" id="LOBAL5-A-6" cx="622.1" cy="688.4" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-A-5" cx="612.3" cy="693.9" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-A-4" cx="601.3" cy="698.9" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-A-3" cx="589.4" cy="703.5" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-A-2" cx="577.1" cy="707.2" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-A-1" cx="564.8" cy="710" r="4"/>
+    </g>
+    <g id="B">
+      <circle class="st18 seat" id="LOBAL5-B-6" cx="623.1" cy="703.2" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-B-5" cx="613.4" cy="708.7" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-B-4" cx="602.3" cy="713.7" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-B-3" cx="590.4" cy="718.3" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-B-2" cx="578.1" cy="722" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-B-1" cx="565.8" cy="724.8" r="4"/>
+    </g>
+    <g id="C">
+      <circle class="st18 seat" id="LOBAL5-C-6" cx="623.1" cy="719.2" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-C-5" cx="613.4" cy="724.7" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-C-4" cx="602.3" cy="729.8" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-C-3" cx="590.4" cy="734.3" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-C-2" cx="578.1" cy="738" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-C-1" cx="565.8" cy="740.8" r="4"/>
+    </g>
+    <g id="D">
+      <circle class="st18 seat" id="LOBAL5-D-6" cx="623.5" cy="735.9" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-D-5" cx="613.8" cy="741.4" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-D-4" cx="602.7" cy="746.4" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-D-3" cx="590.8" cy="751" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-D-2" cx="578.5" cy="754.7" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-D-1" cx="566.2" cy="757.5" r="4"/>
+    </g>
+    <g id="E">
+      <circle class="st18 seat" id="LOBAL5-E-6" cx="623.1" cy="750.7" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-E-5" cx="613.4" cy="756.2" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-E-4" cx="602.3" cy="761.2" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-E-3" cx="590.4" cy="765.8" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-E-2" cx="578.1" cy="769.5" r="4"/>
+      <circle class="st18 seat" id="LOBAL5-E-1" cx="565.8" cy="772.3" r="4"/>
+    </g>
+    <g id="F">
+      <circle class="st18 seat accessible" id="LOBAL5-F-6" cx="623.5" cy="774.2" r="4"/>
+      <circle class="st18 seat accessible" id="LOBAL5-F-5" cx="613.8" cy="779.6" r="4"/>
+      <circle class="st18 seat accessible" id="LOBAL5-F-4" cx="602.7" cy="784.7" r="4"/>
+      <circle class="st18 seat accessible" id="LOBAL5-F-3" cx="590.8" cy="789.2" r="4"/>
+      <circle class="st18 seat accessible" id="LOBAL5-F-2" cx="578.5" cy="793" r="4"/>
+      <circle class="st18 seat accessible" id="LOBAL5-F-1" cx="566.2" cy="795.8" r="4"/>
+    </g>
+    <g id="K">
+      <circle class="st18 seat" id="UPBAL5-E-6" cx="614.5" cy="887.8" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-E-5" cx="604.8" cy="891.2" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-E-4" cx="595.1" cy="894.3" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-E-3" cx="585.2" cy="896.9" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-E-2" cx="575.2" cy="899.2" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-E-1" cx="565.1" cy="901.3" r="4"/>
+    </g>
+    <g id="J">
+      <circle class="st18 seat" id="UPBAL5-D-6" cx="614.5" cy="876.2" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-D-5" cx="604.8" cy="879.6" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-D-4" cx="595.1" cy="882.7" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-D-3" cx="585.2" cy="885.3" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-D-2" cx="575.2" cy="887.7" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-D-1" cx="565.1" cy="889.7" r="4"/>
+    </g>
+    <g id="I">
+      <circle class="st18 seat" id="UPBAL5-C-6" cx="614.5" cy="863.6" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-C-5" cx="604.8" cy="867.1" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-C-4" cx="595.1" cy="870.1" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-C-3" cx="585.2" cy="872.8" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-C-2" cx="575.2" cy="875.1" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-C-1" cx="565.1" cy="877.1" r="4"/>
+    </g>
+    <g id="H">
+      <circle class="st18 seat" id="UPBAL5-B-6" cx="615.5" cy="850.4" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-B-5" cx="605.8" cy="853.8" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-B-4" cx="596.1" cy="856.9" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-B-3" cx="586.2" cy="859.5" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-B-2" cx="576.2" cy="861.8" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-B-1" cx="566.1" cy="863.8" r="4"/>
+    </g>
+    <g id="G">
+      <circle class="st18 seat" id="UPBAL5-A-6" cx="616.2" cy="836.9" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-A-5" cx="606.6" cy="840.3" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-A-4" cx="596.8" cy="843.4" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-A-3" cx="586.9" cy="846" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-A-2" cx="576.9" cy="848.4" r="4"/>
+      <circle class="st18 seat" id="UPBAL5-A-1" cx="566.8" cy="850.4" r="4"/>
+    </g>
+  </g>
+  <g id="Balcony4">
     <g id="A">
       <circle class="st18 seat" id="LOBAL4-A-10" cx="549.6" cy="715.2" r="4"/>
       <circle class="st18 seat" id="LOBAL4-A-9" cx="539.2" cy="719.8" r="4"/>
@@ -1045,101 +1135,7 @@
       <circle class="st18 seat" id="LOBAL4-C-2" cx="462.1" cy="767.9" r="4"/>
       <circle class="st18 seat" id="LOBAL4-C-1" cx="450.8" cy="768.9" r="4"/>
     </g>
-  </g>
-  <g id="LOBAL5">
-    <g id="A">
-      <circle class="st18 seat" id="LOBAL5-A-6" cx="622.1" cy="688.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-A-5" cx="612.3" cy="693.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-A-4" cx="601.3" cy="698.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-A-3" cx="589.4" cy="703.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-A-2" cx="577.1" cy="707.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-A-1" cx="564.8" cy="710" r="4"/>
-    </g>
-    <g id="B">
-      <circle class="st18 seat" id="LOBAL5-B-6" cx="623.1" cy="703.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-B-5" cx="613.4" cy="708.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-B-4" cx="602.3" cy="713.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-B-3" cx="590.4" cy="718.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-B-2" cx="578.1" cy="722" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-B-1" cx="565.8" cy="724.8" r="4"/>
-    </g>
-    <g id="C">
-      <circle class="st18 seat" id="LOBAL5-C-6" cx="623.1" cy="719.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-C-5" cx="613.4" cy="724.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-C-4" cx="602.3" cy="729.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-C-3" cx="590.4" cy="734.3" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-C-2" cx="578.1" cy="738" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-C-1" cx="565.8" cy="740.8" r="4"/>
-    </g>
-    <g id="D">
-      <circle class="st18 seat" id="LOBAL5-D-6" cx="623.5" cy="735.9" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-D-5" cx="613.8" cy="741.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-D-4" cx="602.7" cy="746.4" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-D-3" cx="590.8" cy="751" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-D-2" cx="578.5" cy="754.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-D-1" cx="566.2" cy="757.5" r="4"/>
-    </g>
-    <g id="E">
-      <circle class="st18 seat" id="LOBAL5-E-6" cx="623.1" cy="750.7" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-E-5" cx="613.4" cy="756.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-E-4" cx="602.3" cy="761.2" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-E-3" cx="590.4" cy="765.8" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-E-2" cx="578.1" cy="769.5" r="4"/>
-      <circle class="st18 seat" id="LOBAL5-E-1" cx="565.8" cy="772.3" r="4"/>
-    </g>
-    <g id="F">
-      <circle class="st18 seat accessible" id="LOBAL5-F-6" cx="623.5" cy="774.2" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL5-F-5" cx="613.8" cy="779.6" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL5-F-4" cx="602.7" cy="784.7" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL5-F-3" cx="590.8" cy="789.2" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL5-F-2" cx="578.5" cy="793" r="4"/>
-      <circle class="st18 seat accessible" id="LOBAL5-F-1" cx="566.2" cy="795.8" r="4"/>
-    </g>
-  </g>
-  <g id="UPBAL5">
-    <g id="E">
-      <circle class="st18 seat" id="UPBAL5-E-6" cx="614.5" cy="887.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-E-5" cx="604.8" cy="891.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-E-4" cx="595.1" cy="894.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-E-3" cx="585.2" cy="896.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-E-2" cx="575.2" cy="899.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-E-1" cx="565.1" cy="901.3" r="4"/>
-    </g>
-    <g id="D">
-      <circle class="st18 seat" id="UPBAL5-D-6" cx="614.5" cy="876.2" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-D-5" cx="604.8" cy="879.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-D-4" cx="595.1" cy="882.7" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-D-3" cx="585.2" cy="885.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-D-2" cx="575.2" cy="887.7" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-D-1" cx="565.1" cy="889.7" r="4"/>
-    </g>
-    <g id="C">
-      <circle class="st18 seat" id="UPBAL5-C-6" cx="614.5" cy="863.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-C-5" cx="604.8" cy="867.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-C-4" cx="595.1" cy="870.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-C-3" cx="585.2" cy="872.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-C-2" cx="575.2" cy="875.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-C-1" cx="565.1" cy="877.1" r="4"/>
-    </g>
-    <g id="B">
-      <circle class="st18 seat" id="UPBAL5-B-6" cx="615.5" cy="850.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-B-5" cx="605.8" cy="853.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-B-4" cx="596.1" cy="856.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-B-3" cx="586.2" cy="859.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-B-2" cx="576.2" cy="861.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-B-1" cx="566.1" cy="863.8" r="4"/>
-    </g>
-    <g id="A">
-      <circle class="st18 seat" id="UPBAL5-A-6" cx="616.2" cy="836.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-A-5" cx="606.6" cy="840.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-A-4" cx="596.8" cy="843.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-A-3" cx="586.9" cy="846" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-A-2" cx="576.9" cy="848.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL5-A-1" cx="566.8" cy="850.4" r="4"/>
-    </g>
-  </g>
-  <g id="UPBAL4">
-    <g id="E">
+    <g id="K">
       <circle class="st18 seat" id="UPBAL4-E-6" cx="549" cy="904.6" r="4"/>
       <circle class="st18 seat" id="UPBAL4-E-5" cx="537.5" cy="907.4" r="4"/>
       <circle class="st18 seat" id="UPBAL4-E-4" cx="525.9" cy="909.8" r="4"/>
@@ -1147,7 +1143,7 @@
       <circle class="st18 seat" id="UPBAL4-E-2" cx="502.5" cy="913.6" r="4"/>
       <circle class="st18 seat" id="UPBAL4-E-1" cx="490.7" cy="914.7" r="4"/>
     </g>
-    <g id="D">
+    <g id="J">
       <circle class="st18 seat" id="UPBAL4-D-6" cx="549" cy="892.2" r="4"/>
       <circle class="st18 seat" id="UPBAL4-D-5" cx="537.5" cy="895" r="4"/>
       <circle class="st18 seat" id="UPBAL4-D-4" cx="525.9" cy="897.4" r="4"/>
@@ -1155,7 +1151,7 @@
       <circle class="st18 seat" id="UPBAL4-D-2" cx="502.5" cy="901.2" r="4"/>
       <circle class="st18 seat" id="UPBAL4-D-1" cx="490.7" cy="902.3" r="4"/>
     </g>
-    <g id="C">
+    <g id="I">
       <circle class="st18 seat" id="UPBAL4-C-5" cx="549.1" cy="880.2" r="4"/>
       <circle class="st18 seat" id="UPBAL4-C-5" cx="537.6" cy="883" r="4"/>
       <circle class="st18 seat" id="UPBAL4-C-4" cx="526" cy="885.4" r="4"/>
@@ -1163,7 +1159,7 @@
       <circle class="st18 seat" id="UPBAL4-C-2" cx="502.6" cy="889.1" r="4"/>
       <circle class="st18 seat" id="UPBAL4-C-1" cx="490.8" cy="890.3" r="4"/>
     </g>
-    <g id="B">
+    <g id="H">
       <circle class="st18 seat" id="UPBAL4-B-6" cx="549" cy="867" r="4"/>
       <circle class="st18 seat" id="UPBAL4-B-5" cx="537.5" cy="869.7" r="4"/>
       <circle class="st18 seat" id="UPBAL4-B-4" cx="525.9" cy="872.2" r="4"/>
@@ -1171,7 +1167,7 @@
       <circle class="st18 seat" id="UPBAL4-B-2" cx="502.5" cy="875.9" r="4"/>
       <circle class="st18 seat" id="UPBAL4-B-1" cx="490.7" cy="877.1" r="4"/>
     </g>
-    <g id="A">
+    <g id="G">
       <circle class="st18 seat" id="UPBAL4-A-6" cx="549" cy="854.5" r="4"/>
       <circle class="st18 seat" id="UPBAL4-A-5" cx="537.5" cy="857.3" r="4"/>
       <circle class="st18 seat" id="UPBAL4-A-4" cx="525.9" cy="859.8" r="4"/>
@@ -1180,7 +1176,7 @@
       <circle class="st18 seat" id="UPBAL4-A-1" cx="490.7" cy="864.7" r="4"/>
     </g>
   </g>
-  <g id="LOBAL1">
+  <g id="Balcony1">
     <g id="A">
       <circle class="st18 seat" id="LOBAL1-A-1" cx="137.4" cy="688.2" r="4"/>
       <circle class="st18 seat" id="LOBAL1-A-2" cx="147.1" cy="693.6" r="3.8"/>
@@ -1229,8 +1225,48 @@
       <circle class="st18 seat accessible" id="LOBAL1-F-5" cx="180.9" cy="792.7" r="3.8"/>
       <circle class="st18 seat accessible" id="LOBAL1-F-6" cx="193.2" cy="795.5" r="4"/>
     </g>
+    <g id="K">
+      <circle class="st18 seat" id="UPBAL1-E-1" cx="144.9" cy="887.5" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-E-2" cx="154.6" cy="891" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-E-3" cx="164.4" cy="894" r="3.9"/>
+      <circle class="st18 seat" id="UPBAL1-E-4" cx="174.3" cy="896.7" r="3.9"/>
+      <circle class="st18 seat" id="UPBAL1-E-5" cx="184.2" cy="899" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-E-6" cx="194.3" cy="901" r="4"/>
+    </g>
+    <g id="J">
+      <circle class="st18 seat" id="UPBAL1-D-1" cx="144.9" cy="875.9" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-D-2" cx="154.6" cy="879.4" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-D-3" cx="164.4" cy="882.4" r="3.9"/>
+      <circle class="st18 seat" id="UPBAL1-D-4" cx="174.3" cy="885.1" r="3.9"/>
+      <circle class="st18 seat" id="UPBAL1-D-5" cx="184.2" cy="887.4" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-D-6" cx="194.3" cy="889.4" r="4"/>
+    </g>
+    <g id="I">
+      <circle class="st18 seat" id="UPBAL1-C-1" cx="144.9" cy="863.3" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-C-2" cx="154.6" cy="866.8" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-C-3" cx="164.4" cy="869.8" r="3.9"/>
+      <circle class="st18 seat" id="UPBAL1-C-4" cx="174.3" cy="872.5" r="3.9"/>
+      <circle class="st18 seat" id="UPBAL1-C-5" cx="184.2" cy="874.8" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-C-6" cx="194.3" cy="876.8" r="4"/>
+    </g>
+    <g id="H">
+      <circle class="st18 seat" id="UPBAL1-B-1" cx="143.9" cy="850.1" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-B-2" cx="153.6" cy="853.5" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-B-3" cx="163.4" cy="856.6" r="3.9"/>
+      <circle class="st18 seat" id="UPBAL1-B-4" cx="173.3" cy="859.2" r="3.9"/>
+      <circle class="st18 seat" id="UPBAL1-B-5" cx="183.2" cy="861.6" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-B-6" cx="193.3" cy="863.6" r="4"/>
+    </g>
+    <g id="G">
+      <circle class="st18 seat" id="UPBAL1-A-1" cx="143.2" cy="836.6" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-A-2" cx="152.9" cy="840.1" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-A-3" cx="162.6" cy="843.1" r="3.9"/>
+      <circle class="st18 seat" id="UPBAL1-A-4" cx="172.5" cy="845.8" r="3.9"/>
+      <circle class="st18 seat" id="UPBAL1-A-5" cx="182.5" cy="848.1" r="4"/>
+      <circle class="st18 seat" id="UPBAL1-A-6" cx="192.6" cy="850.1" r="4"/>
+    </g>
   </g>
-  <g id="LOBAL2">
+  <g id="Balcony2">
     <g id="A">
       <circle class="st18 seat" id="LOBAL2-A-1" cx="209.8" cy="714.9" r="4"/>
       <circle class="st18 seat" id="LOBAL2-A-2" cx="220.2" cy="719.5" r="3.9"/>
@@ -1303,51 +1339,7 @@
       <circle class="st18 seat" id="LOBAL2-C-9" cx="297.3" cy="767.6" r="3.9"/>
       <circle class="st18 seat" id="LOBAL2-C-10" cx="308.6" cy="768.6" r="4"/>
     </g>
-  </g>
-  <g id="UPBAL1">
-    <g id="E">
-      <circle class="st18 seat" id="UPBAL1-E-1" cx="144.9" cy="887.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-E-2" cx="154.6" cy="891" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-E-3" cx="164.4" cy="894" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-E-4" cx="174.3" cy="896.7" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-E-5" cx="184.2" cy="899" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-E-6" cx="194.3" cy="901" r="4"/>
-    </g>
-    <g id="D">
-      <circle class="st18 seat" id="UPBAL1-D-1" cx="144.9" cy="875.9" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-D-2" cx="154.6" cy="879.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-D-3" cx="164.4" cy="882.4" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-D-4" cx="174.3" cy="885.1" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-D-5" cx="184.2" cy="887.4" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-D-6" cx="194.3" cy="889.4" r="4"/>
-    </g>
-    <g id="C">
-      <circle class="st18 seat" id="UPBAL1-C-1" cx="144.9" cy="863.3" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-C-2" cx="154.6" cy="866.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-C-3" cx="164.4" cy="869.8" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-C-4" cx="174.3" cy="872.5" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-C-5" cx="184.2" cy="874.8" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-C-6" cx="194.3" cy="876.8" r="4"/>
-    </g>
-    <g id="B">
-      <circle class="st18 seat" id="UPBAL1-B-1" cx="143.9" cy="850.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-B-2" cx="153.6" cy="853.5" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-B-3" cx="163.4" cy="856.6" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-B-4" cx="173.3" cy="859.2" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-B-5" cx="183.2" cy="861.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-B-6" cx="193.3" cy="863.6" r="4"/>
-    </g>
-    <g id="A">
-      <circle class="st18 seat" id="UPBAL1-A-1" cx="143.2" cy="836.6" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-A-2" cx="152.9" cy="840.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-A-3" cx="162.6" cy="843.1" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-A-4" cx="172.5" cy="845.8" r="3.9"/>
-      <circle class="st18 seat" id="UPBAL1-A-5" cx="182.5" cy="848.1" r="4"/>
-      <circle class="st18 seat" id="UPBAL1-A-6" cx="192.6" cy="850.1" r="4"/>
-    </g>
-  </g>
-  <g id="UPBAL2">
-    <g id="E">
+    <g id="K">
       <circle class="st18 seat" id="UPBAL2-E-1" cx="210.4" cy="904.3" r="4"/>
       <circle class="st18 seat" id="UPBAL2-E-2" cx="221.2" cy="906.8" r="4"/>
       <circle class="st18 seat" id="UPBAL2-E-3" cx="232" cy="909" r="4"/>
@@ -1359,7 +1351,7 @@
       <circle class="st18 seat" id="UPBAL2-E-9" cx="297.3" cy="918.4" r="4"/>
       <circle class="st18 seat" id="UPBAL2-E-10" cx="308.3" cy="919.4" r="4"/>
     </g>
-    <g id="D">
+    <g id="J">
       <circle class="st18 seat" id="UPBAL2-D-1" cx="210.4" cy="891.9" r="4"/>
       <circle class="st18 seat" id="UPBAL2-D-2" cx="221.2" cy="894.3" r="4"/>
       <circle class="st18 seat" id="UPBAL2-D-3" cx="232" cy="896.4" r="4"/>
@@ -1371,7 +1363,7 @@
       <circle class="st18 seat" id="UPBAL2-D-9" cx="297.3" cy="905.1" r="4"/>
       <circle class="st18 seat" id="UPBAL2-D-10" cx="308.3" cy="906.1" r="4"/>
     </g>
-    <g id="C">
+    <g id="I">
       <circle class="st18 seat" id="UPBAL2-C-1" cx="210.3" cy="879.9" r="4"/>
       <circle class="st18 seat" id="UPBAL2-C-2" cx="221.1" cy="882.2" r="4"/>
       <circle class="st18 seat" id="UPBAL2-C-3" cx="231.9" cy="884.2" r="4"/>
@@ -1383,7 +1375,7 @@
       <circle class="st18 seat" id="UPBAL2-C-9" cx="297.3" cy="892.4" r="4"/>
       <circle class="st18 seat" id="UPBAL2-C-10" cx="308.3" cy="893.5" r="4"/>
     </g>
-    <g id="B">
+    <g id="H">
       <circle class="st18 seat" id="UPBAL2-B-1" cx="210.4" cy="866.7" r="4"/>
       <circle class="st18 seat" id="UPBAL2-B-2" cx="221" cy="869.3" r="4"/>
       <circle class="st18 seat" id="UPBAL2-B-3" cx="231.8" cy="871.6" r="4"/>
@@ -1395,7 +1387,7 @@
       <circle class="st18 seat" id="UPBAL2-B-9" cx="297.4" cy="880.3" r="4"/>
       <circle class="st18 seat" id="UPBAL2-B-10" cx="308.3" cy="880.8" r="4"/>
     </g>
-    <g id="A">
+    <g id="G">
       <circle class="st18 seat" id="UPBAL2-A-1" cx="210.4" cy="854.3" r="4"/>
       <circle class="st18 seat" id="UPBAL2-A-2" cx="221.1" cy="856.8" r="4"/>
       <circle class="st18 seat" id="UPBAL2-A-3" cx="231.9" cy="859.1" r="4"/>
@@ -1408,7 +1400,7 @@
       <circle class="st18 seat" id="UPBAL2-A-10" cx="308.3" cy="868.4" r="4"/>
     </g>
   </g>
-  <g id="LOBAL3">
+  <g id="Balcony3">
     <g id="A">
       <circle class="st18 seat" id="LOBAL3-A-10" cx="435.8" cy="741.7" r="4"/>
       <circle class="st18 seat" id="LOBAL3-A-9" cx="423.5" cy="743.8" r="4"/>
@@ -1479,9 +1471,7 @@
       <circle class="st18 seat" id="LOBAL3-C-2" cx="336.6" cy="772.9" r="4"/>
       <circle class="st18 seat" id="LOBAL3-C-1" cx="324.3" cy="771.2" r="4"/>
     </g>
-  </g>
-  <g id="UPBAL3">
-    <g id="A">
+    <g id="G">
       <circle class="st18 seat" id="UPBAL3-A-10" cx="435.9" cy="867.6" r="4"/>
       <circle class="st18 seat" id="UPBAL3-A-9" cx="423.7" cy="869.7" r="4"/>
       <ellipse class="st18 seat" id="UPBAL3-A-8" cx="411.3" cy="871.1" rx="4" ry="4"/>
@@ -1493,7 +1483,7 @@
       <path class="st18 seat" id="UPBAL3-A-2" d="M340.3,866.9c-1-1.9-3.5-2.7-5.4-1.6c-1.9,1-2.7,3.5-1.6,5.4c1,1.9,3.5,2.7,5.4,1.6 C340.6,871.3,341.4,868.8,340.3,866.9z"/>
       <path class="st18 seat" id="UPBAL3-A-1" d="M328,865.6c-1-2-3.4-2.7-5.4-1.7s-2.7,3.4-1.7,5.4s3.4,2.7,5.4,1.7C328.2,870,329,867.5,328,865.6z"/>
     </g>
-    <g id="B">
+    <g id="H">
       <circle class="st18 seat" id="UPBAL3-B-10" cx="436.3" cy="881.5" r="4"/>
       <circle class="st18 seat" id="UPBAL3-B-9" cx="424" cy="883.6" r="4"/>
       <circle class="st18 seat" id="UPBAL3-B-8" cx="411.7" cy="884.8" r="4"/>
@@ -1505,7 +1495,7 @@
       <circle class="st18 seat" id="UPBAL3-B-2" cx="337.2" cy="883.2" r="4"/>
       <circle class="st18 seat" id="UPBAL3-B-1" cx="324.8" cy="882.3" r="4"/>
     </g>
-    <g id="D">
+    <g id="J">
       <circle class="st18 seat" id="UPBAL3-D-10" cx="436.3" cy="907.2" r="4"/>
       <circle class="st18 seat" id="UPBAL3-D-9" cx="424.1" cy="909.5" r="4"/>
       <circle class="st18 seat" id="UPBAL3-D-8" cx="411.7" cy="910.9" r="4"/>
@@ -1517,7 +1507,7 @@
       <circle class="st18 seat" id="UPBAL3-D-2" cx="337.2" cy="909.5" r="4"/>
       <circle class="st18 seat" id="UPBAL3-D-1" cx="324.8" cy="908" r="4"/>
     </g>
-    <g id="E">
+    <g id="K">
       <circle class="st18 seat" id="UPBAL3-E-10" cx="436.3" cy="920.2" r="4"/>
       <circle class="st18 seat" id="UPBAL3-E-9" cx="423.9" cy="921.6" r="4"/>
       <circle class="st18 seat" id="UPBAL3-E-8" cx="411.6" cy="922.5" r="4"/>
@@ -1529,7 +1519,7 @@
       <circle class="st18 seat" id="UPBAL3-E-2" cx="337.1" cy="922.2" r="4"/>
       <circle class="st18 seat" id="UPBAL3-E-1" cx="324.8" cy="921" r="4"/>
     </g>
-    <g id="C">
+    <g id="I">
       <circle class="st18 seat" id="UPBAL3-C-10" cx="435.9" cy="893.4" r="4"/>
       <circle class="st18 seat" id="UPBAL3-C-9" cx="423.7" cy="895.9" r="4"/>
       <circle class="st18 seat" id="UPBAL3-C-8" cx="411.4" cy="897.5" r="4"/>
