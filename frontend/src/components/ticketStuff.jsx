@@ -25,6 +25,13 @@ export const TicketStuff = () => {
         setShow(true)
     }
 
+    const handleStatusChange = e => {
+        setFormData({
+            ...formData,
+            status:  e.target.value
+        })
+    }
+
     const handleBackButton = () => {
         window.location.href = "/adminPage"
 
@@ -62,7 +69,7 @@ export const TicketStuff = () => {
         console.log(formData)
 
 
-        const promise = fetch('http://localhost:4000/holderUpdate', {
+        const promise = fetch('http://localhost:4000/statusUpdate', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify( formData)
@@ -77,12 +84,12 @@ export const TicketStuff = () => {
             }
         })
 
-        // setFormData(
-        //     {
-        //         confNum:'',
-        //         status: '',
-        //     }
-        // )
+        setFormData(
+            {
+                confNum:'',
+                status: '',
+            }
+        )
         handleClose()
         //setTimeout(() => { window.location.reload(); }, 500);
     }
@@ -163,7 +170,7 @@ export const TicketStuff = () => {
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="status">
                                     <Form.Label>Name</Form.Label>
-                                    <Form.Control type="number" min={0} max={3} value={formData.status} onChange={e => setFormData(e.target.value)} />
+                                    <Form.Control type="number" min={0} max={3} value={formData.status} onChange={handleStatusChange} />
                                 </Form.Group>
                                 <Form.Group as={Col}></Form.Group>
                             </Row>
