@@ -1,8 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Stack, Button, Alert, Table, Modal, FormGroup, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
-import DynamicTable from './tableComponent'
-import { key } from 'localforage'
+
 
 
 export const EventListings = () => {
@@ -299,9 +298,9 @@ export const EventListings = () => {
 
                             </Row>
                             <Row>
-                                <Form.Group as={Col} controlId="dateValue">
+                                <Form.Group as={Col} controlId="timeValue">
                                     <Form.Label>Date</Form.Label>
-                                    <Form.Control type='time' required placeholder="MM/DD/YYYY" value={formData.time} onChange={handleTimeChange} />
+                                    <Form.Control type='time' required value={formData.time} onChange={handleTimeChange} />
                                 </Form.Group>
                             </Row>
                             <Button variant="primary" type="submit" >
