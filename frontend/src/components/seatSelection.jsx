@@ -27,11 +27,11 @@ export const SeatSelection = () =>{
   * RETURN the react component containing the correct SVG, or otherwise an error statement
   */
   const loadVenueSVG = () =>{
-    if (state.venue == "Civic Center Playhouse"){
+    if (state.venue == "Playhouse"){
       return (
         <Playhouse style={{maxWidth:'100vh'}} onClick={handleClickMap} ref={playhouseRef} />
       )
-    } else if (state.venue == "Civic Center Concert Hall") {
+    } else if (state.venue == "Concert Hall") {
       return (
         <ConcertHall style={{maxWidth:'100vh'}} onClick={handleClickMap} ref={concertHallRef} />
       )
@@ -64,13 +64,23 @@ export const SeatSelection = () =>{
     // Concat a string with the section, row, num to create the seat id
     var thisSeatID = "";
     thisSeatID = thisSeatID.concat(thisSeatSection, "-", thisSeatRow, "-", thisSeatNum);
+    console.log("SEAT ID TO SEARCH SVG FOR: ", thisSeatID);
 
     // Do stuff to grab the OG SVG
-    const playhouseSvg = playhouseRef.current;
-    const seatElement = playhouseSvg.getElementById(thisSeatID);
-
-    // Mark this seat as taken
-    seatElement.classList.add("taken");
+    if (state.venue=="Playhouse"){
+      const playhouseSvg = playhouseRef.current;
+      const seatElement = playhouseSvg.getElementById(thisSeatID);
+      // Mark this seat as taken
+      seatElement.classList.add("taken");
+    } else if (state.venue=="Concert Hall") {
+      const concertHallSvg = concertHallRef.current;
+      const seatElement = concertHallSvg.getElementById(thisSeatID);
+      // Mark this seat as taken
+      seatElement.classList.add("taken");
+    } else {
+      //throw error
+      console.log("DANGER, Will Robinson");
+    }
   }
  }
  
@@ -165,9 +175,9 @@ export const SeatSelection = () =>{
       let currentPerformance =
       {
           performance: {
-              performanceName: "West Side Story",
-              venueName: "Concert Hall",
-              dateTime: "2023-04-05T04:36:35.456Z"
+              performanceName: state.event,
+              venueName: state.venue,
+              dateTime: state.datetime
           }
       }
   
@@ -185,6 +195,7 @@ export const SeatSelection = () =>{
       )
     }
     fetchData();
+    //setTimeout(() => { fetchData(); }, 500);*/
   }, []);
 
   /*

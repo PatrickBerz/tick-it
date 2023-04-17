@@ -188,19 +188,19 @@ export class System {
     public static findPerformance(perfToFind: Performance) {
         for (var index in this.shows) {
             for (var index2 in this.shows[index].getPerformances()) {
-                // console.log("IN LOOP")
-                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getPerformanceName()))
-                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getDateTime()))
-                // console.log(perfToFind.getDateTime())
-                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getVenueName()))
+                console.log("IN LOOP")
+                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getPerformanceName()))
+                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getDateTime()))
+                console.log(perfToFind.getDateTime())
+                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getVenueName()))
                 
-                // console.log("COMP SHOW")
-                // console.log(JSON.stringify(perfToFind.getPerformanceName()))
-                // console.log(JSON.stringify(perfToFind.getDateTime()))
-                // console.log(typeof(perfToFind.getDateTime()))
-                // console.log(JSON.stringify(perfToFind.getVenueName()))
+                console.log("COMP SHOW")
+                console.log(JSON.stringify(perfToFind.getPerformanceName()))
+                console.log(JSON.stringify(perfToFind.getDateTime()))
+                console.log(typeof(perfToFind.getDateTime()))
+                console.log(JSON.stringify(perfToFind.getVenueName()))
                 if (this.shows[index].getPerformances()[index2].equals(perfToFind)) {
-                    //console.log("FOUND THE PERFORMANCE TO DELETE")
+                    console.log("FOUND THE PERFORMANCE TO DELETE")
                     //this.shows[index].getPerformances().splice(+index2, 1);
                     return this.shows[index].getPerformances()[index2]
                 }
