@@ -105,7 +105,7 @@ export const PolicyStuff = () => {
 
 
 
-                    <div className='d-flex ' direction='horizontal' style={{ width: '70%', alignSelf: 'center' }}>
+                    <div className='d-flex ' style={{ width: '70%', alignSelf: 'center' }}>
 
                         <Button className='p-2' style={{
                             borderColor: '#FF4057',
