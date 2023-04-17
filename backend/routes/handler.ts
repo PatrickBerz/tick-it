@@ -225,7 +225,7 @@ router.post("/newPurchase", (req: any, res: any) => {
 
     //NOTE: This is SUPER ugly and probably O(N^2)
 
-    let newPurchase: Purchase = new Purchase(new Attendee(data.attendee.name, data.attendee.address, data.attendee.phoneNum))
+    /*let newPurchase: Purchase = new Purchase(new Attendee(data.attendee.name, data.attendee.address, data.attendee.phoneNum))
     newPurchase.setConfNum(ConfNum.getNum())
     let newTickets: Ticket[] = [];
     //Sys call to get performance from showName, venue name, dateTime
@@ -257,9 +257,10 @@ router.post("/newPurchase", (req: any, res: any) => {
             newPurchase.pickUpTickets()
             break;
         }
-    }
+    }*/
 
-    //Sys call to add purchase to list and reserialize
+    //Pass info into System so System can add the purchase and serialize the info again
+    System.createPurchase(new Attendee(data.attendee.name, data.attendee.address, data.attendee.phoneNum), data.tickets, data.dateTime);
 })
 
 router.post("/password", (req: any, res: any) => {
