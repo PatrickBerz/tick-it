@@ -33,8 +33,8 @@ export const PolicyStuff = () => {
         })
     }
 
-    const handleItemEdit = (item) => {
-        setFormData({venueName:item.confNum, sectionName:item.sectionName}) 
+    const handleItemEdit = (vName,item,index) => {
+        setFormData({venueName: vName, sectionName:item}) 
         setShow(true)
     };
 
@@ -88,7 +88,7 @@ export const PolicyStuff = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch('http://localhost:4000/purchaseData')
+            const response = await fetch('http://localhost:4000/venueDefaults')
             const newData = await response.json()
             console.log(JSON.stringify(newData))
             setData(newData)
@@ -143,10 +143,10 @@ export const PolicyStuff = () => {
                                 </tr>
 
 
-                                {data.map((item, index) => (
+                                {Object.keys(data[0]).map((item, index) => (
                                     <tr key={index} >
-                                        <td >{item.confNum}</td>
-                                        <td>{item.purchaser.name}</td>
+                                        <td >{"TEST"}</td>
+                                        <td>{"TEST2"}</td>
                                         <td style={{ textAlign: 'center' }}>
                                             <Button
                                                 size='sm'
@@ -168,14 +168,14 @@ export const PolicyStuff = () => {
                                 </tr>
 
 
-                                {data.map((item, index) => (
+                                {Object.keys(data[0]).map((item, index) => (
                                     <tr key={index} >
-                                        <td >{item.confNum}</td>
-                                        <td>{item.purchaser.name}</td>
+                                        <td >{item}</td>
+                                        <td>{data[0][item]}</td>
                                         <td style={{ textAlign: 'center' }}>
                                             <Button
                                                 size='sm'
-                                                onClick={() => { handleItemEdit(item) }}>
+                                                onClick={() => { handleItemEdit("Concert Hall",item,index) }}>
                                                 Edit
                                             </Button>
                                         </td>

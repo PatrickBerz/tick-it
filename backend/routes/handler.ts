@@ -74,6 +74,7 @@ router.post("/newSeasonTicket", (req: any, res: any) => {
 //handle post request to update default price of a section of a venue
 router.post("/newDefault", (req: any, res: any) => {
 
+    console.log("Got a new default")
     // parse defaults. Need venue name and assoc. array of section name to new default price
     // {
     //     "venueName": "Playhouse",
@@ -84,6 +85,7 @@ router.post("/newDefault", (req: any, res: any) => {
     //                  ]
     // }
     let data = req.body.newPrice
+    console.log(JSON.stringify(req.body))
 
     let venue: Venue;
     // if(data.venueName === "Concert Hall") {
@@ -99,8 +101,12 @@ router.post("/newDefault", (req: any, res: any) => {
         if (section.getSectionNum() === data.section) {
             section.setDefaultPrice(data.sectionPrice)
             console.log("Set new default price of: " + data.sectionPrice + " for: " + data.section)
+            res.status(200)
+            res.end()
         }
     })
+    res.status(500)
+    res.end()
 
     //call Sys class to get old venue of same name
     //Replace declaration with Sys function call
@@ -124,6 +130,20 @@ router.post("/newDefault", (req: any, res: any) => {
 router.get("/venueDefaults", (req:any, res:any) => {
 
     let venueList = System.getVenues()
+    let venueDefaults: any[] = []
+
+    let concertHall: {[k: string]: any} = {}
+    venueList[0].getSections().forEach ((section) => {
+        concertHall[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
+    })
+
+    let playHouse: {[k: string]: any} = {
+        "test": 123
+    }
+
+    venueDefaults.push(concertHall)
+    venueDefaults.push(playHouse)
+    res.json(venueDefaults)
 })
 
 router.get("/showData", (req: any, res: any) => {
