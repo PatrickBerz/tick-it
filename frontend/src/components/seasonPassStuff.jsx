@@ -44,7 +44,7 @@ export const SeasonPassStuff = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0]
         if (file) {
-            if (file.type === 'text/csv' || file.type === 'application/json'){
+            if (file.type === 'text/csv' || file.type === 'application/json') {
                 const reader = new FileReader()
                 reader.readAsText(file)
                 reader.onload = (e) => {
@@ -53,11 +53,11 @@ export const SeasonPassStuff = () => {
 
                     setFileContents(contents)
                 }
-            }else {
+            } else {
                 setImportAlert("Please upload valid file type")
             }
         }
-        
+
     }
     const handleImportSubmit = (e) => {
         e.preventDefault()
@@ -287,6 +287,11 @@ export const SeasonPassStuff = () => {
                 </Modal>
                 <Modal show={importModal} onHide={handleCloseImport}>
                     <Modal.Header closeButton></Modal.Header>
+                    {alert &&
+                        <Alert style={{ maxWidth: '200px', marginTop: 5, paddingTop: '2px', maxHeight: '30px', }} key={alert.type} variant={alert.type}>
+                            {alert.label}
+                        </Alert>
+                    }
                     <Modal.Body>
                         <Form onSubmit={handleImportSubmit}>
                             <Form.Group controlId="formFile">
