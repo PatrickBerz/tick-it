@@ -5,9 +5,11 @@ export const SeasonPassStuff = () => {
     const [data, setData] = useState(null);
     const [showModal, setShow] = useState(false)
     const [alert, setAlert] = useState(undefined);
+    const [importAlert, setImportAlert] = useState(undefined);
+
     const [formError, setFormError] = useState(null)
     const [importModal, setImportModal] = useState(false)
-    const [selectedFile, setSelectedFile] = useState(null)
+    const [fileContents, setFileContents] = useState(null)
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/seasonTickets')
@@ -40,31 +42,44 @@ export const SeasonPassStuff = () => {
 
     }
     const handleFileChange = (e) => {
-        const file = e.target.files
-        console.log(file)
-        setSelectedFile(file)
+        const file = e.target.files[0]
+        if (file) {
+            if (file.type === 'text/csv' || file.type === 'application/json'){
+                const reader = new FileReader()
+                reader.readAsText(file)
+                reader.onload = (e) => {
+                    const contents = e.target.result
+                    console.log(contents)
+
+                    setFileContents(contents)
+                }
+            }else {
+                setImportAlert("Please upload valid file type")
+            }
+        }
+        
     }
     const handleImportSubmit = (e) => {
         e.preventDefault()
         const promise = fetch('http://localhost:4000/importPath', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ selectedFile })
+            body: JSON.stringify({ fileContents })
         });
         console.log(promise)
         promise.then(event => {
             if (event.status === 200) {
-                setAlert({ label: 'success', type: 'success' })
+                setImportAlert({ label: 'success', type: 'success' })
                 setImportModal(false)
             } else {
-                setAlert({ label: `${event.statusText}`, type: 'danger' })
+                setImportAlert({ label: `${event.statusText}`, type: 'danger' })
             }
         })
 
-        setSelectedFile(null)
+        setFileContents(null)
         setImportModal(false)
 
-        setTimeout(() => { window.location.reload(); }, 500);
+        //setTimeout(() => { window.location.reload(); }, 500);
     }
 
     function handleImportModal() {
@@ -279,7 +294,7 @@ export const SeasonPassStuff = () => {
                                 <Form.Control type='file' accept='.csv,.json' onChange={handleFileChange}></Form.Control>
                                 <Form.Text className='text-muted'>Only CSV and JSON are allowed</Form.Text>
                             </Form.Group>
-                            <Button type='submit' variant='success' disabled={!selectedFile}>Submit</Button>
+                            <Button type='submit' variant='success' onClick={() => console.log(fileContents)}>Submit</Button>
                         </Form>
                     </Modal.Body>
                 </Modal>
