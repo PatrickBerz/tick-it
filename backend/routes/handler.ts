@@ -16,35 +16,19 @@ import { System } from "../src/System";
 
 //FUNCTIONS NEEDED:
 //
-// Lookup performance by showName, venue, dateTime
 // Lookup purchase by confNum
-// Add performance to list
-// Add season ticket holder to list
 // Basically, add everything to lists
+// Get list of season ticket holders
+// Post new season ticket holder
+// Post default prices for venue
+// Post an exchange
+// Post file path for importing
+// Post 0/1 for export csv vs json
 
 
 router.use(cors({
     origin: '*'
 }));
-
-
-//get list of season ticket holders
-//post new season ticket holder
-
-//post default prices for venue
-
-//get a performance's list of tickets
-//maybe? post new list of tickets for a single performance
-//post new purchase
-
-//get list of performances
-//post new performance
-//post deleted performance
-
-
-//post an exchange
-//post file path for importing
-//post 0/1 for export csv vs json
 
 router.get("/seasonTickets", (req: any, res: any) => {
     //get list of season ticket holders from System
@@ -98,14 +82,6 @@ router.post("/newDefaults", (req: any, res: any) => {
     //definitely worth testing that to make sure
     
 })
-
-router.get("/ticketData/:showName/:dateTime", (req: any, res: any) => {
-    //call System function to lookup a show by show name/venue/dateTime
-    //return the JSONified list of tickets within that show
-    //req.params["showName"]
-    let data = req.body;
-})
-
 
 router.get("/showData", (req: any, res: any) => {
 
