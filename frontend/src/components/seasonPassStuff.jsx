@@ -129,7 +129,7 @@ export const SeasonPassStuff = () => {
             }
         )
         handleClose()
-        //setTimeout(() => { window.location.reload(); }, 500);
+        setTimeout(() => { window.location.reload(); }, 500);
 
 
     }
