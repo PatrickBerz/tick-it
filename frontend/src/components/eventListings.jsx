@@ -194,7 +194,7 @@ export const EventListings = () => {
             <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
 
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
-                    <div className='d-flex mb-2'>
+                    <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>
                         <Button className='p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -225,41 +225,42 @@ export const EventListings = () => {
                             Back
                         </Button>
                     </div>
+                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
 
-                    <Table bordered responsive striped hover variant='dark' size='sm' style={{ maxHeight: '70%' }}>
-                        <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
-                            Performances
-                        </th>
-                        </tr>
-                        </thead>
-                        <tbody style={{ fontSize: '20px', color: "white" }}>
-                            <tr>
-                                <th >Performance Name</th>
-                                <th >Venue</th>
-                                <th >Date</th>
-                                <th >Seats Left</th>
-                                <th></th>
+                        <Table bordered responsive striped hover variant='dark' size='sm' >
+                            <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
+                                Performances
+                            </th>
                             </tr>
-
-                            {showData.map((item, index) => (
-                                <tr key={index}>
-                                    <td>{item.performanceName}</td>
-                                    <td>{item.venueName} </td>
-                                    <td>{convertDate(item.dateTime)} </td>
-                                    <td>{item.tickets.length} </td>
-                                    <td>
-                                        <Button
-                                            size='sm'
-                                            onClick={() => { handleItemDeleted(item) }}>
-                                            Delete
-                                        </Button>
-                                    </td>
+                            </thead>
+                            <tbody style={{ fontSize: '20px', color: "white" }}>
+                                <tr>
+                                    <th >Performance Name</th>
+                                    <th >Venue</th>
+                                    <th >Date</th>
+                                    <th >Seats Left</th>
+                                    <th></th>
                                 </tr>
-                            ))}
 
-                        </tbody>
-                    </Table>
+                                {showData.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{item.performanceName}</td>
+                                        <td>{item.venueName} </td>
+                                        <td>{convertDate(item.dateTime)} </td>
+                                        <td>{item.tickets.length} </td>
+                                        <td>
+                                            <Button
+                                                size='sm'
+                                                onClick={() => { handleItemDeleted(item) }}>
+                                                Delete
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ))}
 
+                            </tbody>
+                        </Table>
+                    </div>
                 </Stack>
 
                 <Modal show={showModal} onHide={handleClose}>
