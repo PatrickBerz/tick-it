@@ -294,10 +294,24 @@ router.post("/currentPerformance", (req: any, res: any) => {
     let perf = System.findPerformance(currentPerf);
     if (perf != null) {
         let foundSoldSeats = perf.findSoldSeats();
-        console.log("oh boy! I worked!");
-        console.log("here are the sold seats: ", foundSoldSeats);
         res.status(200);
         res.json(foundSoldSeats);
+    } else {
+        res.status(500);
+        res.end();
+    }
+});
+
+router.post("/currentTickets", (req: any, res: any) => {
+    let data = req.body.currentPerformance.performance;
+    let currentPerf : Performance = new Performance(data.performanceName, data.venueName, new Date(data.dateTime), System.getVenues()[0]);
+    let perf = System.findPerformance(currentPerf);
+    if (perf != null) {
+        let foundTickets = perf.getTickets();
+        console.log("oh boy! I worked!");
+        console.log("here are the sold seats: ", foundTickets);
+        res.status(200);
+        res.json(foundTickets);
     } else {
         res.status(500);
         res.end();
