@@ -13,7 +13,7 @@ export const CheckOut = () =>{
   const [userData, setUserData] = useState({
     fName: '',
     lName: '',
-    email: '',
+    addr: '',
     userPhoneNum: '',
     ticketStatus: ''
   }); // Controls the user-inputted data
@@ -61,6 +61,27 @@ export const CheckOut = () =>{
     })
 }
 
+const handleLNameChange = e => {
+  setUserData({
+      ...userData,
+      lName: e.target.value
+  })
+}
+
+const handleAddrChange = e => {
+  setUserData({
+      ...userData,
+      addr: e.target.value
+  })
+}
+
+const handlePhNumChange = e => {
+  setUserData({
+      ...userData,
+      userPhoneNum: e.target.value
+  })
+}
+
   /*
   * FUNCTION send the purchase to the backend
  */
@@ -70,9 +91,9 @@ export const CheckOut = () =>{
         venueName: state.venue,
         showName: state.event,
         attendee: {
-          name: userData.fName,
-          address: "ADDRESS",
-          phoneNum: "PHONE NUM"            
+          name: userData.fName + " " + userData.lName,
+          address: userData.addr,
+          phoneNum: userData.phoneNum            
         },
         tickets: parsedSeats,
         dateTime: state.dateTime,
@@ -204,19 +225,19 @@ export const CheckOut = () =>{
               {/*Row 2: Last Name*/}
               <Form.Group className="mb-3 mx-auto" controlId="formLName">
                   <Form.Label style={{ color: 'white' }}>Last Name</Form.Label>
-                  <Form.Control required type="text" placeholder="Last Name" />
+                  <Form.Control required type="text" onChange={handleLNameChange} placeholder="Last Name" />
               </Form.Group>
 
               {/*Row 3: Email Address*/}
               <Form.Group className="mb-3 mx-auto" controlId="formEmailAddress">
                   <Form.Label style={{ color: 'white' }}>Email Address</Form.Label>
-                  <Form.Control required type="email" placeholder="Email Address" />
+                  <Form.Control required type="email" onChange={handleAddrChange} placeholder="Email Address" />
               </Form.Group>
 
               {/*Row 4: Phone Number*/}
               <Form.Group className="mb-3 mx-auto" controlId="formPhoneNumber">
                   <Form.Label style={{ color: 'white' }}>Phone Number</Form.Label>
-                  <Form.Control required type="phone" placeholder="Phone Number"/>
+                  <Form.Control required type="phone" onChange={handlePhNumChange} placeholder="Phone Number"/>
               </Form.Group>
 
               {/*Discounts*/}
