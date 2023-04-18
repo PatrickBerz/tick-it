@@ -25,12 +25,12 @@ export const PolicyStuff = () => {
     const handleTextChange = e => {
         setFormData({
             ...formData,
-            sectionPrice:  e.target.value
+            sectionPrice: e.target.value
         })
     }
 
-    const handleItemEdit = (vName,item,index) => {
-        setFormData({venueName: vName, sectionName:item}) 
+    const handleItemEdit = (vName, item, index) => {
+        setFormData({ venueName: vName, sectionName: item })
         setShow(true)
     };
 
@@ -103,7 +103,7 @@ export const PolicyStuff = () => {
 
                     <div className='d-flex ' style={{ width: '80%', alignSelf: 'center' }}>
 
-                        
+
                         <Button className='ms-auto p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -114,58 +114,59 @@ export const PolicyStuff = () => {
 
                     </div>
 
-                    <Stack className='d-flex justify-content-between square border border-secondary border-3 container' direction='horizontal' gap={4} style={{ maxWidth: '80%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
-                        <Table bordered responsive striped hover variant='dark' size='lg' style={{ minWidth: '500px' }}>
-                            <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={3}>Playhouse</th></tr></thead>
-                            <tbody style={{ fontSize: '20px', color: "white" }}>
-                                <tr>
-                                    <th >Seat Section</th>
-                                    <th >Price</th>
-                                    <th style={{ textAlign: 'center' }}>Options</th>
-                                </tr>
-
-
-                                {Object.keys(data[1]).map((item, index) => (
-                                    <tr key={index} >
-                                        <td >{item}</td>
-                                        <td>{data[1][item]}</td>
-                                        <td style={{ textAlign: 'center' }}>
-                                            <Button
-                                                size='sm'
-                                                onClick={() => { handleItemEdit("Playhouse",item,index) }}>
-                                                Edit
-                                            </Button>
-                                        </td>
+                    <div className='d-flex justify-content-between square border border-secondary border-3 container' gap={4} style={{ maxWidth: '80%', maxHeight: '35rem', padding: '40px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
+                            <Table bordered striped hover variant='dark' size='lg' style={{ width: '500px' }}>
+                                <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={3}>Playhouse</th></tr></thead>
+                                <tbody style={{ fontSize: '20px', color: "white" }}>
+                                    <tr>
+                                        <th >Seat Section</th>
+                                        <th >Price</th>
+                                        <th style={{ textAlign: 'center' }}>Options</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </Table>
-                        <Table bordered responsive striped hover variant='dark' size='lg' style={{ minWidth: '500px' }}>
-                            <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={3}>Concert Hall</th></tr></thead>
-                            <tbody style={{ fontSize: '20px', color: "white" }}>
-                                <tr>
-                                    <th >Seat Section</th>
-                                    <th >Price</th>
-                                    <th style={{ textAlign: 'center' }}>Options</th>
-                                </tr>
 
 
-                                {Object.keys(data[0]).map((item, index) => (
-                                    <tr key={index} >
-                                        <td >{item}</td>
-                                        <td>{data[0][item]}</td>
-                                        <td style={{ textAlign: 'center' }}>
-                                            <Button
-                                                size='sm'
-                                                onClick={() => { handleItemEdit("Concert Hall",item,index) }}>
-                                                Edit
-                                            </Button>
-                                        </td>
+                                    {Object.keys(data[1]).map((item, index) => (
+                                        <tr key={index} >
+                                            <td >{item}</td>
+                                            <td>{data[1][item]}</td>
+                                            <td style={{ textAlign: 'center' }}>
+                                                <Button
+                                                    size='sm'
+                                                    onClick={() => { handleItemEdit("Playhouse", item, index) }}>
+                                                    Edit
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                            <Table bordered responsive striped hover variant='dark' size='lg' style={{ width: '500px' }}>
+                                <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={3}>Concert Hall</th></tr></thead>
+                                <tbody style={{ fontSize: '20px', color: "white" }}>
+                                    <tr>
+                                        <th >Seat Section</th>
+                                        <th >Price</th>
+                                        <th style={{ textAlign: 'center' }}>Options</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </Table>
-                    </Stack>
+
+
+                                    {Object.keys(data[0]).map((item, index) => (
+                                        <tr key={index} >
+                                            <td >{item}</td>
+                                            <td>{data[0][item]}</td>
+                                            <td style={{ textAlign: 'center' }}>
+                                                <Button
+                                                    size='sm'
+                                                    onClick={() => { handleItemEdit("Concert Hall", item, index) }}>
+                                                    Edit
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+\                    </div>
+
 
                 </Stack>
                 <Modal show={showModal} onHide={handleClose}>
