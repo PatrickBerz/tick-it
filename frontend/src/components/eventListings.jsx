@@ -19,27 +19,24 @@ export const EventListings = () => {
     const [formError, setFormError] = useState(null)
     const [showData, setShowData] = useState([])
     const [alert, setAlert] = useState(undefined);
-    var phSections = []
-    var chSections = []
 
-    const [playhouseSections, setPlayhouseSections] = useState(phSections)
-    const [concertHallSections, setConcertHallSections] = useState(chSections)
+    const [playhouseSections, setPlayhouseSections] = useState([])
+    const [concertHallSections, setConcertHallSections] = useState([])
 
-    function handlePhPriceChange(index, value) {
-        const updatedSections = [...playhouseSections];
-        updatedSections[index] = {
-            ...updatedSections[index],
-            price: value,
-        };
-        setPlayhouseSections(updatedSections);
+    function handlePhPriceChange(section, value) {
+        setPlayhouseSections(prevState => ({
+            ...prevState,
+            [section]: parseFloat(value) 
+
+        }))
     }
 
     function handleChPriceChange(section, value) {
-        setFormData({
-            ...formData,
-            section:  value
-        })
-        
+        setConcertHallSections(prevState => ({
+            ...prevState,
+            [section]: parseFloat(value) 
+
+        }))
     }
 
     const handleBackButton = () => {
@@ -51,9 +48,7 @@ export const EventListings = () => {
 
     }
 
-    const newEventModal = () => {
-        console.log(phSections)
-        
+    const newEventModal = () => {        
         setShow(true)
     };
     const handleClose = () => {
@@ -65,9 +60,6 @@ export const EventListings = () => {
             date: '',
             time: ''
         })
-        setPlayhouseSections(phSections)
-        setConcertHallSections(chSections)
-
     }
 
 
@@ -168,13 +160,9 @@ export const EventListings = () => {
         }
 
         setFormError(null);
-        console.log(playhouseSections)
 
-        //console.log('form data', formData)
         let dateTime = toISODate(formData.date, formData.time)
-        // console.log(dateTime)
-        // console.log(formData.performanceName)
-        // console.log(formData.venueName)
+       
 
         let newShow =
         {
@@ -183,7 +171,6 @@ export const EventListings = () => {
                 venueName: formData.venueName,
                 dateTime: dateTime,
                 sections: formData.venueName === 'Playhouse' ? playhouseSections : concertHallSections
-                
             }
 
         }
@@ -211,8 +198,6 @@ export const EventListings = () => {
             venueName: '',
             dateTime: ''
         })
-        setPlayhouseSections(phSections)
-        setConcertHallSections(chSections)
         handleClose()
         setTimeout(() => { window.location.reload(); }, 500);
 
@@ -285,7 +270,7 @@ export const EventListings = () => {
                             Back
                         </Button>
                     </div>
-                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
+                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '35rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
 
                         <Table bordered responsive striped hover variant='dark' size='sm' >
                             <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
@@ -376,7 +361,7 @@ export const EventListings = () => {
                                             <Col sm='4'>
                                                 <InputGroup size='sm'>
                                                     <InputGroup.Text>$</InputGroup.Text>
-                                                    <Form.Control type="number" step={"0.01"} value={phSections[section]} placeholder="Price" onChange={e => { handlePhPriceChange(index, e.target.value) }} />
+                                                    <Form.Control type="number" step={"0.01"} value={playhouseSections[section]} placeholder="Price" onChange={e => { handlePhPriceChange(section, e.target.value) }} />
                                                 </InputGroup>
                                             </Col>
                                         </Row>
