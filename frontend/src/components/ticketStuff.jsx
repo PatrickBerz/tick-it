@@ -13,7 +13,7 @@ export const TicketStuff = () => {
     const [showModal, setShow] = useState(false)
     const [alert, setAlert] = useState(undefined)
 
-    const [passState, setState] = useState({ case: '', event: '', venueName: '', dateTime: '',seats:[] });
+    const [passState, setState] = useState({ case: '', event: '', venueName: '', dateTime: '' });
 
 
     const [formData, setFormData] = useState(
@@ -65,7 +65,7 @@ export const TicketStuff = () => {
     function handleStateChange (value) {
         const showToPass = JSON.parse(value)
         console.log(showToPass.performanceName)
-        setState({ case: 'purchase', event: showToPass.performanceName, venue:showToPass.venueName, date: convertDate(showToPass.dateTime) })
+        setState({ case: 'purchase', event: showToPass.performanceName, venueName:showToPass.venueName, dateTime: showToPass.dateTime })
         console.log(passState)
     }
 
@@ -252,7 +252,8 @@ export const TicketStuff = () => {
                             </Row>
                             <Link
                                 to={"/seatSelection"}
-                                state={{ case: "purchase", event: passState.event, venue: passState.venueName, datetime: passState.dateTime, seats:[] }}>
+                                state={{ case: "purchase", event: passState.event, venue: passState.venueName, datetime: passState.dateTime }}>
+                                {console.log({ case: "purchase", event: passState.event, venue: passState.venueName, datetime: passState.dateTime })}
                                 <Button size='sm' variant="primary" >
                                     Purchase Tickets
                                 </Button>
