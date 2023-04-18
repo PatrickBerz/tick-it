@@ -418,6 +418,25 @@ export const EventListings = () => {
                             Back
                         </Button>
                     </div>
+                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '35rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
+
+                        <Table bordered responsive striped hover variant='dark' size='sm' >
+                            <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
+                                Performances
+                            </th>
+                            </tr>
+                            </thead>
+                            <tbody style={{ fontSize: '20px', color: "white" }}>
+                                <tr>
+                                    <th >Performance Name</th>
+                                    <th >Venue</th>
+                                    <th >Date</th>
+                                    <th >Seats Left</th>
+                                    <th></th>
+                                </tr>
+                            </tbody>
+                        </Table>
+                    </div>
                     <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
 
                         <Table bordered responsive striped hover variant='dark' size='sm' >
