@@ -15,10 +15,14 @@ import { ConfNum } from "./ConfNum";
 
 export class System {
     private static deserializer : JSONHandler = new JSONHandler();
-    private static venues : Venue[] = this.initializeVenues(__dirname + "/../" + "/sampleVenue.json");
-    private static shows : Show[] = this.initializeShows(__dirname + "/../" + "/test8.json");
-    private static purchases : Purchase[] = this.initializePurchases(__dirname + "/../" + "/purchases.json");
-    private static seasonTicketHolders : SeasonTicketHolder[] = this.initializeSeasonHolders(__dirname + "/../" + "/seasonTicketHolders.json");
+    private static venuePath : string = __dirname + "/../" + "/sampleVenue.json";
+    private static showPath : string = __dirname + "/../" + "/test8.json";
+    private static purchasePath : string = __dirname + "/../" + "/purchases.json";
+    private static seasonPath : string = __dirname + "/../" + "/seasonTicketHolders.json";
+    private static venues : Venue[] = this.initializeVenues(this.venuePath);
+    private static shows : Show[] = this.initializeShows(this.showPath);
+    private static purchases : Purchase[] = this.initializePurchases(this.purchasePath);
+    private static seasonTicketHolders : SeasonTicketHolder[] = this.initializeSeasonHolders(this.seasonPath);
 
     //initializing each database from the given file
     private static initializeVenues(filePath : string) : Venue[] 
@@ -50,10 +54,11 @@ export class System {
     public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date)// : Purchase 
     {
         let newPurchase = new Purchase(purchaser);
-        newPurchase.updateTickets(tickets)
-        newPurchase.setConfNum(ConfNum.getNum())
-        newPurchase.setDate(dateTime)
-        this.purchases.push(newPurchase)
+        newPurchase.updateTickets(tickets);
+        newPurchase.setConfNum(ConfNum.getNum());
+        newPurchase.setDate(dateTime);
+        this.purchases.push(newPurchase);
+        this.deserializer.serialize(this.purchases, this.purchasePath);
         //this.insertIntoPurchases(newPurchase);
         //return newPurchase;
     }
@@ -79,6 +84,7 @@ export class System {
     {
         let newVenue = new Venue(seatSections);
         this.venues.push(newVenue);
+        this.deserializer.serialize(this.venues, this.venuePath);
         return newVenue;
     }
 
@@ -86,6 +92,7 @@ export class System {
     {
         let newShow = new Show(venue, showName);
         this.shows.push(newShow);
+        this.deserializer.serialize(this.shows, this.showPath);
         return newShow;
     }
 
@@ -93,6 +100,7 @@ export class System {
     {
         let newHolder = new SeasonTicketHolder(name, address, phoneNum, seatAssignment);
         this.seasonTicketHolders.push(newHolder);
+        this.deserializer.serialize(this.seasonTicketHolders, this.seasonPath);
         return newHolder;
     }
 
@@ -101,8 +109,8 @@ export class System {
         if (show == null) show = this.createShow(venueObj, performanceName);
         let performance : Performance = new Performance(performanceName, venueName, dateTime, venueObj);
         show.addPerformance(performance);
+        this.deserializer.serialize(this.shows, this.showPath);
         return performance;
-
     }
 
     //whole buncha getters yeehaw
@@ -180,19 +188,19 @@ export class System {
     public static findPerformance(perfToFind: Performance) {
         for (var index in this.shows) {
             for (var index2 in this.shows[index].getPerformances()) {
-                // console.log("IN LOOP")
-                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getPerformanceName()))
-                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getDateTime()))
-                // console.log(perfToFind.getDateTime())
-                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getVenueName()))
+                console.log("IN LOOP")
+                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getPerformanceName()))
+                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getDateTime()))
+                console.log(perfToFind.getDateTime())
+                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getVenueName()))
                 
-                // console.log("COMP SHOW")
-                // console.log(JSON.stringify(perfToFind.getPerformanceName()))
-                // console.log(JSON.stringify(perfToFind.getDateTime()))
-                // console.log(typeof(perfToFind.getDateTime()))
-                // console.log(JSON.stringify(perfToFind.getVenueName()))
+                console.log("COMP SHOW")
+                console.log(JSON.stringify(perfToFind.getPerformanceName()))
+                console.log(JSON.stringify(perfToFind.getDateTime()))
+                console.log(typeof(perfToFind.getDateTime()))
+                console.log(JSON.stringify(perfToFind.getVenueName()))
                 if (this.shows[index].getPerformances()[index2].equals(perfToFind)) {
-                    //console.log("FOUND THE PERFORMANCE TO DELETE")
+                    console.log("FOUND THE PERFORMANCE TO DELETE")
                     //this.shows[index].getPerformances().splice(+index2, 1);
                     return this.shows[index].getPerformances()[index2]
                 }

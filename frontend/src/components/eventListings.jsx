@@ -1,15 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Form, Stack, Button, Alert, Table, Modal, FormGroup, Row, Col } from 'react-bootstrap'
+import { Form, Stack, Button, Alert, Table, Modal, InputGroup, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 
 
 
 export const EventListings = () => {
+
     const [formData, setFormData] = useState({
         performanceName: '',
         venueName: '',
         date: '',
-        time: ''
+        time: '',
+        sectionName:'',
+        sectionPrice:''
     });
 
     const [showModal, setShow] = useState(false)
@@ -17,23 +20,49 @@ export const EventListings = () => {
     const [showData, setShowData] = useState([])
     const [alert, setAlert] = useState(undefined);
 
+    const [playhouseSections, setPlayhouseSections] = useState([])
+    const [concertHallSections, setConcertHallSections] = useState([])
+
+    function handlePhPriceChange(section, value) {
+        setPlayhouseSections(prevState => ({
+            ...prevState,
+            [section]: parseFloat(value) 
+
+        }))
+    }
+
+    function handleChPriceChange(section, value) {
+        setConcertHallSections(prevState => ({
+            ...prevState,
+            [section]: parseFloat(value) 
+
+        }))
+    }
+
     const handleBackButton = () => {
         window.location.href = "/adminPage"
 
     }
-    function handleExport() {
+    const handleExport = () => {
         console.log("yay export")
 
     }
 
-    const newEventModal = () => {
+    const newEventModal = () => {        
         setShow(true)
     };
     const handleClose = () => {
         setShow(false)
         setAlert(undefined)
-
+        setFormData({
+            performanceName: '',
+            venueName: '',
+            date: '',
+            time: ''
+        })
     }
+
+
 
     const handleTextChange = e => {
         setFormData({
@@ -87,7 +116,7 @@ export const EventListings = () => {
             }
 
         })
-        window.location.reload()
+        setTimeout(() => { window.location.reload(); }, 500);
 
     }
     const convertDate = (item) => {
@@ -107,6 +136,8 @@ export const EventListings = () => {
         //const formattedDate = date.toLocaleDateString('en-US', options)
         return formattedDate
     }
+
+
 
     function toISODate(dateStr, timeStr) {
         // console.log(dateStr, timeStr)
@@ -130,19 +161,18 @@ export const EventListings = () => {
 
         setFormError(null);
 
-
-        //console.log('form data', formData)
         let dateTime = toISODate(formData.date, formData.time)
-        // console.log(dateTime)
-        // console.log(formData.performanceName)
-        // console.log(formData.venueName)
+       
+
         let newShow =
         {
             performance: {
                 performanceName: formData.performanceName,
                 venueName: formData.venueName,
-                dateTime: dateTime
+                dateTime: dateTime,
+                sections: formData.venueName === 'Playhouse' ? playhouseSections : concertHallSections
             }
+
         }
 
         console.log(newShow)
@@ -173,7 +203,23 @@ export const EventListings = () => {
 
 
     }
-
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:4000/phSections')
+            const phData = await response.json()
+            setPlayhouseSections(phData)
+        }
+        fetchData();
+    }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:4000/chSections')
+            const chData = await response.json()
+            console.log(JSON.stringify(chData))
+            setConcertHallSections(chData)
+        }
+        fetchData();
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -190,10 +236,10 @@ export const EventListings = () => {
     if (showData) {
         console.log(JSON.stringify(showData))
         return (
-            <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
+            <div className='d-flex' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
 
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
-                    <div className='d-flex mb-2'>
+                    <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>
                         <Button className='p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -224,41 +270,42 @@ export const EventListings = () => {
                             Back
                         </Button>
                     </div>
+                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '35rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
 
-                    <Table bordered responsive striped hover variant='dark' size='sm' style={{ maxHeight: '70%' }}>
-                        <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
-                            Performances
-                        </th>
-                        </tr>
-                        </thead>
-                        <tbody style={{ fontSize: '20px', color: "white" }}>
-                            <tr>
-                                <th >Performance Name</th>
-                                <th >Venue</th>
-                                <th >Date</th>
-                                <th >Seats Left</th>
-                                <th></th>
+                        <Table bordered responsive striped hover variant='dark' size='sm' >
+                            <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
+                                Performances
+                            </th>
                             </tr>
-
-                            {showData.map((item, index) => (
-                                <tr key={index}>
-                                    <td>{item.performanceName}</td>
-                                    <td>{item.venueName} </td>
-                                    <td>{convertDate(item.dateTime)} </td>
-                                    <td>{item.tickets.length} </td>
-                                    <td>
-                                        <Button
-                                            size='sm'
-                                            onClick={() => { handleItemDeleted(item) }}>
-                                            Delete
-                                        </Button>
-                                    </td>
+                            </thead>
+                            <tbody style={{ fontSize: '20px', color: "white" }}>
+                                <tr>
+                                    <th >Performance Name</th>
+                                    <th >Venue</th>
+                                    <th >Date</th>
+                                    <th >Seats Left</th>
+                                    <th></th>
                                 </tr>
-                            ))}
 
-                        </tbody>
-                    </Table>
+                                {showData.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{item.performanceName}</td>
+                                        <td>{item.venueName} </td>
+                                        <td>{convertDate(item.dateTime)} </td>
+                                        <td>{item.tickets.length} </td>
+                                        <td>
+                                            <Button
+                                                size='sm'
+                                                onClick={() => { handleItemDeleted(item) }}>
+                                                Delete
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ))}
 
+                            </tbody>
+                        </Table>
+                    </div>
                 </Stack>
 
                 <Modal show={showModal} onHide={handleClose}>
@@ -276,13 +323,13 @@ export const EventListings = () => {
                             }
                             <Row className="mb-3">
                                 <Form.Group controlId="textValue">
-                                    <Form.Label>Event Name</Form.Label>
+                                    <Form.Label style={{ fontSize: '18px' }}>Event Name</Form.Label>
                                     <Form.Control required type="text" value={formData.performanceName} placeholder="Enter event name" onChange={handleTextChange} />
                                 </Form.Group>
                             </Row>
                             <Row className="mb-3">
-                                <Form.Group as={Col} controlId="selectValue">
-                                    <Form.Label>Pick Venue </Form.Label>
+                                <Form.Group as={Col} controlId="selectVenue">
+                                    <Form.Label style={{ fontSize: '18px' }}>Pick Venue </Form.Label>
                                     <Form.Select required value={formData.venueName} onChange={handleSelectChange} >
                                         <option value="">Select an option</option>
                                         <option value="Playhouse">Playhouse</option>
@@ -291,18 +338,54 @@ export const EventListings = () => {
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="dateValue">
-                                    <Form.Label>Date</Form.Label>
+                                    <Form.Label style={{ fontSize: '18px' }}>Date</Form.Label>
                                     <Form.Control type='date' required placeholder="MM/DD/YYYY" value={formData.date} onChange={handleDateChange} />
                                 </Form.Group>
 
                             </Row>
                             <Row>
-                                <Form.Group as={Col} controlId="dateValue">
-                                    <Form.Label>Date</Form.Label>
-                                    <Form.Control type='time' required placeholder="MM/DD/YYYY" value={formData.time} onChange={handleTimeChange} />
+                                <Form.Group as={Col} controlId="timeValue" >
+                                    <Form.Label style={{ fontSize: '18px' }}>Date</Form.Label>
+                                    <Form.Control type='time' required value={formData.time} onChange={handleTimeChange} />
                                 </Form.Group>
+                                <Form.Group as={Col}></Form.Group>
                             </Row>
-                            <Button variant="primary" type="submit" >
+                            <Form.Group>
+                                <Form.Label column sm='2' className='mb-0' style={{ fontSize: '18px' }}>Sections</Form.Label>
+                            </Form.Group>
+                            {formData.venueName == "Playhouse" && (
+                                Object.keys(playhouseSections).map((section, index) => (
+                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row} key={index}>
+                                        <Row>
+                                            <Form.Label column sm='2' >{section}</Form.Label>
+                                            <Col sm='4'>
+                                                <InputGroup size='sm'>
+                                                    <InputGroup.Text>$</InputGroup.Text>
+                                                    <Form.Control type="number" step={"0.01"} value={playhouseSections[section]} placeholder="Price" onChange={e => { handlePhPriceChange(section, e.target.value) }} />
+                                                </InputGroup>
+                                            </Col>
+                                        </Row>
+                                    </Form.Group>
+                                ))
+                            )}
+                            {formData.venueName == "Concert Hall" && (
+                                Object.keys(concertHallSections).map((section, index) => (
+                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row} key={index}>
+
+                                        <Row>
+                                            <Form.Label column sm='2' >{section}</Form.Label>
+                                            <Col sm='4'>
+                                                <InputGroup size='sm'>
+                                                    <InputGroup.Text>$</InputGroup.Text>
+                                                    <Form.Control type="number" step={"0.01"} value={concertHallSections[section]} placeholder="Price" onChange={e => { handleChPriceChange(section, e.target.value) }} />
+                                                </InputGroup>
+                                            </Col>
+                                        </Row>
+                                    </Form.Group>
+                                ))
+                            )}
+
+                            <Button className='mt-3' variant="primary" type="submit" >
                                 Submit
                             </Button>
 
@@ -315,10 +398,10 @@ export const EventListings = () => {
     }
     else {
         return (
-            <div className='border border-light-2' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
+            <div className='d-flex' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
 
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
-                    <div className='d-flex mb-2'>
+                    <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>
                         <Button className='p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -348,6 +431,25 @@ export const EventListings = () => {
                             onClick={handleBackButton}>
                             Back
                         </Button>
+                    </div>
+                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
+
+                        <Table bordered responsive striped hover variant='dark' size='sm' >
+                            <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
+                                Performances
+                            </th>
+                            </tr>
+                            </thead>
+                            <tbody style={{ fontSize: '20px', color: "white" }}>
+                                <tr>
+                                    <th >Performance Name</th>
+                                    <th >Venue</th>
+                                    <th >Date</th>
+                                    <th >Seats Left</th>
+                                    <th></th>
+                                </tr>
+                            </tbody>
+                        </Table>
                     </div>
 
                 </Stack>
