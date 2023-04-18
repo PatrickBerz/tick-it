@@ -78,7 +78,7 @@ router.post("/holderUpdate", (req: any, res: any) => {
 
 
     let seasonList = System.getSeasonTicketHolders()
-    console.log(JSON.stringify(seasonList))
+    //console.log(JSON.stringify(seasonList))
 
     seasonList.forEach(holder => {
         if (holder.getSeatAssignment().equals(checkSeat)) {
@@ -165,7 +165,7 @@ router.get("/phSections", (req:any, res:any) => {
         playHouse[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
         //console.log(section.getSeats()[0].getDefaultPrice())
     });
-    console.log(JSON.stringify(playHouse))
+    //console.log(JSON.stringify(playHouse))
     res.json(playHouse)
 })
 
@@ -178,7 +178,7 @@ router.get("/chSections", (req:any, res:any) => {
         concertHall[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
         //console.log(section.getSeats()[0].getDefaultPrice())
     });
-    console.log(JSON.stringify(concertHall))
+    //console.log(JSON.stringify(concertHall))
     res.json(concertHall)
 })
 
@@ -206,7 +206,7 @@ router.post("/newShow", (req: any, res: any) => {
         Object.keys(data.newShow.performance.sections).map ((section) => {
             if(ticket.getSeat().getSection() === section){
                 ticket.setPrice(data.newShow.performance.sections[section])
-                console.log("SET PRICE")
+                //console.log("SET PRICE")
             }
         })
         
