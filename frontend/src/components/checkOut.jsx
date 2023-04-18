@@ -176,34 +176,52 @@ export const CheckOut = () =>{
               {/*Row 1: First Name*/}
               <Form.Group className="mb-3 mx-auto" controlId="formFName">
                   <Form.Label style={{ color: 'white' }}>First Name</Form.Label>
-                  <Form.Control type="text" placeholder="First Name" />
+                  <Form.Control required type="text" placeholder="First Name" />
               </Form.Group>
 
               {/*Row 2: Last Name*/}
               <Form.Group className="mb-3 mx-auto" controlId="formLName">
                   <Form.Label style={{ color: 'white' }}>Last Name</Form.Label>
-                  <Form.Control type="text" placeholder="Last Name" />
+                  <Form.Control required type="text" placeholder="Last Name" />
               </Form.Group>
 
               {/*Row 3: Email Address*/}
               <Form.Group className="mb-3 mx-auto" controlId="formEmailAddress">
                   <Form.Label style={{ color: 'white' }}>Email Address</Form.Label>
-                  <Form.Control type="email" placeholder="Email Address" />
+                  <Form.Control required type="email" placeholder="Email Address" />
               </Form.Group>
 
               {/*Row 4: Phone Number*/}
               <Form.Group className="mb-3 mx-auto" controlId="formPhoneNumber">
                   <Form.Label style={{ color: 'white' }}>Phone Number</Form.Label>
-                  <Form.Control type="phone" placeholder="Phone Number"/>
+                  <Form.Control required type="phone" placeholder="Phone Number"/>
               </Form.Group>
 
+              {/*Discounts*/}
+              <h2 style={{ color: 'white' }}>Applicable Discounts</h2>
+              <p style={{ color: 'white' }}><i>Note that theater staff may ask for your ID at check-in.</i></p>
+              <hr style={{ borderTop: '3px solid white'}}></hr>
+              <ToggleButtonGroup className="mb-4" type="radio" name="discounts" defaultValue="None" onChange={onPickDiscount}>
+                  <ToggleButton id="tbg-radio-discounts-1" value="None">
+                  None
+                  </ToggleButton>
+                  <ToggleButton id="tbg-radio-discounts-2" value="Senior">
+                  Senior
+                  </ToggleButton>
+                  <ToggleButton id="tbg-radio-discounts-3" value="Military">
+                  Military
+                  </ToggleButton>
+                  <ToggleButton id="tbg-radio-discounts-4" value="First Responders">
+                  First Responders
+                  </ToggleButton>
+              </ToggleButtonGroup>
 
               {/*Radio Button for online or in person*/}
               
              
               <h2 style={{ color: 'white' }}>Method of Payment</h2>
               <hr style={{ borderTop: '3px solid white'}}></hr>
-              <ToggleButtonGroup type="radio" name="options" defaultValue={1} onChange={onPickPayment}>
+              <ToggleButtonGroup className="mb-4" type="radio" name="options" defaultValue={1} onChange={onPickPayment}>
                   <ToggleButton id="tbg-radio-1" value={1}>
                   Pay Online
                   </ToggleButton>
@@ -243,62 +261,7 @@ export const CheckOut = () =>{
                       <Form.Label style={{ color: 'white' }}>ZIP Code</Form.Label>
                       <Form.Control type="text" placeholder="ZIP Code" />
                   </Form.Group>
-                  
-                  {/*Row 10: Discounts*/}
-                  <h2 style={{ color: 'white' }}>Applicable Discounts</h2>
-                  <p style={{ color: 'white' }}><i>Note that theater staff may ask for your ID at check-in.</i></p>
-                  <hr style={{ borderTop: '3px solid white'}}></hr>
-                  <ToggleButtonGroup type="radio" name="discounts" defaultValue="None" onChange={onPickDiscount}>
-                      <ToggleButton id="tbg-radio-discounts-1" value="None">
-                      None
-                      </ToggleButton>
-                      <ToggleButton id="tbg-radio-discounts-2" value="Senior">
-                      Senior
-                      </ToggleButton>
-                      <ToggleButton id="tbg-radio-discounts-3" value="Military">
-                      Military
-                      </ToggleButton>
-                      <ToggleButton id="tbg-radio-discounts-4" value="First Responders">
-                      First Responders
-                      </ToggleButton>
-                  </ToggleButtonGroup>
 
-                  {/*
-                  <Form.Group>
-                    <Form.Check
-                      inline
-                      label="None"
-                      name="discount"
-                      type="radio"
-                      id={`inline-radio-1`}
-                      style={{ color: 'white' }}
-                    />
-                    <Form.Check
-                      inline
-                      label="Senior"
-                      name="discount"
-                      type="radio"
-                      id={`inline-radio-2`}
-                      style={{ color: 'white' }}
-                    />
-                    <Form.Check
-                      inline
-                      label="Military"
-                      name="discount"
-                      type="radio"
-                      id={`inline-radio-3`}
-                      style={{ color: 'white' }}
-                    />
-                    <Form.Check
-                      inline
-                      label="First Responders"
-                      name="discount"
-                      type="radio"
-                      id={`inline-radio-4`}
-                      style={{ color: 'white' }}
-                    />
-                  </Form.Group>
-                */}
               </div>
 
               <br></br>
