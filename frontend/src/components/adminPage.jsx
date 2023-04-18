@@ -12,6 +12,9 @@ export const AdminPage = () =>{
     function ticketStuffSubmit(){
         window.location.href="/ticketStuff"
     }
+    function seasonPassSubmit(){
+        window.location.href="/seasonPassStuff"
+    }
     function policyStuffSubmit(){
         window.location.href="/policyStuff"
     }
@@ -38,7 +41,7 @@ export const AdminPage = () =>{
                             }}>
                         Ticket Stuff
                     </Button>
-                    <Button size='lg' variant="primary" type="submit" 
+                    <Button size='lg' onClick={seasonPassSubmit} variant="primary" type="submit" 
                         style={{
                             marginTop:'40px', 
                             width:'180px', 

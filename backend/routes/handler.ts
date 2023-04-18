@@ -50,9 +50,9 @@ router.use(cors({
 //handle get request to return the list of season ticket holders
 router.get("/seasonTickets", (req: any, res: any) => {
     //get list of season ticket holders from System
-    let seasonTixList: SeasonTicketHolder[] = [ new SeasonTicketHolder("Richard Blargson", "5000 Fancy Boulevard", "123-555-5555", new Seat("Orchestra", "A", 15, false, true, 99999.99)),
-                                                new SeasonTicketHolder("Moneyton Blargson", "5001 Fancy Boulevard", "123-555-5556", new Seat("Orchestra", "A", 16, false, true, 99999.99))] 
-    // let seasonTixList: SeasonTicketHolder[] = System.getSeasonHolders()
+    //let seasonTixList: SeasonTicketHolder[] = [ new SeasonTicketHolder("Richard Blargson", "5000 Fancy Boulevard", "123-555-5555", new Seat("Orchestra", "A", 15, false, true, 99999.99)),
+    //                                            new SeasonTicketHolder("Moneyton Blargson", "5001 Fancy Boulevard", "123-555-5556", new Seat("Orchestra", "A", 16, false, true, 99999.99))] 
+    let seasonTixList: SeasonTicketHolder[] = System.getSeasonTicketHolders()
     res.json(seasonTixList)
 })
 
@@ -70,6 +70,25 @@ router.post("/newSeasonTicket", (req: any, res: any) => {
     //let newHolder: SeasonTicketHolder = new SeasonTicketHolder(data.name, data.address, data.phoneNum, seat)
     //system.addSeasonHolder(newHolder)
 })
+
+router.post("/holderUpdate", (req: any, res: any) => {
+
+    let data = req.body.passUpdate
+    let checkSeat = new Seat(data.section, data.row, data.seatNum, false, false, 1)
+
+
+    let seasonList = System.getSeasonTicketHolders()
+    console.log(JSON.stringify(seasonList))
+
+    seasonList.forEach(holder => {
+        if (holder.getSeatAssignment().equals(checkSeat)) {
+            holder.setName(data.name)
+            holder.setAddress(data.address)
+            holder.setPhoneNum(data.phoneNum)
+        }
+    });
+})
+
 
 //handle post request to update default price of a section of a venue
 router.post("/newDefault", (req: any, res: any) => {
