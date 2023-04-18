@@ -69,6 +69,8 @@ router.post("/holderUpdate", (req: any, res: any) => {
             holder.setPhoneNum(data.phoneNum)
         }
     });
+    
+    System.serializeSeasonHolders()
 })
 
 //handle post request to update default price of a section of a venue
