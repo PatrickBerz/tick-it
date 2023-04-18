@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stack, Image, Form, Button, ToggleButton, ToggleButtonGroup, ListGroup } from 'react-bootstrap';
-import { useEffect, useState, useRef } from "react";
-import {useLocation, Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import {useLocation, Link, useNavigate } from 'react-router-dom';
 
 export const CheckOut = () =>{
   // Load previous state
@@ -22,6 +22,7 @@ export const CheckOut = () =>{
   const [discounts, setDiscounts] = useState("None"); // Controls the selected discount
 
   const parsedSeats = [];
+ const navigate = useNavigate();
 
   /*
   * FUNCTION shows or hides the pay online fields
@@ -107,10 +108,13 @@ const handlePhNumChange = e => {
     })
     .then(
       response => response.json(),
-      error => console.log('An error occured', error)
+      error => console.log('An error occured', error),
+      console.log("Do stuff?"),
+      navigate('/orderConfirmation', {case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: state.seats, userData: userData })
     )
     .then(res =>
       console.log("Do stuff!")
+      //navigate('/orderConfirmation', {case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: state.seats, userData: userData })
     )
       console.log("Promise: ", promise) // determine whether was successful or not
   } /**/
@@ -142,6 +146,17 @@ const handlePhNumChange = e => {
       parsedSeats.push(seat)
     }
     //console.log("Here's the parsed seats list: ", parsedSeats);
+  }
+
+ // const history = useHistory();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (userData.fname === '' || userData.lname=='' || userData.address=='' || userData.phone=='') {
+      alert('Please fill out all required fields.');
+    } else {
+      // Handle form submission logic
+      placeOrder()
+    }
   }
 
   /*
@@ -213,7 +228,7 @@ const handlePhNumChange = e => {
             </div>
 
           
-          <Form className="col-xs-6 col-md-6 mt-4 mx-auto">
+          <Form className="col-xs-6 col-md-6 mt-4 mx-auto"  onSubmit={handleSubmit}>
               <h2 style={{ color: 'white' }}>Purchaser Information</h2>
               <hr style={{ borderTop: '3px solid white'}}></hr>
               {/*Row 1: First Name*/}
@@ -308,11 +323,8 @@ const handlePhNumChange = e => {
               </div>
 
               <br></br>
-                <Link 
-                to={"/orderConfirmation"}
-                state={{event: state.event, seat: state.seat}}>
-                <Button type="submit" className="mb-3 mx-auto" onClick={() => { placeOrder() }} style={{marginTop:'30px'}}>Place Order</Button>
-                </Link>
+              <Button type="submit" className="mb-3 mx-auto" style={{marginTop:'30px'}}>
+                Place Order</Button>
           </Form>
           </Stack>
       </div>
