@@ -245,15 +245,18 @@ router.post("/exchange", (req: any, res: any) => {
 router.get("/purchaseData", (req: any, res: any) => {
     // TODO: need System function to get list of purchases
 
-    let jsonhandler = new JSONHandler()
+    //let jsonhandler = new JSONHandler()
     
     //jsonhandler.deserializePurchase('../test6.json')
-    jsonhandler.deserializePurchase(__dirname + "/../samplePurchases.json")
+    //jsonhandler.deserializePurchase(__dirname + "/../samplePurchases.json")
 
-    let purchases: any[] = jsonhandler.getData() 
+    //let purchases: any[] = jsonhandler.getData() 
     //console.log(purchases)
     //console.log("\n\n")
     // //const ticket = '[{"purchaser":{"name":"Susan","address":"123 Sesame Street","phoneNum":"6064135244"},"confNum":0,"tickets":[{"performance":"West Side Story","seat":{"section":"Orchestra","row":"B","seatNum":12,"acessible":false,"inSeasonSection":false,"defaultPrice":29.99},"ticketStatus":0,"price":29.99}]}]'
+    
+    let purchases = System.getPurchases()
+    
     res.json(purchases);
 });
 
@@ -320,6 +323,38 @@ router.post("/newPurchase", (req: any, res: any) => {
     }
 
     //Sys call to add purchase to list and reserialize
+})
+
+router.post("/statusUpdate", (req: any, res: any) => {
+
+    let data = req.body
+    console.log(data)
+
+    let purchase = System.findPurchase(+data.confNum)
+    console.log(JSON.stringify(purchase))
+    if(purchase) {
+        switch(+data.status) {
+            case 1: {
+                purchase.reservedTickets()
+                break;
+            }
+            case 2: {
+                purchase.payTickets()
+                break;
+            }
+            case 3: {
+                purchase.pickUpTickets()
+                console.log("Picked up")
+                break;
+            }
+            default: {
+                console.log("Broken")
+            }
+        }
+    }
+    else {
+        console.log("No purchase")
+    }
 })
 
 router.post("/password", (req: any, res: any) => {
