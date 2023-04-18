@@ -161,21 +161,23 @@ router.post("/exchange", (req: any, res: any) => {
 router.get("/purchaseData", (req: any, res: any) => {
     // TODO: need System function to get list of purchases
 
-    let jsonhandler = new JSONHandler()
+    //let jsonhandler = new JSONHandler()
     
     //jsonhandler.deserializePurchase('../test6.json')
-    jsonhandler.deserializePurchase(__dirname + "/../samplePurchases.json")
+    //jsonhandler.deserializePurchase(__dirname + "/../samplePurchases.json")
 
-    let purchases: any[] = jsonhandler.getData() 
+    //let purchases: any[] = jsonhandler.getData() 
     //console.log(purchases)
     //console.log("\n\n")
     // //const ticket = '[{"purchaser":{"name":"Susan","address":"123 Sesame Street","phoneNum":"6064135244"},"confNum":0,"tickets":[{"performance":"West Side Story","seat":{"section":"Orchestra","row":"B","seatNum":12,"acessible":false,"inSeasonSection":false,"defaultPrice":29.99},"ticketStatus":0,"price":29.99}]}]'
+    let purchases = System.getPurchases()
     res.json(purchases);
 });
 
 router.post("/newPurchase", (req: any, res: any) => {
     //need venue name, show name, dateTime, ticket list, attendee info, ticketStatus (paid, picked up, or not)
-    let data = req.body
+    let data = req.body.newPurchase
+    console.log("NEW PURCHASE BEING MADE")
     // {
     //     "venueName": "Playhouse",
     //     "showName": "Oklahoma",
@@ -199,23 +201,45 @@ router.post("/newPurchase", (req: any, res: any) => {
     let attendee = new Attendee(attendeeData.name, attendeeData.address, attendeeData.phoneNum)
     let perfToFind = new Performance(data.showName, data.venueName, data.dateTime, System.getVenues()[0])
 
+    //console.log(JSON.stringify(perfToFind.getPerformanceName()))
+
     let perf = System.findPerformance(perfToFind)
+    //console.log(JSON.stringify(perf))
     let newTickets: Ticket[] = [];
 
-    data.ticketList.forEach((purchTicket : any) => {
-        let ticketSeat = new Seat(data.section, data.row, data.seatNum, false, false, 0);
+    // data.ticketList.forEach((purchTicket : any) => {
+    //     let ticketSeat = new Seat(data.section, data.row, data.seatNum, false, false, 0);
+    //     let testTicket : Ticket = new Ticket(data.showName, ticketSeat);
+
+    //     if(perf) {
+    //         perf.getTickets().forEach(perfTicket => {
+    //             if (testTicket.getSeat().equals(perfTicket.getSeat())) {
+    //                     newTickets.push(perfTicket);
+    //                 }
+    //         });
+    //     }
+    // })
+
+    data.tickets.forEach((purchTicket : any) => {
+        let ticketSeat = new Seat(purchTicket.section, purchTicket.row, purchTicket.seatNum, false, false, 0);
+        console.log(JSON.stringify(ticketSeat))
         let testTicket : Ticket = new Ticket(data.showName, ticketSeat);
 
         if(perf) {
             perf.getTickets().forEach(perfTicket => {
                 if (testTicket.getSeat().equals(perfTicket.getSeat())) {
                         newTickets.push(perfTicket);
+                        console.log("PUSHED TICKET")
                     }
             });
         }
     })
     
+    console.log("Before create purchase")
+    console.log(JSON.stringify(newTickets))
     System.createPurchase(attendee, newTickets, new Date(data.dateTime), data.ticketStatus);
+    console.log("After create purchase")
+    console.log(JSON.stringify(System.getPurchases()))
 
 });
 
@@ -239,12 +263,16 @@ router.post("/calculatePrice", (req: any, res: any) => {
         let testTicket : Ticket = new Ticket(data.showName, ticketSeat);
 
         if(perf) {
+            console.log("VALID PERF")
             perf.getTickets().forEach(perfTicket => {
                 if (testTicket.getSeat().equals(perfTicket.getSeat())) {
                         soldTickets.push(perfTicket);
                         console.log("FOUND THE TICKET");
-                    }
+                }
             });
+        }
+        else {
+            console.log("NO PERF")
         }
     }
 

@@ -193,6 +193,7 @@ export const SeatSelection = () =>{
       )
     }
     fetchData();
+    console.log(JSON.stringify(takenSeatData))
     //setTimeout(() => { fetchData(); }, 500);*/
   }, []);
 
