@@ -16,16 +16,43 @@ export const Home = () => {
 
 
   const handleSelectShow = (item) => {
-    setState({ case: "exchange", performance: item.item.performanceName, venue: item.venueName, dateTime: item.show.dateTime });
-  };
+    setState(
+      {
+        case: "exchange",
+        performance: item.item.performanceName,
+        venue: item.venueName,
+        dateTime: item.show.dateTime,
+        
+      }
+    )
+  }
 
   const confNumModal = () => {
     setShow(true)
-  };
+  }
+  
   const handleClose = () => {
     setShow(false)
     setAlert(undefined);
   }
+
+    const convertDate = (item) => {
+        const oldDate = new Date(item)
+        //Shift time 300 minutes (5 hours) to get it out of GMT
+        const date = new Date(oldDate.getTime() + 300 * 60000);
+        const options = {
+            month: 'numeric',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        }
+
+        const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
+        //const formattedDate = date.toLocaleDateString('en-US', options)
+        return formattedDate
+    }
 
 
   useEffect(() => {
@@ -80,7 +107,7 @@ export const Home = () => {
                   <Card.Body>
                     <Card.Title>{item.performanceName}</Card.Title>
                     <Card.Text >
-                      {item.venueName} <br /> {item.dateTime}
+                      {item.venueName} <br /> {convertDate(item.dateTime)}
                     </Card.Text>
                     <Stack direction='horizontal' gap={2}>
                       <Link

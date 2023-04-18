@@ -137,6 +137,32 @@ router.get("/showData", (req: any, res: any) => {
 
 })
 
+router.get("/phSections", (req:any, res:any) => {
+
+    let venueList = System.getVenues()
+
+    let playHouse: {[k: string]: any} = {}
+    venueList[1].getSections().forEach((section) => {
+        playHouse[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
+        //console.log(section.getSeats()[0].getDefaultPrice())
+    });
+    console.log(JSON.stringify(playHouse))
+    res.json(playHouse)
+})
+
+router.get("/chSections", (req:any, res:any) => {
+
+    let venueList = System.getVenues()
+
+    let concertHall: {[k: string]: any} = {}
+    venueList[0].getSections().forEach((section) => {
+        concertHall[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
+        //console.log(section.getSeats()[0].getDefaultPrice())
+    });
+    console.log(JSON.stringify(concertHall))
+    res.json(concertHall)
+})
+
 router.post("/newShow", (req: any, res: any) => {
     let data = req.body;
 
@@ -144,13 +170,12 @@ router.post("/newShow", (req: any, res: any) => {
     console.log("Incoming Perf name: " + data.newShow.performance.performanceName)
     let venue:Venue;
     let newPerf = data.newShow.performance
-    // if(data.venueName === "Concert Hall") {
-    //     venue = System.getVenues[0]
-    // }
-    // else {
-    //     venue = System.getVenues[1]
-    // }
-    venue = System.getVenues()[0]
+    if(data.venueName === "Concert Hall") {
+        venue = System.getVenues()[0]
+    }
+    else {
+        venue = System.getVenues()[1]
+    }
 
     System.createPerformance(newPerf.performanceName, newPerf.venueName, new Date(newPerf.dateTime), venue)
     res.status(200)

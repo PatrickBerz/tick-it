@@ -28,7 +28,7 @@ export const PolicyStuff = () => {
             sectionPrice: e.target.value
         })
     }
-
+    
     const handleItemEdit = (vName, item, value) => {
         setFormData({ venueName: vName, sectionName: item, sectionPrice: value})
         setShow(true)
@@ -103,7 +103,6 @@ export const PolicyStuff = () => {
 
                     <div className='d-flex ' style={{ width: '80%', alignSelf: 'center' }}>
 
-
                         <Button className='ms-auto p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -140,6 +139,7 @@ export const PolicyStuff = () => {
                                 ))}
                             </tbody>
                         </Table>
+
                         <Table bordered responsive striped hover variant='dark' size='lg' style={{ width: '500px' }}>
                             <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={3}>Concert Hall</th></tr></thead>
                             <tbody style={{ fontSize: '20px', color: "white" }}>
@@ -166,8 +166,6 @@ export const PolicyStuff = () => {
                             </tbody>
                         </Table>
                     </div>
-
-
                 </Stack>
                 <Modal size='sm' show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
@@ -187,7 +185,6 @@ export const PolicyStuff = () => {
                                     <Form.Label>{formData.venueName}</Form.Label>
                                     <Form.Control required type="number" step={'0.01'} value={formData.sectionPrice} placeholder="Enter new price" onChange={handleTextChange} />
                                 </Form.Group>
-
                             </Row>
 
                             <Button variant="primary" type="submit" >
