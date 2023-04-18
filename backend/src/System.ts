@@ -17,8 +17,8 @@ export class System {
     private static deserializer : JSONHandler = new JSONHandler();
     private static venuePath : string = __dirname + "/../" + "/sampleVenue.json";
     private static showPath : string = __dirname + "/../" + "/test8.json";
-    private static purchasePath : string = __dirname + "/../.." + "/samplePurchases5.json";
-   // private static purchasePath : string = __dirname + "/.." + "/purchases.json";
+    //private static purchasePath : string = __dirname + "/../.." + "/samplePurchases5.json";
+    private static purchasePath : string = __dirname + "/.." + "/purchases.json";
     private static seasonPath : string = __dirname + "/../" + "/seasonTicketHolders.json";
     private static venues : Venue[] = this.initializeVenues(this.venuePath);
     private static shows : Show[] = this.initializeShows(this.showPath);
