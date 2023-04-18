@@ -123,6 +123,10 @@ export class System {
         return newHolder;
     }
 
+    public static serializeSeasonHolders() {
+        this.deserializer.serialize(this.seasonTicketHolders, this.seasonPath)
+    }
+
     public static createPerformance(performanceName : string, venueName : string, dateTime : Date, venueObj : Venue) {
         let show : Show | null = this.findShow(performanceName);
         if (show == null) show = this.createShow(venueObj, performanceName);
