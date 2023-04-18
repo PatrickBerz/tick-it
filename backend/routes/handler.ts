@@ -170,13 +170,12 @@ router.post("/newShow", (req: any, res: any) => {
     console.log("Incoming Perf name: " + data.newShow.performance.performanceName)
     let venue:Venue;
     let newPerf = data.newShow.performance
-    // if(data.venueName === "Concert Hall") {
-    //     venue = System.getVenues[0]
-    // }
-    // else {
-    //     venue = System.getVenues[1]
-    // }
-    venue = System.getVenues()[0]
+    if(data.venueName === "Concert Hall") {
+        venue = System.getVenues()[0]
+    }
+    else {
+        venue = System.getVenues()[1]
+    }
 
     System.createPerformance(newPerf.performanceName, newPerf.venueName, new Date(newPerf.dateTime), venue)
     res.status(200)
