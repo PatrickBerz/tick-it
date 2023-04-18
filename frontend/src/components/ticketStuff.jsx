@@ -42,20 +42,6 @@ export const TicketStuff = () => {
                             onClick={newEventModal}>
                             Add Purchase
                         </Button>
-                        <Button className='ms-2 p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} // send file path
-                            onClick={handleExport}>
-                            Import Data
-                        </Button>
-                        <Button className='ms-2 p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} //0 or 1
-                            onClick={handleExport}>
-                            Export Data
-                        </Button>
 
                         <Button className='ms-auto p-2' style={{
                             borderColor: '#FF4057',

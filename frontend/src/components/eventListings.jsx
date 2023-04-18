@@ -247,20 +247,6 @@ export const EventListings = () => {
                             onClick={newEventModal}>
                             Create Show
                         </Button>
-                        <Button className='ms-2 p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} // send file path
-                            onClick={handleExport}>
-                            Import Data
-                        </Button>
-                        <Button className='ms-2 p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} //0 or 1
-                            onClick={handleExport}>
-                            Export Data
-                        </Button>
 
                         <Button className='ms-auto p-2' style={{
                             borderColor: '#FF4057',
@@ -293,7 +279,7 @@ export const EventListings = () => {
                                         <td>{item.venueName} </td>
                                         <td>{convertDate(item.dateTime)} </td>
                                         <td>{item.tickets.length} </td>
-                                        <td>
+                                        <td style={{ textAlign: 'center' }}>
                                             <Button
                                                 size='sm'
                                                 onClick={() => { handleItemDeleted(item) }}>
