@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form, ToggleButton, ToggleButtonGroup, Card, Stack } from 'react-bootstrap';
 import {useLocation, Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import { OrderConfirmation } from './orderConfirmation';
 
 export const SeasonPass = () =>{
 
@@ -98,7 +99,8 @@ export const SeasonPass = () =>{
                 </div>
 
                 <br></br>
-                <Button type="submit" className="mb-3 mx-auto" style={{marginTop:'30px'}}>Purchase Season Pass</Button>
+                <Link to={"/orderConfirmation"}>
+                <Button type="submit" className="mb-3 mx-auto" style={{marginTop:'30px'}}>Purchase Season Pass</Button></Link>
             </Form>
         </div>
     )

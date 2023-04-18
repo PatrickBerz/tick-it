@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stack, Image, Form, Button, ListGroup } from 'react-bootstrap';
 import { useEffect, useState, useRef } from "react";
-import {useLocation, Link } from 'react-router-dom';
+import {useLocation, Link, useNavigate } from 'react-router-dom';
 import {ReactComponent as Playhouse} from './playhouseSeatsSeason.svg';
-import {ReactComponent as ConcertHall} from './concertHall.svg';
+import {ReactComponent as ConcertHall} from './concertHallSeason.svg';
 
 export const SeasonSeatSelection = () => {
   // Load previous state
@@ -18,6 +18,7 @@ export const SeasonSeatSelection = () => {
   // Used for referencing the svg again
   const playhouseRef = useRef(null);
   const concertHallRef = useRef(null);
+  const navigate = useNavigate();
 
   /*
   * FUNCTION load the correct component depending on the venue state
@@ -98,6 +99,8 @@ export const SeasonSeatSelection = () => {
   */
   const handleAddToList = (seat) => {
     // Add the selected class to this seat SVG element
+    navigate('/seasonPass', {state: {case: "season", venue: state.venue, seat: seat.id}})
+    
     seat.classList.add("selected");
     // Add this seat to the cart
     //cart.push(seat.id);
