@@ -200,7 +200,18 @@ router.post("/newShow", (req: any, res: any) => {
         console.log("PLAYHOUSE")
     }
 
-    System.createPerformance(newPerf.performanceName, newPerf.venueName, new Date(newPerf.dateTime), venue)
+    let createdPerf = System.createPerformance(newPerf.performanceName, newPerf.venueName, new Date(newPerf.dateTime), venue)
+    let tickets = createdPerf.getTickets()
+    tickets.forEach(ticket => {
+        Object.keys(data.newShow.performance.sections).map ((section) => {
+            if(ticket.getSeat().getSection() === section){
+                ticket.setPrice(data.newShow.performance.sections[section])
+                console.log("SET PRICE")
+            }
+        })
+        
+    });
+
     res.status(200)
     res.end()
 });
