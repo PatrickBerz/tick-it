@@ -90,10 +90,11 @@ export const TicketStuff = () => {
 
     const onFormSubmit = (e) => {
         e.preventDefault()
-        if (!passState.performanceName) {
-            setFormError('Please fill in all fields.');
-            return;
-        }
+        //console.log(JSON.stringify(passState))
+        // if (!passState.performanceName) {
+        //     setFormError('Please fill in all fields.');
+        //     return;
+        // }
 
 
         setFormError(null);
@@ -214,7 +215,6 @@ export const TicketStuff = () => {
                                 <Form.Group as={Col} controlId="status">
                                     <Form.Label>Status</Form.Label>
                                     <Form.Select type="select" min={0} max={3} value={formData.status} onChange={handleStatusChange} >
-                                        <option value={0}>Unsold</option>
                                         <option value={1}>Reserved</option>
                                         <option value={2}>Paid</option>
                                         <option value={3}>Picked Up</option>
