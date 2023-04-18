@@ -27,7 +27,7 @@ export const SeatSelection = () =>{
   const loadVenueSVG = () =>{
     if (state.venue == "Playhouse"){
       return (
-        <Playhouse style={{maxWidth:'100vh'}} onClick={handleClickMap} ref={playhouseRef} />
+        <Playhouse style={{maxWidth:'100vh', marginTop:"50px"}} onClick={handleClickMap} ref={playhouseRef} />
       )
     } else if (state.venue == "Concert Hall") {
       return (
