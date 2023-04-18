@@ -203,19 +203,69 @@ router.post("/newPurchase", (req: any, res: any) => {
     let newTickets: Ticket[] = [];
 
     data.ticketList.forEach((purchTicket : any) => {
+        let ticketSeat = new Seat(data.section, data.row, data.seatNum, false, false, 0);
+        let testTicket : Ticket = new Ticket(data.showName, ticketSeat);
+
         if(perf) {
             perf.getTickets().forEach(perfTicket => {
-                if (purchTicket.getSeat().equals(perfTicket.getSeat())) {
-
-                        newTickets.push(perfTicket)
+                if (testTicket.getSeat().equals(perfTicket.getSeat())) {
+                        newTickets.push(perfTicket);
                     }
             });
         }
     })
     
-    System.createPurchase(attendee, newTickets, new Date(data.dateTime), data.ticketStatus)
+    System.createPurchase(attendee, newTickets, new Date(data.dateTime), data.ticketStatus);
 
-})
+});
+
+router.post("/calculatePrice", (req: any, res: any) => {
+    let data = req.body
+    let perfToFind = new Performance(data.showName, data.venueName, data.dateTime, System.getVenues()[0])
+
+    let perf = System.findPerformance(perfToFind)
+    let soldTickets: Ticket[] = [];
+
+    data.ticketList.forEach((purchTicket : any) => {
+        let ticketSeat = new Seat(data.section, data.row, data.seatNum, false, false, 0);
+        let testTicket : Ticket = new Ticket(data.showName, ticketSeat);
+
+        if(perf) {
+            perf.getTickets().forEach(perfTicket => {
+                if (testTicket.getSeat().equals(perfTicket.getSeat())) {
+                        soldTickets.push(perfTicket);
+                    }
+            });
+        }
+    });
+
+    //Calculate total price
+    let totalPrice = 0.0;
+    for (var index in soldTickets) {
+        totalPrice += soldTickets[index].getPrice();
+    }
+
+    if (data.discounts == "None") {
+        res.status(200);
+        res.json(totalPrice);
+    } else if (data.discounts == "Senior") {
+        totalPrice = totalPrice * .7;
+        res.status(200);
+        res.json(totalPrice);
+    } else if (data.discounts == "Military") {
+        totalPrice = totalPrice * .65;
+        res.status(200);
+        res.json(totalPrice);
+    } else if (data.discounts == "First Responders") {
+        totalPrice = totalPrice * .6;
+        res.status(200);
+        res.json(totalPrice);
+    } else {
+        console.log("HELP ME!");
+        res.status(500);
+        res.end();
+    }
+});
 
 router.post("/password", (req: any, res: any) => {
     //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
@@ -263,7 +313,7 @@ router.post("/currentTickets", (req: any, res: any) => {
     if (perf != null) {
         let foundTickets = perf.getTickets();
         console.log("oh boy! I worked!");
-        console.log("here are the sold seats: ", foundTickets);
+        console.log("here are the sold tickets: ", foundTickets);
         res.status(200);
         res.json(foundTickets);
     } else {

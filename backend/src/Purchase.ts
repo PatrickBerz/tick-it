@@ -43,6 +43,8 @@ export class Purchase {
         for (var index in this.tickets) {
             totalPrice += this.tickets[index].getPrice();
         }
+
+        return totalPrice;
     }
 
     //Mark the tickets in the purchase as Reserved
