@@ -1,4 +1,4 @@
-import { Form, Stack, Button, Alert, Table, Modal, Row, Col } from 'react-bootstrap';
+import { Form, Stack, Button, Alert, Table, Modal, Row, Col,InputGroup } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 
 export const PolicyStuff = () => {
@@ -28,9 +28,9 @@ export const PolicyStuff = () => {
             sectionPrice: e.target.value
         })
     }
-    
+
     const handleItemEdit = (vName, item, value) => {
-        setFormData({ venueName: vName, sectionName: item, sectionPrice: value})
+        setFormData({ venueName: vName, sectionName: item, sectionPrice: value })
         setShow(true)
     };
 
@@ -157,7 +157,7 @@ export const PolicyStuff = () => {
                                         <td style={{ textAlign: 'center' }}>
                                             <Button
                                                 size='sm'
-                                                onClick={() => { handleItemEdit("Concert Hall", item ,data[0][item]) }}>
+                                                onClick={() => { handleItemEdit("Concert Hall", item, data[0][item]) }}>
                                                 Edit
                                             </Button>
                                         </td>
@@ -169,7 +169,7 @@ export const PolicyStuff = () => {
                 </Stack>
                 <Modal size='sm' show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Enter New Default Price</Modal.Title>
+                        <Modal.Title>Edit Default Price</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={onFormSubmit} id='newShowForm' >
@@ -181,9 +181,12 @@ export const PolicyStuff = () => {
                             {formError && <Alert variant='danger'>{formError}</Alert>
                             }
                             <Row className="mb-3">
-                                <Form.Group as={Col} controlId="textValue">
-                                    <Form.Label>{formData.venueName}</Form.Label>
-                                    <Form.Control required type="number" step={'0.01'} value={formData.sectionPrice} placeholder="Enter new price" onChange={handleTextChange} />
+                                <Form.Group as={Col}  controlId="textValue">
+                                    <InputGroup size='sm'>
+                                        <Form.Label >{formData.venueName}</Form.Label>
+                                        <InputGroup.Text className='ms-2'>$</InputGroup.Text>
+                                        <Form.Control className='me-5' type="number"  step={'0.01'} value={formData.sectionPrice} onChange={handleTextChange} />
+                                    </InputGroup>
                                 </Form.Group>
                             </Row>
 
