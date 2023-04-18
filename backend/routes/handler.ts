@@ -146,8 +146,21 @@ router.get("/phSections", (req:any, res:any) => {
         playHouse[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
         //console.log(section.getSeats()[0].getDefaultPrice())
     });
-
+    console.log(JSON.stringify(playHouse))
     res.json(playHouse)
+})
+
+router.get("/chSections", (req:any, res:any) => {
+
+    let venueList = System.getVenues()
+
+    let concertHall: {[k: string]: any} = {}
+    venueList[0].getSections().forEach((section) => {
+        concertHall[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
+        //console.log(section.getSeats()[0].getDefaultPrice())
+    });
+    console.log(JSON.stringify(concertHall))
+    res.json(concertHall)
 })
 
 router.post("/newShow", (req: any, res: any) => {

@@ -10,7 +10,9 @@ export const EventListings = () => {
         performanceName: '',
         venueName: '',
         date: '',
-        time: ''
+        time: '',
+        sectionName:'',
+        sectionPrice:''
     });
 
     const [showModal, setShow] = useState(false)
@@ -32,13 +34,12 @@ export const EventListings = () => {
         setPlayhouseSections(updatedSections);
     }
 
-    function handleChPriceChange(index, value) {
-        const updatedSections = [...concertHallSections];
-        updatedSections[index] = {
-            ...updatedSections[index],
-            price: value,
-        };
-        setConcertHallSections(updatedSections);
+    function handleChPriceChange(section, value) {
+        setFormData({
+            ...formData,
+            section:  value
+        })
+        
     }
 
     const handleBackButton = () => {
@@ -51,6 +52,8 @@ export const EventListings = () => {
     }
 
     const newEventModal = () => {
+        console.log(phSections)
+        
         setShow(true)
     };
     const handleClose = () => {
@@ -219,8 +222,7 @@ export const EventListings = () => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/phSections')
             const phData = await response.json()
-            console.log(JSON.stringify(phData))
-            phSections=(phData)
+            setPlayhouseSections(phData)
         }
         fetchData();
     }, []);
@@ -229,7 +231,7 @@ export const EventListings = () => {
             const response = await fetch('http://localhost:4000/chSections')
             const chData = await response.json()
             console.log(JSON.stringify(chData))
-            chSections=(chData)
+            setConcertHallSections(chData)
         }
         fetchData();
     }, []);
@@ -367,14 +369,14 @@ export const EventListings = () => {
                                 <Form.Label column sm='2' className='mb-0' style={{ fontSize: '18px' }}>Sections</Form.Label>
                             </Form.Group>
                             {formData.venueName == "Playhouse" && (
-                                playhouseSections.map((section, index) => (
-                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row} key={section.sectionName}>
+                                Object.keys(playhouseSections).map((section, index) => (
+                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row} key={index}>
                                         <Row>
-                                            <Form.Label column sm='2' >{section.sectionName}</Form.Label>
+                                            <Form.Label column sm='2' >{section}</Form.Label>
                                             <Col sm='4'>
                                                 <InputGroup size='sm'>
                                                     <InputGroup.Text>$</InputGroup.Text>
-                                                    <Form.Control type="number" step={"0.01"} value={section.price} placeholder="Price" onChange={e => { handlePhPriceChange(index, e.target.value) }} />
+                                                    <Form.Control type="number" step={"0.01"} value={phSections[section]} placeholder="Price" onChange={e => { handlePhPriceChange(index, e.target.value) }} />
                                                 </InputGroup>
                                             </Col>
                                         </Row>
@@ -382,15 +384,15 @@ export const EventListings = () => {
                                 ))
                             )}
                             {formData.venueName == "Concert Hall" && (
-                                concertHallSections.map((section, index) => (
-                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row} key={section.sectionName}>
+                                Object.keys(concertHallSections).map((section, index) => (
+                                    <Form.Group controlId='selectVenue' className='mt-2' as={Row} key={index}>
 
                                         <Row>
-                                            <Form.Label column sm='2' >{section.sectionName}</Form.Label>
+                                            <Form.Label column sm='2' >{section}</Form.Label>
                                             <Col sm='4'>
                                                 <InputGroup size='sm'>
                                                     <InputGroup.Text>$</InputGroup.Text>
-                                                    <Form.Control type="number" step={"0.01"} value={section.price} placeholder="Price" onChange={e => { handleChPriceChange(index, e.target.value) }} />
+                                                    <Form.Control type="number" step={"0.01"} value={concertHallSections[section]} placeholder="Price" onChange={e => { handleChPriceChange(section, e.target.value) }} />
                                                 </InputGroup>
                                             </Col>
                                         </Row>
