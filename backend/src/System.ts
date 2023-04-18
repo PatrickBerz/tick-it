@@ -7,7 +7,7 @@ import { SeatSection } from "./SeatSection";
 import { Seat } from "./Seat";
 import { Performance } from "./Performance";
 import { JSONHandler } from "../JSONHandler";
-import { Ticket } from "./Ticket";
+import { Ticket, TicketStatus } from "./Ticket";
 import { ConfNum } from "./ConfNum";
 
 //NOT A SINGLETON
@@ -55,14 +55,29 @@ export class System {
     }
 
     //creating new objects for the database
-    public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date)// : Purchase 
+    public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date, ticketStatus: TicketStatus)// : Purchase 
     {
         let newPurchase = new Purchase(purchaser);
         newPurchase.updateTickets(tickets);
         newPurchase.setConfNum(ConfNum.getNum());
         newPurchase.setDate(dateTime);
+        switch(ticketStatus) {
+            case 1: {
+                newPurchase.reservedTickets()
+                break;
+            }
+            case 2: {
+                newPurchase.payTickets()
+                break;
+            }
+            case 3: {
+                newPurchase.pickUpTickets()
+                break;
+            }
+        }
         this.purchases.push(newPurchase);
         this.deserializer.serialize(this.purchases, this.purchasePath);
+        this.deserializer.serialize(this.shows, this.showPath);
         //this.insertIntoPurchases(newPurchase);
         //return newPurchase;
     }
@@ -192,19 +207,19 @@ export class System {
     public static findPerformance(perfToFind: Performance) {
         for (var index in this.shows) {
             for (var index2 in this.shows[index].getPerformances()) {
-                console.log("IN LOOP")
-                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getPerformanceName()))
-                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getDateTime()))
-                console.log(perfToFind.getDateTime())
-                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getVenueName()))
+                // console.log("IN LOOP")
+                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getPerformanceName()))
+                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getDateTime()))
+                // console.log(perfToFind.getDateTime())
+                // console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getVenueName()))
                 
-                console.log("COMP SHOW")
-                console.log(JSON.stringify(perfToFind.getPerformanceName()))
-                console.log(JSON.stringify(perfToFind.getDateTime()))
-                console.log(typeof(perfToFind.getDateTime()))
-                console.log(JSON.stringify(perfToFind.getVenueName()))
+                // console.log("COMP SHOW")
+                // console.log(JSON.stringify(perfToFind.getPerformanceName()))
+                // console.log(JSON.stringify(perfToFind.getDateTime()))
+                // console.log(typeof(perfToFind.getDateTime()))
+                // console.log(JSON.stringify(perfToFind.getVenueName()))
                 if (this.shows[index].getPerformances()[index2].equals(perfToFind)) {
-                    console.log("FOUND THE PERFORMANCE TO DELETE")
+                    //console.log("FOUND THE PERFORMANCE TO DELETE")
                     //this.shows[index].getPerformances().splice(+index2, 1);
                     return this.shows[index].getPerformances()[index2]
                 }
@@ -218,6 +233,8 @@ export class System {
                 if (this.shows[index].getPerformances()[index2].equals(perfToDelete)) {
                     console.log("Deleted Performance")
                     this.shows[index].getPerformances().splice(+index2, 1);
+                    this.deserializer.serialize(this.purchases, this.purchasePath);
+                    this.deserializer.serialize(this.shows, this.showPath);
                 }
             }
         }
