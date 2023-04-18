@@ -27,7 +27,7 @@ export const SeatSelection = () =>{
   const loadVenueSVG = () =>{
     if (state.venue == "Playhouse"){
       return (
-        <Playhouse style={{maxWidth:'100vh'}} onClick={handleClickMap} ref={playhouseRef} />
+        <Playhouse style={{maxWidth:'100vh', marginTop:"50px"}} onClick={handleClickMap} ref={playhouseRef} />
       )
     } else if (state.venue == "Concert Hall") {
       return (
@@ -202,13 +202,13 @@ export const SeatSelection = () =>{
   */
   return (
       <div className='App-body'>
-        <Stack direction='horizontal' style={{justifyContent:'center'}} gap={5}>
+        <Stack direction='horizontal' style={{justifyContent:'center', alignItems:'start', marginTop:'10px'}} gap={5}>
 
           {/**load the correct venue SVG for use*/}
           {loadVenueSVG()}
           {checkTakenSeats()}
 
-          <div className="d-grid gap-2">
+          <div className="d-grid gap-2" style={{marginTop:"50px"}}>
             {/**List of selected seats, updates automatically*/}
             <ListGroup>
               <ListGroup.Item><h2>Selected Seats</h2></ListGroup.Item>
