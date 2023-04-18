@@ -202,13 +202,13 @@ export const SeatSelection = () =>{
   */
   return (
       <div className='App-body'>
-        <Stack direction='horizontal' style={{justifyContent:'center'}} gap={5}>
+        <Stack direction='horizontal' style={{justifyContent:'center', alignItems:'start', marginTop:'10px'}} gap={5}>
 
           {/**load the correct venue SVG for use*/}
           {loadVenueSVG()}
           {checkTakenSeats()}
 
-          <div className="d-grid gap-2">
+          <div className="d-grid gap-2" style={{marginTop:"50px"}}>
             {/**List of selected seats, updates automatically*/}
             <ListGroup>
               <ListGroup.Item><h2>Selected Seats</h2></ListGroup.Item>
