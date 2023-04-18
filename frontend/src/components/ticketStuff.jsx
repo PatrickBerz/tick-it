@@ -7,6 +7,8 @@ export const TicketStuff = () => {
     const [addPModal, setAddModal] = useState(false)
     const [showModal, setShow] = useState(false)
     const [alert, setAlert] = useState(undefined);
+    const [passState, setState] = useState({ case: '', performanceName: '', venueName: '', dateTime: '' });
+
 
     const [formData, setFormData] = useState(
         {
@@ -17,9 +19,10 @@ export const TicketStuff = () => {
     const handleClose = () => {
         setShow(false)
         setAlert(undefined)
+        setFormError(undefined)
     }
     const handleCloseAdd = () => {
-        setShow(false)
+        setAddModal(false)
         setFormError(undefined)
     }
     
@@ -34,6 +37,10 @@ export const TicketStuff = () => {
             ...formData,
             status:  e.target.value
         })
+    }
+
+    function handleStateChange(caseName) {
+        setState({case:caseName, performanceName:'', venueName:'', dateTime:''})
     }
 
     const handleBackButton = () => {
@@ -103,7 +110,7 @@ export const TicketStuff = () => {
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
                         }}
-                            onClick={addPModal}>
+                            onClick={addPurchaseModal}>
                             Add Purchase
                         </Button>
 
@@ -167,8 +174,13 @@ export const TicketStuff = () => {
                             }
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="status">
-                                    <Form.Label>Name</Form.Label>
-                                    <Form.Control type="number" min={0} max={3} value={formData.status} onChange={handleStatusChange} />
+                                    <Form.Label>Status</Form.Label>
+                                    <Form.Select type="select" min={0} max={3} value={formData.status} onChange={handleStatusChange} >
+                                        <option value={0}>Unsold</option>
+                                        <option value={1}>Reserved</option>
+                                        <option value={2}>Paid</option>
+                                        <option value={3}>Picked Up</option>
+                                    </Form.Select>
                                 </Form.Group>
                                 <Form.Group as={Col}></Form.Group>
                             </Row>
@@ -183,7 +195,7 @@ export const TicketStuff = () => {
                 </Modal>
                 <Modal show={addPModal} onHide={handleCloseAdd}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Edit Status</Modal.Title>
+                        <Modal.Title>Select a show</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={onFormSubmit} id='newShowForm' >
@@ -191,8 +203,8 @@ export const TicketStuff = () => {
                             }
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="status">
-                                    <Form.Label>Name</Form.Label>
-                                    <Form.Control type="number" min={0} max={3} value={formData.status} onChange={handleStatusChange} />
+                                    <Form.Label>Shows</Form.Label>
+                                    <Form.Control type="select" min={0} max={3} value={formData.status} onChange={e => {handleStateChange('purchase')}} />
                                 </Form.Group>
                                 <Form.Group as={Col}></Form.Group>
                             </Row>
@@ -218,7 +230,7 @@ export const TicketStuff = () => {
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
                         }}
-                            onClick={addPModal}>
+                            onClick={addPurchaseModal}>
                             Add Purchase
                         </Button>
 
