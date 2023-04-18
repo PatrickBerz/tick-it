@@ -13219,13 +13219,13 @@
                         "performance": "West Side Story",
                         "seat": {
                             "section": "Orchestra",
-                            "row": "G",
-                            "seatNum": 12,
+                            "row": "U",
+                            "seatNum": 1,
                             "acessible": false,
                             "inSeasonSection": false,
                             "defaultPrice": 29.99
                         },
-                        "ticketStatus": 1,
+                        "ticketStatus": 0,
                         "price": 29.99
                     }
                 ]
@@ -13239,13 +13239,13 @@
                         "performance": "West Side Story AGAIN",
                         "seat": {
                             "section": "Riser1",
-                            "row": "B",
+                            "row": "A",
                             "seatNum": 1,
                             "acessible": false,
                             "inSeasonSection": false,
                             "defaultPrice": 29.99
                         },
-                        "ticketStatus": 1,
+                        "ticketStatus": 0,
                         "price": 29.99
                     }
                 ]

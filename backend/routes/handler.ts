@@ -220,24 +220,33 @@ router.post("/newPurchase", (req: any, res: any) => {
 });
 
 router.post("/calculatePrice", (req: any, res: any) => {
-    let data = req.body
+    let data = req.body.sendData
     let perfToFind = new Performance(data.showName, data.venueName, data.dateTime, System.getVenues()[0])
 
     let perf = System.findPerformance(perfToFind)
     let soldTickets: Ticket[] = [];
 
-    data.ticketList.forEach((purchTicket : any) => {
-        let ticketSeat = new Seat(data.section, data.row, data.seatNum, false, false, 0);
+    console.log("Recieved Section: ", data.ticketList.parsedSeats);
+
+    //for (let i=0; i<state.seats.length; i++){
+    //data.ticketList.forEach((purchTicket : any) => {
+    for (let i=0; i<data.ticketList.parsedSeats.length; i++){
+        console.log("Recieved Section: ", data.ticketList.parsedSeats[i].section);
+        console.log("Recieved Row: ", data.ticketList.parsedSeats[i].row);
+        console.log("Recieved SeatNum: ", data.ticketList.parsedSeats[i].seatNum);
+
+        let ticketSeat = new Seat(data.ticketList.parsedSeats[i].section, data.ticketList.parsedSeats[i].row, +data.ticketList.parsedSeats[i].seatNum, false, false, 0);
         let testTicket : Ticket = new Ticket(data.showName, ticketSeat);
 
         if(perf) {
             perf.getTickets().forEach(perfTicket => {
                 if (testTicket.getSeat().equals(perfTicket.getSeat())) {
                         soldTickets.push(perfTicket);
+                        console.log("FOUND THE TICKET");
                     }
             });
         }
-    });
+    }
 
     //Calculate total price
     let totalPrice = 0.0;
@@ -261,7 +270,7 @@ router.post("/calculatePrice", (req: any, res: any) => {
         res.status(200);
         res.json(totalPrice);
     } else {
-        console.log("HELP ME!");
+        console.log("Could not calculate discount!");
         res.status(500);
         res.end();
     }
