@@ -202,7 +202,7 @@ router.post("/newPurchase", (req: any, res: any) => {
     let perf = System.findPerformance(perfToFind)
     let newTickets: Ticket[] = [];
 
-    data.ticketList.forEach(purchTicket => {
+    data.ticketList.forEach((purchTicket : any) => {
         if(perf) {
             perf.getTickets().forEach(perfTicket => {
                 if (purchTicket.getSeat().equals(perfTicket.getSeat())) {
