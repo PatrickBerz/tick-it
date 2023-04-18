@@ -242,10 +242,12 @@ export const TicketStuff = () => {
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="status">
                                     <Form.Label>Shows</Form.Label>
-                                    <Form.Select style={{ overflowY: "scroll" }} type="select" value={passState.performanceName} onChange={(e) => handleStateChange(e.target.value)}>
+                                    <Form.Select required style={{ overflowY: "scroll" }} type="select" value={passState.performanceName} onChange={(e) => handleStateChange(e.target.value)}>
+                                        <option>Select Show...</option>
                                         {showData.map((option, index) => (
                                             <option key={index} value={JSON.stringify(option)} >{option.performanceName}</option>
                                         ))}
+                                        
                                     </Form.Select>
                                 </Form.Group>
                                 
@@ -254,7 +256,7 @@ export const TicketStuff = () => {
                                 to={"/seatSelection"}
                                 state={{ case: "purchase", event: passState.event, venue: passState.venueName, datetime: passState.dateTime }}>
                                 {console.log({ case: "purchase", event: passState.event, venue: passState.venueName, datetime: passState.dateTime })}
-                                <Button size='sm' variant="primary" >
+                                <Button disabled={!passState.event} size='sm' variant="primary" >
                                     Purchase Tickets
                                 </Button>
                             </Link>
