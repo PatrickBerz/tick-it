@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 export const TicketStuff = () => {
     const [data, setData] = useState(null);
     const [formError, setFormError] = useState(null)
-
+    const [addPModal, setAddModal] = useState(false)
     const [showModal, setShow] = useState(false)
     const [alert, setAlert] = useState(undefined);
 
@@ -17,6 +17,10 @@ export const TicketStuff = () => {
     const handleClose = () => {
         setShow(false)
         setAlert(undefined)
+    }
+    const handleCloseAdd = () => {
+        setShow(false)
+        setFormError(undefined)
     }
     
 
@@ -37,8 +41,8 @@ export const TicketStuff = () => {
 
     }
 
-    const newEventModal = () => {
-        setShow(true)
+    const addPurchaseModal = () => {
+        setAddModal(true)
     };
     useEffect(() => {
         const fetchData = async () => {
@@ -59,12 +63,6 @@ export const TicketStuff = () => {
         }
 
         setFormError(null);
-
-
-        // let passUpdate =
-        // {
-        //     status: formData.status,
-        // }
 
         console.log(formData)
 
@@ -91,7 +89,7 @@ export const TicketStuff = () => {
             }
         )
         handleClose()
-        //setTimeout(() => { window.location.reload(); }, 500);
+        setTimeout(() => { window.location.reload(); }, 500);
     }
 
     if (data) {
@@ -105,7 +103,7 @@ export const TicketStuff = () => {
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
                         }}
-                            onClick={newEventModal}>
+                            onClick={addPModal}>
                             Add Purchase
                         </Button>
 
@@ -141,7 +139,7 @@ export const TicketStuff = () => {
                                             obj.seat.row + obj.seat.seatNum + " "
                                         ))}</td>
                                         <td >{getTicketStatusText(item.tickets[0].ticketStatus)}</td>
-                                        <td>
+                                        <td style={{ textAlign: 'center' }}>
                                             <Button
                                                 size='sm'
                                                 onClick={() => { handleItemEdit(item) }}>
@@ -156,7 +154,7 @@ export const TicketStuff = () => {
                 </Stack>
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Enter Event Data</Modal.Title>
+                        <Modal.Title>Edit Status</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={onFormSubmit} id='newShowForm' >
@@ -165,6 +163,30 @@ export const TicketStuff = () => {
                                     {alert.label}
                                 </Alert>
                             }
+                            {formError && <Alert variant='danger'>{formError}</Alert>
+                            }
+                            <Row className="mb-3">
+                                <Form.Group as={Col} controlId="status">
+                                    <Form.Label>Name</Form.Label>
+                                    <Form.Control type="number" min={0} max={3} value={formData.status} onChange={handleStatusChange} />
+                                </Form.Group>
+                                <Form.Group as={Col}></Form.Group>
+                            </Row>
+                            
+                            
+                            <Button className='mt-2' variant="success" type="submit" >
+                                Submit
+                            </Button>
+
+                        </Form>
+                    </Modal.Body>
+                </Modal>
+                <Modal show={addPModal} onHide={handleCloseAdd}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit Status</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={onFormSubmit} id='newShowForm' >
                             {formError && <Alert variant='danger'>{formError}</Alert>
                             }
                             <Row className="mb-3">
@@ -196,7 +218,7 @@ export const TicketStuff = () => {
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
                         }}
-                            onClick={newEventModal}>
+                            onClick={addPModal}>
                             Add Purchase
                         </Button>
 
