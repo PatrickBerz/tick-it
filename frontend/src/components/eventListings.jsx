@@ -247,20 +247,6 @@ export const EventListings = () => {
                             onClick={newEventModal}>
                             Create Show
                         </Button>
-                        <Button className='ms-2 p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} // send file path
-                            onClick={handleExport}>
-                            Import Data
-                        </Button>
-                        <Button className='ms-2 p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} //0 or 1
-                            onClick={handleExport}>
-                            Export Data
-                        </Button>
 
                         <Button className='ms-auto p-2' style={{
                             borderColor: '#FF4057',
@@ -293,7 +279,7 @@ export const EventListings = () => {
                                         <td>{item.venueName} </td>
                                         <td>{convertDate(item.dateTime)} </td>
                                         <td>{item.tickets.length} </td>
-                                        <td>
+                                        <td style={{ textAlign: 'center' }}>
                                             <Button
                                                 size='sm'
                                                 onClick={() => { handleItemDeleted(item) }}>
@@ -431,6 +417,25 @@ export const EventListings = () => {
                             onClick={handleBackButton}>
                             Back
                         </Button>
+                    </div>
+                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '35rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
+
+                        <Table bordered responsive striped hover variant='dark' size='sm' >
+                            <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
+                                Performances
+                            </th>
+                            </tr>
+                            </thead>
+                            <tbody style={{ fontSize: '20px', color: "white" }}>
+                                <tr>
+                                    <th >Performance Name</th>
+                                    <th >Venue</th>
+                                    <th >Date</th>
+                                    <th >Seats Left</th>
+                                    <th></th>
+                                </tr>
+                            </tbody>
+                        </Table>
                     </div>
                     <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
 
