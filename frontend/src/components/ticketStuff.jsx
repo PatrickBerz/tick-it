@@ -1,13 +1,19 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Stack, Button, Alert, Table, Modal, Row, Col } from 'react-bootstrap';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
+
 
 export const TicketStuff = () => {
     const [data, setData] = useState(null);
     const [formError, setFormError] = useState(null)
     const [addPModal, setAddModal] = useState(false)
+    const [showData, setShowData] = useState([])
     const [showModal, setShow] = useState(false)
-    const [alert, setAlert] = useState(undefined);
-    const [passState, setState] = useState({ case: '', performanceName: '', venueName: '', dateTime: '' });
+    const [alert, setAlert] = useState(undefined)
+
+    const [passState, setState] = useState({ case: '', event: '', venueName: '', dateTime: '',seats:[] });
 
 
     const [formData, setFormData] = useState(
@@ -25,22 +31,42 @@ export const TicketStuff = () => {
         setAddModal(false)
         setFormError(undefined)
     }
-    
+
 
     const handleItemEdit = (item) => {
-        setFormData({confNum:item.confNum , status: item.tickets[0].ticketStatus})
+        setFormData({ confNum: item.confNum, status: item.tickets[0].ticketStatus })
         setShow(true)
     }
 
     const handleStatusChange = e => {
         setFormData({
             ...formData,
-            status:  e.target.value
+            status: e.target.value
         })
     }
+    const convertDate = (item) => {
+        const oldDate = new Date(item)
+        //Shift time 300 minutes (5 hours) to get it out of GMT
+        const date = new Date(oldDate.getTime() + 300 * 60000);
+        const options = {
+            month: 'numeric',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        }
 
-    function handleStateChange(caseName) {
-        setState({case:caseName, performanceName:'', venueName:'', dateTime:''})
+        const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
+        //const formattedDate = date.toLocaleDateString('en-US', options)
+        return formattedDate
+    }
+
+    function handleStateChange (value) {
+        const showToPass = JSON.parse(value)
+        console.log(showToPass.performanceName)
+        setState({ case: 'purchase', event: showToPass.performanceName, venue:showToPass.venueName, date: convertDate(showToPass.dateTime) })
+        console.log(passState)
     }
 
     const handleBackButton = () => {
@@ -64,10 +90,11 @@ export const TicketStuff = () => {
 
     const onFormSubmit = (e) => {
         e.preventDefault()
-        if (!formData.status) {
+        if (!passState.performanceName) {
             setFormError('Please fill in all fields.');
             return;
         }
+
 
         setFormError(null);
 
@@ -77,7 +104,7 @@ export const TicketStuff = () => {
         const promise = fetch('http://localhost:4000/statusUpdate', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify( formData)
+            body: JSON.stringify(formData)
         });
         console.log(promise)
         promise.then(event => {
@@ -91,13 +118,23 @@ export const TicketStuff = () => {
 
         setFormData(
             {
-                confNum:'',
+                confNum: '',
                 status: '',
             }
         )
         handleClose()
         setTimeout(() => { window.location.reload(); }, 500);
     }
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:4000/showData')
+            const newData = await response.json()
+            console.log(JSON.stringify(newData))
+            setShowData(newData)
+        }
+        fetchData();
+    }, []);
+
 
     if (data) {
         console.log(JSON.stringify(data))
@@ -122,7 +159,7 @@ export const TicketStuff = () => {
                             Back
                         </Button>
                     </div>
-                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
+                    <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '35rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
 
                         <Table bordered responsive striped hover variant='dark' size='sm' >
                             <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>Ticket Purchases</th></tr></thead>
@@ -152,6 +189,7 @@ export const TicketStuff = () => {
                                                 onClick={() => { handleItemEdit(item) }}>
                                                 Edit
                                             </Button>
+
                                         </td>
                                     </tr>
                                 ))}
@@ -184,8 +222,8 @@ export const TicketStuff = () => {
                                 </Form.Group>
                                 <Form.Group as={Col}></Form.Group>
                             </Row>
-                            
-                            
+
+
                             <Button className='mt-2' variant="success" type="submit" >
                                 Submit
                             </Button>
@@ -204,15 +242,21 @@ export const TicketStuff = () => {
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="status">
                                     <Form.Label>Shows</Form.Label>
-                                    <Form.Control type="select" min={0} max={3} value={formData.status} onChange={e => {handleStateChange('purchase')}} />
+                                    <Form.Select style={{ overflowY: "scroll" }} type="select" value={passState.performanceName} onChange={(e) => handleStateChange(e.target.value)}>
+                                        {showData.map((option, index) => (
+                                            <option key={index} value={JSON.stringify(option)} >{option.performanceName}</option>
+                                        ))}
+                                    </Form.Select>
                                 </Form.Group>
-                                <Form.Group as={Col}></Form.Group>
+                                
                             </Row>
-                            
-                            
-                            <Button className='mt-2' variant="success" type="submit" >
-                                Submit
-                            </Button>
+                            <Link
+                                to={"/seatSelection"}
+                                state={{ case: "purchase", event: passState.event, venue: passState.venueName, datetime: passState.dateTime, seats:[] }}>
+                                <Button size='sm' variant="primary" >
+                                    Purchase Tickets
+                                </Button>
+                            </Link>
 
                         </Form>
                     </Modal.Body>
@@ -255,12 +299,12 @@ export const TicketStuff = () => {
                                     <th >Ticket Status</th>
                                     <th >Edit</th>
                                 </tr>
-                                
+
                             </tbody>
                         </Table>
                     </div>
                 </Stack>
-                
+
             </div>
         )
     }
