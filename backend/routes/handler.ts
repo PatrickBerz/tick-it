@@ -38,6 +38,7 @@ router.get("/seasonTickets", (req: any, res: any) => {
     res.json(seasonTixList)
 })
 
+//handle post request to add a season ticket holder
 router.post("/newSeasonTicket", (req: any, res: any) => {
 
     //take in and parse new season ticket holder
@@ -52,35 +53,74 @@ router.post("/newSeasonTicket", (req: any, res: any) => {
     //system.addSeasonHolder(newHolder)
 })
 
-router.post("/newDefaults", (req: any, res: any) => {
+router.post("/holderUpdate", (req: any, res: any) => {
 
-    // parse defaults. Need venue name and assoc. array of section name to new default price
-    // {
-    //     "venueName": "Playhouse",
-    //     "sections": [
-    //                  "Section1": 23.99,
-    //                  "Section2": 33.99,
-    //                  "Section3": 23.99
-    //                  ]
-    // }
-    let data = req.body
+    let data = req.body.passUpdate
+    let checkSeat = new Seat(data.section, data.row, data.seatNum, false, false, 1)
 
-    //call Sys class to get old venue of same name
-    //Replace declaration with Sys function call
-    //let venue:Venue = new Venue();
 
-    // let sectionList = venue.getSections()
-    // data.sections.forEach(sectionName => {
-    //     sectionList.forEach((section) => {
-    //         if (section.getSectionNum() == sectionName) {
-    //             section.setDefaultPrice(data.sections[sectionName])
-    //         }
-    //     });
-    // });
+    let seasonList = System.getSeasonTicketHolders()
+    //console.log(JSON.stringify(seasonList))
 
-    //no need to call Sys function since returned venue should be a reference to the one in the list
-    //definitely worth testing that to make sure
+    seasonList.forEach(holder => {
+        if (holder.getSeatAssignment().equals(checkSeat)) {
+            holder.setName(data.name)
+            holder.setAddress(data.address)
+            holder.setPhoneNum(data.phoneNum)
+        }
+    });
+})
+
+//handle post request to update default price of a section of a venue
+router.post("/newDefault", (req: any, res: any) => {
+
+    console.log("Got a new default")
     
+    let data = req.body.newPrice
+    console.log(JSON.stringify(req.body))
+
+    let venue: Venue;
+    if(data.venueName === "Concert Hall") {
+        venue = System.getVenues()[0]
+    }
+    else {
+        venue = System.getVenues()[1]
+    }
+    //venue = System.getVenues()[0]
+    let sectionList = venue.getSections()
+    sectionList.forEach((section) => {
+
+        if (section.getSectionNum() === data.section) {
+            section.setDefaultPrice(data.sectionPrice)
+            //console.log("Set new default price of: " + data.sectionPrice + " for: " + data.section)
+            res.status(200)
+            res.end()
+        }
+    })
+    res.status(500)
+    res.end()
+})
+
+// handle get request for venue section default prices
+router.get("/venueDefaults", (req:any, res:any) => {
+
+    let venueList = System.getVenues()
+    let venueDefaults: any[] = []
+
+    let concertHall: {[k: string]: any} = {}
+    venueList[0].getSections().forEach ((section) => {
+        concertHall[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
+    })
+
+    let playHouse: {[k: string]: any} = {}
+    venueList[1].getSections().forEach((section) => {
+        playHouse[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
+        console.log(section.getSeats()[0].getDefaultPrice())
+    });
+
+    venueDefaults.push(concertHall)
+    venueDefaults.push(playHouse)
+    res.json(venueDefaults)
 })
 
 router.get("/showData", (req: any, res: any) => {
@@ -97,6 +137,32 @@ router.get("/showData", (req: any, res: any) => {
 
 })
 
+router.get("/phSections", (req:any, res:any) => {
+
+    let venueList = System.getVenues()
+
+    let playHouse: {[k: string]: any} = {}
+    venueList[1].getSections().forEach((section) => {
+        playHouse[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
+        //console.log(section.getSeats()[0].getDefaultPrice())
+    });
+    //console.log(JSON.stringify(playHouse))
+    res.json(playHouse)
+})
+
+router.get("/chSections", (req:any, res:any) => {
+
+    let venueList = System.getVenues()
+
+    let concertHall: {[k: string]: any} = {}
+    venueList[0].getSections().forEach((section) => {
+        concertHall[section.getSectionNum()] = section.getSeats()[0].getDefaultPrice()
+        //console.log(section.getSeats()[0].getDefaultPrice())
+    });
+    //console.log(JSON.stringify(concertHall))
+    res.json(concertHall)
+})
+
 router.post("/newShow", (req: any, res: any) => {
     let data = req.body;
 
@@ -104,15 +170,29 @@ router.post("/newShow", (req: any, res: any) => {
     console.log("Incoming Perf name: " + data.newShow.performance.performanceName)
     let venue:Venue;
     let newPerf = data.newShow.performance
-    // if(data.venueName === "Concert Hall") {
-    //     venue = System.getVenues[0]
-    // }
-    // else {
-    //     venue = System.getVenues[1]
-    // }
-    venue = System.getVenues()[0]
 
-    System.createPerformance(newPerf.performanceName, newPerf.venueName, new Date(newPerf.dateTime), venue)
+    console.log(data.newShow.performance.venueName)
+    if(data.newShow.performance.venueName === "Concert Hall") {
+        venue = System.getVenues()[0]
+        console.log("CONCERT HALL")
+    }
+    else {
+        venue = System.getVenues()[1]
+        console.log("PLAYHOUSE")
+    }
+
+    let createdPerf = System.createPerformance(newPerf.performanceName, newPerf.venueName, new Date(newPerf.dateTime), venue)
+    let tickets = createdPerf.getTickets()
+    tickets.forEach(ticket => {
+        Object.keys(data.newShow.performance.sections).map ((section) => {
+            if(ticket.getSeat().getSection() === section){
+                ticket.setPrice(data.newShow.performance.sections[section])
+                //console.log("SET PRICE")
+            }
+        })
+        
+    });
+
     res.status(200)
     res.end()
 });
@@ -304,6 +384,38 @@ router.post("/calculatePrice", (req: any, res: any) => {
         res.end();
     }
 });
+
+router.post("/statusUpdate", (req: any, res: any) => {
+
+    let data = req.body
+    console.log(data)
+
+    let purchase = System.findPurchase(+data.confNum)
+    console.log(JSON.stringify(purchase))
+    if(purchase) {
+        switch(+data.status) {
+            case 1: {
+                purchase.reservedTickets()
+                break;
+            }
+            case 2: {
+                purchase.payTickets()
+                break;
+            }
+            case 3: {
+                purchase.pickUpTickets()
+                console.log("Picked up")
+                break;
+            }
+            default: {
+                console.log("Broken")
+            }
+        }
+    }
+    else {
+        console.log("No purchase")
+    }
+})
 
 router.post("/password", (req: any, res: any) => {
     //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000/password');
