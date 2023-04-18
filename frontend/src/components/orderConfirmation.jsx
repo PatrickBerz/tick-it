@@ -11,19 +11,19 @@ export const OrderConfirmation = () =>{
         <div className='App-body'>
         <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
           <div>
-          <h1 style={{color:'white', marginTop: '60px'}}>Order Confirmed!</h1>
-          <p style={{color:'white'}}><i>Please check in at least 15 minutes before your show time.</i></p>
-            </div>
-            <div>
-            
-                <Link 
-                to={"/"}>
-                <Button type="button" variant="primary">
-                    Return to Home
-                </Button>
-                </Link>
+            <h1 style={{color:'white', marginTop:'60px', textAlign: "center", marginTop: "100px"}}>Order Confirmed!</h1>
+            <p style={{color:'white', textAlign: "center"}}><i>Please check in at least 15 minutes before your show time.</i></p>
+          </div>
+          <div>
+          
+              <Link 
+              to={"/"}>
+              <Button type="button" variant="primary">
+                  Return to Home
+              </Button>
+              </Link>
 
-            </div>
+          </div>
         </Stack>
       </div>
     )
