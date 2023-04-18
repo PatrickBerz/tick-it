@@ -214,6 +214,7 @@ const handlePhNumChange = e => {
               <ListGroup.Item><i style={{color: 'gray'}}>Venue:</i></ListGroup.Item>
               <ListGroup.Item>{state.venue}</ListGroup.Item>
               <ListGroup.Item><i style={{color: 'gray'}}>Seats:</i></ListGroup.Item>
+              <div style={{maxHeight:'250px', overflowY:'scroll'}}>
               {state.seats.map((item, index) => (
                 <ListGroup.Item key={index}>
                   {item}
@@ -222,6 +223,7 @@ const handlePhNumChange = e => {
                   </Button>*/}
                 </ListGroup.Item>
               ))}
+              </div>
               <ListGroup.Item><i style={{color: 'gray'}}>Total Price:</i></ListGroup.Item>
                 <ListGroup.Item>{price}</ListGroup.Item>
             </ListGroup>

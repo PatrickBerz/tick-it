@@ -27,7 +27,7 @@ export const SeatSelection = () =>{
   const loadVenueSVG = () =>{
     if (state.venue == "Playhouse"){
       return (
-        <Playhouse style={{maxWidth:'100vh'}} onClick={handleClickMap} ref={playhouseRef} />
+        <Playhouse style={{maxWidth:'100vh', marginTop:'60px'}} onClick={handleClickMap} ref={playhouseRef} />
       )
     } else if (state.venue == "Concert Hall") {
       return (
@@ -208,11 +208,12 @@ export const SeatSelection = () =>{
           {loadVenueSVG()}
           {checkTakenSeats()}
 
-          <div className="d-grid gap-2">
+          <div className="d-grid gap-2  " >
             {/**List of selected seats, updates automatically*/}
             <ListGroup>
               <ListGroup.Item><h2>Selected Seats</h2></ListGroup.Item>
               <ListGroup.Item><i>Click seat again to remove</i></ListGroup.Item>
+              <div style={{maxHeight:'400px', overflowY:'scroll'}}>
               {listData.map((item, index) => (
                 <ListGroup.Item key={index}>
                   {item}
@@ -221,6 +222,7 @@ export const SeatSelection = () =>{
                   </Button>*/}
                 </ListGroup.Item>
               ))}
+              </div>
             </ListGroup>
             
             <Link 
