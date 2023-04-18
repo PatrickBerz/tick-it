@@ -269,7 +269,7 @@ export const EventListings = () => {
                                     <th >Performance Name</th>
                                     <th >Venue</th>
                                     <th >Date</th>
-                                    <th >Seats Left</th>
+                                    <th >Seats in Venue</th>
                                     <th></th>
                                 </tr>
 
