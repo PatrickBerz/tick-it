@@ -320,7 +320,14 @@ router.post("/newPurchase", (req: any, res: any) => {
     console.log("Before create purchase")
     //console.log(JSON.stringify(newTickets))
     console.log(data.ticketStatus)
-    System.createPurchase(attendee, newTickets, new Date(data.dateTime), data.ticketStatus);
+
+    let maybeDupe = System.createPurchase(attendee, newTickets, new Date(data.dateTime), data.ticketStatus);
+
+    if (!maybeDupe) {
+        console.log("DUPLICATE CONF NUM!!!!!!!!!!!!!!!!!!!!!")
+        res.status(500)
+        res.end()
+    }
     console.log("After create purchase")
     //console.log(JSON.stringify(System.getPurchases()))
 

@@ -55,11 +55,16 @@ export class System {
     }
 
     //creating new objects for the database
-    public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date, ticketStatus: TicketStatus)// : Purchase 
+    public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date, ticketStatus: TicketStatus): Purchase | null 
     {
+        let newConfNum = ConfNum.getNum()
+        if (this.findPurchase(newConfNum)) {
+            return null;
+        }
+
         let newPurchase = new Purchase(purchaser);
         newPurchase.updateTickets(tickets);
-        newPurchase.setConfNum(ConfNum.getNum());
+        newPurchase.setConfNum(newConfNum);
         newPurchase.setDate(dateTime);
         switch(ticketStatus) {
             case 1: {
@@ -79,7 +84,7 @@ export class System {
         this.deserializer.serialize(this.purchases, this.purchasePath);
         this.deserializer.serialize(this.shows, this.showPath);
         //this.insertIntoPurchases(newPurchase);
-        //return newPurchase;
+        return newPurchase;
     }
 
     // private insertIntoPurchases(purchase : Purchase, start? : number, end? : number)
