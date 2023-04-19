@@ -17,10 +17,10 @@ export class ConfNum {
     }
 
     public static getNum(): number{
-        let currentNum = ConfNum.confirmationNum;
-        fs.writeFileSync(this.filePath, currentNum.toString())
+        
         this.updateNum();
-        return currentNum;
+        fs.writeFileSync(this.filePath, ConfNum.confirmationNum.toString())
+        return ConfNum.confirmationNum;
     }
 
     private static updateNum(){
@@ -28,5 +28,4 @@ export class ConfNum {
         let nextNum = ((this.multiplier * this.confirmationNum + this.increment) % this.modulo)
         this.confirmationNum = nextNum
     }
-
 }

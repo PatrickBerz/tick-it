@@ -58,8 +58,8 @@ export class System {
     public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date, ticketStatus: TicketStatus): Purchase | null 
     {
         let newConfNum = ConfNum.getNum()
-        if (this.findPurchase(newConfNum)) {
-            return null;
+        while (this.findPurchase(newConfNum)) {
+            newConfNum = ConfNum.getNum()
         }
 
         let newPurchase = new Purchase(purchaser);
