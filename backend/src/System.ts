@@ -59,6 +59,7 @@ export class System {
     {
         let newConfNum = ConfNum.getNum()
         while (this.findPurchase(newConfNum)) {
+            console.log("DUPLICATE")
             newConfNum = ConfNum.getNum()
         }
 
