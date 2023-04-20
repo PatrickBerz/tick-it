@@ -442,8 +442,11 @@ router.post("/password", (req: any, res: any) => {
 router.post("/confNum", (req: any, res: any) => {
     let confNum = req.body.value;
     console.log(confNum);
-    if (confNum == 12345) {
+
+    let foundPurchase = System.findPurchase(confNum)
+    if (foundPurchase) {
         res.status(200);
+        res.json(foundPurchase)
     }
     else {
         res.status(404);
