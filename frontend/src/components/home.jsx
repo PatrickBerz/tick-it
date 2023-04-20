@@ -128,7 +128,7 @@ export const Home = () => {
                     <Stack direction='horizontal' gap={2}>
                       <Link
                         to={"/seatSelection"}
-                        state={{ case: "purchase", performance: item.performanceName, venue: item.venueName, datetime: item.dateTime }}>
+                        state={{ case: "purchase", event: item.performanceName, venue: item.venueName, datetime: item.dateTime }}>
                         <Button size='sm' variant="primary" >
                           Purchase Tickets
                         </Button>
@@ -180,7 +180,7 @@ export const Home = () => {
                   Close
                 </Button>
                 <Button id="continueButton" variant="primary" disabled={isDisabled}>
-                  <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }} state={{ case: passState.case, performance: passState.performanceName, venue: passState.venueName, date: passState.dateTime, name:passState.name, phoneNum: passState.phoneNum,email:passState.email, seats:passState.seats}}>
+                  <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }} state={{ case: passState.case, event: passState.performanceName, venue: passState.venueName, datetime: passState.dateTime, name:passState.name, phoneNum: passState.phoneNum,email:passState.email, seats:passState.seats}}>
                     Continue
                   </Link>
                   
