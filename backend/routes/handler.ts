@@ -447,6 +447,7 @@ router.post("/confNum", (req: any, res: any) => {
     if (foundPurchase) {
         res.status(200);
         res.json(foundPurchase)
+        console.log(foundPurchase)
     }
     else {
         res.status(404);

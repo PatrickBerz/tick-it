@@ -8,20 +8,21 @@ import '../styles.css';
 
 export const Home = () => {
   const [showModal, setShow] = useState(false);
-  const [passState, setState] = useState({ case: '', performanceName: '', venueName: '', dateTime: '' });
+  const [passState, setState] = useState({ case: '', performance: '', venueName: '', dateTime: '', name:'', phoneNum:'', email:'', seats:[] });
   const [value, setValue] = useState('');
   const [alert, setAlert] = useState(undefined);
   const [showData, setShowData] = useState([])
-
+  const [exchangeData, setExchange] = useState([])
 
 
   const handleSelectShow = (item) => {
     setState(
       {
         case: "exchange",
-        performance: item.item.performanceName,
+        performance: item.performanceName,
         venue: item.venueName,
-        dateTime: item.show.dateTime,
+        dateTime: item.dateTime,
+        name: exchangeData.Purchase
         
       }
     )
@@ -32,6 +33,7 @@ export const Home = () => {
   }
   
   const handleClose = () => {
+
     setShow(false)
     setAlert(undefined);
   }
@@ -87,11 +89,25 @@ export const Home = () => {
         //handleClose()
         //window.location.href="/seatSelection"
         var x = document.getElementById("continueButton");
-        //un-disable var x
         setDisabled(false);
+        return event.json()
       } else {
         setAlert({ label: `Error ${event.statusText}`, type: 'danger' })
       }
+    }).then(purchaseData => {
+      setState(
+        {
+          ...passState,
+          name:purchaseData.purchaser.name,
+          phoneNum:purchaseData.purchaser.phoneNum,
+          email:purchaseData.purchaser.address,
+          seats:purchaseData.tickets
+        }
+        )
+      //setExchange({purchaseData})
+      console.log(passState)
+    }).catch(error => {
+      console.error(error)
     })
   }
   if (showData) {
@@ -112,7 +128,7 @@ export const Home = () => {
                     <Stack direction='horizontal' gap={2}>
                       <Link
                         to={"/seatSelection"}
-                        state={{ case: "purchase", event: item.performanceName, venue: item.venueName, datetime: item.dateTime }}>
+                        state={{ case: "purchase", performance: item.performanceName, venue: item.venueName, datetime: item.dateTime }}>
                         <Button size='sm' variant="primary" >
                           Purchase Tickets
                         </Button>
@@ -164,9 +180,10 @@ export const Home = () => {
                   Close
                 </Button>
                 <Button id="continueButton" variant="primary" disabled={isDisabled}>
-                  <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }} state={{ case: passState.case, event: passState.performanceName, venue: passState.venueName, date: passState.dateTime }}>
+                  <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }} state={{ case: passState.case, performance: passState.performanceName, venue: passState.venueName, date: passState.dateTime, name:passState.name, phoneNum: passState.phoneNum,email:passState.email, seats:passState.seats}}>
                     Continue
                   </Link>
+                  
                 </Button>
 
               </Modal.Footer>
