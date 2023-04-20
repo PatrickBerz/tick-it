@@ -178,6 +178,7 @@ export const SeatSelection = () =>{
               dateTime: state.datetime
           }
       }
+      console.log(state)
   
       const promise = fetch('http://localhost:4000/currentPerformance', {
           method: 'POST',
@@ -207,6 +208,7 @@ export const SeatSelection = () =>{
           {/**load the correct venue SVG for use*/}
           {loadVenueSVG()}
           {checkTakenSeats()}
+          
 
           <div className="d-grid gap-2" style={{marginTop:"50px"}}>
             {/**List of selected seats, updates automatically*/}

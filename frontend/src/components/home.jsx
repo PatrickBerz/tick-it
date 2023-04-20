@@ -19,7 +19,7 @@ export const Home = () => {
       {
         case: "exchange",
         performance: item.performanceName,
-        venue: item.venueName,
+        venueName: item.venueName,
         dateTime: item.dateTime,        
       }
     )
@@ -106,6 +106,8 @@ export const Home = () => {
     }).catch(error => {
       console.error(error)
     })
+
+    console.log(passState)
   }
   if (showData) {
     return (
@@ -178,7 +180,7 @@ export const Home = () => {
                 </Button>
                 <Button id="continueButton" variant="primary" disabled={isDisabled}>
                   <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }} 
-                  state={{ case: passState.case, event: passState.performanceName, venue: passState.venueName, datetime: passState.dateTime, name:passState.name, phoneNum: passState.phoneNum,email:passState.email, seats:passState.seats}}>
+                  state={{ case: passState.case, event: passState.performance, venue: passState.venueName, datetime: passState.dateTime, name:passState.name, phoneNum: passState.phoneNum,email:passState.email, seats:passState.seats}}>
                     Continue
                   </Link>
                 </Button>
