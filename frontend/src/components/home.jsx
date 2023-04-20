@@ -12,7 +12,6 @@ export const Home = () => {
   const [value, setValue] = useState('');
   const [alert, setAlert] = useState(undefined);
   const [showData, setShowData] = useState([])
-  const [exchangeData, setExchange] = useState([])
 
 
   const handleSelectShow = (item) => {
@@ -21,9 +20,7 @@ export const Home = () => {
         case: "exchange",
         performance: item.performanceName,
         venue: item.venueName,
-        dateTime: item.dateTime,
-        name: exchangeData.Purchase
-        
+        dateTime: item.dateTime,        
       }
     )
   }
@@ -180,7 +177,8 @@ export const Home = () => {
                   Close
                 </Button>
                 <Button id="continueButton" variant="primary" disabled={isDisabled}>
-                  <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }} state={{ case: passState.case, event: passState.performanceName, venue: passState.venueName, datetime: passState.dateTime, name:passState.name, phoneNum: passState.phoneNum,email:passState.email, seats:passState.seats}}>
+                  <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }} 
+                  state={{ case: passState.case, event: passState.performanceName, venue: passState.venueName, datetime: passState.dateTime, name:passState.name, phoneNum: passState.phoneNum,email:passState.email, seats:passState.seats}}>
                     Continue
                   </Link>
                 </Button>
