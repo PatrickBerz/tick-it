@@ -1,11 +1,12 @@
-import { Ticket } from "./Ticket"; //Import Ticket class
+import { Ticket, TicketStatus } from "./Ticket"; //Import Ticket class
 import { Purchase } from "./Purchase"; //Import Purchase class
 import { ConfNum } from "./ConfNum";
 import { Performance } from "./Performance";
+import { System } from "./System";
 
 export class ExchangeHandler {
     //Exchange the tickets by making a new purchase
-    exchange(oldPerf: Performance, ogPurchase: Purchase, newTickets: Ticket[], onlineExchange: boolean) {
+    exchange(oldPerf: Performance, ogPurchase: Purchase, newTickets: Ticket[], newDate: Date, ticketStatus: TicketStatus, onlineExchange: boolean) {
         //Mark the current tickets as Unsold so they are available
         ogPurchase.returnTickets();
         
@@ -21,11 +22,12 @@ export class ExchangeHandler {
         }
         
         //Generate new purchase with the same Attendee as original
-        let newPurchase = new Purchase(ogPurchase.getPurchaser());
-        newPurchase.updateTickets(newTickets);
-        newPurchase.setConfNum(ConfNum.getNum()); 
+        // let newPurchase = new Purchase(ogPurchase.getPurchaser());
+        // newPurchase.updateTickets(newTickets);
+        // newPurchase.setConfNum(ConfNum.getNum()); 
+        let newPurchase = System.createPurchase(ogPurchase.getPurchaser(), newTickets, newDate, ticketStatus)
 
-        if (onlineExchange) { this.refundOnline(ogPurchase, newPurchase); }
+        if (onlineExchange && newPurchase) { this.refundOnline(ogPurchase, newPurchase); }
 
         return newPurchase; //Return to system to go to check-out
     }

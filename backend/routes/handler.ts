@@ -13,6 +13,7 @@ import { ConfNum } from "../src/ConfNum"
 import { Ticket } from "../src/Ticket";
 import { Performance } from "../src/Performance";
 import { System } from "../src/System";
+import { ExchangeHandler } from "../src/ExchangeHandler"
 
 //FUNCTIONS NEEDED:
 //
@@ -239,70 +240,36 @@ router.post("/exchange", (req: any, res: any) => {
 
     let data = req.body
 
+    let newTickets: Ticket[] = [];
+    
     let oldConfNum = data.oldConfNum
     let oldPurchase = System.findPurchase(oldConfNum)
+
     if (oldPurchase) {
 
         let oldShow = System.findPerformance(new Performance(oldPurchase.getTickets[0].getPerformanceName(), "", oldPurchase.getDate(), System.getVenues()[0]))
 
-        oldPurchase.getTickets().forEach((oldPurchTicket : any) => {
-            let ticketSeat = new Seat(oldPurchTicket.section, oldPurchTicket.row, oldPurchTicket.seatNum, false, false, 0);
-            console.log(JSON.stringify(ticketSeat))
-            let testTicket : Ticket = new Ticket(data.showName, ticketSeat);
-
-            if(oldShow) {
-                oldShow.getTickets().forEach(perfTicket => {
-                    if (testTicket.getSeat().equals(perfTicket.getSeat())) {
-                        //Return tickets to unsold status
-                        perfTicket.setTicketStatus(0)
-                        console.log("RETURNED TICKET")
-                    }
-                });
+        if (oldShow) {
+            let exchanger = new ExchangeHandler()
+            let newPurchase = exchanger.exchange(oldShow, oldPurchase, newTickets, data.isOnline, data.ticketStatus, data.isOnline)
+            if (newPurchase) {
+                res.status(200)
+                res.end()
             }
-        })
-    }
-
-
-    // NEW PURCHASE STUFF
-    let attendeeData = data.attendee
-    let attendee = new Attendee(attendeeData.name, attendeeData.address, attendeeData.phoneNum)
-    let perfToFind = new Performance(data.showName, data.venueName, data.dateTime, System.getVenues()[0])
-
-    //console.log(JSON.stringify(perfToFind.getPerformanceName()))
-
-    let perf = System.findPerformance(perfToFind)
-    //console.log(JSON.stringify(perf))
-    let newTickets: Ticket[] = [];
-
-    data.tickets.forEach((purchTicket : any) => {
-        let ticketSeat = new Seat(purchTicket.section, purchTicket.row, purchTicket.seatNum, false, false, 0);
-        console.log(JSON.stringify(ticketSeat))
-        let testTicket : Ticket = new Ticket(data.showName, ticketSeat);
-
-        if(perf) {
-            perf.getTickets().forEach(perfTicket => {
-                if (testTicket.getSeat().equals(perfTicket.getSeat())) {
-                    newTickets.push(perfTicket);
-                    console.log("PUSHED TICKET")
-                }
-            });
+            else {
+                res.status(500)
+                res.end()
+            }
         }
-    })
-    
-    console.log("Before create purchase")
-    //console.log(JSON.stringify(newTickets))
-    console.log(data.ticketStatus)
-
-    let maybeDupe = System.createPurchase(attendee, newTickets, new Date(data.dateTime), data.ticketStatus);
-
-    if (!maybeDupe) {
-        console.log("DUPLICATE CONF NUM!!!!!!!!!!!!!!!!!!!!!")
+        else {
+            res.status(500)
+            res.end()
+        }
+    }
+    else {
         res.status(500)
         res.end()
     }
-    console.log("After create purchase")
-    //console.log(JSON.stringify(System.getPurchases()))
-
 })
 
 
