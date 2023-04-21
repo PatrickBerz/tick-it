@@ -8,7 +8,7 @@ import '../styles.css';
 
 export const Home = () => {
   const [showModal, setShow] = useState(false);
-  const [passState, setState] = useState({ case: '', performance: '', venueName: '', dateTime: '', name:'', phoneNum:'', email:'', seats:[] });
+  const [passState, setState] = useState({ case: '', performance: '', venueName: '', dateTime: '', name: '', phoneNum: '', email: '', seats: [] });
   const [value, setValue] = useState('');
   const [alert, setAlert] = useState(undefined);
   const [showData, setShowData] = useState([])
@@ -20,7 +20,7 @@ export const Home = () => {
         case: "exchange",
         performance: item.performanceName,
         venueName: item.venueName,
-        dateTime: item.dateTime,        
+        dateTime: item.dateTime,
       }
     )
   }
@@ -28,30 +28,30 @@ export const Home = () => {
   const confNumModal = () => {
     setShow(true)
   }
-  
+
   const handleClose = () => {
 
     setShow(false)
     setAlert(undefined);
   }
 
-    const convertDate = (item) => {
-        const oldDate = new Date(item)
-        //Shift time 300 minutes (5 hours) to get it out of GMT
-        const date = new Date(oldDate.getTime() + 300 * 60000);
-        const options = {
-            month: 'numeric',
-            day: 'numeric',
-            year: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true
-        }
-
-        const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
-        //const formattedDate = date.toLocaleDateString('en-US', options)
-        return formattedDate
+  const convertDate = (item) => {
+    const oldDate = new Date(item)
+    //Shift time 300 minutes (5 hours) to get it out of GMT
+    const date = new Date(oldDate.getTime() + 300 * 60000);
+    const options = {
+      month: 'numeric',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
     }
+
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
+    //const formattedDate = date.toLocaleDateString('en-US', options)
+    return formattedDate
+  }
 
 
   useEffect(() => {
@@ -92,17 +92,18 @@ export const Home = () => {
         setAlert({ label: `Error ${event.statusText}`, type: 'danger' })
       }
     }).then(purchaseData => {
+      //console.log(purchaseData)
       setState(
         {
-          ...passState,
-          name:purchaseData.purchaser.name,
-          phoneNum:purchaseData.purchaser.phoneNum,
-          email:purchaseData.purchaser.address,
-          seats:purchaseData.tickets
+          case:'exchange',
+          performance: purchaseData.tickets[0].performance,
+          //venueName:purchaseData.tickets.
+          name: purchaseData.purchaser.name,
+          phoneNum: purchaseData.purchaser.phoneNum,
+          email: purchaseData.purchaser.address,
+          seats: purchaseData.tickets
         }
-        )
-      //setExchange({purchaseData})
-      console.log(passState)
+      )
     }).catch(error => {
       console.error(error)
     })
@@ -114,6 +115,13 @@ export const Home = () => {
       <div className='App-body '>
         <Stack direction='vertical' style={{ alignItems: 'center' }} gap={0}>
           <Image src={logo} className='App-logo-big' style={{ marginTop: '-30px' }}></Image>
+          <div className='d-flex' style={{width:'95%',marginBottom:'80px', justifyContent:'right'}}>
+          <Button variant="primary" onClick={() => {
+            confNumModal()
+          }}>
+            Exchange Tickets
+          </Button>
+          </div>
           <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '35px', overflowY: 'auto', marginBottom: '30px', marginTop: '-70px', background: '#282634' }}>
             <Stack className="mb-5 flex-wrap" direction='horizontal' style={{ justifyContent: 'center' }} gap={3}>
               {showData.map((item, index) => (
@@ -132,12 +140,7 @@ export const Home = () => {
                           Purchase Tickets
                         </Button>
                       </Link>
-                      <Button size='sm' variant="primary" onClick={() => {
-                        confNumModal()
-                        handleSelectShow(item)
-                      }}>
-                        Exchange Tickets
-                      </Button>
+
                     </Stack>
                   </Card.Body>
                 </Card>
@@ -179,8 +182,8 @@ export const Home = () => {
                   Close
                 </Button>
                 <Button id="continueButton" variant="primary" disabled={isDisabled}>
-                  <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }} 
-                  state={{ case: passState.case, event: passState.performance, venue: passState.venueName, datetime: passState.dateTime, name:passState.name, phoneNum: passState.phoneNum,email:passState.email, seats:passState.seats}}>
+                  <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }}
+                    state={{ case: passState.case, event: passState.performance, venue: passState.venueName, datetime: passState.dateTime, name: passState.name, phoneNum: passState.phoneNum, email: passState.email, seats: passState.seats }}>
                     Continue
                   </Link>
                 </Button>
