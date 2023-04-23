@@ -13,7 +13,6 @@ export const SeatSelection = () => {
 
   // States
   const [listData, setListData] = useState([]); // controls the visual list of seats
-  const [isDisabled, setDisabled] = useState(true); // controls whether the checkout button is disabled
   const [takenSeatData, setTakenSeatData] = useState([]) // controls the taken seats from 
 
   // Used for referencing the svg again
@@ -44,19 +43,28 @@ export const SeatSelection = () => {
       )
     }
   }
+  const isSelected = () => {
+    console.log(listData)
+    if (listData.length === 0){
+      return true
+    }
+    else{
+      return false
+    }
+  }
 
   const checkCase = () => {
     console.log(state.case)
     if (state.case === 'exchange') {
       return (
-        <Link
+        <Link className='mt-2'
           to={"/exchangeCheckOut"}
           style={{ color: 'white', textDecoration: 'none' }}
           state={{
             case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime,
             name: state.name, email: state.email, phoneNum: state.phoneNum, oldSeats: state.seats, seats: listData
           }}>
-          <Button variant="primary">Check Out</Button>
+          <Button hidden={isSelected()} variant="primary">Check Out</Button>
         </Link>
       )
     }
@@ -69,7 +77,7 @@ export const SeatSelection = () => {
           state={{
             case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: listData
           }}>
-          <Button variant="primary">Check Out</Button>
+          <Button hidden={isSelected()} variant="primary">Check Out</Button>
         </Link>
       )
     }
@@ -183,7 +191,6 @@ export const SeatSelection = () => {
     // As long as what they clicked IS a seat, is NOT taken, and is NOT a season pass seat...
     if (e.target.classList.contains("seat") && !e.target.classList.contains("taken") && !e.target.classList.contains("season")) {
       // Make sure the checkout button is disabled until they confirm their choices again
-      setDisabled(true);
       // Do clicking a seat stuff
       seatClicked(e);
     } else {
