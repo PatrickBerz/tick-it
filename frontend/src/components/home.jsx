@@ -206,6 +206,7 @@ export const Home = () => {
               </Modal.Footer>
             </Modal>
 
+            {/* {This modal allows you to select a show (exchanging)} */}
             <Modal show={pickShow} onHide={handleCloseAdd}>
               <Modal.Header closeButton>
                 <Modal.Title>Select a show</Modal.Title>
@@ -215,7 +216,7 @@ export const Home = () => {
                   {formError && <Alert variant='danger'>{formError}</Alert>
                   }
                   <Row className="mb-3">
-                    <ListGroup as={Col} controlId="status">
+                    <ListGroup as={Col} controlid="status">
                       <Form.Label>Shows</Form.Label>
                       <div style={{ maxHeight: '250px', overflowY: 'scroll' }}>
 
@@ -223,7 +224,7 @@ export const Home = () => {
                           <Link
                             style={{ textDecoration: 'none' }}
                             to={"/seatSelection"}
-                            state={{ case: "purchase", event: option.performanceName, venue: option.venueName, datetime: option.dateTime, name:passState.name, email: passState.email, phoneNum:passState.phoneNum, oldSeats: passState.seats }}>
+                            state={{ case: "exchange", event: option.performanceName, venue: option.venueName, datetime: option.dateTime, name:passState.name, email: passState.email, phoneNum:passState.phoneNum, oldSeats: passState.seats }}>
                             <ListGroup.Item action key={index} value={JSON.stringify(option)} >
                               {option.performanceName} - ({convertDate(option.dateTime)})
                             </ListGroup.Item>

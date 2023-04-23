@@ -3,7 +3,7 @@ import { Stack, Image, Form, Button, ToggleButton, ToggleButtonGroup, ListGroup 
 import { useEffect, useState } from "react";
 import {useLocation, Link, useNavigate } from 'react-router-dom';
 
-export const CheckOut = () =>{
+export const ExchangeCheckOut = () =>{
   // Load previous state
   const location = useLocation();
   const state = location.state; 
@@ -233,28 +233,22 @@ const handlePhNumChange = e => {
           <Form className="col-xs-12 col-md-7 mt-4 mx-auto"  onSubmit={handleSubmit}>
               <h2 style={{ color: 'white' }}>Purchaser Information</h2>
               <hr style={{ borderTop: '3px solid white'}}></hr>
-              {/*Row 1: First Name*/}
+              {/*Row 1/2: Name*/}
               <Form.Group className="mb-3 mx-auto" controlId="formFName">
                   <Form.Label style={{ color: 'white' }}>First Name</Form.Label>
-                  <Form.Control required type="text" onChange={handleFNameChange} placeholder="First Name" />
-              </Form.Group>
-
-              {/*Row 2: Last Name*/}
-              <Form.Group className="mb-3 mx-auto" controlId="formLName">
-                  <Form.Label style={{ color: 'white' }}>Last Name</Form.Label>
-                  <Form.Control required type="text" onChange={handleLNameChange} placeholder="Last Name" />
+                  <Form.Control style={{ color: 'white' }} plaintext readOnly defaultValue={state.name} />
               </Form.Group>
 
               {/*Row 3: Email Address*/}
               <Form.Group className="mb-3 mx-auto" controlId="formEmailAddress">
                   <Form.Label style={{ color: 'white' }}>Email Address</Form.Label>
-                  <Form.Control required type="email" onChange={handleAddrChange} placeholder="Email Address" />
+                  <Form.Control style={{ color: 'white' }} plaintext readOnly defaultValue={state.email} />
               </Form.Group>
 
               {/*Row 4: Phone Number*/}
               <Form.Group className="mb-3 mx-auto" controlId="formPhoneNumber">
                   <Form.Label style={{ color: 'white' }}>Phone Number</Form.Label>
-                  <Form.Control required type="phone" onChange={handlePhNumChange} placeholder="Phone Number"/>
+                  <Form.Control  style={{ color: 'white' }} plaintext readOnly defaultValue={state.phoneNum} />
               </Form.Group>
 
               {/*Discounts*/}

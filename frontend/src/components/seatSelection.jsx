@@ -228,9 +228,10 @@ export const SeatSelection = () =>{
             </ListGroup>
             
             <Link 
-              to={"/checkOut"}
+              to={"/exchangeCheckOut"}
               style={{color:'white', textDecoration:'none'}} 
-              state={{ case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: listData }}>
+              state={{ case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, 
+                name: state.name, email: state.email, phoneNum: state.phoneNum, oldSeats: state.seats, seats: listData }}>
                 <Button variant="primary">Check Out</Button>
             </Link>
 
