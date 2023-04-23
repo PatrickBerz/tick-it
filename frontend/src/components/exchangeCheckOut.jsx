@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Stack, Image, Form, Button, ToggleButton, ToggleButtonGroup, ListGroup } from 'react-bootstrap';
+import { Stack, Form, Button, ToggleButton, ToggleButtonGroup, ListGroup } from 'react-bootstrap';
 import { useEffect, useState } from "react";
 import {useLocation, Link, useNavigate } from 'react-router-dom';
 
@@ -27,11 +27,13 @@ export const ExchangeCheckOut = () =>{
   /*
   * FUNCTION shows or hides the pay online fields
   */
-  function onPickPayment() { 
+  function paymentType() { 
+    console.log(state.oldSeats[0].ticketStatus)
+    let ticketStatus = state.oldSeats[0].ticketStatus
     // Grab the element
     var x = document.getElementById("showHide"); 
     // Check payOnline
-    if (payOnline){
+    if (ticketStatus == 1){
         // User clicked pay at door
         setPayOnline(false);
         x.style.display = "none";
@@ -136,7 +138,7 @@ export const ExchangeCheckOut = () =>{
   * USEEFFECT only on the first render
   */
   useEffect(() => {
-    
+    paymentType()
     const fetchData = async () => {
 
       // Create the JSON object to send back
@@ -245,17 +247,6 @@ export const ExchangeCheckOut = () =>{
 
               {/*Radio Button for online or in person*/}
               
-             
-              <h2 style={{ color: 'white' }}>Method of Payment</h2>
-              <hr style={{ borderTop: '3px solid white'}}></hr>
-              <ToggleButtonGroup className="mb-4" type="radio" name="options" defaultValue={1} onChange={onPickPayment}>
-                  <ToggleButton id="tbg-radio-1" value={1}>
-                  Pay Online
-                  </ToggleButton>
-                  <ToggleButton id="tbg-radio-2" value={2}>
-                  Pay At The Door
-                  </ToggleButton>
-              </ToggleButtonGroup>
 
               
               {/*Showing is dependent on radio button value*/}

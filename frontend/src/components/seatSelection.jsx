@@ -62,7 +62,7 @@ export const SeatSelection = () => {
           style={{ color: 'white', textDecoration: 'none' }}
           state={{
             case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime,
-            name: state.name, email: state.email, phoneNum: state.phoneNum, oldSeats: state.seats, seats: listData
+            name: state.name, email: state.email, phoneNum: state.phoneNum, oldSeats: state.oldSeats, seats: listData
           }}>
           <Button hidden={isSelected()} variant="primary">Check Out</Button>
         </Link>
