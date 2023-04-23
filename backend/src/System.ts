@@ -9,12 +9,14 @@ import { Performance } from "./Performance";
 import { JSONHandler } from "../JSONHandler";
 import { Ticket } from "./Ticket";
 import { ConfNum } from "./ConfNum";
+import { CSVHandler } from "../CSVHandler";
 
 //NOT A SINGLETON
 //Needs to be able to handle a new start where there are no files to pull from
 
 export class System {
     private static deserializer : JSONHandler = new JSONHandler();
+    private static csv_deserializer : CSVHandler = new CSVHandler();
     private static venuePath : string = __dirname + "/../" + "/sampleVenue.json";
     private static showPath : string = __dirname + "/../" + "/test8.json";
     private static purchasePath : string = __dirname + "/../" + "/purchases.json";
@@ -171,20 +173,7 @@ export class System {
         else if (comp > 0) return this.findPurchase(confNum, pivot, end);
         else return this.purchases[pivot];
     }
-
-    // public static findPerformance(showName : string, dateTime : Date) : Performance | null
-    // {
-    //     let show : Show | null = this.findShow(showName);
-    //     console.log("SHOW: " + JSON.stringify(show?.getPerformances()))
-    //     if (show == null) return null; 
-    //     for(var index in show.getPerformances())
-    //     {
-    //         if(show.getPerformances()[index].getDateTime() === dateTime)
-    //         return show.getPerformances()[index];
-    //     }
-    //     return null;
-    // }
-
+    
     public static findPerformance(perfToFind: Performance) {
         for (var index in this.shows) {
             for (var index2 in this.shows[index].getPerformances()) {
@@ -218,5 +207,38 @@ export class System {
             }
         }
     }
+
+    //Used to import data for Season Ticket Holders from a JSON or CSV file
+    public static importSeasonTicketHolderData(filePath: string) {
+        //See if it is CSV or JSON
+        //console.log("THE DAMN FILEPATH: ", filePath);
+        let fileExt: any = filePath.split('.').pop();
+        //Call the appropriate handler based on if it's CSV or JSON
+            //Both handlers default to serializing seasonTicketHolders.json
+        console.log(filePath);
+        if (fileExt == "csv") {
+            this.csv_deserializer.importCSV(filePath);
+        }
+        if (fileExt == "json") {
+            this.deserializer.importJSON(filePath);
+        }
+        
+        //Re-serialize the seasonTicketHolder data in System
+        this.deserializer.deserializeSeasonTicketHolder(this.seasonPath);
+        this.seasonTicketHolders = this.deserializer.getData();
+        console.log("PLEASE WORKKKKKK");
+        //console.log(this.seasonTicketHolders);
+    }
+
+    //Used to export data for Season Ticket Holders to a JSON or CSV file 
+    public static exportSeasonTicketHolderData(choice: string) {
+        if (choice == "json") {
+            this.deserializer.exportJSON(this.seasonTicketHolders);
+        } else {
+            this.csv_deserializer.exportCSV(this.seasonTicketHolders);
+        }
+    }
     
 }
+
+//System.importSeasonTicketHolderData("C:/Users/jayde/Documents/GitHub/tick-it/backend/seasonTH.csv");
