@@ -32,9 +32,7 @@ router.use(cors({
 }));
 
 router.get("/seasonTickets", (req: any, res: any) => {
-    //get list of season ticket holders from System
-    //let seasonTixList: SeasonTicketHolder[] = [ new SeasonTicketHolder("Richard Blargson", "5000 Fancy Boulevard", "123-555-5555", new Seat("Orchestra", "A", 15, false, true, 99999.99)),
-                                                //new SeasonTicketHolder("Moneyton Blargson", "5001 Fancy Boulevard", "123-555-5556", new Seat("Orchestra", "A", 16, false, true, 99999.99))] 
+    //get list of season ticket holders from System and return as JSON
     let seasonTixList: SeasonTicketHolder[] = System.getSeasonTicketHolders();
     res.json(seasonTixList)
 })
@@ -247,7 +245,7 @@ router.post("/exchange", (req: any, res: any) => {
 
     if (oldPurchase) {
 
-        let oldShow = System.findPerformance(new Performance(oldPurchase.getTickets[0].getPerformanceName(), "", oldPurchase.getDate(), System.getVenues()[0]))
+        let oldShow = System.findPerformance(new Performance(oldPurchase.getTickets()[0].getPerformance(), "", oldPurchase.getDate(), System.getVenues()[0]))
 
         if (oldShow) {
             let exchanger = new ExchangeHandler()
@@ -467,7 +465,7 @@ router.post("/confNum", (req: any, res: any) => {
     let foundPurchase = System.findPurchase(confNum)
     if (foundPurchase) {
 
-        let tempTicket = foundPurchase.getTickets[0].
+        let tempTicket = foundPurchase.getTickets()[0]
 
         res.status(200);
         res.json(foundPurchase)
