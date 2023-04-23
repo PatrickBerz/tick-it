@@ -478,10 +478,11 @@ router.post("/currentTickets", (req: any, res: any) => {
 
 router.post("/calculateSeasonPrice", (req:any, res:any) => {
 
-    let data = req.body
+    let data = req.body.sendData
+    console.log("Sent Data: ", data);
 
     let venue:Venue;
-    if(data.newShow.performance.venueName === "Concert Hall") {
+    if(data.venueName === "Concert Hall") {
         venue = System.getVenues()[0]
         //console.log("CONCERT HALL")
     }

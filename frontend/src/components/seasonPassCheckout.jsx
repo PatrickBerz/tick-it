@@ -159,7 +159,27 @@ const handlePhNumChange = e => {
   useEffect(() => {
     
     const fetchData = async () => {
-        setPrice("Season Pass")
+
+      // Create the JSON object to send back
+      let sendData =
+      {
+        venueName: state.venue,
+        discounts: discounts
+      }
+  
+      const promise = fetch('http://localhost:4000/calculateSeasonPrice', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sendData })
+      })
+      .then(
+        response => response.json(),
+        error => console.log('An error occured', error)
+      )
+      .then(res =>
+        //console.log("This is what I found!: ", res)
+        setPrice(res.toFixed(2))
+      )
     }
     fetchData();
     //setTimeout(() => { fetchData(); }, 500);*/
