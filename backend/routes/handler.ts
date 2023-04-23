@@ -476,4 +476,48 @@ router.post("/currentTickets", (req: any, res: any) => {
     }
 });
 
+router.post("/calculateSeasonPrice", (req:any, res:any) => {
+
+    let data = req.body
+
+    let venue:Venue;
+    if(data.newShow.performance.venueName === "Concert Hall") {
+        venue = System.getVenues()[0]
+        //console.log("CONCERT HALL")
+    }
+    else {
+        venue = System.getVenues()[1]
+        //console.log("PLAYHOUSE")
+    }
+
+    venue.getSections().forEach( section => {
+        section.getSeats().forEach( seat => {
+            if (seat.getInSeasonSection()){
+                let totalPrice = seat.getDefaultPrice()
+                if (data.discounts == "None") {
+                    res.status(200);
+                    res.json(totalPrice);
+                } else if (data.discounts == "Senior") {
+                    totalPrice = totalPrice * .7;
+                    res.status(200);
+                    res.json(totalPrice);
+                } else if (data.discounts == "Military") {
+                    totalPrice = totalPrice * .65;
+                    res.status(200);
+                    res.json(totalPrice);
+                } else if (data.discounts == "First Responders") {
+                    totalPrice = totalPrice * .6;
+                    res.status(200);
+                    res.json(totalPrice);
+                } else {
+                    console.log("Could not calculate discount!");
+                    res.status(500);
+                    res.end();
+                }
+                return
+            }
+        })
+    })
+});
+
 export default router;
