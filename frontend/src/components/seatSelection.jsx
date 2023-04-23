@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stack, Image, Form, Button, ListGroup } from 'react-bootstrap';
 import { useEffect, useState, useRef } from "react";
-import {useLocation, Link } from 'react-router-dom';
-import {ReactComponent as Playhouse} from './playhouseSeats.svg';
-import {ReactComponent as ConcertHall} from './concertHall.svg';
+import { useLocation, Link } from 'react-router-dom';
+import { ReactComponent as Playhouse } from './playhouseSeats.svg';
+import { ReactComponent as ConcertHall } from './concertHall.svg';
 
 
-export const SeatSelection = () =>{
+export const SeatSelection = () => {
   // Load previous state
   const location = useLocation();
   const state = location.state;
@@ -24,19 +24,19 @@ export const SeatSelection = () =>{
   * FUNCTION load the correct component depending on the venue state
   * RETURN the react component containing the correct SVG, or otherwise an error statement
   */
-  const loadVenueSVG = () =>{
-    if (state.venue == "Playhouse"){
+  const loadVenueSVG = () => {
+    if (state.venue == "Playhouse") {
       return (
-        <Playhouse style={{maxWidth:'100vh', marginTop:'60px'}} onClick={handleClickMap} ref={playhouseRef} />
+        <Playhouse style={{ maxWidth: '100vh', marginTop: '60px' }} onClick={handleClickMap} ref={playhouseRef} />
       )
     } else if (state.venue == "Concert Hall") {
       return (
-        <ConcertHall style={{maxWidth:'100vh'}} onClick={handleClickMap} ref={concertHallRef} />
+        <ConcertHall style={{ maxWidth: '100vh' }} onClick={handleClickMap} ref={concertHallRef} />
       )
     } else {
       return (
         <div>
-          <p style={{color: "white"}}>Error! Could not load venue. Please return to home and try again.</p>
+          <p style={{ color: "white" }}>Error! Could not load venue. Please return to home and try again.</p>
           <Link to="../">
             <Button variant="primary">Return to Home</Button>
           </Link>
@@ -45,43 +45,73 @@ export const SeatSelection = () =>{
     }
   }
 
+  const checkCase = () => {
+    console.log(state.case)
+    if (state.case === 'exchange') {
+      return (
+        <Link
+          to={"/exchangeCheckOut"}
+          style={{ color: 'white', textDecoration: 'none' }}
+          state={{
+            case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime,
+            name: state.name, email: state.email, phoneNum: state.phoneNum, oldSeats: state.seats, seats: listData
+          }}>
+          <Button variant="primary">Check Out</Button>
+        </Link>
+      )
+    }
+    else if (state.case == 'purchase') {
+      console.log(listData)
+      return (
+        <Link className='mt-2'
+          to={"/checkOut"}
+          style={{ color: 'white', textDecoration: 'none' }}
+          state={{
+            case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: listData
+          }}>
+          <Button variant="primary">Check Out</Button>
+        </Link>
+      )
+    }
+  }
+
   /*
   * FUNCTION check which seats are taken and add the corresponding class
   */
- const checkTakenSeats = () => {
-  // Cycle through the takenSeatData array, assemble the id strings, check against svg
+  const checkTakenSeats = () => {
+    // Cycle through the takenSeatData array, assemble the id strings, check against svg
 
-  console.log("length of takenSeatData: ", takenSeatData.length); // DEBUG
-  for (let i=0; i<takenSeatData.length; i++){
-    
-    // Use the JSON seat object to assemble a string representation of the seat id
-    const thisSeatSection = takenSeatData[i].section;
-    const thisSeatRow = takenSeatData[i].row;
-    const thisSeatNum = takenSeatData[i].seatNum;
+    console.log("length of takenSeatData: ", takenSeatData.length); // DEBUG
+    for (let i = 0; i < takenSeatData.length; i++) {
 
-    // Concat a string with the section, row, num to create the seat id
-    var thisSeatID = "";
-    thisSeatID = thisSeatID.concat(thisSeatSection, "-", thisSeatRow, "-", thisSeatNum);
-    console.log("SEAT ID TO SEARCH SVG FOR: ", thisSeatID);
+      // Use the JSON seat object to assemble a string representation of the seat id
+      const thisSeatSection = takenSeatData[i].section;
+      const thisSeatRow = takenSeatData[i].row;
+      const thisSeatNum = takenSeatData[i].seatNum;
 
-    // Do stuff to grab the OG SVG
-    if (state.venue=="Playhouse"){
-      const playhouseSvg = playhouseRef.current;
-      const seatElement = playhouseSvg.getElementById(thisSeatID);
-      // Mark this seat as taken
-      seatElement.classList.add("taken");
-    } else if (state.venue=="Concert Hall") {
-      const concertHallSvg = concertHallRef.current;
-      const seatElement = concertHallSvg.getElementById(thisSeatID);
-      // Mark this seat as taken
-      seatElement.classList.add("taken");
-    } else {
-      //throw error
-      console.log("DANGER, Will Robinson");
+      // Concat a string with the section, row, num to create the seat id
+      var thisSeatID = "";
+      thisSeatID = thisSeatID.concat(thisSeatSection, "-", thisSeatRow, "-", thisSeatNum);
+      console.log("SEAT ID TO SEARCH SVG FOR: ", thisSeatID);
+
+      // Do stuff to grab the OG SVG
+      if (state.venue == "Playhouse") {
+        const playhouseSvg = playhouseRef.current;
+        const seatElement = playhouseSvg.getElementById(thisSeatID);
+        // Mark this seat as taken
+        seatElement.classList.add("taken");
+      } else if (state.venue == "Concert Hall") {
+        const concertHallSvg = concertHallRef.current;
+        const seatElement = concertHallSvg.getElementById(thisSeatID);
+        // Mark this seat as taken
+        seatElement.classList.add("taken");
+      } else {
+        //throw error
+        console.log("DANGER, Will Robinson");
+      }
     }
   }
- }
- 
+
   /*
   * FUNCTION if the cart is empty, disable the checkout button
   
@@ -104,7 +134,7 @@ export const SeatSelection = () =>{
     //cart.push(seat.id);
     setListData([...listData, seat.id]);
   }
-  
+
   /*
   * FUNCTION removes an item from the list
   * PARAM the seat (event.target) to be removed
@@ -135,9 +165,9 @@ export const SeatSelection = () =>{
   * FUNCTION what happens when a seat is clicked
   * PARAM the event variable
   */
-  const seatClicked = (e) =>{
+  const seatClicked = (e) => {
     // If the seat is not already selected
-    if (!e.target.classList.contains("selected")){
+    if (!e.target.classList.contains("selected")) {
       // Add this seat to the list
       handleAddToList(e.target);
     } else {
@@ -161,37 +191,37 @@ export const SeatSelection = () =>{
     }
   };
 
-  
+
   /*
   * USEEFFECT only on the first render
   */
   useEffect(() => {
-    
+
     const fetchData = async () => {
 
       // NOTE: hardcoded in. Needs to be updated with state values
       let currentPerformance =
       {
-          performance: {
-              performanceName: state.event,
-              venueName: state.venue,
-              dateTime: state.datetime
-          }
+        performance: {
+          performanceName: state.event,
+          venueName: state.venue,
+          dateTime: state.datetime
+        }
       }
       console.log(state)
-  
+
       const promise = fetch('http://localhost:4000/currentPerformance', {
-          method: 'POST',
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ currentPerformance })
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ currentPerformance })
       })
-      .then(
-        response => response.json(),
-        error => console.log('An error occured', error)
-      )
-      .then(res =>
-        setTakenSeatData(res)
-      )
+        .then(
+          response => response.json(),
+          error => console.log('An error occured', error)
+        )
+        .then(res =>
+          setTakenSeatData(res)
+        )
     }
     fetchData();
     console.log(JSON.stringify(takenSeatData))
@@ -202,20 +232,20 @@ export const SeatSelection = () =>{
   * RETURN create visual components here
   */
   return (
-      <div className='App-body'>
-        <Stack direction='horizontal' style={{justifyContent:'center', alignItems:'start', marginTop:'10px'}} gap={5}>
+    <div className='App-body'>
+      <Stack direction='horizontal' style={{ justifyContent: 'center', alignItems: 'start', marginTop: '10px' }} gap={5}>
 
-          {/**load the correct venue SVG for use*/}
-          {loadVenueSVG()}
-          {checkTakenSeats()}
-          
+        {/**load the correct venue SVG for use*/}
+        {loadVenueSVG()}
+        {checkTakenSeats()}
 
-          <div className="d-grid gap-2" style={{marginTop:"50px"}}>
-            {/**List of selected seats, updates automatically*/}
-            <ListGroup>
-              <ListGroup.Item><h2>Selected Seats</h2></ListGroup.Item>
-              <ListGroup.Item><i>Click seat again to remove</i></ListGroup.Item>
-              <div style={{maxHeight:'400px', overflowY:'scroll'}}>
+
+        <div className="d-grid gap-2" style={{ marginTop: "50px" }}>
+          {/**List of selected seats, updates automatically*/}
+          <ListGroup>
+            <ListGroup.Item><h2>Selected Seats</h2></ListGroup.Item>
+            <ListGroup.Item><i>Click seat again to remove</i></ListGroup.Item>
+            <div style={{ maxHeight: '400px', overflowY: 'scroll' }}>
               {listData.map((item, index) => (
                 <ListGroup.Item key={index}>
                   {item}
@@ -224,20 +254,15 @@ export const SeatSelection = () =>{
                   </Button>*/}
                 </ListGroup.Item>
               ))}
-              </div>
-            </ListGroup>
-            
-            <Link 
-              to={"/exchangeCheckOut"}
-              style={{color:'white', textDecoration:'none'}} 
-              state={{ case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, 
-                name: state.name, email: state.email, phoneNum: state.phoneNum, oldSeats: state.seats, seats: listData }}>
-                <Button variant="primary">Check Out</Button>
-            </Link>
+            </div>
+            {checkCase()}
+          </ListGroup>
 
-          </div>
 
-        </Stack>
-      </div>
-    )
+
+        </div>
+
+      </Stack>
+    </div>
+  )
 }
