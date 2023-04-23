@@ -256,13 +256,6 @@ export const TicketStuff = () => {
                                             {option.performanceName} - ({convertDate(option.dateTime)})
                                             </ListGroup.Item>
                                         ))}
-                                    
-                                    {/* <Form.Select required style={{ overflowY: "scroll" }} type="select" value={passState.performanceName} onChange={(e) => handleStateChange(e.target.value)}>
-                                        <option>Select Show...</option>
-                                        {showData.map((option, index) => (
-                                            <option key={index} value={JSON.stringify(option)} >{option.performanceName} - ({convertDate(option.dateTime)})</option>
-                                        ))}
-                                    </Form.Select> */}
                                     </div>
 
                                 </ListGroup>
