@@ -73,6 +73,7 @@ export const TicketStuff = () => {
             const newData = await response.json()
             console.log(JSON.stringify(newData))
             setData(newData)
+            console.log("SETDATA: ", JSON.stringify(newData))
         }
         fetchData();
     }, []);
@@ -159,6 +160,7 @@ export const TicketStuff = () => {
                                     <th >Conf. #</th>
                                     <th>Purchaser</th>
                                     <th >Show</th>
+                                    <th >Date/Time</th>
                                     <th >Seat(s)</th>
                                     <th >Ticket Status</th>
                                     <th >Edit</th>
@@ -170,9 +172,10 @@ export const TicketStuff = () => {
                                         <td>{item.confNum}</td>
                                         <td>{item.purchaser.name}</td>
                                         <td>{item.tickets[0].performance}</td>
-                                        <td>{item.tickets.map((obj) => (
-                                            obj.seat.row + obj.seat.seatNum + " "
-                                        ))}</td>
+                                        <td>{convertDate(item.perfDateTime)}</td>
+                                        <td style={{ whiteSpace: 'pre-wrap' }}>{item.tickets.map((obj) => (
+                                            obj.seat.section + " " + obj.seat.row + obj.seat.seatNum + "\n"
+                                        )).join('')}</td>
                                         <td >{getTicketStatusText(item.tickets[0].ticketStatus)}</td>
                                         <td style={{ textAlign: 'center' }}>
                                             <Button

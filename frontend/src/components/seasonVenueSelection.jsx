@@ -1,34 +1,35 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Stack, Image, Form } from 'react-bootstrap';
+import { Stack, Image, Form, Button } from 'react-bootstrap';
 import {useLocation, Link } from 'react-router-dom';
 
 export const SeasonVenueSelection = () =>{
-    //TODO: try catch
-    const location = useLocation();
-    const state = location.state;
     return (
         <div className='App-body'>
-        <Stack direction='vertical' style={{alignItems:'center', marginTop:'30px'}} gap={1}>
+        <Stack direction='vertical' style={{alignItems:'center', marginTop:'60px'}} gap={5}>
           <div>
-          <Form style={{color:'white'}}>Select a venue</Form>
-            <p style={{color:'white'}}></p>
+            <h1 style={{color:'white', marginTop:'60px', textAlign: "center"}}>Select a venue</h1>
+            <p style={{color:'white', textAlign: "center"}}><i>Season Pass tickets may be renewed annually</i></p>
             </div>
             <div>
+              
+              <Stack direction='horizontal' gap={5}>
             
                 <Link 
                 to={"/seasonSeatSelection"}
                 state={{venue: "Playhouse"}}>
-                <button type="button">
+                <Button type="button" variant="primary">
                         Playhouse
-                </button>
+                </Button>
                 </Link>
                 <Link 
                 to={"/seasonSeatSelection"}
                 state={{venue: "Concert Hall"}}>
-                <button type="button">
-                        Concet Hall
-                </button>
+                <Button type="button" variant="primary">
+                        Concert Hall
+                </Button>
                 </Link>
+
+                </Stack>
             </div>
         </Stack>
       </div>
