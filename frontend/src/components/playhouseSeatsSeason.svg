@@ -11,21 +11,22 @@
 	.st6{font-size:35.7473px;}
 	.st7{fill:#FFFFFF;stroke:#DDDDDD;stroke-width:2.5;stroke-miterlimit:10;}
 	.st8{fill:#DFDFDF;}
-  .accessible {
-    fill: #D592F0;
-  }
 	.st9{fill:#ABABAB;}
   
-
   .seat:hover{
       fill:#9C9C9C;
   }
+  
 
   .season {
     fill: #3366CC;
   }
   .season:hover {
     fill: #bad455;
+  }
+
+  .accessible {
+    fill: #D592F0;
   }
 
   .selected {
@@ -215,11 +216,11 @@
     </g>
     <g id="Riser3">
       <g id="A">
-        <circle class="st9 seat accessible" cx="523.2" cy="260.9" r="5.5" id="Riser3-A-1"/>
-        <circle class="st9 seat accessible" cx="538.2" cy="260.9" r="5.5" id="Riser3-A-2"/>
-        <circle class="st9 seat accessible" cx="552.5" cy="260.9" r="5.5" id="Riser3-A-3"/>
-        <circle class="st9 seat accessible" cx="566.8" cy="260.9" r="5.5" id="Riser3-A-4"/>
-        <circle class="st9 seat accessible" cx="581.1" cy="260.9" r="5.5" id="Riser3-A-5"/>
+        <circle class="st9 seat" cx="523.2" cy="260.9" r="5.5" id="Riser3-A-1"/>
+        <circle class="st9 seat" cx="538.2" cy="260.9" r="5.5" id="Riser3-A-2"/>
+        <circle class="st9 seat" cx="552.5" cy="260.9" r="5.5" id="Riser3-A-3"/>
+        <circle class="st9 seat" cx="566.8" cy="260.9" r="5.5" id="Riser3-A-4"/>
+        <circle class="st9 seat" cx="581.1" cy="260.9" r="5.5" id="Riser3-A-5"/>
       </g>
       <g id="B">
         <circle class="st9 seat" cx="523.2" cy="238.9" r="5.5" id="Riser3-B-1"/>
