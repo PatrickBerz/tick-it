@@ -46,12 +46,14 @@ router.post("/newSeasonTicket", (req: any, res: any) => {
     //call Sys function to mark the tickets sold in the performance
     //set return status to 201 if success
     //otherwise, set to 500
-    let data = req.body
-    let seat = new Seat(data.section, data.row, data.seatNum, data.accessible, true, data.defaultPrice)
+    let data = req.body.newSeasonPass
+    let seat = new Seat(data.seatAssignment.section, data.seatAssignment.row, data.seatAssignment.seatNum, false, true, 29.99)
     System.createSeasonHolder(data.name, data.address, data.phoneNum, seat);
+    res.end()
     //let newHolder: SeasonTicketHolder = new SeasonTicketHolder(data.name, data.address, data.phoneNum, seat)
     //system.addSeasonHolder(newHolder)
 })
+
 
 router.post("/holderUpdate", (req: any, res: any) => {
 

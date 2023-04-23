@@ -50,31 +50,35 @@ export const SeasonSeatSelection = () => {
   */
  const checkTakenSeats = () => {
   // Cycle through the takenSeatData array, assemble the id strings, check against svg
+  console.log("takenSeatData: ", takenSeatData)
 
   console.log("length of takenSeatData: ", takenSeatData.length); // DEBUG
   for (let i=0; i<takenSeatData.length; i++){
     
     // Use the JSON seat object to assemble a string representation of the seat id
-    const thisSeatSection = takenSeatData[i].section;
-    const thisSeatRow = takenSeatData[i].row;
-    const thisSeatNum = takenSeatData[i].seatNum;
+    const thisSeatSection = takenSeatData[i].seatAssignment.section;
+    const thisSeatRow = takenSeatData[i].seatAssignment.row;
+    const thisSeatNum = takenSeatData[i].seatAssignment.seatNum;
 
     // Concat a string with the section, row, num to create the seat id
     var thisSeatID = "";
     thisSeatID = thisSeatID.concat(thisSeatSection, "-", thisSeatRow, "-", thisSeatNum);
     console.log("SEAT ID TO SEARCH SVG FOR: ", thisSeatID);
 
-    // Do stuff to grab the OG SVG
+    
     if (state.venue=="Playhouse"){
+      // Do stuff to grab the OG SVG
       const playhouseSvg = playhouseRef.current;
       const seatElement = playhouseSvg.getElementById(thisSeatID);
       // Mark this seat as taken
       seatElement.classList.add("taken");
     } else if (state.venue=="Concert Hall") {
+      // Do stuff to grab the OG SVG
       const concertHallSvg = concertHallRef.current;
       const seatElement = concertHallSvg.getElementById(thisSeatID);
       // Mark this seat as taken
       seatElement.classList.add("taken");
+      console.log("seatElement: ", seatElement);
     } else {
       //throw error
       console.log("DANGER, Will Robinson");
@@ -162,41 +166,18 @@ export const SeasonSeatSelection = () => {
       // Otherwise, don't do anything
     }
   };
-
   
   /*
-  * USEEFFECT only on the first render
+  * USEEFFECT only on the first render, grab the season tickets from backend
   */
   useEffect(() => {
-    
     const fetchData = async () => {
-
-      // NOTE: hardcoded in. Needs to be updated with state values
-      let currentPerformance =
-      {
-          performance: {
-              performanceName: state.event,
-              venueName: state.venue,
-              dateTime: state.datetime
-          }
-      }
-  
-      const promise = fetch('http://localhost:4000/currentPerformance', {
-          method: 'POST',
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ currentPerformance })
-      })
-      .then(
-        response => response.json(),
-        error => console.log('An error occured', error)
-      )
-      .then(res =>
-        setTakenSeatData(res)
-      )
+        const response = await fetch('http://localhost:4000/seasonTickets')
+        const newData = await response.json()
+        console.log("newData: ", JSON.stringify(newData))
+        setTakenSeatData(newData)
     }
     fetchData();
-    console.log(JSON.stringify(takenSeatData))
-    //setTimeout(() => { fetchData(); }, 500);*/
   }, []);
 
   /*

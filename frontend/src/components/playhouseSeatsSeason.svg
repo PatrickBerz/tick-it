@@ -21,13 +21,6 @@
       fill:#9C9C9C;
   }
 
-  .taken {
-    fill: #ABABAB;
-  }
-  .taken:hover {
-    fill: #9C9C9C;
-  }
-
   .season {
     fill: #3366CC;
   }
@@ -40,6 +33,13 @@
   }
   .selected:hover {
       fill:#90A63C;
+  }
+
+  .taken {
+    fill: #ABABAB;
+  }
+  .taken:hover {
+    fill: #9C9C9C;
   }
 
 </style>
