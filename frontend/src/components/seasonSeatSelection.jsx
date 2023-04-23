@@ -67,18 +67,22 @@ export const SeasonSeatSelection = () => {
 
     
     if (state.venue=="Playhouse"){
+      console.log("WOAH!");
       // Do stuff to grab the OG SVG
       const playhouseSvg = playhouseRef.current;
       const seatElement = playhouseSvg.getElementById(thisSeatID);
       // Mark this seat as taken
-      seatElement.classList.add("taken");
+      if(seatElement){
+        seatElement.classList.add("taken");
+      }
     } else if (state.venue=="Concert Hall") {
       // Do stuff to grab the OG SVG
       const concertHallSvg = concertHallRef.current;
       const seatElement = concertHallSvg.getElementById(thisSeatID);
       // Mark this seat as taken
-      seatElement.classList.add("taken");
-      console.log("seatElement: ", seatElement);
+      if(seatElement){
+        seatElement.classList.add("taken");
+      }
     } else {
       //throw error
       console.log("DANGER, Will Robinson");
