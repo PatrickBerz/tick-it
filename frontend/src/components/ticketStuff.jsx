@@ -1,8 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Stack, Button, Alert, Table, Modal, Row, Col, ListGroup } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { isFunctionOrConstructorTypeNode } from 'typescript';
+import { Link} from 'react-router-dom';
 
 
 
@@ -13,9 +12,6 @@ export const TicketStuff = () => {
     const [showData, setShowData] = useState([])
     const [showModal, setShow] = useState(false)
     const [alert, setAlert] = useState(undefined)
-
-    const [passState, setState] = useState({ case: '', event: '', venueName: '', dateTime: '' });
-
 
     const [formData, setFormData] = useState(
         {
@@ -61,12 +57,6 @@ export const TicketStuff = () => {
         const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
         //const formattedDate = date.toLocaleDateString('en-US', options)
         return formattedDate
-    }
-    function handlePickedShow(value) {
-        const showToPass = JSON.parse(value)
-        console.log(showToPass)
-        setState({ case: 'purchase', event: showToPass.performanceName, venueName: showToPass.venueName, dateTime: showToPass.dateTime })
-        console.log(passState)
     }
 
     const handleBackButton = () => {

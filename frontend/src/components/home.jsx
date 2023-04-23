@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo-tran.png';
 import VBCplaceholder from './VBC.jpg';
 import { Stack, Alert, Image, Form, Card, Button, Modal, FormGroup, Row, ListGroup, Col, } from 'react-bootstrap';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import '../styles.css';
 
@@ -23,20 +23,7 @@ export const Home = () => {
 
   }
 
-  function handlePickedShow(value) {
-    const showToPass = JSON.parse(value)
-    console.log(showToPass)
-    setState(
-      {
-        ...passState,
-        case: 'exchange',
-        event: showToPass.performanceName,
-        venueName: showToPass.venueName,
-        dateTime: showToPass.dateTime
-      }
-    )
-    console.log(passState)
-  }
+
 
 
 
@@ -101,7 +88,6 @@ export const Home = () => {
         setAlert({ label: 'success', type: 'success' })
         //handleClose()
         //window.location.href="/seatSelection"
-        var x = document.getElementById("continueButton");
         setDisabled(false);
         return event.json()
       } else {
@@ -235,13 +221,7 @@ export const Home = () => {
                     </ListGroup>
 
                   </Row>
-                  {/* <Link
-                    to={"/seatSelection"}
-                    state={{ case: "exchange", event: passState.event, venue: passState.venueName, datetime: passState.dateTime, name: passState.name, email: passState.email, phoneNum: passState.phoneNum, oldSeats: passState.seats }}>
-                    <Button disabled={!passState.event} variant="primary" >
-                      Purchase Tickets
-                    </Button>
-                  </Link> */}
+                 
 
                 </Form>
               </Modal.Body>

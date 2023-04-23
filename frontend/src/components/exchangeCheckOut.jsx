@@ -55,33 +55,6 @@ export const ExchangeCheckOut = () =>{
     console.log("Value: ", val);    
   }
 
-  const handleFNameChange = e => {
-    setUserData({
-        ...userData,
-        fName: e.target.value
-    })
-}
-
-const handleLNameChange = e => {
-  setUserData({
-      ...userData,
-      lName: e.target.value
-  })
-}
-
-const handleAddrChange = e => {
-  setUserData({
-      ...userData,
-      addr: e.target.value
-  })
-}
-
-const handlePhNumChange = e => {
-  setUserData({
-      ...userData,
-      userPhoneNum: e.target.value
-  })
-}
 
   /*
   * FUNCTION send the purchase to the backend
@@ -151,7 +124,7 @@ const handlePhNumChange = e => {
  // const history = useHistory();
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (userData.fname === '' || userData.lname=='' || userData.address=='' || userData.phone=='') {
+    if (userData.fname === '' || userData.lname ==='' || userData.address ==='' || userData.phone ==='') {
       alert('Please fill out all required fields.');
     } else {
       // Handle form submission logic
