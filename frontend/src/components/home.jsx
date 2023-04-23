@@ -9,7 +9,7 @@ import '../styles.css';
 export const Home = () => {
   const [showModal, setShow] = useState(false)
   const [pickShow, setPickShow] = useState(false)
-  const [passState, setState] = useState({ case: '', performance: '', venueName: '', dateTime: '', name: '', phoneNum: '', email: '', seats: [] });
+  const [passState, setState] = useState({confNum:'' ,case: '', performance: '', venueName: '', dateTime: '', name: '', phoneNum: '', email: '', seats: [] });
   const [value, setValue] = useState('');
   const [alert, setAlert] = useState(undefined);
   const [showData, setShowData] = useState([])
@@ -97,6 +97,7 @@ export const Home = () => {
       //console.log(purchaseData)
       setState(
         {
+          confNum: value,
           case: 'exchange',
           //performance: purchaseData.tickets[0].performance,
           //venueName:purchaseData.tickets.venueName
@@ -210,7 +211,7 @@ export const Home = () => {
                           <Link
                             style={{ textDecoration: 'none' }}
                             to={"/seatSelection"}
-                            state={{ case: "exchange", event: option.performanceName, venue: option.venueName, datetime: option.dateTime, name:passState.name, email: passState.email, phoneNum:passState.phoneNum, oldSeats: passState.seats }}>
+                            state={{ case: "exchange", confNum:passState.confNum, event: option.performanceName, venue: option.venueName, datetime: option.dateTime, name:passState.name, email: passState.email, phoneNum:passState.phoneNum, oldSeats: passState.seats }}>
                             <ListGroup.Item action key={index} value={JSON.stringify(option)} >
                               {option.performanceName} - ({convertDate(option.dateTime)})
                             </ListGroup.Item>

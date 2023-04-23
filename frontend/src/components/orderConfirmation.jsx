@@ -13,7 +13,6 @@ export const OrderConfirmation = () =>{
         <Stack direction='vertical' style={{alignItems:'center'}} gap={1}>
           <div>
           <h1 style={{color:'white', marginTop: '60px'}}>Order Confirmed!</h1>        
-          <h2 style={{color:'white', marginTop: '10px'}}>Total: {price}</h2>
 
           <p style={{color:'white'}}><i>Please check in at least 15 minutes before your show time.</i></p>
             </div>

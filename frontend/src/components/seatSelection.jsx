@@ -54,14 +54,14 @@ export const SeatSelection = () => {
   }
 
   const checkCase = () => {
-    console.log(state.case)
+    console.log(state)
     if (state.case === 'exchange') {
       return (
         <Link className='mt-2'
           to={"/exchangeCheckOut"}
           style={{ color: 'white', textDecoration: 'none' }}
           state={{
-            case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime,
+            confNum:state.confNum, case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime,
             name: state.name, email: state.email, phoneNum: state.phoneNum, oldSeats: state.oldSeats, seats: listData
           }}>
           <Button hidden={isSelected()} variant="primary">Check Out</Button>

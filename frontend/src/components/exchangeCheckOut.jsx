@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stack, Form, Button, ToggleButton, ToggleButtonGroup, ListGroup } from 'react-bootstrap';
 import { useEffect, useState } from "react";
-import {useLocation, Link, useNavigate } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 
-export const ExchangeCheckOut = () =>{
+export const ExchangeCheckOut = () => {
   // Load previous state
   const location = useLocation();
-  const state = location.state; 
+  const state = location.state;
 
   //States
   const [payOnline, setPayOnline] = useState(true); // Controls whether to show the pay online fields
@@ -22,39 +22,39 @@ export const ExchangeCheckOut = () =>{
   const [discounts, setDiscounts] = useState("None"); // Controls the selected discount
 
   const parsedSeats = [];
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
   /*
   * FUNCTION shows or hides the pay online fields
   */
-  function paymentType() { 
+  function paymentType() {
     console.log(state.oldSeats[0].ticketStatus)
     let ticketStatus = state.oldSeats[0].ticketStatus
     // Grab the element
-    var x = document.getElementById("showHide"); 
+    var x = document.getElementById("showHide");
     // Check payOnline
-    if (ticketStatus == 1){
-        // User clicked pay at door
-        setPayOnline(false);
-        x.style.display = "none";
-        setUserData({
-          ...userData,
-          ticketStatus: 1
-        })
+    if (ticketStatus == 1) {
+      // User clicked pay at door
+      setPayOnline(false);
+      x.style.display = "none";
+      setUserData({
+        ...userData,
+        ticketStatus: 1
+      })
     } else {
-        // User clicked pay online
-        setPayOnline(true);
-        x.style.display = "block";
-        setUserData({
-          ...userData,
-          ticketStatus: 2
-        })
+      // User clicked pay online
+      setPayOnline(true);
+      x.style.display = "block";
+      setUserData({
+        ...userData,
+        ticketStatus: 2
+      })
     }
   }
 
   const onPickDiscount = (val) => {
     setDiscounts(val);
-    console.log("Value: ", val);    
+    console.log("Value: ", val);
   }
 
 
@@ -64,34 +64,35 @@ export const ExchangeCheckOut = () =>{
   const placeOrder = () => {
     let newPurchase =
     {
-        venueName: state.venue,
-        showName: state.event,
-        attendee: {
-          name: userData.fName + " " + userData.lName,
-          address: userData.addr,
-          phoneNum: userData.phoneNum            
-        },
-        tickets: parsedSeats,
-        dateTime: state.dateTime,
-        ticketStatus: userData.ticketStatus
+      confNum: state.confNum,
+      venueName: state.venue,
+      showName: state.event,
+      attendee: {
+        name: userData.fName + " " + userData.lName,
+        address: userData.addr,
+        phoneNum: userData.phoneNum
+      },
+      tickets: parsedSeats,
+      dateTime: state.dateTime,
+      ticketStatus: userData.ticketStatus
     }
 
-    const promise = fetch('http://localhost:4000/newPurchase', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ newPurchase })
+    const promise = fetch('http://localhost:4000/exchange', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ newPurchase })
     })
-    .then(
-      response => response.json(),
-      error => console.log('An error occured', error),
-      console.log("Do stuff?"),
-      navigate('/orderConfirmation', {case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: state.seats, userData: userData })
-    )
-    .then(res =>
-      console.log("Do stuff!")
-      //navigate('/orderConfirmation', {case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: state.seats, userData: userData })
-    )
-      console.log("Promise: ", promise) // determine whether was successful or not
+      .then(
+        response => response.json(),
+        error => console.log('An error occured', error),
+        console.log("Do stuff?"),
+        navigate('/orderConfirmation', {state:{ case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: state.seats, userData: userData, price:price }})
+      )
+      .then(res =>
+        console.log("Do stuff!")
+        //navigate('/orderConfirmation', {case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: state.seats, userData: userData })
+      )
+    console.log("Promise: ", promise) // determine whether was successful or not
   } /**/
 
   /*
@@ -102,10 +103,10 @@ export const ExchangeCheckOut = () =>{
     let max = state.seats.length;
 
     // Iterate through array of seat IDs
-    for (let i=0; i<max; i++){
+    for (let i = 0; i < max; i++) {
 
       // Split this ID into its components
-      let components = state.seats[i].split('-'); 
+      let components = state.seats[i].split('-');
       //console.log("THE COMPONENTS OF THIS SEAT: ", components)
 
       // Create seat JSON object
@@ -123,10 +124,10 @@ export const ExchangeCheckOut = () =>{
     //console.log("Here's the parsed seats list: ", parsedSeats);
   }
 
- // const history = useHistory();
+  // const history = useHistory();
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (userData.fname === '' || userData.lname ==='' || userData.address ==='' || userData.phone ==='') {
+    if (userData.fname === '' || userData.lname === '' || userData.address === '' || userData.phone === '') {
       alert('Please fill out all required fields.');
     } else {
       // Handle form submission logic
@@ -152,141 +153,180 @@ export const ExchangeCheckOut = () =>{
         },
         discounts: discounts
       }
-  
+
       const promise = fetch('http://localhost:4000/calculatePrice', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sendData })
       })
-      .then(
-        response => response.json(),
-        error => console.log('An error occured', error)
-      )
-      .then(res =>
-        //console.log("This is what I found!: ", res)
-        setPrice(res.toFixed(2))
-      )
+        .then(
+          response => response.json(),
+          error => console.log('An error occured', error)
+        )
+        .then(res =>
+          //console.log("This is what I found!: ", res)
+          setPrice(res.toFixed(2))
+        )
     }
     fetchData();
     //setTimeout(() => { fetchData(); }, 500);*/
   }, [discounts]);
 
+  const displayPrice = (price) => {
+   
+    let ticketStatus = state.oldSeats[0].ticketStatus
+    let oldPrice = 0
+
+    let i = 0
+    for (i in state.oldSeats) {
+      oldPrice += state.oldSeats[i].price
+    }
+    console.log(price, oldPrice)
+    let newBalance = price - oldPrice
+    if (ticketStatus == 1) {
+      //setPrice(price)
+      return (
+        <ListGroup>
+          <ListGroup.Item><i style={{ color: 'gray' }}>New total owed:</i></ListGroup.Item>
+          <ListGroup.Item>${price}</ListGroup.Item>
+        </ListGroup>
+      )
+    } else if (ticketStatus == 2) {
+      if (price >= oldPrice){
+        //setPrice(newBalance.toFixed(2))
+        return (
+          <ListGroup>
+            <ListGroup.Item><i style={{ color: 'gray' }}>New total owed:</i></ListGroup.Item>
+            <ListGroup.Item>${Math.abs(newBalance.toFixed(2))}</ListGroup.Item>
+          </ListGroup>
+        )
+      }
+      else {
+        return (
+          <ListGroup>
+            <ListGroup.Item><i style={{ color: 'gray' }}>Total Refund:</i></ListGroup.Item>
+            <ListGroup.Item>${Math.abs(newBalance.toFixed(2))}</ListGroup.Item>
+          </ListGroup>
+        )
+      } 
+    }
+  }
+
 
   return (
-      <div className='App-body'>
-        {parseSeats()}
-        <div style={{marginTop: '60px'}}>
-            
-        <Stack direction='horizontal' style={{alignItems:'start'}} gap={1}>
-        {/**List of checkout information*/}
-        <div className="col-xs-12 col-md-3 mx-auto px-5">
+    <div className='App-body'>
+      {parseSeats()}
+      <div style={{ marginTop: '60px' }}>
+
+        <Stack direction='horizontal' style={{ alignItems: 'start' }} gap={1}>
+          {/**List of checkout information*/}
+          <div className="col-xs-12 col-md-3 mx-auto px-5">
             <ListGroup>
               <ListGroup.Item><h2>Check Out</h2></ListGroup.Item>
-              <ListGroup.Item><i style={{color: 'gray'}}>Event:</i></ListGroup.Item>
+              <ListGroup.Item><i style={{ color: 'gray' }}>Event:</i></ListGroup.Item>
               <ListGroup.Item>{state.event}</ListGroup.Item>
-              <ListGroup.Item><i style={{color: 'gray'}}>Time:</i></ListGroup.Item>
+              <ListGroup.Item><i style={{ color: 'gray' }}>Time:</i></ListGroup.Item>
               <ListGroup.Item>{state.dateTime}</ListGroup.Item>
-              <ListGroup.Item><i style={{color: 'gray'}}>Venue:</i></ListGroup.Item>
+              <ListGroup.Item><i style={{ color: 'gray' }}>Venue:</i></ListGroup.Item>
               <ListGroup.Item>{state.venue}</ListGroup.Item>
-              <ListGroup.Item><i style={{color: 'gray'}}>Seats:</i></ListGroup.Item>
-              <div style={{maxHeight:'250px', overflowY:'scroll'}}>
-              {state.seats.map((item, index) => (
-                <ListGroup.Item key={index}>
-                  {item}
-                  {/*<Button className="ms-2 btn-sm" variant="danger" onClick={() => handleRemoveButton(index)}>
+              <ListGroup.Item><i style={{ color: 'gray' }}>Seats:</i></ListGroup.Item>
+              <div style={{ maxHeight: '250px', overflowY: 'scroll' }}>
+                {state.seats.map((item, index) => (
+                  <ListGroup.Item key={index}>
+                    {item}
+                    {/*<Button className="ms-2 btn-sm" variant="danger" onClick={() => handleRemoveButton(index)}>
                     Remove
                   </Button>*/}
-                </ListGroup.Item>
-              ))}
+                  </ListGroup.Item>
+                ))}
               </div>
-              <ListGroup.Item><i style={{color: 'gray'}}>Total Price:</i></ListGroup.Item>
-                <ListGroup.Item>{price}</ListGroup.Item>
+              {displayPrice(price)}
             </ListGroup>
+          </div>
+
+
+          <Form className="col-xs-12 col-md-7 mt-4 mx-auto" onSubmit={handleSubmit}>
+            <h2 style={{ color: 'white' }}>Purchaser Information</h2>
+            <hr style={{ borderTop: '3px solid white' }}></hr>
+            {/*Row 1/2: Name*/}
+            <Form.Group className="mb-3 mx-auto" controlId="formFName">
+              <Form.Label style={{ color: 'white' }}>First Name</Form.Label>
+              <Form.Control style={{ color: 'white' }} plaintext readOnly defaultValue={state.name} />
+            </Form.Group>
+
+            {/*Row 3: Email Address*/}
+            <Form.Group className="mb-3 mx-auto" controlId="formEmailAddress">
+              <Form.Label style={{ color: 'white' }}>Email Address</Form.Label>
+              <Form.Control style={{ color: 'white' }} plaintext readOnly defaultValue={state.email} />
+            </Form.Group>
+
+            {/*Row 4: Phone Number*/}
+            <Form.Group className="mb-3 mx-auto" controlId="formPhoneNumber">
+              <Form.Label style={{ color: 'white' }}>Phone Number</Form.Label>
+              <Form.Control style={{ color: 'white' }} plaintext readOnly defaultValue={state.phoneNum} />
+            </Form.Group>
+
+            {/*Discounts*/}
+            <h2 style={{ color: 'white' }}>Applicable Discounts</h2>
+            <p style={{ color: 'white' }}><i>Note that theater staff may ask for your ID at check-in.</i></p>
+            <hr style={{ borderTop: '3px solid white' }}></hr>
+            <ToggleButtonGroup className="mb-4" type="radio" name="discounts" defaultValue="None" onChange={onPickDiscount}>
+              <ToggleButton id="tbg-radio-discounts-1" value="None">
+                None
+              </ToggleButton>
+              <ToggleButton id="tbg-radio-discounts-2" value="Senior">
+                Senior
+              </ToggleButton>
+              <ToggleButton id="tbg-radio-discounts-3" value="Military">
+                Military
+              </ToggleButton>
+              <ToggleButton id="tbg-radio-discounts-4" value="First Responders">
+                First Responders
+              </ToggleButton>
+            </ToggleButtonGroup>
+
+            {/*Radio Button for online or in person*/}
+
+
+
+            {/*Showing is dependent on radio button value*/}
+
+            <div id="showHide" className="mt-3">
+              <h2 style={{ color: 'white' }}>Card Information</h2>
+              <hr style={{ borderTop: '3px solid white' }}></hr>
+              {/*Row 5: Name on Card*/}
+              <Form.Group className="mb-3 mx-auto" controlId="formNameOnCard">
+                <Form.Label style={{ color: 'white' }}>Name On Card</Form.Label>
+                <Form.Control type="text" placeholder="Name On Card" />
+              </Form.Group>
+              {/*Row 6: Credit/Debit Number*/}
+              <Form.Group className="mb-3 mx-auto" controlId="formCardNumber">
+                <Form.Label style={{ color: 'white' }}>Credit/Debit Card Number</Form.Label>
+                <Form.Control type="text" placeholder="16-digit Credit/Debit Card Number" />
+              </Form.Group>
+              {/*Row 7: Expiration*/}
+              <Form.Group className="mb-3 mx-auto" controlId="formExpirationDate">
+                <Form.Label style={{ color: 'white' }}>Expiration Date</Form.Label>
+                <Form.Control type="text" placeholder="MM/YY" />
+              </Form.Group>
+              {/*Row 8: Sec. Code*/}
+              <Form.Group className="mb-3 mx-auto" controlId="formSecCode">
+                <Form.Label style={{ color: 'white' }}>Security Code</Form.Label>
+                <Form.Control type="text" placeholder="Security Code" />
+              </Form.Group>
+              {/*Row 9: ZIP Code*/}
+              <Form.Group className="mb-3 mx-auto" controlId="formZIPCode">
+                <Form.Label style={{ color: 'white' }}>ZIP Code</Form.Label>
+                <Form.Control type="text" placeholder="ZIP Code" />
+              </Form.Group>
+
             </div>
 
-          
-          <Form className="col-xs-12 col-md-7 mt-4 mx-auto"  onSubmit={handleSubmit}>
-              <h2 style={{ color: 'white' }}>Purchaser Information</h2>
-              <hr style={{ borderTop: '3px solid white'}}></hr>
-              {/*Row 1/2: Name*/}
-              <Form.Group className="mb-3 mx-auto" controlId="formFName">
-                  <Form.Label style={{ color: 'white' }}>First Name</Form.Label>
-                  <Form.Control style={{ color: 'white' }} plaintext readOnly defaultValue={state.name} />
-              </Form.Group>
-
-              {/*Row 3: Email Address*/}
-              <Form.Group className="mb-3 mx-auto" controlId="formEmailAddress">
-                  <Form.Label style={{ color: 'white' }}>Email Address</Form.Label>
-                  <Form.Control style={{ color: 'white' }} plaintext readOnly defaultValue={state.email} />
-              </Form.Group>
-
-              {/*Row 4: Phone Number*/}
-              <Form.Group className="mb-3 mx-auto" controlId="formPhoneNumber">
-                  <Form.Label style={{ color: 'white' }}>Phone Number</Form.Label>
-                  <Form.Control  style={{ color: 'white' }} plaintext readOnly defaultValue={state.phoneNum} />
-              </Form.Group>
-
-              {/*Discounts*/}
-              <h2 style={{ color: 'white' }}>Applicable Discounts</h2>
-              <p style={{ color: 'white' }}><i>Note that theater staff may ask for your ID at check-in.</i></p>
-              <hr style={{ borderTop: '3px solid white'}}></hr>
-              <ToggleButtonGroup className="mb-4" type="radio" name="discounts" defaultValue="None" onChange={onPickDiscount}>
-                  <ToggleButton id="tbg-radio-discounts-1" value="None">
-                  None
-                  </ToggleButton>
-                  <ToggleButton id="tbg-radio-discounts-2" value="Senior">
-                  Senior
-                  </ToggleButton>
-                  <ToggleButton id="tbg-radio-discounts-3" value="Military">
-                  Military
-                  </ToggleButton>
-                  <ToggleButton id="tbg-radio-discounts-4" value="First Responders">
-                  First Responders
-                  </ToggleButton>
-              </ToggleButtonGroup>
-
-              {/*Radio Button for online or in person*/}
-              
-
-              
-              {/*Showing is dependent on radio button value*/}
-
-              <div id="showHide" className="mt-3">
-                  <h2 style={{ color: 'white' }}>Card Information</h2>
-                  <hr style={{ borderTop: '3px solid white'}}></hr>
-                  {/*Row 5: Name on Card*/}
-                  <Form.Group className="mb-3 mx-auto" controlId="formNameOnCard">
-                      <Form.Label style={{ color: 'white' }}>Name On Card</Form.Label>
-                      <Form.Control type="text" placeholder="Name On Card" />
-                  </Form.Group>
-                  {/*Row 6: Credit/Debit Number*/}
-                  <Form.Group className="mb-3 mx-auto" controlId="formCardNumber">
-                      <Form.Label style={{ color: 'white' }}>Credit/Debit Card Number</Form.Label>
-                      <Form.Control type="text" placeholder="16-digit Credit/Debit Card Number" />
-                  </Form.Group>
-                  {/*Row 7: Expiration*/}
-                  <Form.Group className="mb-3 mx-auto" controlId="formExpirationDate">
-                      <Form.Label style={{ color: 'white' }}>Expiration Date</Form.Label>
-                      <Form.Control type="text" placeholder="MM/YY" />
-                  </Form.Group>
-                  {/*Row 8: Sec. Code*/}
-                  <Form.Group className="mb-3 mx-auto" controlId="formSecCode">
-                      <Form.Label style={{ color: 'white' }}>Security Code</Form.Label>
-                      <Form.Control type="text" placeholder="Security Code" />
-                  </Form.Group>
-                  {/*Row 9: ZIP Code*/}
-                  <Form.Group className="mb-3 mx-auto" controlId="formZIPCode">
-                      <Form.Label style={{ color: 'white' }}>ZIP Code</Form.Label>
-                      <Form.Control type="text" placeholder="ZIP Code" />
-                  </Form.Group>
-
-              </div>
-
-              <br></br>
-              <Button type="submit" className="mb-3 mx-auto" style={{marginTop:'30px'}}>
-                Place Order</Button>
+            <br></br>
+            <Button type="submit" className="mb-3 mx-auto" style={{ marginTop: '30px' }}>
+              Place Order</Button>
           </Form>
-          </Stack>
+        </Stack>
       </div>
     </div>
   )
