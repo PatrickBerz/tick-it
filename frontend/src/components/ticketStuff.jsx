@@ -242,13 +242,15 @@ export const TicketStuff = () => {
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="status">
                                     <Form.Label>Shows</Form.Label>
+                                    <div style={{maxHeight:'200px', overflowY:'scroll'}}>
                                     <Form.Select required style={{ overflowY: "scroll" }} type="select" value={passState.performanceName} onChange={(e) => handleStateChange(e.target.value)}>
                                         <option>Select Show...</option>
                                         {showData.map((option, index) => (
                                             <option key={index} value={JSON.stringify(option)} >{option.performanceName}</option>
                                         ))}
-                                        
                                     </Form.Select>
+                                    </div>
+
                                 </Form.Group>
                                 
                             </Row>

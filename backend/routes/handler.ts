@@ -315,21 +315,16 @@ router.post("/newPurchase", (req: any, res: any) => {
     
     //console.log("Before create purchase")
     //console.log(JSON.stringify(newTickets))
-    //console.log(data.ticketStatus)
+    console.log(data.ticketStatus)
 
-    // call System function to create a new purchase
     let maybeDupe = System.createPurchase(attendee, newTickets, new Date(data.dateTime), data.ticketStatus);
 
-    // if maybeDupe object doesn't exist, the System function didn't add a purchase as it was a duplicate
-    // TODO: REMOVE THIS COMMENT MAYBEDUPE WHEN MERGED BACK IN
-    //if (!maybeDupe) {
-        //console.log("DUPLICATE CONF NUM!!!!!!!!!!!!!!!!!!!!!")
+    if (!maybeDupe) {
+        console.log("DUPLICATE CONF NUM!!!!!!!!!!!!!!!!!!!!!")
         res.status(500)
         res.end()
-    //}
-    res.status(200)
-    res.end()
-    //console.log("After create purchase")
+    }
+    console.log("After create purchase")
     //console.log(JSON.stringify(System.getPurchases()))
 
 });

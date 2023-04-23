@@ -19,11 +19,13 @@ export const AdminPage = () =>{
         window.location.href="/policyStuff"
     }
     return (
-            <Stack direction='vertical' style={{color: 'white', alignItems:'center', marginTop:'60px' }} gap={1}>
+        <div  style={{marginTop:'60px', paddingTop:'50px' ,paddingLeft: '550px' , paddingRight:'550px'}}>
+
+            <Stack className='square border border-secondary border-3' direction='vertical' style={{color: 'white', alignItems:'center', marginTop:'30px', background: '#282634' }} gap={1}>
                     <div style={{fontSize:'30px', marginTop:'80px' }}>Welcome, Admin</div>
                     <Button size='lg' onClick={ListingsSubmit} variant="primary"
                         style={{
-                            marginTop:'60px', 
+                            marginTop:'40px', 
                             width:'180px', 
                             borderRadius:'15px',
                             borderColor: '#FF4057' , 
@@ -53,14 +55,16 @@ export const AdminPage = () =>{
                     </Button>
                     <Button size='lg' onClick={policyStuffSubmit} variant="primary" type="submit" 
                         style={{
-                            marginTop:'40px', 
+                            marginTop:'40px',
+                            marginBottom:'50px',
                             width:'180px', 
                             borderRadius:'15px', 
                             borderColor: '#FF4057', 
                             backgroundColor:'#FF4057'
                             }}>
-                        Policy Stuff
+                        Default Prices
                     </Button>
             </Stack>
+        </div>
     )
 }

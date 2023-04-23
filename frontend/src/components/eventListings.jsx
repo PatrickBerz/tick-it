@@ -269,7 +269,7 @@ export const EventListings = () => {
                                     <th >Performance Name</th>
                                     <th >Venue</th>
                                     <th >Date</th>
-                                    <th >Seats Left</th>
+                                    <th >Seats in Venue</th>
                                     <th></th>
                                 </tr>
 
@@ -325,14 +325,14 @@ export const EventListings = () => {
 
                                 <Form.Group as={Col} controlId="dateValue">
                                     <Form.Label style={{ fontSize: '18px' }}>Date</Form.Label>
-                                    <Form.Control type='date' required placeholder="MM/DD/YYYY" value={formData.date} onChange={handleDateChange} />
+                                    <Form.Control type='date' required placeholder="MM/DD/YYYY" min={new Date().toISOString().slice(0,10)} value={formData.date} onChange={handleDateChange} />
                                 </Form.Group>
 
                             </Row>
                             <Row>
                                 <Form.Group as={Col} controlId="timeValue" >
-                                    <Form.Label style={{ fontSize: '18px' }}>Date</Form.Label>
-                                    <Form.Control type='time' required value={formData.time} onChange={handleTimeChange} />
+                                    <Form.Label style={{ fontSize: '18px' }}>Time</Form.Label>
+                                    <Form.Control type='time' required value={formData.time}  onChange={handleTimeChange} />
                                 </Form.Group>
                                 <Form.Group as={Col}></Form.Group>
                             </Row>

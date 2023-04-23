@@ -204,8 +204,8 @@ const handlePhNumChange = e => {
             
         <Stack direction='horizontal' style={{alignItems:'start'}} gap={1}>
         {/**List of checkout information*/}
-        <div className="mx-auto">
-            <ListGroup style={{position: 'fixed'}}>
+        <div className="col-xs-12 col-md-3 mx-auto px-5">
+            <ListGroup>
               <ListGroup.Item><h2>Check Out</h2></ListGroup.Item>
               <ListGroup.Item><i style={{color: 'gray'}}>Event:</i></ListGroup.Item>
               <ListGroup.Item>{state.event}</ListGroup.Item>
@@ -214,6 +214,7 @@ const handlePhNumChange = e => {
               <ListGroup.Item><i style={{color: 'gray'}}>Venue:</i></ListGroup.Item>
               <ListGroup.Item>{state.venue}</ListGroup.Item>
               <ListGroup.Item><i style={{color: 'gray'}}>Seats:</i></ListGroup.Item>
+              <div style={{maxHeight:'250px', overflowY:'scroll'}}>
               {state.seats.map((item, index) => (
                 <ListGroup.Item key={index}>
                   {item}
@@ -222,13 +223,14 @@ const handlePhNumChange = e => {
                   </Button>*/}
                 </ListGroup.Item>
               ))}
+              </div>
               <ListGroup.Item><i style={{color: 'gray'}}>Total Price:</i></ListGroup.Item>
                 <ListGroup.Item>{price}</ListGroup.Item>
             </ListGroup>
             </div>
 
           
-          <Form className="col-xs-6 col-md-6 mt-4 mx-auto"  onSubmit={handleSubmit}>
+          <Form className="col-xs-12 col-md-7 mt-4 mx-auto"  onSubmit={handleSubmit}>
               <h2 style={{ color: 'white' }}>Purchaser Information</h2>
               <hr style={{ borderTop: '3px solid white'}}></hr>
               {/*Row 1: First Name*/}
