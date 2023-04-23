@@ -110,7 +110,7 @@ const handlePhNumChange = e => {
       response => response.json(),
       error => console.log('An error occured', error),
       console.log("Do stuff?"),
-      navigate('/orderConfirmation', {case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: state.seats, userData: userData })
+      navigate('/orderConfirmation', {state:{case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: state.seats, userData: userData, price: price }})
     )
     .then(res =>
       console.log("Do stuff!")
