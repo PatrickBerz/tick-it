@@ -234,43 +234,43 @@ router.post("/deleteShow", (req: any, res: any) => {
 });
 
 // handle POST request to exchange existing tickets for new ones
-router.post("/exchange", (req: any, res: any) => {
+// router.post("/exchange", (req: any, res: any) => {
 
-    let data = req.body
+//     let data = req.body
 
-    let newTickets: Ticket[] = [];
+//     let newTickets: Ticket[] = [];
     
-    let oldConfNum = data.oldConfNum
-    let oldPurchase = System.findPurchase(oldConfNum)
+//     let oldConfNum = data.oldConfNum
+//     let oldPurchase = System.findPurchase(oldConfNum)
 
-    // check if the purchase actually exists
-    if (oldPurchase) {
+//     // check if the purchase actually exists
+//     if (oldPurchase) {
 
-        let oldShow = System.findPerformance(new Performance(oldPurchase.getTickets()[0].getPerformance(), "", oldPurchase.getDate(), System.getVenues()[0]))
+//         let oldShow = System.findPerformance(new Performance(oldPurchase.getTickets()[0].getPerformance(), "", oldPurchase.getDate(), System.getVenues()[0]))
 
-        if (oldShow) {
-            //exchange the tickets and set HTTP status code appropriately
-            let exchanger = new ExchangeHandler()
-            let newPurchase = exchanger.exchange(oldShow, oldPurchase, newTickets, data.isOnline, data.ticketStatus, data.isOnline)
-            if (newPurchase) {
-                res.status(200)
-                res.end()
-            }
-            else {
-                res.status(500)
-                res.end()
-            }
-        }
-        else {
-            res.status(500)
-            res.end()
-        }
-    }
-    else {
-        res.status(500)
-        res.end()
-    }
-})
+//         if (oldShow) {
+//             //exchange the tickets and set HTTP status code appropriately
+//             let exchanger = new ExchangeHandler()
+//             let newPurchase = exchanger.exchange(oldShow, oldPurchase, newTickets, data.isOnline, data.ticketStatus, data.isOnline)
+//             if (newPurchase) {
+//                 res.status(200)
+//                 res.end()
+//             }
+//             else {
+//                 res.status(500)
+//                 res.end()
+//             }
+//         }
+//         else {
+//             res.status(500)
+//             res.end()
+//         }
+//     }
+//     else {
+//         res.status(500)
+//         res.end()
+//     }
+// })
 
 
 // handle GET request for list of all existing purchases
@@ -320,11 +320,12 @@ router.post("/newPurchase", (req: any, res: any) => {
     let maybeDupe = System.createPurchase(attendee, newTickets, new Date(data.dateTime), data.ticketStatus);
 
     // if maybeDupe object doesn't exist, the System function didn't add a purchase as it was a duplicate
-    if (!maybeDupe) {
+    // TODO: REMOVE THIS COMMENT MAYBEDUPE WHEN MERGED BACK IN
+    //if (!maybeDupe) {
         //console.log("DUPLICATE CONF NUM!!!!!!!!!!!!!!!!!!!!!")
         res.status(500)
         res.end()
-    }
+    //}
     res.status(200)
     res.end()
     //console.log("After create purchase")
