@@ -16,6 +16,7 @@ import { SeasonSeatSelection } from './components/seasonSeatSelection';
 import { SeasonVenueSelection } from './components/seasonVenueSelection';
 import { SeasonPassStuff } from './components/seasonPassStuff';
 import { PolicyStuff } from './components/policyStuff';
+import { ExchangeCheckOut } from './components/exchangeCheckOut';
 
 const App = () => 
   <Router>
@@ -35,6 +36,7 @@ const App = () =>
           <Route path='/seasonVenueSelection' element={<SeasonVenueSelection/>}/>
           <Route path='/seasonPassStuff' element={<SeasonPassStuff/>}/>
           <Route path='/policyStuff' element={<PolicyStuff/>}/>
+          <Route path='/exchangeCheckout' element={<ExchangeCheckOut/>}/>
       </Routes>
     </div>
   </Router>
