@@ -233,6 +233,7 @@ router.post("/deleteShow", (req: any, res: any) => {
     }
 });
 
+//TODO: REMOVE THIS COMMENTED OUT SECTION WHEN MERGED BACK IN
 // handle POST request to exchange existing tickets for new ones
 // router.post("/exchange", (req: any, res: any) => {
 
