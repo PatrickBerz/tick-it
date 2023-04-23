@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Stack, Button, Alert, Table, Modal, Row, Col,ListGroup } from 'react-bootstrap';
-import React, { useState, useEffect} from 'react';
+import { Form, Stack, Button, Alert, Table, Modal, Row, Col, ListGroup } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { isFunctionOrConstructorTypeNode } from 'typescript';
 
@@ -62,17 +62,10 @@ export const TicketStuff = () => {
         //const formattedDate = date.toLocaleDateString('en-US', options)
         return formattedDate
     }
-    function handlePickedShow (value) {
+    function handlePickedShow(value) {
         const showToPass = JSON.parse(value)
         console.log(showToPass)
-        setState({ case: 'purchase', event: showToPass.performanceName, venueName:showToPass.venueName, dateTime: showToPass.dateTime })
-        console.log(passState)
-    }
-
-    function handleStateChange (value) {
-        const showToPass = JSON.parse(value)
-        console.log(showToPass.performanceName)
-        setState({ case: 'purchase', event: showToPass.performanceName, venueName:showToPass.venueName, dateTime: showToPass.dateTime })
+        setState({ case: 'purchase', event: showToPass.performanceName, venueName: showToPass.venueName, dateTime: showToPass.dateTime })
         console.log(passState)
     }
 
@@ -249,25 +242,30 @@ export const TicketStuff = () => {
                             <Row className="mb-3">
                                 <ListGroup as={Col} controlId="status">
                                     <Form.Label>Shows</Form.Label>
-                                    <div style={{ maxHeight:'250px', overflowY:'scroll'}}>
-                                    
+                                    <div style={{ maxHeight: '250px', overflowY: 'scroll' }}>
+
                                         {showData.map((option, index) => (
-                                            <ListGroup.Item action key={index} value={JSON.stringify(option)} onClick={(e) => handlePickedShow(e.target.value)}> 
-                                            {option.performanceName} - ({convertDate(option.dateTime)})
-                                            </ListGroup.Item>
+                                            <Link
+                                                style={{textDecoration:'none'}}
+                                                to={"/seatSelection"}
+                                                state={{ case: "purchase", event: option.performanceName, venue: option.venueName, datetime: option.dateTime }}>
+                                                <ListGroup.Item action key={index} value={JSON.stringify(option)} >
+                                                    {option.performanceName} - ({convertDate(option.dateTime)})
+                                                </ListGroup.Item>
+                                            </Link>
                                         ))}
                                     </div>
 
                                 </ListGroup>
-                                
+
                             </Row>
-                            <Link
+                            {/* <Link
                                 to={"/seatSelection"}
                                 state={{ case: "purchase", event: passState.event, venue: passState.venueName, datetime: passState.dateTime }}>
-                                <Button disabled={!passState.event} size='sm' variant="primary" >
+                                <Button disabled={!disabled} size='sm' variant="primary" >
                                     Purchase Tickets
                                 </Button>
-                            </Link>
+                            </Link> */}
 
                         </Form>
                     </Modal.Body>
