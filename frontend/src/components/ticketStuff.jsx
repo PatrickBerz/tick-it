@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Stack, Button, Alert, Table, Modal, Row, Col } from 'react-bootstrap';
+import { Form, Stack, Button, Alert, Table, Modal, Row, Col,ListGroup } from 'react-bootstrap';
 import React, { useState, useEffect} from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { isFunctionOrConstructorTypeNode } from 'typescript';
 
 
 
@@ -60,6 +61,12 @@ export const TicketStuff = () => {
         const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
         //const formattedDate = date.toLocaleDateString('en-US', options)
         return formattedDate
+    }
+    function handlePickedShow (value) {
+        const showToPass = JSON.parse(value)
+        console.log(showToPass)
+        setState({ case: 'purchase', event: showToPass.performanceName, venueName:showToPass.venueName, dateTime: showToPass.dateTime })
+        console.log(passState)
     }
 
     function handleStateChange (value) {
@@ -124,7 +131,7 @@ export const TicketStuff = () => {
             }
         )
         handleClose()
-        setTimeout(() => { window.location.reload(); }, 500);
+        //setTimeout(() => { window.location.reload(); }, 500);
     }
     useEffect(() => {
         const fetchData = async () => {
@@ -240,24 +247,30 @@ export const TicketStuff = () => {
                             {formError && <Alert variant='danger'>{formError}</Alert>
                             }
                             <Row className="mb-3">
-                                <Form.Group as={Col} controlId="status">
+                                <ListGroup as={Col} controlId="status">
                                     <Form.Label>Shows</Form.Label>
-                                    <div style={{maxHeight:'200px', overflowY:'scroll'}}>
-                                    <Form.Select required style={{ overflowY: "scroll" }} type="select" value={passState.performanceName} onChange={(e) => handleStateChange(e.target.value)}>
+                                    <div style={{ maxHeight:'250px', overflowY:'scroll'}}>
+                                    
+                                        {showData.map((option, index) => (
+                                            <ListGroup.Item action key={index} value={JSON.stringify(option)} onClick={(e) => handlePickedShow(e.target.value)}> 
+                                            {option.performanceName} - ({convertDate(option.dateTime)})
+                                            </ListGroup.Item>
+                                        ))}
+                                    
+                                    {/* <Form.Select required style={{ overflowY: "scroll" }} type="select" value={passState.performanceName} onChange={(e) => handleStateChange(e.target.value)}>
                                         <option>Select Show...</option>
                                         {showData.map((option, index) => (
-                                            <option key={index} value={JSON.stringify(option)} >{option.performanceName}</option>
+                                            <option key={index} value={JSON.stringify(option)} >{option.performanceName} - ({convertDate(option.dateTime)})</option>
                                         ))}
-                                    </Form.Select>
+                                    </Form.Select> */}
                                     </div>
 
-                                </Form.Group>
+                                </ListGroup>
                                 
                             </Row>
                             <Link
                                 to={"/seatSelection"}
                                 state={{ case: "purchase", event: passState.event, venue: passState.venueName, datetime: passState.dateTime }}>
-                                {console.log({ case: "purchase", event: passState.event, venue: passState.venueName, datetime: passState.dateTime })}
                                 <Button disabled={!passState.event} size='sm' variant="primary" >
                                     Purchase Tickets
                                 </Button>
