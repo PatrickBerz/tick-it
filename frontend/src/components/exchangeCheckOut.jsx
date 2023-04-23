@@ -236,25 +236,25 @@ const handlePhNumChange = e => {
               {/*Row 1: First Name*/}
               <Form.Group className="mb-3 mx-auto" controlId="formFName">
                   <Form.Label style={{ color: 'white' }}>First Name</Form.Label>
-                  <Form.Control required type="text" onChange={handleFNameChange} placeholder="First Name" />
+                  <Form.Control plaintext readOnly defaultValue={userData.fName} />
               </Form.Group>
 
               {/*Row 2: Last Name*/}
               <Form.Group className="mb-3 mx-auto" controlId="formLName">
                   <Form.Label style={{ color: 'white' }}>Last Name</Form.Label>
-                  <Form.Control required type="text" onChange={handleLNameChange} placeholder="Last Name" />
+                  <Form.Control plaintext readOnly defaultValue={userData.lName}/>
               </Form.Group>
 
               {/*Row 3: Email Address*/}
               <Form.Group className="mb-3 mx-auto" controlId="formEmailAddress">
                   <Form.Label style={{ color: 'white' }}>Email Address</Form.Label>
-                  <Form.Control required type="email" onChange={handleAddrChange} placeholder="Email Address" />
+                  <Form.Control plaintext readOnly defaultValue={userData.addr} />
               </Form.Group>
 
               {/*Row 4: Phone Number*/}
               <Form.Group className="mb-3 mx-auto" controlId="formPhoneNumber">
                   <Form.Label style={{ color: 'white' }}>Phone Number</Form.Label>
-                  <Form.Control required type="phone" onChange={handlePhNumChange} placeholder="Phone Number"/>
+                  <Form.Control plaintext readOnly defaultValue={userData.userPhoneNum}/>
               </Form.Group>
 
               {/*Discounts*/}
