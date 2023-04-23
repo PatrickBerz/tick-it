@@ -31,10 +31,10 @@ router.get("/seasonTickets", (req: any, res: any) => {
 // handle POST request to add a season ticket holder
 router.post("/newSeasonTicket", (req: any, res: any) => {
 
-    let data = req.body
+    let data = req.body.newSeasonPass
 
     // create objects for the season holder and add them to the list in System
-    let seat = new Seat(data.section, data.row, data.seatNum, data.accessible, true, data.defaultPrice)
+    let seat = new Seat(data.seatAssignment.section, data.seatAssignment.row, data.seatAssignment.seatNum, false, true, data.seatAssignment.price)
     System.createSeasonHolder(data.name, data.address, data.phoneNum, seat);
 })
 

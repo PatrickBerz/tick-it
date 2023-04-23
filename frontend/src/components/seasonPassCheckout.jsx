@@ -100,7 +100,8 @@ const handlePhNumChange = e => {
         seatAssignment: {
             section: parsedSeats.section,
             row: parsedSeats.row,
-            seatNum: parsedSeats.seatNum
+            seatNum: parsedSeats.seatNum,
+            price: price
         }
     }
     console.log("NEW SEASON PASS: ", newSeasonPass)
