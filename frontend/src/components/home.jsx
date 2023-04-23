@@ -1,29 +1,44 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo-tran.png';
 import VBCplaceholder from './VBC.jpg';
-import { Stack, Alert, Image, Form, Card, Button, Modal, FormGroup } from 'react-bootstrap';
+import { Stack, Alert, Image, Form, Card, Button, Modal, FormGroup, Row, ListGroup, Col, } from 'react-bootstrap';
 import { Route, Routes, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import '../styles.css';
 
 export const Home = () => {
-  const [showModal, setShow] = useState(false);
+  const [showModal, setShow] = useState(false)
+  const [pickShow, setPickShow] = useState(false)
   const [passState, setState] = useState({ case: '', performance: '', venueName: '', dateTime: '', name: '', phoneNum: '', email: '', seats: [] });
   const [value, setValue] = useState('');
   const [alert, setAlert] = useState(undefined);
   const [showData, setShowData] = useState([])
+  const [isDisabled, setDisabled] = useState(true)
+  const [formError, setFormError] = useState(null)
 
 
-  const handleSelectShow = (item) => {
+
+  const handleContinue = (item) => {
+    setPickShow(true)
+
+  }
+
+  function handlePickedShow(value) {
+    const showToPass = JSON.parse(value)
+    console.log(showToPass)
     setState(
       {
-        case: "exchange",
-        performance: item.performanceName,
-        venueName: item.venueName,
-        dateTime: item.dateTime,
+        ...passState,
+        case: 'exchange',
+        event: showToPass.performanceName,
+        venueName: showToPass.venueName,
+        dateTime: showToPass.dateTime
       }
     )
+    console.log(passState)
   }
+
+
 
   const confNumModal = () => {
     setShow(true)
@@ -33,6 +48,11 @@ export const Home = () => {
 
     setShow(false)
     setAlert(undefined);
+  }
+
+  const handleCloseAdd = () => {
+    setPickShow(false)
+    setFormError(undefined)
   }
 
   const convertDate = (item) => {
@@ -65,10 +85,6 @@ export const Home = () => {
   }, []);
 
 
-
-
-  const [isDisabled, setDisabled] = useState(true);
-
   const onFormSubmit = (e) => {
     e.preventDefault();
     setValue(value);
@@ -95,9 +111,9 @@ export const Home = () => {
       //console.log(purchaseData)
       setState(
         {
-          case:'exchange',
-          performance: purchaseData.tickets[0].performance,
-          //venueName:purchaseData.tickets.
+          case: 'exchange',
+          //performance: purchaseData.tickets[0].performance,
+          //venueName:purchaseData.tickets.venueName
           name: purchaseData.purchaser.name,
           phoneNum: purchaseData.purchaser.phoneNum,
           email: purchaseData.purchaser.address,
@@ -107,20 +123,24 @@ export const Home = () => {
     }).catch(error => {
       console.error(error)
     })
-
-    console.log(passState)
+    //console.log(passState)
   }
   if (showData) {
     return (
       <div className='App-body '>
         <Stack direction='vertical' style={{ alignItems: 'center' }} gap={0}>
           <Image src={logo} className='App-logo-big' style={{ marginTop: '-30px' }}></Image>
-          <div className='d-flex' style={{width:'95%',marginBottom:'80px', justifyContent:'right'}}>
-          <Button variant="primary" onClick={() => {
+          <div className='d-flex' style={{ width: '95%', marginBottom: '80px', justifyContent: 'right' }}>
+            <Button className='me-2' variant="primary" onClick={() => {
+              confNumModal()
+            }}>
+              Exchange Tickets
+            </Button>
+            {/* <Button variant="primary" onClick={() => {
             confNumModal()
           }}>
-            Exchange Tickets
-          </Button>
+            Refund Tickets
+          </Button> */}
           </div>
           <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '35px', overflowY: 'auto', marginBottom: '30px', marginTop: '-70px', background: '#282634' }}>
             <Stack className="mb-5 flex-wrap" direction='horizontal' style={{ justifyContent: 'center' }} gap={3}>
@@ -175,19 +195,55 @@ export const Home = () => {
 
                   </div>
                 </Form>
-
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button id="continueButton" variant="primary" disabled={isDisabled}>
-                  <Link to={"/seatSelection"} style={{ color: 'white', textDecoration: 'none' }}
-                    state={{ case: passState.case, event: passState.performance, venue: passState.venueName, datetime: passState.dateTime, name: passState.name, phoneNum: passState.phoneNum, email: passState.email, seats: passState.seats }}>
-                    Continue
-                  </Link>
+                <Button id="continueButton" variant="primary" disabled={isDisabled} onClick={handleContinue}>
+                  Continue
                 </Button>
               </Modal.Footer>
+            </Modal>
+
+            <Modal show={pickShow} onHide={handleCloseAdd}>
+              <Modal.Header closeButton>
+                <Modal.Title>Select a show</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form onSubmit={onFormSubmit} id='newShowForm' >
+                  {formError && <Alert variant='danger'>{formError}</Alert>
+                  }
+                  <Row className="mb-3">
+                    <ListGroup as={Col} controlId="status">
+                      <Form.Label>Shows</Form.Label>
+                      <div style={{ maxHeight: '250px', overflowY: 'scroll' }}>
+
+                        {showData.map((option, index) => (
+                          <Link
+                            style={{ textDecoration: 'none' }}
+                            to={"/seatSelection"}
+                            state={{ case: "purchase", event: option.performanceName, venue: option.venueName, datetime: option.dateTime, name:passState.name, email: passState.email, phoneNum:passState.phoneNum, oldSeats: passState.seats }}>
+                            <ListGroup.Item action key={index} value={JSON.stringify(option)} >
+                              {option.performanceName} - ({convertDate(option.dateTime)})
+                            </ListGroup.Item>
+                          </Link>
+                        ))}
+                      </div>
+
+                    </ListGroup>
+
+                  </Row>
+                  {/* <Link
+                    to={"/seatSelection"}
+                    state={{ case: "exchange", event: passState.event, venue: passState.venueName, datetime: passState.dateTime, name: passState.name, email: passState.email, phoneNum: passState.phoneNum, oldSeats: passState.seats }}>
+                    <Button disabled={!passState.event} variant="primary" >
+                      Purchase Tickets
+                    </Button>
+                  </Link> */}
+
+                </Form>
+              </Modal.Body>
             </Modal>
           </div>
         </Stack>
