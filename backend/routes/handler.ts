@@ -397,11 +397,12 @@ router.post("/calculatePrice", (req: any, res: any) => {
 router.post("/statusUpdate", (req: any, res: any) => {
 
     let data = req.body
-    console.log(data)
+    console.log("Handler confNum: " + JSON.stringify(data.confNum))
+    console.log(typeof(data.confNum))
 
-    let purchase = System.findPurchase(+data.confNum)
+    let purchase = System.findPurchase(data.confNum)
     console.log(JSON.stringify(purchase))
-    if(purchase) {
+    if(purchase != null) {
         switch(+data.status) {
             case 1: {
                 purchase.reservedTickets()

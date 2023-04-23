@@ -91,6 +91,9 @@ export class System {
         this.purchases.push(newPurchase);
         this.deserializer.serialize(this.purchases, this.purchasePath);
         this.deserializer.serialize(this.shows, this.showPath);
+
+        console.log(JSON.stringify(System.purchases))
+
         return newPurchase;
     }
     
@@ -178,20 +181,44 @@ export class System {
 
     //Finds a purchase given its confirmation number. 
     //It does this through a binary search for additional efficiency due to the sorted nature of the confirmation numbers in the purchase list.
-    public static findPurchase(confNum : number, start? : number, end? : number) : Purchase | null
-    {
-        if(typeof start == 'undefined') start = 0;
-        if(typeof end == 'undefined') end = this.purchases.length;
-        var pivot = (start + end) >> 1;
-        var comp = confNum - this.purchases[pivot].getConfNum();
-        if (end - start <= 1)
-        {
-            if (comp !== 0) return null;
-            else return this.purchases[pivot];
-        }
-        if (comp < 0) return this.findPurchase(confNum, start, pivot);
-        else if (comp > 0) return this.findPurchase(confNum, pivot, end);
-        else return this.purchases[pivot];
+    // public static findPurchase(confNum : number, start? : number, end? : number) : Purchase | null
+    // {
+    //     console.log("System confNum: " + JSON.stringify(confNum))
+    //     console.log(typeof(confNum))
+
+    //     if(typeof start == 'undefined') start = 0;
+    //     if(typeof end == 'undefined') end = this.purchases.length;
+    //     var pivot = (start + end) >> 1;
+    //     var comp = confNum - this.purchases[pivot].getConfNum();
+    //     if (end - start <= 1)
+    //     {
+    //         if (comp !== 0) return null;
+    //         else return this.purchases[pivot];
+    //     }
+    //     if (comp < 0) return this.findPurchase(confNum, start, pivot);
+    //     else if (comp > 0) return this.findPurchase(confNum, pivot, end);
+    //     else return this.purchases[pivot];
+    // }
+
+    public static findPurchase(confNum: number) : Purchase | undefined { 
+
+        console.log("System confNum: " + JSON.stringify(confNum))
+        console.log(typeof(confNum))
+
+        console.log(JSON.stringify(System.purchases))
+
+        let test
+
+        System.purchases.forEach(purchase => {
+            console.log(purchase.getConfNum())
+            if (confNum == purchase.getConfNum()) {
+                console.log(JSON.stringify(purchase))
+                console.log("Found it")
+                test = purchase
+                //return purchase;
+            }
+        })
+        return test
     }
 
     //Finds a given performance given that performance's already known data.
