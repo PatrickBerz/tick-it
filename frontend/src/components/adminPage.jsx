@@ -1,7 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Stack,Button, Alert } from 'react-bootstrap';
-import React, {useState} from 'react';
-
+import {Stack,Button } from 'react-bootstrap';
 
 
 export const AdminPage = () =>{

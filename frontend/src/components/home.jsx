@@ -88,7 +88,6 @@ export const Home = () => {
         setAlert({ label: 'success', type: 'success' })
         //handleClose()
         //window.location.href="/seatSelection"
-        var x = document.getElementById("continueButton");
         setDisabled(false);
         return event.json()
       } else {
