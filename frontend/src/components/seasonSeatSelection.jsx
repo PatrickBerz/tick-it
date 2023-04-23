@@ -107,7 +107,7 @@ export const SeasonSeatSelection = () => {
   */
   const handleAddToList = (seat) => {
     // Add the selected class to this seat SVG element
-    navigate('/seasonPass', {state: {case: "season", venue: state.venue, seat: seat.id}})
+    navigate('/seasonPassCheckout', {state: {case: "season", venue: state.venue, seat: seat.id}})
     
     seat.classList.add("selected");
     // Add this seat to the cart
@@ -198,8 +198,8 @@ export const SeasonSeatSelection = () => {
           <div className="d-grid gap-2">
             {/**List of selected seats, updates automatically*/}
             <ListGroup>
-              <ListGroup.Item><h2>Selected Seats</h2></ListGroup.Item>
-              <ListGroup.Item><i>Click seat again to remove</i></ListGroup.Item>
+              <ListGroup.Item><h2>Select a Season Pass seat</h2></ListGroup.Item>
+              <ListGroup.Item><i>Click a seat to checkout</i></ListGroup.Item>
               {listData.map((item, index) => (
                 <ListGroup.Item key={index}>
                   {item}
@@ -210,12 +210,12 @@ export const SeasonSeatSelection = () => {
               ))}
             </ListGroup>
             
-            <Link 
+            {/* <Link 
               to={"/checkOut"}
               style={{color:'white', textDecoration:'none'}} 
               state={{ case: state.case, venue: state.venue }}>
                 <Button variant="primary">Check Out</Button>
-            </Link>
+            </Link> */}
 
           </div>
 

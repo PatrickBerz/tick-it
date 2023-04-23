@@ -3,7 +3,7 @@ import { Stack, Image, Form, Button, ToggleButton, ToggleButtonGroup, ListGroup 
 import { useEffect, useState } from "react";
 import {useLocation, Link, useNavigate } from 'react-router-dom';
 
-export const SeasonPass = () =>{
+export const SeasonPassCheckout = () =>{
   // Load previous state
   const location = useLocation();
   const state = location.state; 
