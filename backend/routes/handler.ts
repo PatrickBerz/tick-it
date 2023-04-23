@@ -13,6 +13,7 @@ import { ConfNum } from "../src/ConfNum"
 import { Ticket } from "../src/Ticket";
 import { Performance } from "../src/Performance";
 import { System } from "../src/System";
+import { ExchangeHandler} from "../src/ExchangeHandler"
 
 router.use(cors({
     origin: '*'
