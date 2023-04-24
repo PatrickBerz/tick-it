@@ -74,4 +74,11 @@ export class Purchase {
             this.tickets[index].setTicketStatus(TicketStatus.Unsold);
         }
     }
+
+    //Mark tickets in the purchase as Cancelled
+    cancelTickets() {
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.Cancelled);
+        }
+    }
 }

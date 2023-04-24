@@ -329,6 +329,8 @@ function getTicketStatusText(statusInt) {
             return "Paid"
         case 3:
             return "Picked Up"
+        case 4:
+            return "Cancelled"
 
     }
 }

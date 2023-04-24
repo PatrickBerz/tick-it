@@ -4,7 +4,8 @@ export enum TicketStatus {
     Unsold,
     Reserved,
     Paid,
-    PickedUp
+    PickedUp,
+    Cancelled
 }
 
 export class Ticket {
