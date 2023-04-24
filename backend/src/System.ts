@@ -237,6 +237,15 @@ export class System {
         for (var index in this.shows) {
             for (var index2 in this.shows[index].getPerformances()) {
                 if (this.shows[index].getPerformances()[index2].equals(perfToDelete)) {
+                    //Find purchases of that performance and mark the tickets as Cancelled
+                    for (var purchaseIndex in this.purchases) {
+                        let testPerf = new Performance(this.purchases[purchaseIndex].getTickets()[0].getPerformance(), "Venue", new Date(this.purchases[purchaseIndex].getDate()), System.getVenues()[0]);
+                        if (testPerf.equals(perfToDelete)) {
+                            this.purchases[purchaseIndex].cancelTickets();
+                        }
+                    }
+
+                    //Remove the performance from the database
                     this.shows[index].getPerformances().splice(+index2, 1);
                     this.deserializer.serialize(this.purchases, this.purchasePath);
                     this.deserializer.serialize(this.shows, this.showPath);

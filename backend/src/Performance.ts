@@ -49,7 +49,6 @@ export class Performance {
     //Used to tell if two Performances are equal or not
     equals(compPerf: Performance) {
         if (this.performanceName == compPerf.getPerformanceName() &&
-            this.venueName == compPerf.getVenueName() &&
             this.dateTime.toISOString() === compPerf.getDateTime().toISOString()
             ) {
                 return true;
