@@ -13,6 +13,23 @@ import { ConfNum } from "../src/ConfNum"
 import { Ticket } from "../src/Ticket";
 import { Performance } from "../src/Performance";
 import { System } from "../src/System";
+import * as fs from 'fs';
+
+//FUNCTIONS NEEDED:
+//
+// Lookup purchase by confNum
+// Add season ticket holder to list
+// Basically, add everything to lists
+// Get list of season ticket holders
+// Post new season ticket holder
+// Post default prices for venue
+// Get a performance's list of tickets
+// Maybe? post new list of tickets for a single performance
+// Post new purchase
+// Post an exchange
+// Post file path for importing
+// Post 0/1 for export csv vs json
+
 import { ExchangeHandler} from "../src/ExchangeHandler"
 import { isNullOrUndefined } from "util";
 
@@ -564,6 +581,36 @@ router.post("/calculateSeasonPrice", (req:any, res:any) => {
             }
         })
     })
+});
+
+router.post("/exportPath", (req: any, res: any) => {
+    let data = req.body.choice.fileType;
+    
+    System.exportSeasonTicketHolderData(data);
+    res.status(200);
+    res.end();
+    
+});
+
+router.post("/importPath", (req: any, res: any) => {
+    let data = req.body.fileContents;
+    console.log("DATTTTTAAAAA");
+    console.log(data);
+    fs.writeFileSync( __dirname + "/../" + "/seasonTicketHolders.json", data);
+    //JSONhandler.serialize(data, __dirname + "/../" + "importedData");
+    System.importSeasonTicketHolderData();
+    console.log("\n NEW SEASON TICKET HOLDERS")
+    console.log(System.getSeasonTicketHolders());
+    res.status(200);
+    res.end();
+    /*if (data == "json") {
+        System.exportSeasonTicketHolderData();
+        res.status(200);
+        res.end();
+    } else {
+        res.status(500);
+        res.end();
+    }*/
 });
 
 export default router;

@@ -1,1 +1,10 @@
-[{"name":"Rodger","address":"456 Sesame Street","phoneNum":"6064152452","seatAssignment":{"section":"Orchestra","row":"B","seatNum":12,"acessible":false,"inSeasonSection":false,"defaultPrice":29.99}},{"name":"Rodger","address":"456 Sesame Street","phoneNum":"6064152452","seatAssignment":{"section":"Orchestra","row":"B","seatNum":12,"acessible":false,"inSeasonSection":false,"defaultPrice":29.99}},{"name":"Rodger","address":"456 Sesame Street","phoneNum":"6064152452","seatAssignment":{"section":"Orchestra","row":"B","seatNum":12,"acessible":false,"inSeasonSection":false,"defaultPrice":29.99}}]
+name,address,phoneNum,seatAssignment/section,seatAssignment/row,seatAssignment/seatNum,seatAssignment/acessible,seatAssignment/inSeasonSection,seatAssignment/defaultPrice
+Rodger Smith,456 Sesame Street,6064152452,Orchestra,B,12,false,false,29.99,
+Rodger Apple,456 Sesame Street,6064152452,Orchestra,B,13,false,false,29.99,
+Rodger Rodger,456 Sesame Street,6064152452,Orchestra,B,14,false,false,29.99,
+Rodger 2.0,456 Sesame Street,6064152452,Riser2,B,1,false,false,29.99,
+aklsdjfdalk TEST 1234,saklfdjaslk@rdgad,adgda,Riser2,B,2,false,true,29.99,
+adfads asdfa,sadfa@asdfas,asdfads,Orchestra,B,15,false,true,29.99,
+asdfsa asdfas,asdfa@zdsfda,sadfa,Orchestra,B,16,false,true,29.99,
+Test Name,alkdfjskl@audhas.asdklfjas,aklsdjflak,Orchestra,C,16,false,true,29.99,
+TEST 229 sadfas,asf@adsfsa,asfda,Orchestra,D,18,false,true,74.99,

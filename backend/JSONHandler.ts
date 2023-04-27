@@ -215,10 +215,6 @@ export class JSONHandler {
             let objectTicket = dataSet[index];
 
             //Deserialize and build the Seat for the ticket
-            //console.log(JSON.parse(data))
-            
-            //console.log("\n\n\n\n\n\n")
-            //console.log(objectTicket + "\n\n")
             let seatData: any = JSON.parse(JSON.stringify(objectTicket["seat"])); //Have to stringify to get parser to accept
             let assignedSeat = new Seat(seatData["section"], seatData["row"], seatData["seatNum"], seatData["acessible"], seatData["inSeasonSection"], seatData["defaultPrice"]);
 
@@ -344,7 +340,7 @@ export class JSONHandler {
         //Convert the data from TypeScript objects to JSON data and save to the specified file 
         let data: string = defaultSerializer.serialize(seasonTicketHolders) as unknown as string;
         let datastr = JSON.stringify(data);
-        fs.writeFileSync("../exported_seasonTicketHolders.json", datastr);
+        fs.writeFileSync(__dirname + "/../exported_seasonTicketHolders.json", datastr);
     }
 
     //Use if the ticket seller wants to import JSON info to use in the backend
@@ -360,18 +356,6 @@ export class JSONHandler {
         let data: string = defaultSerializer.serialize(dataSet) as unknown as string;
         let datastr = JSON.stringify(data);
         fs.writeFileSync("./seasonTicketHolders.json", datastr);
-    }
-
-    
-    //TEST FUNCTION TO DEMONSTRATE WORKING
-    checkData() {
-        //console.log('\n\n\n\n');
-        for (var index in this.deserializedData) {
-            ////console.log("SEAT ROW: " + this.deserializedData[index].getRow());
-            ////console.log("SECTIONNUM: " + this.deserializedData[index].getSectionNum());
-            //console.log(this.deserializedData[index]);
-        }
-        //console.log(this.deserializedData.length);
     }
 }
 

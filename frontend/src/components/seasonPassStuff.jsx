@@ -1,4 +1,4 @@
-import { Form, Stack, Button, Alert, Table, Modal, Row, Col } from 'react-bootstrap';
+import { Form, Stack, Button, Alert, Table, Modal, Row, Col, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 
 export const SeasonPassStuff = () => {
@@ -8,6 +8,9 @@ export const SeasonPassStuff = () => {
 
     const [formError, setFormError] = useState(null)
     const [importModal, setImportModal] = useState(false)
+    const [exportModal, setExportModal] = useState(false)
+    const [exportConfModal, setExportConfModal] = useState(false)
+    const [format, setFormat] = useState("json")
     const [fileContents, setFileContents] = useState(null)
     useEffect(() => {
         const fetchData = async () => {
@@ -78,7 +81,7 @@ export const SeasonPassStuff = () => {
         setFileContents(null)
         setImportModal(false)
 
-        //setTimeout(() => { window.location.reload(); }, 500);
+        setTimeout(() => { window.location.reload(); }, 500);
     }
 
     function handleImportModal() {
@@ -90,8 +93,29 @@ export const SeasonPassStuff = () => {
 
     function handleExport() {
         console.log("yay export")
-
+        let choice = { fileType: format}
+        const promise = fetch('http://localhost:4000/exportPath', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ choice })
+            //body: "json"
+        });
     }
+    function handleOpenExport() {
+        setExportModal(true)
+    }
+    function handleCloseExport() {
+        handleExport()
+        setExportModal(false)
+        setExportConfModal(true)
+    }
+    function handleCloseExportConf() {
+        setExportConfModal(false)
+    }
+    const onPickFormat = (val) => {
+        setFormat(val);
+    }
+
     const handleItemEdit = (item) => {
         setFormData({ name: item.name, address: item.address, phoneNum: item.phoneNum, section: item.seatAssignment.section, row: item.seatAssignment.row, seatNum: item.seatAssignment.seatNum })
         setShow(true)
@@ -188,7 +212,7 @@ export const SeasonPassStuff = () => {
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
                         }} //0 or 1
-                            onClick={handleExport}>
+                            onClick={handleOpenExport}>
                             Export Data
                         </Button>
 
@@ -286,15 +310,49 @@ export const SeasonPassStuff = () => {
                 </Modal>
                 <Modal show={importModal} onHide={handleCloseImport}>
                     <Modal.Header closeButton></Modal.Header>
-                    
                     <Modal.Body>
                         <Form onSubmit={handleImportSubmit}>
                             <Form.Group controlId="formFile">
                                 <Form.Label>Select a file</Form.Label>
-                                <Form.Control type='file' accept='.csv,.json' onChange={handleFileChange}></Form.Control>
-                                <Form.Text className='text-muted'>Only CSV and JSON are allowed</Form.Text>
+                                <Form.Control type='file' accept='.json' onChange={handleFileChange}></Form.Control>
+                                <Form.Text className='text-muted'>Only JSON is allowed</Form.Text>
                             </Form.Group>
                             <Button type='submit' variant='success' onClick={() => console.log(fileContents)}>Submit</Button>
+                        </Form>
+                    </Modal.Body>
+                </Modal>
+                <Modal show={exportModal} onHide={handleCloseExport}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Export to a file</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Text className="text-center">Please select the format you would like to export in.</Form.Text>
+                            <br></br>
+                            <br></br>
+                            <ToggleButtonGroup className="mb-4 text-center" type="radio" name="format" defaultValue="json" onChange={onPickFormat}>
+                                <ToggleButton id="tbg-radio-format-1" value="json">
+                                JSON
+                                </ToggleButton>
+                                <ToggleButton id="tbg-radio-format-2" value="csv">
+                                CSV
+                                </ToggleButton>
+                            </ToggleButtonGroup>
+                            <br></br>
+                            <Button className="text-center" variant='success' onClick={() => handleCloseExport()}>Export</Button>
+                        </Form>
+                    </Modal.Body>
+                </Modal>
+                <Modal show={exportConfModal} onHide={handleCloseExportConf}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Export to a file</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Text className="text-center">Export complete! Please check your TickIt directory.</Form.Text>
+                            <br></br>
+                            <br></br>
+                            <Button className="text-center" variant='danger' onClick={() => handleCloseExportConf()}>Close</Button>
                         </Form>
                     </Modal.Body>
                 </Modal>

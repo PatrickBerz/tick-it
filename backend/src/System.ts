@@ -9,6 +9,7 @@ import { Performance } from "./Performance";
 import { JSONHandler } from "../JSONHandler";
 import { Ticket, TicketStatus } from "./Ticket";
 import { ConfNum } from "./ConfNum";
+import { CSVHandler } from "../CSVHandler";
 
 //NOT A SINGLETON
 //Needs to be able to handle a new start where there are no files to pull from
@@ -16,6 +17,7 @@ import { ConfNum } from "./ConfNum";
 export class System {
     //Updates back and forth between database files and class variables.
     private static deserializer : JSONHandler = new JSONHandler();
+    private static csv_deserializer : CSVHandler = new CSVHandler();
     //The paths for the database files.
     private static venuePath : string = __dirname + "/../" + "/sampleVenue.json"; 
     private static showPath : string = __dirname + "/../" + "/test8.json";
@@ -49,7 +51,7 @@ export class System {
         return purchases.sort((n1, n2) => n1.getConfNum() - n2.getConfNum());
     }
 
-    private static initializeSeasonHolders(filePath : string) : SeasonTicketHolder[] 
+    public static initializeSeasonHolders(filePath : string) : SeasonTicketHolder[] 
     {
         this.deserializer.deserializeSeasonTicketHolder(filePath);
         return this.deserializer.getData();
@@ -254,6 +256,38 @@ export class System {
         }
     }
 
+    //Used to import data for Season Ticket Holders from a JSON or CSV file
+    public static importSeasonTicketHolderData() {
+        this.seasonTicketHolders = this.initializeSeasonHolders(this.seasonPath);
+        //See if it is CSV or JSON
+        //console.log("THE DAMN FILEPATH: ", filePath);
+        /*let fileExt: any = filePath.split('.').pop();
+        //Call the appropriate handler based on if it's CSV or JSON
+            //Both handlers default to serializing seasonTicketHolders.json
+        console.log(filePath);
+        if (fileExt == "csv") {
+            this.csv_deserializer.importCSV(filePath);
+        }
+        if (fileExt == "json") {
+            this.deserializer.importJSON(filePath);
+        }
+        
+        //Re-serialize the seasonTicketHolder data in System
+        this.deserializer.deserializeSeasonTicketHolder(this.seasonPath);
+        this.seasonTicketHolders = this.deserializer.getData();
+        console.log("PLEASE WORKKKKKK");
+        //console.log(this.seasonTicketHolders);*/
+    }
+
+    //Used to export data for Season Ticket Holders to a JSON or CSV file 
+    public static exportSeasonTicketHolderData(choice: string) {
+       if (choice == "json") {
+            this.deserializer.exportJSON(this.seasonTicketHolders);
+        } else {
+            this.csv_deserializer.exportCSV(this.seasonTicketHolders);
+        }
+    }
+
     public static removePurchase(purchToDelete: Purchase) {
         for (let index in this.purchases) {
             if ( this.purchases[index].getConfNum() == purchToDelete.getConfNum()) {
@@ -261,4 +295,8 @@ export class System {
             }
         }
     }
+    
 }
+
+//System.importSeasonTicketHolderData("C:/Users/jayde/Documents/GitHub/tick-it/backend/seasonTH.csv");
+
