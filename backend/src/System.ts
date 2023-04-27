@@ -287,6 +287,14 @@ export class System {
             this.csv_deserializer.exportCSV(this.seasonTicketHolders);
         }
     }
+
+    public static removePurchase(purchToDelete: Purchase) {
+        for (let index in this.purchases) {
+            if ( this.purchases[index].getConfNum() == purchToDelete.getConfNum()) {
+                this.purchases.splice(+index, 1)
+            }
+        }
+    }
     
 }
 
