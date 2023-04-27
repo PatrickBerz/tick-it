@@ -185,7 +185,7 @@ export const PolicyStuff = () => {
                                     <InputGroup size='sm'>
                                         <Form.Label >{formData.venueName}</Form.Label>
                                         <InputGroup.Text className='ms-2'>$</InputGroup.Text>
-                                        <Form.Control className='me-5' type="number"  step={'0.01'} value={formData.sectionPrice} onChange={handleTextChange} />
+                                        <Form.Control className='me-5' type="number" min={0} step={'0.01'} value={formData.sectionPrice} onChange={handleTextChange} />
                                     </InputGroup>
                                 </Form.Group>
                             </Row>
