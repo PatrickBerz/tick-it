@@ -78,7 +78,7 @@ export const SeasonPassStuff = () => {
         setFileContents(null)
         setImportModal(false)
 
-        //setTimeout(() => { window.location.reload(); }, 500);
+        setTimeout(() => { window.location.reload(); }, 500);
     }
 
     function handleImportModal() {
@@ -90,6 +90,13 @@ export const SeasonPassStuff = () => {
 
     function handleExport() {
         console.log("yay export")
+        let choice = { fileType: "json"}
+        const promise = fetch('http://localhost:4000/exportPath', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ choice })
+            //body: "json"
+        });
 
     }
     const handleItemEdit = (item) => {

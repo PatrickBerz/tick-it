@@ -51,7 +51,7 @@ export class System {
         return purchases.sort((n1, n2) => n1.getConfNum() - n2.getConfNum());
     }
 
-    private static initializeSeasonHolders(filePath : string) : SeasonTicketHolder[] 
+    public static initializeSeasonHolders(filePath : string) : SeasonTicketHolder[] 
     {
         this.deserializer.deserializeSeasonTicketHolder(filePath);
         return this.deserializer.getData();
@@ -257,10 +257,11 @@ export class System {
     }
 
     //Used to import data for Season Ticket Holders from a JSON or CSV file
-    public static importSeasonTicketHolderData(filePath: string) {
+    public static importSeasonTicketHolderData() {
+        this.seasonTicketHolders = this.initializeSeasonHolders(this.seasonPath);
         //See if it is CSV or JSON
         //console.log("THE DAMN FILEPATH: ", filePath);
-        let fileExt: any = filePath.split('.').pop();
+        /*let fileExt: any = filePath.split('.').pop();
         //Call the appropriate handler based on if it's CSV or JSON
             //Both handlers default to serializing seasonTicketHolders.json
         console.log(filePath);
@@ -275,16 +276,16 @@ export class System {
         this.deserializer.deserializeSeasonTicketHolder(this.seasonPath);
         this.seasonTicketHolders = this.deserializer.getData();
         console.log("PLEASE WORKKKKKK");
-        //console.log(this.seasonTicketHolders);
+        //console.log(this.seasonTicketHolders);*/
     }
 
     //Used to export data for Season Ticket Holders to a JSON or CSV file 
-    public static exportSeasonTicketHolderData(choice: string) {
-        if (choice == "json") {
+    public static exportSeasonTicketHolderData() {
+       // if (choice == "json") {
             this.deserializer.exportJSON(this.seasonTicketHolders);
-        } else {
-            this.csv_deserializer.exportCSV(this.seasonTicketHolders);
-        }
+        //} else {
+          //  this.csv_deserializer.exportCSV(this.seasonTicketHolders);
+        //}
     }
     
 }

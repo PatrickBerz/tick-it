@@ -13,6 +13,7 @@ import { ConfNum } from "../src/ConfNum"
 import { Ticket } from "../src/Ticket";
 import { Performance } from "../src/Performance";
 import { System } from "../src/System";
+import * as fs from 'fs';
 
 //FUNCTIONS NEEDED:
 //
@@ -541,6 +542,39 @@ router.post("/calculateSeasonPrice", (req:any, res:any) => {
             }
         })
     })
+});
+
+router.post("/exportPath", (req: any, res: any) => {
+    let data = req.body.choice.fileType;
+    if (data == "json") {
+        System.exportSeasonTicketHolderData();
+        res.status(200);
+        res.end();
+    } else {
+        res.status(500);
+        res.end();
+    }
+});
+
+router.post("/importPath", (req: any, res: any) => {
+    let data = req.body.fileContents;
+    console.log("DATTTTTAAAAA");
+    console.log(data);
+    fs.writeFileSync( __dirname + "/../" + "/seasonTicketHolders.json", data);
+    //JSONhandler.serialize(data, __dirname + "/../" + "importedData");
+    System.importSeasonTicketHolderData();
+    console.log("\n NEW SEASON TICKET HOLDERS")
+    console.log(System.getSeasonTicketHolders());
+    res.status(200);
+    res.end();
+    /*if (data == "json") {
+        System.exportSeasonTicketHolderData();
+        res.status(200);
+        res.end();
+    } else {
+        res.status(500);
+        res.end();
+    }*/
 });
 
 export default router;
