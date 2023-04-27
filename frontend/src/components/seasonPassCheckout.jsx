@@ -230,7 +230,7 @@ const handlePhNumChange = e => {
               {/*Row 4: Phone Number*/}
               <Form.Group className="mb-3 mx-auto" controlId="formPhoneNumber">
                   <Form.Label style={{ color: 'white' }}>Phone Number</Form.Label>
-                  <Form.Control required type="phone" onChange={handlePhNumChange} placeholder="Phone Number"/>
+                  <Form.Control required type="number" min={1000000000} onChange={handlePhNumChange} placeholder="Phone Number"/>
               </Form.Group>
 
               {/*Discounts*/}
@@ -275,27 +275,27 @@ const handlePhNumChange = e => {
                   {/*Row 5: Name on Card*/}
                   <Form.Group className="mb-3 mx-auto" controlId="formNameOnCard">
                       <Form.Label style={{ color: 'white' }}>Name On Card</Form.Label>
-                      <Form.Control type="text" placeholder="Name On Card" />
+                      <Form.Control type="text" required placeholder="Name On Card" />
                   </Form.Group>
                   {/*Row 6: Credit/Debit Number*/}
                   <Form.Group className="mb-3 mx-auto" controlId="formCardNumber">
                       <Form.Label style={{ color: 'white' }}>Credit/Debit Card Number</Form.Label>
-                      <Form.Control type="text" placeholder="16-digit Credit/Debit Card Number" />
+                      <Form.Control type="number" min={1000000000000000} max={9999999999999999} required placeholder="16-digit Credit/Debit Card Number" />
                   </Form.Group>
                   {/*Row 7: Expiration*/}
                   <Form.Group className="mb-3 mx-auto" controlId="formExpirationDate">
                       <Form.Label style={{ color: 'white' }}>Expiration Date</Form.Label>
-                      <Form.Control type="text" placeholder="MM/YY" />
+                      <Form.Control type="text" pattern='[0-9][1-9]/[0-9][0-9]' required placeholder="MM/YY" />
                   </Form.Group>
                   {/*Row 8: Sec. Code*/}
                   <Form.Group className="mb-3 mx-auto" controlId="formSecCode">
                       <Form.Label style={{ color: 'white' }}>Security Code</Form.Label>
-                      <Form.Control type="text" placeholder="Security Code" />
+                      <Form.Control type="number" min={100} max={999} required placeholder="Security Code" />
                   </Form.Group>
                   {/*Row 9: ZIP Code*/}
                   <Form.Group className="mb-3 mx-auto" controlId="formZIPCode">
                       <Form.Label style={{ color: 'white' }}>ZIP Code</Form.Label>
-                      <Form.Control type="text" placeholder="ZIP Code" />
+                      <Form.Control type="number" min={10000} max={99999} required placeholder="ZIP Code" />
                   </Form.Group>
 
               </div>

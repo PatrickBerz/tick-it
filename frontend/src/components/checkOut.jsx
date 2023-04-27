@@ -254,7 +254,7 @@ const handlePhNumChange = e => {
               {/*Row 4: Phone Number*/}
               <Form.Group className="mb-3 mx-auto" controlId="formPhoneNumber">
                   <Form.Label style={{ color: 'white' }}>Phone Number</Form.Label>
-                  <Form.Control required type="number" onChange={handlePhNumChange} placeholder="Phone Number"/>
+                  <Form.Control required type="number"min={1000000000} onChange={handlePhNumChange} placeholder="Phone Number"/>
               </Form.Group>
 
               {/*Discounts*/}
