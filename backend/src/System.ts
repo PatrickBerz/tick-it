@@ -7,7 +7,7 @@ import { SeatSection } from "./SeatSection";
 import { Seat } from "./Seat";
 import { Performance } from "./Performance";
 import { JSONHandler } from "../JSONHandler";
-import { Ticket } from "./Ticket";
+import { Ticket, TicketStatus } from "./Ticket";
 import { ConfNum } from "./ConfNum";
 import { CSVHandler } from "../CSVHandler";
 
@@ -15,18 +15,22 @@ import { CSVHandler } from "../CSVHandler";
 //Needs to be able to handle a new start where there are no files to pull from
 
 export class System {
+    //Updates back and forth between database files and class variables.
     private static deserializer : JSONHandler = new JSONHandler();
     private static csv_deserializer : CSVHandler = new CSVHandler();
-    private static venuePath : string = __dirname + "/../" + "/sampleVenue.json";
+    //The paths for the database files.
+    private static venuePath : string = __dirname + "/../" + "/sampleVenue.json"; 
     private static showPath : string = __dirname + "/../" + "/test8.json";
-    private static purchasePath : string = __dirname + "/../" + "/purchases.json";
+    private static purchasePath : string = __dirname + "/.." + "/purchases.json";
     private static seasonPath : string = __dirname + "/../" + "/seasonTicketHolders.json";
+    //The main system variables, which are initialized from the database files.
     private static venues : Venue[] = this.initializeVenues(this.venuePath);
     private static shows : Show[] = this.initializeShows(this.showPath);
     private static purchases : Purchase[] = this.initializePurchases(this.purchasePath);
     private static seasonTicketHolders : SeasonTicketHolder[] = this.initializeSeasonHolders(this.seasonPath);
 
-    //initializing each database from the given file
+    //Initializing each database from the given file.
+
     private static initializeVenues(filePath : string) : Venue[] 
     {
         this.deserializer.deserializeVenue(filePath);
@@ -41,6 +45,7 @@ export class System {
 
     private static initializePurchases(filePath : string) : Purchase[] 
     {
+        console.log(filePath)
         this.deserializer.deserializePurchase(filePath);
         let purchases : Purchase[] = this.deserializer.getData();
         return purchases.sort((n1, n2) => n1.getConfNum() - n2.getConfNum());
@@ -52,35 +57,47 @@ export class System {
         return this.deserializer.getData();
     }
 
-    //creating new objects for the database
-    public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date)// : Purchase 
+    //Creating new objects for the database, and putting them back into their respective database file.
+
+    public static createPurchase(purchaser : Attendee, tickets: Ticket[], dateTime: Date, ticketStatus: TicketStatus): Purchase | null 
     {
+        //Getting a confirmation number for the purchase. If that confirmation number already exists, make a new one.
+        let newConfNum = ConfNum.getNum()
+        while (this.findPurchase(newConfNum)) {
+            newConfNum = ConfNum.getNum()
+        }
+
+        //Creating the new purchase with the confirmation number and other attributes.
         let newPurchase = new Purchase(purchaser);
         newPurchase.updateTickets(tickets);
-        newPurchase.setConfNum(ConfNum.getNum());
+        newPurchase.setConfNum(newConfNum);
         newPurchase.setDate(dateTime);
+
+        //Checking the ticket status and updating it.
+        switch(ticketStatus) {
+            case 1: {
+                newPurchase.reservedTickets()
+                break;
+            }
+            case 2: {
+                newPurchase.payTickets()
+                break;
+            }
+            case 3: {
+                newPurchase.pickUpTickets()
+                break;
+            }
+        }
+
+        //Adding the new purchase to both the class and the necessary backup files.
         this.purchases.push(newPurchase);
         this.deserializer.serialize(this.purchases, this.purchasePath);
-        //this.insertIntoPurchases(newPurchase);
-        //return newPurchase;
-    }
+        this.deserializer.serialize(this.shows, this.showPath);
 
-    // private insertIntoPurchases(purchase : Purchase, start? : number, end? : number)
-    // {
-    //     if(this.purchases.length == 0) return this.purchases.push(purchase);
-    //     if(typeof start == 'undefined') start = 0;
-    //     if(typeof end == 'undefined') end = this.purchases.length;
-    //     var pivot = (start + end) >> 1;
-    //     var comp = purchase.getConfNum() - this.purchases[pivot].getConfNum();
-    //     if (end - start <= 1)
-    //     {
-    //         if (comp < 0) return this.purchases.splice(pivot - 1, 0, purchase);
-    //         else return this.purchases.splice(pivot, 0, purchase);
-    //     }
-    //     if (comp < 0) return this.insertIntoPurchases(purchase, start, pivot);
-    //     else if (comp > 0) return this.insertIntoPurchases(purchase, pivot, end);
-    //     else return this.purchases.splice(pivot, 0, purchase);
-    // } 
+        console.log(JSON.stringify(System.purchases))
+
+        return newPurchase;
+    }
     
     public static createVenue(seatSections : SeatSection[]) : Venue
     {
@@ -115,7 +132,12 @@ export class System {
         return performance;
     }
 
-    //whole buncha getters yeehaw
+    //Additional function for backing up the Season Ticket Holders for classes without direct JSONHandler access.
+    public static serializeSeasonHolders() {
+        this.deserializer.serialize(this.seasonTicketHolders, this.seasonPath)
+    }
+
+    //Getter functions for each of the databases.
     public static getVenues() : Venue[]
     {
         return this.venues;
@@ -136,7 +158,7 @@ export class System {
         return this.seasonTicketHolders;
     }
 
-    //Find either of the two venues
+    //Finds either of the two possible venues.
     public static findVenue(venueNum : number) : Venue | null
     {
         if (venueNum == 0) {
@@ -146,6 +168,7 @@ export class System {
         } else { return null; }
     }
 
+    //Finds a show in the database given the show's name.
     public static findShow(showName : string) : Show | null
     {
         for (var index in this.shows)
@@ -158,51 +181,76 @@ export class System {
         return null;
     }
 
-    public static findPurchase(confNum : number, start? : number, end? : number) : Purchase | null
-    {
-        if(typeof start == 'undefined') start = 0;
-        if(typeof end == 'undefined') end = this.purchases.length;
-        var pivot = (start + end) >> 1;
-        var comp = confNum - this.purchases[pivot].getConfNum();
-        if (end - start <= 1)
-        {
-            if (comp !== 0) return null;
-            else return this.purchases[pivot];
-        }
-        if (comp < 0) return this.findPurchase(confNum, start, pivot);
-        else if (comp > 0) return this.findPurchase(confNum, pivot, end);
-        else return this.purchases[pivot];
+    //Finds a purchase given its confirmation number. 
+    //It does this through a binary search for additional efficiency due to the sorted nature of the confirmation numbers in the purchase list.
+    // public static findPurchase(confNum : number, start? : number, end? : number) : Purchase | null
+    // {
+    //     console.log("System confNum: " + JSON.stringify(confNum))
+    //     console.log(typeof(confNum))
+
+    //     if(typeof start == 'undefined') start = 0;
+    //     if(typeof end == 'undefined') end = this.purchases.length;
+    //     var pivot = (start + end) >> 1;
+    //     var comp = confNum - this.purchases[pivot].getConfNum();
+    //     if (end - start <= 1)
+    //     {
+    //         if (comp !== 0) return null;
+    //         else return this.purchases[pivot];
+    //     }
+    //     if (comp < 0) return this.findPurchase(confNum, start, pivot);
+    //     else if (comp > 0) return this.findPurchase(confNum, pivot, end);
+    //     else return this.purchases[pivot];
+    // }
+
+    public static findPurchase(confNum: number) : Purchase | undefined { 
+
+        console.log("System confNum: " + JSON.stringify(confNum))
+        console.log(typeof(confNum))
+
+        console.log(JSON.stringify(System.purchases))
+
+        let test
+
+        System.purchases.forEach(purchase => {
+            console.log(purchase.getConfNum())
+            if (confNum == purchase.getConfNum()) {
+                console.log(JSON.stringify(purchase))
+                console.log("Found it")
+                test = purchase
+                //return purchase;
+            }
+        })
+        return test
     }
-    
+
+    //Finds a given performance given that performance's already known data.
     public static findPerformance(perfToFind: Performance) {
         for (var index in this.shows) {
             for (var index2 in this.shows[index].getPerformances()) {
-                console.log("IN LOOP")
-                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getPerformanceName()))
-                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getDateTime()))
-                console.log(perfToFind.getDateTime())
-                console.log(JSON.stringify(this.shows[index].getPerformances()[index2].getVenueName()))
-                
-                console.log("COMP SHOW")
-                console.log(JSON.stringify(perfToFind.getPerformanceName()))
-                console.log(JSON.stringify(perfToFind.getDateTime()))
-                console.log(typeof(perfToFind.getDateTime()))
-                console.log(JSON.stringify(perfToFind.getVenueName()))
                 if (this.shows[index].getPerformances()[index2].equals(perfToFind)) {
-                    console.log("FOUND THE PERFORMANCE TO DELETE")
-                    //this.shows[index].getPerformances().splice(+index2, 1);
                     return this.shows[index].getPerformances()[index2]
                 }
             }
         }
     }
 
+    //Finds a performance and then removes it.
     public static removePerformance(perfToDelete: Performance) {
         for (var index in this.shows) {
             for (var index2 in this.shows[index].getPerformances()) {
                 if (this.shows[index].getPerformances()[index2].equals(perfToDelete)) {
-                    console.log("Deleted Performance")
+                    //Find purchases of that performance and mark the tickets as Cancelled
+                    for (var purchaseIndex in this.purchases) {
+                        let testPerf = new Performance(this.purchases[purchaseIndex].getTickets()[0].getPerformance(), "Venue", new Date(this.purchases[purchaseIndex].getDate()), System.getVenues()[0]);
+                        if (testPerf.equals(perfToDelete)) {
+                            this.purchases[purchaseIndex].cancelTickets();
+                        }
+                    }
+
+                    //Remove the performance from the database
                     this.shows[index].getPerformances().splice(+index2, 1);
+                    this.deserializer.serialize(this.purchases, this.purchasePath);
+                    this.deserializer.serialize(this.shows, this.showPath);
                 }
             }
         }

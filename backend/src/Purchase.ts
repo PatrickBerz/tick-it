@@ -43,6 +43,8 @@ export class Purchase {
         for (var index in this.tickets) {
             totalPrice += this.tickets[index].getPrice();
         }
+
+        return totalPrice;
     }
 
     //Mark the tickets in the purchase as Reserved
@@ -70,6 +72,13 @@ export class Purchase {
     returnTickets() {
         for (var index in this.tickets) {
             this.tickets[index].setTicketStatus(TicketStatus.Unsold);
+        }
+    }
+
+    //Mark tickets in the purchase as Cancelled
+    cancelTickets() {
+        for (var index in this.tickets) {
+            this.tickets[index].setTicketStatus(TicketStatus.Cancelled);
         }
     }
 }
