@@ -2,10 +2,12 @@ import { Seat } from "./src/Seat";
 import { SeasonTicketHolder } from "./src/SeasonTicketHolder";
 import * as fs from 'fs';
 import { JSONHandler } from "./JSONHandler";
-let csvToJson = require('convert-csv-to-json');
+//import { csv2json } from 'json-2-csv';
+
 
 export class CSVHandler {
     private deserializedData : any[] = [];
+    private converter = require('json-2-csv');
 
     //Used to construct a new instance of the CSV class
     constructor() {
@@ -13,18 +15,29 @@ export class CSVHandler {
     }
 
     //Use to import user's CSV data and store it as JSON data in database
-    importCSV(csvfilePath: string) {
+    importCSV(filePath: string) {
         //Convert from CSV to JSON
         console.log("----------------------------------------")
-        console.log(__dirname);
-        console.log(csvfilePath);
-        csvToJson.fieldDelimiter(',').generateJsonFileFromCsv(csvfilePath, __dirname + "\\convertedCSV.json");
+        //console.log(__dirname);
+        //console.log(csvfilePath);
+        //csvToJson.fieldDelimiter(',').generateJsonFileFromCsv(csvfilePath, __dirname + "/convertedCSV.json");
         //csvToJson.generateJsonFileFromCsv()
+        let contents: string = fs.readFileSync(filePath, 'utf8');
+        let csv2jsonCallback = function (err: any, json: any) {
+            if (err) throw err;
+            console.log(typeof json);
+            console.log(json.length);
+            console.log(json);
+        }
+        let convertedContents = this.converter.csv2json(contents, csv2jsonCallback);
+        console.log(convertedContents);
+        
 
         //Use the generated JSON to make SeasonTicketHolder objects for use in the final JSON
         //Retrieve the JSON data at the specified location
-        const data = fs.readFileSync(__dirname + "/convertedCSV.json", 'utf8');
-        let dataSet : any[] = JSON.parse(data);
+        //const data = fs.readFileSync(__dirname + "/convertedCSV.json", 'utf8');
+        /*let dataSet : any[] = JSON.parse(JSON.stringify(csvToJson.csv2json(csvData)));
+        console.log(dataSet);
 
         let seasonTicketHolders: SeasonTicketHolder[] = [];
         //Create the TypeScript SeasonTicketHolder objects
@@ -53,7 +66,7 @@ export class CSVHandler {
         //Now that we have the right form of data, use JSON Handler
         let JSONsys: JSONHandler = new JSONHandler();
         console.log(JSON.stringify(seasonTicketHolders));
-        JSONsys.serialize(seasonTicketHolders, (__dirname + "/seasonTicketHolders.json"));
+        JSONsys.serialize(seasonTicketHolders, (__dirname + "/seasonTicketHolders.json"));*/
     }
 
     //Use to let ticket seller's export info from JSON database as CSV
@@ -81,7 +94,3 @@ export class CSVHandler {
         fs.writeFileSync((__dirname + "/../exported_seasonTicketHolders.csv"), header);
     }
 }
-
-/*let sys: CSVHandler = new CSVHandler();
-sys.importCSV("seasonTH.csv");
-sys.exportCSV();*/

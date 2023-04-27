@@ -8,6 +8,7 @@ export const SeasonPassStuff = () => {
 
     const [formError, setFormError] = useState(null)
     const [importModal, setImportModal] = useState(false)
+    const [exportModal, setExportModal] = useState(false)
     const [fileContents, setFileContents] = useState(null)
     useEffect(() => {
         const fetchData = async () => {
@@ -87,10 +88,13 @@ export const SeasonPassStuff = () => {
     function handleCloseImport() {
         setImportModal(false)
     }
+    function handleCloseExport() {
+        setExportModal(false)
+    }
 
     function handleExport() {
         console.log("yay export")
-        let choice = { fileType: "json"}
+        let choice = { fileType: "csv"}
         const promise = fetch('http://localhost:4000/exportPath', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
@@ -98,6 +102,7 @@ export const SeasonPassStuff = () => {
             //body: "json"
         });
 
+        setExportModal(true);
     }
     const handleItemEdit = (item) => {
         setFormData({ name: item.name, address: item.address, phoneNum: item.phoneNum, section: item.seatAssignment.section, row: item.seatAssignment.row, seatNum: item.seatAssignment.seatNum })
@@ -293,15 +298,23 @@ export const SeasonPassStuff = () => {
                 </Modal>
                 <Modal show={importModal} onHide={handleCloseImport}>
                     <Modal.Header closeButton></Modal.Header>
-                    
                     <Modal.Body>
                         <Form onSubmit={handleImportSubmit}>
                             <Form.Group controlId="formFile">
                                 <Form.Label>Select a file</Form.Label>
-                                <Form.Control type='file' accept='.csv,.json' onChange={handleFileChange}></Form.Control>
-                                <Form.Text className='text-muted'>Only CSV and JSON are allowed</Form.Text>
+                                <Form.Control type='file' accept='.json' onChange={handleFileChange}></Form.Control>
+                                <Form.Text className='text-muted'>Only JSON is allowed</Form.Text>
                             </Form.Group>
                             <Button type='submit' variant='success' onClick={() => console.log(fileContents)}>Submit</Button>
+                        </Form>
+                    </Modal.Body>
+                </Modal>
+                <Modal show={exportModal} onHide={handleCloseExport}>
+                    <Modal.Header closeButton></Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Text>File exported! Check your main TickIt directory</Form.Text>
+                            <Button variant='success' onClick={() => handleCloseExport()}>OK</Button>
                         </Form>
                     </Modal.Body>
                 </Modal>

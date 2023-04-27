@@ -280,12 +280,12 @@ export class System {
     }
 
     //Used to export data for Season Ticket Holders to a JSON or CSV file 
-    public static exportSeasonTicketHolderData() {
-       // if (choice == "json") {
+    public static exportSeasonTicketHolderData(choice: string) {
+       if (choice == "json") {
             this.deserializer.exportJSON(this.seasonTicketHolders);
-        //} else {
-          //  this.csv_deserializer.exportCSV(this.seasonTicketHolders);
-        //}
+        } else {
+            this.csv_deserializer.exportCSV(this.seasonTicketHolders);
+        }
     }
     
 }

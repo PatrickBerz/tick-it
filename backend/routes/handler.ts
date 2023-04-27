@@ -546,14 +546,11 @@ router.post("/calculateSeasonPrice", (req:any, res:any) => {
 
 router.post("/exportPath", (req: any, res: any) => {
     let data = req.body.choice.fileType;
-    if (data == "json") {
-        System.exportSeasonTicketHolderData();
-        res.status(200);
-        res.end();
-    } else {
-        res.status(500);
-        res.end();
-    }
+    
+    System.exportSeasonTicketHolderData(data);
+    res.status(200);
+    res.end();
+    
 });
 
 router.post("/importPath", (req: any, res: any) => {
