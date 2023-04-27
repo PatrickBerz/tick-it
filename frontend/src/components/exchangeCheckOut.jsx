@@ -87,7 +87,7 @@ export const ExchangeCheckOut = () => {
         response => response.json(),
         error => console.log('An error occured', error),
         console.log("Do stuff?"),
-        navigate('/orderConfirmation', {state:{ case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: state.seats, userData: userData, price:price }})
+        navigate('/orderConfirmation', { state: { case: state.case, event: state.event, venue: state.venue, dateTime: state.datetime, seats: state.seats, userData: userData, price: price } })
       )
       .then(res =>
         console.log("Do stuff!")
@@ -169,12 +169,12 @@ export const ExchangeCheckOut = () => {
           setPrice(res.toFixed(2))
         )
     }
-    fetchData();
-    //setTimeout(() => { fetchData(); }, 500);*/
+    //fetchData();
+    setTimeout(() => { fetchData(); }, 500)
   }, [discounts]);
 
-  const displayPrice = (price) => {
-   
+  const displayPrice = () => {
+    let timesRan = 0
     let ticketStatus = state.oldSeats[0].ticketStatus
     let oldPrice = 0
 
@@ -182,35 +182,72 @@ export const ExchangeCheckOut = () => {
     for (i in state.oldSeats) {
       oldPrice += state.oldSeats[i].price
     }
-    console.log(price, oldPrice)
-    let newBalance = price - oldPrice
-    if (ticketStatus == 1) {
-      //setPrice(price)
-      return (
-        <ListGroup>
-          <ListGroup.Item><i style={{ color: 'gray' }}>New total owed:</i></ListGroup.Item>
-          <ListGroup.Item>${price}</ListGroup.Item>
-        </ListGroup>
-      )
-    } else if (ticketStatus == 2) {
-      if (price >= oldPrice){
-        //setPrice(newBalance.toFixed(2))
+
+
+    if (timesRan < 1) {
+      if (discounts == "Senior") {
+        oldPrice = oldPrice * .7
+      } else if (discounts == "Military") {
+        oldPrice = oldPrice * .65
+      } else if (discounts == "First Responders") {
+        oldPrice = oldPrice * .6
+      }
+      else {
+        oldPrice = oldPrice
+      }
+      let newBalance = price - oldPrice
+
+      console.log(price, oldPrice, newBalance)
+
+      if (ticketStatus == 1) {
+        timesRan += 1
         return (
           <ListGroup>
             <ListGroup.Item><i style={{ color: 'gray' }}>New total owed:</i></ListGroup.Item>
-            <ListGroup.Item>${Math.abs(newBalance.toFixed(2))}</ListGroup.Item>
+            <ListGroup.Item>${price}</ListGroup.Item>
           </ListGroup>
         )
+      } else if (ticketStatus == 2) {
+        timesRan += 1
+
+        if (price >= oldPrice) {
+          //setPrice(Math.abs(newBalance.toFixed(2)))
+          //setPrice(newBalance.toFixed(2))
+          return (
+            <ListGroup>
+              <ListGroup.Item><i style={{ color: 'gray' }}>New total owed:</i></ListGroup.Item>
+              <ListGroup.Item>${Math.abs(newBalance.toFixed(2))}</ListGroup.Item>
+            </ListGroup>
+          )
+        }
+        else {
+
+          return (
+            <ListGroup>
+              <ListGroup.Item><i style={{ color: 'gray' }}>Total Refund:</i></ListGroup.Item>
+              <ListGroup.Item>${Math.abs(newBalance.toFixed(2))}</ListGroup.Item>
+            </ListGroup>
+          )
+        }
       }
-      else {
-        return (
-          <ListGroup>
-            <ListGroup.Item><i style={{ color: 'gray' }}>Total Refund:</i></ListGroup.Item>
-            <ListGroup.Item>${Math.abs(newBalance.toFixed(2))}</ListGroup.Item>
-          </ListGroup>
-        )
-      } 
     }
+
+  }
+  const convertDate = (item) => {
+    const oldDate = new Date(item)
+    //Shift time 300 minutes (5 hours) to get it out of GMT
+    const date = new Date(oldDate.getTime() + 300 * 60000);
+    const options = {
+      month: 'numeric',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    }
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
+    //const formattedDate = date.toLocaleDateString('en-US', options)
+    return formattedDate
   }
 
 
@@ -227,7 +264,7 @@ export const ExchangeCheckOut = () => {
               <ListGroup.Item><i style={{ color: 'gray' }}>Event:</i></ListGroup.Item>
               <ListGroup.Item>{state.event}</ListGroup.Item>
               <ListGroup.Item><i style={{ color: 'gray' }}>Time:</i></ListGroup.Item>
-              <ListGroup.Item>{state.dateTime}</ListGroup.Item>
+              <ListGroup.Item>{convertDate(state.dateTime)}</ListGroup.Item>
               <ListGroup.Item><i style={{ color: 'gray' }}>Venue:</i></ListGroup.Item>
               <ListGroup.Item>{state.venue}</ListGroup.Item>
               <ListGroup.Item><i style={{ color: 'gray' }}>Seats:</i></ListGroup.Item>
@@ -241,7 +278,8 @@ export const ExchangeCheckOut = () => {
                   </ListGroup.Item>
                 ))}
               </div>
-              {displayPrice(price)}
+              {displayPrice()}
+
             </ListGroup>
           </div>
 
