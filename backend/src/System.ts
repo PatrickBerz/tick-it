@@ -94,7 +94,7 @@ export class System {
         this.deserializer.serialize(this.purchases, this.purchasePath);
         this.deserializer.serialize(this.shows, this.showPath);
 
-        console.log(JSON.stringify(System.purchases))
+        //console.log(JSON.stringify(System.purchases))
 
         return newPurchase;
     }
@@ -207,14 +207,14 @@ export class System {
         console.log("System confNum: " + JSON.stringify(confNum))
         console.log(typeof(confNum))
 
-        console.log(JSON.stringify(System.purchases))
+        //console.log(JSON.stringify(System.purchases))
 
         let test
 
         System.purchases.forEach(purchase => {
-            console.log(purchase.getConfNum())
+            //console.log(purchase.getConfNum())
             if (confNum == purchase.getConfNum()) {
-                console.log(JSON.stringify(purchase))
+                //console.log(JSON.stringify(purchase))
                 console.log("Found it")
                 test = purchase
                 //return purchase;
@@ -291,3 +291,4 @@ export class System {
 }
 
 //System.importSeasonTicketHolderData("C:/Users/jayde/Documents/GitHub/tick-it/backend/seasonTH.csv");
+

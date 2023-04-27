@@ -31,6 +31,7 @@ import * as fs from 'fs';
 // Post 0/1 for export csv vs json
 
 import { ExchangeHandler} from "../src/ExchangeHandler"
+import { isNullOrUndefined } from "util";
 
 router.use(cors({
     origin: '*'
@@ -38,9 +39,7 @@ router.use(cors({
 
 // handle frontend GET request for list of all season ticket holders
 router.get("/seasonTickets", (req: any, res: any) => {
-    //get list of season ticket holders from System
-    //let seasonTixList: SeasonTicketHolder[] = [ new SeasonTicketHolder("Richard Blargson", "5000 Fancy Boulevard", "123-555-5555", new Seat("Orchestra", "A", 15, false, true, 99999.99)),
-                                                //new SeasonTicketHolder("Moneyton Blargson", "5001 Fancy Boulevard", "123-555-5556", new Seat("Orchestra", "A", 16, false, true, 99999.99))] 
+    //get list of season ticket holders from System and return as JSON
     let seasonTixList: SeasonTicketHolder[] = System.getSeasonTicketHolders();
     res.json(seasonTixList)
 })
@@ -250,45 +249,83 @@ router.post("/deleteShow", (req: any, res: any) => {
     }
 });
 
-//TODO: REMOVE THIS COMMENTED OUT SECTION WHEN MERGED BACK IN
 // handle POST request to exchange existing tickets for new ones
-// router.post("/exchange", (req: any, res: any) => {
+router.post("/exchange", (req: any, res: any) => {
 
-//     let data = req.body
+    console.log("EXCHANGING")
 
-//     let newTickets: Ticket[] = [];
+    let data = req.body.newPurchase
+    console.log(JSON.stringify(data))
+
+    let newTickets: Ticket[] = [];
     
-//     let oldConfNum = data.oldConfNum
-//     let oldPurchase = System.findPurchase(oldConfNum)
+    let oldConfNum = data.confNum
+    console.log("Old confNum: " + oldConfNum)
+    let oldPurchase = System.findPurchase(+oldConfNum)
 
-//     // check if the purchase actually exists
-//     if (oldPurchase) {
+    let isOnline: boolean
+    if (data.ticketStatus == 1) {
+        isOnline = false
+    }
+    else {
+        isOnline = true
+    }
 
-//         let oldShow = System.findPerformance(new Performance(oldPurchase.getTickets()[0].getPerformance(), "", oldPurchase.getDate(), System.getVenues()[0]))
+    let newShow = System.findPerformance(new Performance(data.showName, data.venueName, data.dateTime, System.getVenues()[0]))
+    data.tickets.forEach((purchTicket : any) => {
+        let ticketSeat = new Seat(purchTicket.section, purchTicket.row, purchTicket.seatNum, false, false, 0);
+        console.log(JSON.stringify(ticketSeat))
 
-//         if (oldShow) {
-//             //exchange the tickets and set HTTP status code appropriately
-//             let exchanger = new ExchangeHandler()
-//             let newPurchase = exchanger.exchange(oldShow, oldPurchase, newTickets, data.isOnline, data.ticketStatus, data.isOnline)
-//             if (newPurchase) {
-//                 res.status(200)
-//                 res.end()
-//             }
-//             else {
-//                 res.status(500)
-//                 res.end()
-//             }
-//         }
-//         else {
-//             res.status(500)
-//             res.end()
-//         }
-//     }
-//     else {
-//         res.status(500)
-//         res.end()
-//     }
-// })
+        if(newShow) {
+            // loop through all performance tickets and add requested tickets to the new purchase
+            newShow.getTickets().forEach(perfTicket => {
+                console.log(JSON.stringify(perfTicket.getSeat()))
+                if (ticketSeat.equals(perfTicket.getSeat())) {
+                    newTickets.push(perfTicket);
+                    console.log("PUSHED TICKET")
+                }
+            });
+        }
+        else {
+            console.log("NO SHOW")
+        }
+    })
+
+
+    // check if the purchase actually exists
+    if (oldPurchase) {
+
+        let oldShow = System.findPerformance(new Performance(oldPurchase.getTickets()[0].getPerformance(), "", oldPurchase.getDate(), System.getVenues()[0]))
+
+        if (oldShow) {
+
+            
+
+            //exchange the tickets and set HTTP status code appropriately
+            let exchanger = new ExchangeHandler()
+            let newPurchase = exchanger.exchange(oldShow, oldPurchase, newTickets, data.dateTime, data.ticketStatus, isOnline)
+            if (newPurchase) {
+                res.status(200)
+                res.end()
+            }
+            else {
+                console.log("NO NEW PURCH")
+                res.status(500)
+                res.end()
+            }
+        }
+        else {
+            console.log("NO FIND SHOW")
+            res.status(500)
+            res.end()
+        }
+    }
+    else {
+        console.log("NO PURCH")
+        res.status(500)
+        res.end()
+    }
+})
 
 
 // handle GET request for list of all existing purchases
@@ -332,7 +369,7 @@ router.post("/newPurchase", (req: any, res: any) => {
     
     //console.log("Before create purchase")
     //console.log(JSON.stringify(newTickets))
-    console.log(data.ticketStatus)
+    //console.log(data.ticketStatus)
 
     let maybeDupe = System.createPurchase(attendee, newTickets, new Date(data.dateTime), data.ticketStatus);
 
@@ -354,14 +391,14 @@ router.post("/calculatePrice", (req: any, res: any) => {
     let perf = System.findPerformance(perfToFind)
     let soldTickets: Ticket[] = [];
 
-    console.log("Recieved Section: ", data.ticketList.parsedSeats);
+    // console.log("Recieved Section: ", data.ticketList.parsedSeats);
 
     //for (let i=0; i<state.seats.length; i++){
     //data.ticketList.forEach((purchTicket : any) => {
     for (let i=0; i<data.ticketList.parsedSeats.length; i++){
-        console.log("Recieved Section: ", data.ticketList.parsedSeats[i].section);
-        console.log("Recieved Row: ", data.ticketList.parsedSeats[i].row);
-        console.log("Recieved SeatNum: ", data.ticketList.parsedSeats[i].seatNum);
+        //console.log("Recieved Section: ", data.ticketList.parsedSeats[i].section);
+        //console.log("Recieved Row: ", data.ticketList.parsedSeats[i].row);
+        //console.log("Recieved SeatNum: ", data.ticketList.parsedSeats[i].seatNum);
 
         let ticketSeat = new Seat(data.ticketList.parsedSeats[i].section, data.ticketList.parsedSeats[i].row, +data.ticketList.parsedSeats[i].seatNum, false, false, 0);
         let testTicket : Ticket = new Ticket(data.showName, ticketSeat);
@@ -411,11 +448,11 @@ router.post("/calculatePrice", (req: any, res: any) => {
 router.post("/statusUpdate", (req: any, res: any) => {
 
     let data = req.body
-    console.log("Handler confNum: " + JSON.stringify(data.confNum))
-    console.log(typeof(data.confNum))
+    //console.log("Handler confNum: " + JSON.stringify(data.confNum))
+    //console.log(typeof(data.confNum))
 
     let purchase = System.findPurchase(data.confNum)
-    console.log(JSON.stringify(purchase))
+    //console.log(JSON.stringify(purchase))
     if(purchase != null) {
         switch(+data.status) {
             case 1: {
@@ -456,12 +493,14 @@ router.post("/password", (req: any, res: any) => {
 
 router.post("/confNum", (req: any, res: any) => {
     let confNum = req.body.value;
-    console.log(confNum);
+    //console.log(confNum);
 
     let foundPurchase = System.findPurchase(confNum)
     if (foundPurchase) {
 
         res.status(200);
+        res.json(foundPurchase)
+        //console.log(foundPurchase)
     }
     else {
         res.status(404);
@@ -502,7 +541,7 @@ router.post("/currentTickets", (req: any, res: any) => {
 router.post("/calculateSeasonPrice", (req:any, res:any) => {
 
     let data = req.body.sendData
-    console.log("Sent Data: ", data);
+    //console.log("Sent Data: ", data);
 
     let venue:Venue;
     if(data.venueName === "Concert Hall") {

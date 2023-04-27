@@ -1,7 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Stack,Button, Alert } from 'react-bootstrap';
-import React, {useState} from 'react';
-
+import {Stack,Button } from 'react-bootstrap';
 
 
 export const AdminPage = () =>{
@@ -19,9 +17,9 @@ export const AdminPage = () =>{
         window.location.href="/policyStuff"
     }
     return (
-        <div  style={{marginTop:'60px', paddingTop:'50px' ,paddingLeft: '550px' , paddingRight:'550px'}}>
+        <div  style={{height:'100%', width:'100%', paddingTop:'120px', paddingLeft:'35%', paddingRight:'35%'}}>
 
-            <Stack className='square border border-secondary border-3' direction='vertical' style={{color: 'white', alignItems:'center', marginTop:'30px', background: '#282634' }} gap={1}>
+            <Stack className='square border border-secondary border-3' direction='vertical' style={{color: 'white', alignItems:'center', background: '#282634' }} gap={1}>
                     <div style={{fontSize:'30px', marginTop:'80px' }}>Welcome, Admin</div>
                     <Button size='lg' onClick={ListingsSubmit} variant="primary"
                         style={{

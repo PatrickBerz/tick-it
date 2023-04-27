@@ -283,7 +283,7 @@ export const SeasonPassStuff = () => {
 
                                 <Form.Group as={Col} controlId="dateValue">
                                     <Form.Label>Phone #</Form.Label>
-                                    <Form.Control type='text' required value={formData.phoneNum} onChange={handlePhoneNumChange} />
+                                    <Form.Control type='number' pattern='[0-9]' required value={formData.phoneNum} onChange={handlePhoneNumChange} />
                                 </Form.Group>
 
                             </Row>
