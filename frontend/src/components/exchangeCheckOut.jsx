@@ -204,7 +204,7 @@ export const ExchangeCheckOut = () => {
         return (
           <ListGroup>
             <ListGroup.Item><i style={{ color: 'gray' }}>New total owed:</i></ListGroup.Item>
-            <ListGroup.Item>${price}</ListGroup.Item>
+            <ListGroup.Item>${newBalance.toFixed(2)}</ListGroup.Item>
           </ListGroup>
         )
       } else if (ticketStatus == 2) {
