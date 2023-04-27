@@ -94,7 +94,7 @@ const handlePhNumChange = e => {
         attendee: {
           name: userData.fName + " " + userData.lName,
           address: userData.addr,
-          phoneNum: userData.phoneNum            
+          phoneNum: userData.userPhoneNum            
         },
         tickets: parsedSeats,
         dateTime: state.dateTime,

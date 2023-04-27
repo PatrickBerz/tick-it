@@ -10,6 +10,7 @@ export const SeatSelection = () => {
   // Load previous state
   const location = useLocation();
   const state = location.state;
+  console.log("RECIEVED AT SEAT SELECTION: ", state);
 
   // States
   const [listData, setListData] = useState([]); // controls the visual list of seats

@@ -7,6 +7,7 @@ export const ExchangeCheckOut = () => {
   // Load previous state
   const location = useLocation();
   const state = location.state;
+  console.log("RECIEVED AT EX CHECKOUT: ", state);
 
   //States
   const [payOnline, setPayOnline] = useState(true); // Controls whether to show the pay online fields
@@ -70,7 +71,7 @@ export const ExchangeCheckOut = () => {
       attendee: {
         name: userData.fName + " " + userData.lName,
         address: userData.addr,
-        phoneNum: userData.phoneNum
+        phoneNum: userData.userPhoneNum
       },
       tickets: parsedSeats,
       dateTime: state.dateTime,
