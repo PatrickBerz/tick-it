@@ -1,46 +1,65 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Stack, Button, Alert, Table, Modal, Row, Col, ListGroup } from 'react-bootstrap';
-import React, { useState, useEffect } from 'react';
-import { Link} from 'react-router-dom';
-
-
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export const TicketStuff = () => {
-    const [data, setData] = useState(null);
-    const [formError, setFormError] = useState(null)
-    const [addPModal, setAddModal] = useState(false)
-    const [showData, setShowData] = useState([])
-    const [showModal, setShow] = useState(false)
-    const [alert, setAlert] = useState(undefined)
+    const [data, setData] = useState(null); // Controls purchase data
+    const [formError, setFormError] = useState(null) // Controls form submission error
+    const [addPModal, setAddModal] = useState(false) // Controls Add purchase modal
+    const [showData, setShowData] = useState([]) // Controls all show data
+    const [showModal, setShow] = useState(false) // Controls Edit modal
+    const [alert, setAlert] = useState(undefined) // Controls error/success message
 
+    // Control user-inputted form data
     const [formData, setFormData] = useState(
         {
             confNum: '',
             status: '',
         }
     )
+
+    /**
+     * FUNCTION close Edit modal 
+     */
     const handleClose = () => {
         setShow(false)
         setAlert(undefined)
         setFormError(undefined)
     }
+    
+    /**
+     * FUNCTION close Add Purchase modal
+     */
     const handleCloseAdd = () => {
         setAddModal(false)
         setFormError(undefined)
     }
 
-
+    /**
+     * FUNCTION on Edit buttonclick, show the Edit modal
+     * PARAM corresponding list item
+     */
     const handleItemEdit = (item) => {
         setFormData({ confNum: item.confNum, status: item.tickets[0].ticketStatus })
         setShow(true)
     }
 
-    const handleStatusChange = e => {
+    /**
+     * FUNCTION handle the Status field change
+     * PARAM event
+     */
+    const handleStatusChange = (e) => {
         setFormData({
             ...formData,
             status: e.target.value
         })
     }
+    
+    /**
+     * FUNCTION convert the date from ISO in GMT to CST
+     * PARAM date in ISO
+     */
     const convertDate = (item) => {
         const oldDate = new Date(item)
         //Shift time 300 minutes (5 hours) to get it out of GMT
@@ -59,39 +78,42 @@ export const TicketStuff = () => {
         return formattedDate
     }
 
+    
+    /**
+     * FUNCTION Navigate back to the admin homepage
+     */
     const handleBackButton = () => {
         window.location.href = "/adminPage"
 
     }
 
+    /**
+     * FUNCTION show the Add Purchase modal
+     */
     const addPurchaseModal = () => {
         setAddModal(true)
-    };
+    }
+
+    /**
+     * USEEFFECT on the first render, fetch all purchases from database
+     */
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/purchaseData')
             const newData = await response.json()
             console.log(JSON.stringify(newData))
             setData(newData)
-            console.log("SETDATA: ", JSON.stringify(newData))
         }
         fetchData();
     }, []);
 
-
+    /**
+     * FUNCTION handle submission of the status update form
+     */
     const onFormSubmit = (e) => {
         e.preventDefault()
-        //console.log(JSON.stringify(passState))
-        // if (!passState.performanceName) {
-        //     setFormError('Please fill in all fields.');
-        //     return;
-        // }
-
-
-        setFormError(null);
-
+        setFormError(null)
         console.log(formData)
-
 
         const promise = fetch('http://localhost:4000/statusUpdate', {
             method: 'POST',
@@ -107,7 +129,6 @@ export const TicketStuff = () => {
                 setAlert({ label: `${event.statusText}`, type: 'danger' })
             }
         })
-
         setFormData(
             {
                 confNum: '',
@@ -117,6 +138,10 @@ export const TicketStuff = () => {
         handleClose()
         setTimeout(() => { window.location.reload(); }, 500);
     }
+
+    /**
+     * FUNCTION on the first render, fetch all show data from the database
+     */
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/showData')
@@ -128,13 +153,17 @@ export const TicketStuff = () => {
     }, []);
 
 
+    /**
+     * RETURN render page elements
+     */
     if (data) {
-        console.log(JSON.stringify(data))
+        // If there is purchase data, render the normal page...
         return (
             <div className='d-flex' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
-
                     <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>
+
+                        {/**Add Purchase Button */}
                         <Button className='p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -143,6 +172,7 @@ export const TicketStuff = () => {
                             Add Purchase
                         </Button>
 
+                        {/**Back Button */}
                         <Button className='ms-auto p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -152,7 +182,8 @@ export const TicketStuff = () => {
                         </Button>
                     </div>
                     <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '35rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
-
+                        
+                        {/**Table of purchases */}
                         <Table bordered responsive striped hover variant='dark' size='sm' >
                             <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={7}>Ticket Purchases</th></tr></thead>
                             <tbody style={{ fontSize: '20px', color: "white" }}>
@@ -191,6 +222,8 @@ export const TicketStuff = () => {
                         </Table>
                     </div>
                 </Stack>
+
+                {/**Edit modal */}
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Edit Status</Modal.Title>
@@ -215,15 +248,14 @@ export const TicketStuff = () => {
                                 </Form.Group>
                                 <Form.Group as={Col}></Form.Group>
                             </Row>
-
-
                             <Button className='mt-2' variant="success" type="submit" >
                                 Submit
                             </Button>
-
                         </Form>
                     </Modal.Body>
                 </Modal>
+
+                {/**Add Purchase modal */}
                 <Modal show={addPModal} onHide={handleCloseAdd}>
                     <Modal.Header closeButton>
                         <Modal.Title>Select a show</Modal.Title>
@@ -248,18 +280,8 @@ export const TicketStuff = () => {
                                             </Link>
                                         ))}
                                     </div>
-
                                 </ListGroup>
-
                             </Row>
-                            {/* <Link
-                                to={"/seatSelection"}
-                                state={{ case: "purchase", event: passState.event, venue: passState.venueName, datetime: passState.dateTime }}>
-                                <Button disabled={!disabled} size='sm' variant="primary" >
-                                    Purchase Tickets
-                                </Button>
-                            </Link> */}
-
                         </Form>
                     </Modal.Body>
                 </Modal>
@@ -267,6 +289,7 @@ export const TicketStuff = () => {
         )
     }
     else {
+        // Otherwise, render an empty table...
         return (
             <div className='d-flex' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
@@ -313,6 +336,9 @@ export const TicketStuff = () => {
 
 }
 
+/**
+ * FUNCTION determine what the status of this ticket is
+ */
 function getTicketStatusText(statusInt) {
     switch (statusInt) {
         case 0:

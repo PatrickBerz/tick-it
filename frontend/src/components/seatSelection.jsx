@@ -1,22 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Stack, Image, Form, Button, ListGroup } from 'react-bootstrap';
+import { Stack, Button, ListGroup } from 'react-bootstrap';
 import { useEffect, useState, useRef } from "react";
 import { useLocation, Link } from 'react-router-dom';
-import { ReactComponent as Playhouse } from './playhouseSeats.svg';
-import { ReactComponent as ConcertHall } from './concertHall.svg';
+import { ReactComponent as Playhouse } from './seatmaps/playhouseSeats.svg';
+import { ReactComponent as ConcertHall } from './seatmaps/concertHall.svg';
 
 
 export const SeatSelection = () => {
   // Load previous state
   const location = useLocation();
   const state = location.state;
-  console.log("RECIEVED AT SEAT SELECTION: ", state);
 
-  // States
   const [listData, setListData] = useState([]); // controls the visual list of seats
   const [takenSeatData, setTakenSeatData] = useState([]) // controls the taken seats from 
 
-  // Used for referencing the svg again
+  // Used for referencing the SVGs
   const playhouseRef = useRef(null);
   const concertHallRef = useRef(null);
 
@@ -44,18 +42,25 @@ export const SeatSelection = () => {
       )
     }
   }
+
+  /*
+  * FUNCTION check whether there is a seat currently selected
+  * RETURN Boolean
+  */
   const isSelected = () => {
-    console.log(listData)
     if (listData.length === 0){
-      return true
+      return true // a seat is selected, enable checkout button
     }
     else{
-      return false
+      return false // no seats are selected, disable checkout button
     }
   }
 
+  /*
+  * FUNCTION check whether this is an exchange or purchase
+  * RETURN the correct checkout link element depending on the case
+  */
   const checkCase = () => {
-    console.log(state)
     if (state.case === 'exchange') {
       return (
         <Link className='mt-2'
@@ -70,7 +75,6 @@ export const SeatSelection = () => {
       )
     }
     else if (state.case == 'purchase') {
-      console.log(listData)
       return (
         <Link className='mt-2'
           to={"/checkOut"}
@@ -89,8 +93,6 @@ export const SeatSelection = () => {
   */
   const checkTakenSeats = () => {
     // Cycle through the takenSeatData array, assemble the id strings, check against svg
-
-    console.log("length of takenSeatData: ", takenSeatData.length); // DEBUG
     for (let i = 0; i < takenSeatData.length; i++) {
 
       // Use the JSON seat object to assemble a string representation of the seat id
@@ -101,7 +103,6 @@ export const SeatSelection = () => {
       // Concat a string with the section, row, num to create the seat id
       var thisSeatID = "";
       thisSeatID = thisSeatID.concat(thisSeatSection, "-", thisSeatRow, "-", thisSeatNum);
-      console.log("SEAT ID TO SEARCH SVG FOR: ", thisSeatID);
 
       // Do stuff to grab the OG SVG
       if (state.venue == "Playhouse") {
@@ -115,22 +116,10 @@ export const SeatSelection = () => {
         // Mark this seat as taken
         seatElement.classList.add("taken");
       } else {
-        //throw error
-        console.log("DANGER, Will Robinson");
+        //console.log("Error: Could not load taken seats"); // DEBUG
       }
     }
   }
-
-  /*
-  * FUNCTION if the cart is empty, disable the checkout button
-  
-  const checkIfCartEmpty = () => {
-    if (listData.length == 0) {
-      setDisabled(true);
-    } else {
-      setDisabled(false);
-    }
- }*/
 
   /*
   * FUNCTION adds an item to the end of the list
@@ -152,23 +141,11 @@ export const SeatSelection = () => {
     // Remove the selected class from the SVG element
     seat.classList.remove("selected");
     // Remove this seat from the cart
-    //var i = cart.indexOf(seat.id); // Find it
-    //cart.splice(i, 1); // Remove it
-
     const newData = [...listData];
     var i = newData.indexOf(seat.id); // Find it
     newData.splice(i, 1); // Remove it
     setListData(newData);
   }
-
-  /*
-  * FUNCTION handler for removing a list item using the button component
-  const handleRemoveButton = (index) => {
-    console.log("wants to remove this one: ", listData[index]); // DEBUG
-    //handleRemoveFromList(listData[index]);
-    var x = venue.getElementById(listData[index]);
-    console.log("trying to remove this object: ", x);
-  }*/
 
   /*
   * FUNCTION what happens when a seat is clicked
@@ -191,7 +168,6 @@ export const SeatSelection = () => {
   const handleClickMap = (e) => {
     // As long as what they clicked IS a seat, is NOT taken, and is NOT a season pass seat...
     if (e.target.classList.contains("seat") && !e.target.classList.contains("taken") && !e.target.classList.contains("season")) {
-      // Make sure the checkout button is disabled until they confirm their choices again
       // Do clicking a seat stuff
       seatClicked(e);
     } else {
@@ -201,13 +177,12 @@ export const SeatSelection = () => {
 
 
   /*
-  * USEEFFECT only on the first render
+  * USEEFFECT only runs on first render
   */
   useEffect(() => {
-
     const fetchData = async () => {
 
-      // NOTE: hardcoded in. Needs to be updated with state values
+      // Create a JSON object of the current performance to send to backend server
       let currentPerformance =
       {
         performance: {
@@ -216,8 +191,8 @@ export const SeatSelection = () => {
           dateTime: state.datetime
         }
       }
-      console.log(state)
 
+      // Fetch the taken seats of the current performance from database
       const promise = fetch('http://localhost:4000/currentPerformance', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -232,21 +207,18 @@ export const SeatSelection = () => {
         )
     }
     fetchData();
-    console.log(JSON.stringify(takenSeatData))
-    //setTimeout(() => { fetchData(); }, 500);*/
   }, []);
 
   /*
-  * RETURN create visual components here
+  * RETURN create visual components
   */
   return (
     <div className='App-body'>
       <Stack direction='horizontal' style={{ justifyContent: 'center', alignItems: 'start', marginTop: '10px' }} gap={5}>
 
-        {/**load the correct venue SVG for use*/}
+        {/** Load the correct SVG and check for taken seats*/}
         {loadVenueSVG()}
         {checkTakenSeats()}
-
 
         <div className="d-grid gap-2" style={{ marginTop: "50px" }}>
           {/**List of selected seats, updates automatically*/}
@@ -257,19 +229,13 @@ export const SeatSelection = () => {
               {listData.map((item, index) => (
                 <ListGroup.Item key={index}>
                   {item}
-                  {/*<Button className="ms-2 btn-sm" variant="danger" onClick={() => handleRemoveButton(index)}>
-                    Remove
-                  </Button>*/}
                 </ListGroup.Item>
               ))}
             </div>
+            {/**Load checkout button based on case (purchase/exchange) */}
             {checkCase()}
           </ListGroup>
-
-
-
         </div>
-
       </Stack>
     </div>
   )

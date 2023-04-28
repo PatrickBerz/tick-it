@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Stack, Image, Form, Button } from 'react-bootstrap';
-import {useLocation, Link } from 'react-router-dom';
+import { Stack, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export const SeasonVenueSelection = () =>{
     return (
@@ -11,9 +11,7 @@ export const SeasonVenueSelection = () =>{
             <p style={{color:'white', textAlign: "center"}}><i>Season Pass tickets may be renewed annually</i></p>
             </div>
             <div>
-              
               <Stack direction='horizontal' gap={5}>
-            
                 <Link 
                 to={"/seasonSeatSelection"}
                 state={{venue: "Playhouse"}}>
@@ -28,7 +26,6 @@ export const SeasonVenueSelection = () =>{
                         Concert Hall
                 </Button>
                 </Link>
-
                 </Stack>
             </div>
         </Stack>
