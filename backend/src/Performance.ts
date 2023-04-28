@@ -62,7 +62,6 @@ export class Performance {
     findSoldSeats() {
         let soldSeats : Seat[] = [];
         this.tickets.forEach(ticket => {
-            //console.log(ticket.getTicketStatus());
             if (ticket.getTicketStatus() != 0) {
                 soldSeats.push(ticket.getSeat());
             }

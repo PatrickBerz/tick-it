@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-//const routesHandler = require('./routes/handler.ts');
 import routesHandler from "./routes/handler"
 
 const app = express();
