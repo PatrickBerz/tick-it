@@ -1,10 +1,8 @@
-import { Seat } from "./src/Seat";
 import { SeasonTicketHolder } from "./src/SeasonTicketHolder";
 import * as fs from 'fs';
-import { JSONHandler } from "./JSONHandler";
-//import { csv2json } from 'json-2-csv';
 
-
+//NOTE: IS NOT COMPLETELY FUNCTIONAL, SO THEREFORE IS NOT USED BY PROGRAM
+//      importCSV has issues
 export class CSVHandler {
     private deserializedData : any[] = [];
     private converter = require('json-2-csv');
@@ -17,17 +15,9 @@ export class CSVHandler {
     //Use to import user's CSV data and store it as JSON data in database
     importCSV(filePath: string) {
         //Convert from CSV to JSON
-        console.log("----------------------------------------")
-        //console.log(__dirname);
-        //console.log(csvfilePath);
-        //csvToJson.fieldDelimiter(',').generateJsonFileFromCsv(csvfilePath, __dirname + "/convertedCSV.json");
-        //csvToJson.generateJsonFileFromCsv()
         let contents: string = fs.readFileSync(filePath, 'utf8');
         let csv2jsonCallback = function (err: any, json: any) {
             if (err) throw err;
-            console.log(typeof json);
-            console.log(json.length);
-            console.log(json);
         }
         let convertedContents = this.converter.csv2json(contents, csv2jsonCallback);
         console.log(convertedContents);

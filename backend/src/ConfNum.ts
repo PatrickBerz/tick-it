@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 
 export class ConfNum {
-
     //Last confirmation number is stored to a file so that it carries over from session to session.
     private static readonly filePath = __dirname + "/" + "lastConfNum.txt"
     private static confirmationNum: number = this.getLastNum();
