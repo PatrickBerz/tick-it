@@ -66,6 +66,7 @@ export const Home = () => {
   /**
    * FUNCTION convert an ISO date from GMT to CST
    * PARAMETER ISO date in GMT
+   * RETURN ISO date in CST
    */
   const convertDate = (item) => {
     const oldDate = new Date(item)
