@@ -115,7 +115,7 @@ export const TicketStuff = () => {
             }
         )
         handleClose()
-        //setTimeout(() => { window.location.reload(); }, 500);
+        setTimeout(() => { window.location.reload(); }, 500);
     }
     useEffect(() => {
         const fetchData = async () => {
