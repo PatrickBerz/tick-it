@@ -2,8 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stack, Image, Form, Button, ListGroup } from 'react-bootstrap';
 import { useEffect, useState, useRef } from "react";
 import { useLocation, Link } from 'react-router-dom';
-import { ReactComponent as Playhouse } from './playhouseSeats.svg';
-import { ReactComponent as ConcertHall } from './concertHall.svg';
+import { ReactComponent as Playhouse } from './seatmaps/playhouseSeats.svg';
+import { ReactComponent as ConcertHall } from './seatmaps/concertHall.svg';
 
 
 export const SeatSelection = () => {

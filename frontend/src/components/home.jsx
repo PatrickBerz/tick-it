@@ -1,47 +1,72 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo-tran.png';
-import VBCplaceholder from './VBC.jpg';
-import { Stack, Alert, Image, Form, Card, Button, Modal, FormGroup, Row, ListGroup, Col, } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import '../styles.css';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Stack, Alert, Image, Form, Card, Button, Modal, FormGroup, Row, ListGroup, Col, } from 'react-bootstrap';
+import logo from './images/logo-tran.png';
+import VBCplaceholder from './images/VBC.jpg';
 
 export const Home = () => {
-  const [showModal, setShow] = useState(false)
-  const [pickShow, setPickShow] = useState(false)
-  const [passState, setState] = useState({confNum:'' ,case: '', performance: '', venueName: '', dateTime: '', name: '', phoneNum: '', email: '', seats: [] });
-  const [value, setValue] = useState('');
-  const [alert, setAlert] = useState(undefined);
-  const [showData, setShowData] = useState([])
-  const [isDisabled, setDisabled] = useState(true)
+
+  // Controls whether modals are shown
+  const [showConfModal, setConfModal] = useState(false) // Confirmation number modal (exchange tickets)
+  const [pickShow, setPickShow] = useState(false) // Pick show modal (exchange tickets)
+
+  // Controls misc. data
+  const [showData, setShowData] = useState([]) // All shows from database (array)
+  const [value, setValue] = useState('') // User-provided confirmation number (string)
+  const [isDisabled, setDisabled] = useState(true) // Continue button is disabled by default (boolean)
+  const [alert, setAlert] = useState(undefined) // Sets error/success alert for Conf Num validation
   const [formError, setFormError] = useState(null)
 
+  // Controls data to be passed to next page
+  const [passState, setState] = useState({
+    confNum:'' ,
+    case: '', 
+    performance: '', 
+    venueName: '', 
+    dateTime: '', 
+    name: '', 
+    phoneNum: '', 
+    email: '', 
+    seats: [] 
+  })
 
-
-  const handleContinue = (item) => {
-    setPickShow(true)
-
-  }
-
-
-
-
-
+  /**
+   * FUNCTION opens the confirmation number modal
+   */
   const confNumModal = () => {
-    setShow(true)
+    setConfModal(true)
   }
 
+  /**
+   * FUNCTION closes the confirmation number modal
+   */
   const handleClose = () => {
-
-    setShow(false)
+    setConfModal(false)
     setAlert(undefined);
   }
 
+  /**
+   * FUNCTION opens the pick show modal
+   */
+  const handleContinue = () => {
+    setPickShow(true)
+    setDisabled(true) //re-disable continue button
+  }
+
+  /**
+   * FUNCTION closes the show pick modal
+   */
   const handleCloseAdd = () => {
     setPickShow(false)
     setFormError(undefined)
   }
 
+  /**
+   * FUNCTION convert an ISO date from GMT to CST
+   * PARAMETER ISO date in GMT
+   */
   const convertDate = (item) => {
     const oldDate = new Date(item)
     //Shift time 300 minutes (5 hours) to get it out of GMT
@@ -56,51 +81,40 @@ export const Home = () => {
     }
 
     const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
-    //const formattedDate = date.toLocaleDateString('en-US', options)
     return formattedDate
   }
 
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://localhost:4000/showData')
-      const newData = await response.json()
-      console.log(JSON.stringify(newData))
-      setShowData(newData)
-    }
-    fetchData();
-  }, []);
-
-
+  /**
+   * FUNCTION checks whether the confirmation number is valid (AKA exists in the database)
+   */
   const onFormSubmit = (e) => {
     e.preventDefault();
     setValue(value);
-    console.log(value);
+    // console.log("CONF NUMBER: ", value); // DEBUG
 
     const promise = fetch('http://localhost:4000/confNum', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ value })
     });
-    console.log(promise)
     promise.then(event => {
       if (event.status === 200) {
-        setAlert({ label: 'success', type: 'success' })
-        //handleClose()
-        //window.location.href="/seatSelection"
-        setDisabled(false);
+        // If the user entered a valid conf num (error code 200)...
+        setAlert({ label: 'success', type: 'success' }) // Show a success alert
+        setDisabled(false); // Enable the continue button
         return event.json()
-      } else {
-        setAlert({ label: `Error ${event.statusText}`, type: 'danger' })
+      } 
+      else {
+        // Otherwise...
+        setAlert({ label: `Error ${event.statusText}`, type: 'danger' }) // Show error message
       }
     }).then(purchaseData => {
-      //console.log(purchaseData)
+      // Grab the purchaser data associated with this confnum
+      // This data was sent by the backend during the above fetch
       setState(
         {
           confNum: value,
-          case: 'exchange',
-          //performance: purchaseData.tickets[0].performance,
-          //venueName:purchaseData.tickets.venueName
+          case: 'exchange', // User is trying to make an exchange
           name: purchaseData.purchaser.name,
           phoneNum: purchaseData.purchaser.phoneNum,
           email: purchaseData.purchaser.address,
@@ -110,27 +124,47 @@ export const Home = () => {
     }).catch(error => {
       console.error(error)
     })
-    //console.log(passState)
   }
+
+  /**
+   * USEEFFECT runs on the first render to fetch all show data from database
+   */
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://localhost:4000/showData')
+      const newData = await response.json()
+      //console.log("Recieved this show data: ", JSON.stringify(newData)) // DEBUG
+      setShowData(newData)
+    }
+    fetchData();
+  }, []);
+  
+  /**
+   * RENDER elements on the page
+   */
   if (showData) {
+    // If there is existing showdata from the backend...
     return (
       <div className='App-body '>
         <Stack direction='vertical' style={{ alignItems: 'center' }} gap={0}>
-          <Image src={logo} className='App-logo-big' style={{ marginTop: '-30px' }}></Image>
+
+          {/**TickIt Logo */}
+          <Image src={logo} className='App-logo-big' style={{ marginTop: '30px' }}></Image>
+
+          {/**Exchange Tickets button */}
           <div className='d-flex' style={{ width: '95%', marginBottom: '80px', justifyContent: 'right' }}>
-            <Button className='me-2' variant="primary" onClick={() => {
-              confNumModal()
-            }}>
+            <Button className='me-2' variant="primary" onClick={() => {confNumModal()}}>
               Exchange Tickets
             </Button>
-            {/* <Button variant="primary" onClick={() => {
-            confNumModal()
-          }}>
-            Refund Tickets
-          </Button> */}
           </div>
+
+          {/**Container for show cards */}
           <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '35px', overflowY: 'auto', marginBottom: '30px', marginTop: '-70px', background: '#282634' }}>
+            
+            {/**Flex rows of show cards */}
             <Stack className="mb-5 flex-wrap" direction='horizontal' style={{ justifyContent: 'center' }} gap={3}>
+
+              {/**Map the showData from the backend to individual cards */}
               {showData.map((item, index) => (
                 <Card key={index} style={{ width: '18rem', height: '22rem' }}>
                   <Card.Img height={'50%'} variant="top" src={VBCplaceholder} />
@@ -139,7 +173,6 @@ export const Home = () => {
                     <Card.Text >
                       {item.venueName} <br /> {convertDate(item.dateTime)}
                     </Card.Text>
-                    <Stack direction='horizontal' gap={2}>
                       <Link
                         to={"/seatSelection"}
                         state={{ case: "purchase", event: item.performanceName, venue: item.venueName, datetime: item.dateTime }}>
@@ -147,14 +180,13 @@ export const Home = () => {
                           Purchase Tickets
                         </Button>
                       </Link>
-
-                    </Stack>
                   </Card.Body>
                 </Card>
               ))}
             </Stack>
 
-            <Modal show={showModal} onHide={handleClose}>
+            {/**Confirmation number modal */}
+            <Modal show={showConfModal} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Enter Confirmation Number</Modal.Title>
               </Modal.Header>
@@ -168,7 +200,6 @@ export const Home = () => {
                       onChange={(e) => setValue(e.target.value)}
                       value={value}
                     />
-
                   </FormGroup>
                   <div className='d-inline-flex'>
                     <Button className="me-2 mt-1" type='submit' variant="success" style={{ width: '60px', height: '35px' }} onClick={onFormSubmit}>
@@ -179,7 +210,6 @@ export const Home = () => {
                         {alert.label}
                       </Alert>
                     }
-
                   </div>
                 </Form>
               </Modal.Body>
@@ -193,15 +223,14 @@ export const Home = () => {
               </Modal.Footer>
             </Modal>
 
-            {/* {This modal allows you to select a show (exchanging)} */}
+            {/**Select a show modal for exchanges */}
             <Modal show={pickShow} onHide={handleCloseAdd}>
               <Modal.Header closeButton>
                 <Modal.Title>Select a show</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Form onSubmit={onFormSubmit} id='newShowForm' >
-                  {formError && <Alert variant='danger'>{formError}</Alert>
-                  }
+                  {formError && <Alert variant='danger'>{formError}</Alert>}
                   <Row className="mb-3">
                     <ListGroup as={Col} controlid="status">
                       <Form.Label>Shows</Form.Label>
@@ -218,12 +247,8 @@ export const Home = () => {
                           </Link>
                         ))}
                       </div>
-
                     </ListGroup>
-
                   </Row>
-                 
-
                 </Form>
               </Modal.Body>
             </Modal>
@@ -233,10 +258,13 @@ export const Home = () => {
     )
   }
   else {
+    // Otherwise, when there is no existing showdata from the backend...
     return (
       <div className='App-body '>
         <Stack direction='vertical' style={{ alignItems: 'center' }} gap={0}>
+          {/**TickIt Logo */}
           <Image src={logo} className='App-logo-big' style={{ marginTop: '-30px' }}></Image>
+          {/**Container for show cards (empty) */}
           <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '35px', overflowY: 'auto', marginBottom: '30px', marginTop: '-70px', background: '#282634' }}>
           </div>
         </Stack>

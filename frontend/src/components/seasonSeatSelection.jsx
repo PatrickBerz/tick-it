@@ -2,8 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stack, Image, Form, Button, ListGroup } from 'react-bootstrap';
 import { useEffect, useState, useRef } from "react";
 import {useLocation, Link, useNavigate } from 'react-router-dom';
-import {ReactComponent as Playhouse} from './playhouseSeatsSeason.svg';
-import {ReactComponent as ConcertHall} from './concertHallSeason.svg';
+import {ReactComponent as Playhouse} from './seatmaps/playhouseSeatsSeason.svg';
+import {ReactComponent as ConcertHall} from './seatmaps/concertHallSeason.svg';
 
 export const SeasonSeatSelection = () => {
   // Load previous state
