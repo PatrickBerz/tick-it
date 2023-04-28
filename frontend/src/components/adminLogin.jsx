@@ -1,13 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Stack, Button, Alert, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import { Form, Stack, Button, Alert } from 'react-bootstrap';
+import { useState } from 'react';
 
 
 export const AdminLogin = () => {
-    const [value, setValue] = useState('');
-    const [alert, setAlert] = useState(undefined);
+    const [value, setValue] = useState(''); // Controls user-provided password
+    const [alert, setAlert] = useState(undefined); // Controls error/success messgge
 
+    /**
+     * FUNCTION check the submitted password against the database
+     * PARAM event
+     */
     const onFormSubmit = (e) => {
         e.preventDefault();
         setValue(value);
@@ -29,14 +32,14 @@ export const AdminLogin = () => {
         })
     }
 
-
+    /**
+     * RETURN render page elements
+     */
     return (
-
         <div className="d-flex justify-content-center" style={{ marginTop: '60px', padding: '40px' }}>
             <div className='square border border-secondary border-3' style={{marginTop:'60px' ,padding: '40px',background: '#282634' }}>
                 <Form className='d-flex square '  onSubmit={onFormSubmit} style={{ padding: '20px'}}>
-                    
-                    <Stack  >
+                    <Stack>
                         <Form.Label style={{ color: 'white' }}>Enter Admin Password</Form.Label>
                         <Form.Control
                             type='password'
@@ -45,8 +48,6 @@ export const AdminLogin = () => {
                             style={{ maxWidth: '200px' }}
                         >
                         </Form.Control>
-
-
                         {alert &&
                             <Alert style={{ maxWidth: '200px', marginTop: 5, paddingTop: '2px', maxHeight: '30px', }} key={alert.type} variant={alert.type}>
                                 {alert.label}

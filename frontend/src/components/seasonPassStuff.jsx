@@ -1,17 +1,21 @@
 import { Form, Stack, Button, Alert, Table, Modal, Row, Col, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const SeasonPassStuff = () => {
-    const [data, setData] = useState(null);
-    const [showModal, setShow] = useState(false)
-    const [alert, setAlert] = useState(undefined);
+    const [data, setData] = useState(null); // Controls season pass data
+    const [showModal, setShow] = useState(false) // Controls Edit modal
+    const [alert, setAlert] = useState(undefined); // Controls success/error message
 
-    const [formError, setFormError] = useState(null)
-    const [importModal, setImportModal] = useState(false)
-    const [exportModal, setExportModal] = useState(false)
-    const [exportConfModal, setExportConfModal] = useState(false)
-    const [format, setFormat] = useState("json")
-    const [fileContents, setFileContents] = useState(null)
+    const [formError, setFormError] = useState(null) // Controls form submission error
+    const [importModal, setImportModal] = useState(false) // Controls Import modal
+    const [exportModal, setExportModal] = useState(false) // Controls Export modal
+    const [exportConfModal, setExportConfModal] = useState(false) // Controls Export confirmation modal
+    const [format, setFormat] = useState("json") // Controls export format
+    const [fileContents, setFileContents] = useState(null) // Controls imported file contents
+    
+    /**
+     * USEEFFECT on first page render, fetch season passholder information
+     */
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/seasonTickets')
@@ -22,7 +26,7 @@ export const SeasonPassStuff = () => {
         fetchData();
     }, []);
 
-
+    // Control user-submitted form data
     const [formData, setFormData] = useState(
         {
             name: '',
@@ -33,16 +37,26 @@ export const SeasonPassStuff = () => {
             seatNum: ''
         }
     )
+    
+    /**
+     * FUNCTION handle close of Edit modal
+     */
     const handleClose = () => {
         setShow(false)
         setAlert(undefined)
     }
 
-
+    /**
+     * FUNCTION navigate to admin homepage
+     */
     const handleBackButton = () => {
         window.location.href = "/adminPage"
 
     }
+ 
+    /**
+     * FUNCTION handle change of file type 
+     */
     const handleFileChange = (e) => {
         const file = e.target.files[0]
         if (file) {
@@ -59,8 +73,11 @@ export const SeasonPassStuff = () => {
                 console.log("Please upload valid file type")
             }
         }
-
     }
+    
+    /**
+     * FUNCTION send imported file contents to database
+     */
     const handleImportSubmit = (e) => {
         e.preventDefault()
         const promise = fetch('http://localhost:4000/importPath', {
@@ -84,55 +101,94 @@ export const SeasonPassStuff = () => {
         setTimeout(() => { window.location.reload(); }, 500);
     }
 
+    /**
+     * FUNCTION open Import modal
+     */
     function handleImportModal() {
         setImportModal(true)
     }
+    
+    /**
+     * FUNCTION close Import modal
+     */
     function handleCloseImport() {
         setImportModal(false)
     }
-
+    
+    /**
+     * FUNCTION on buttonclick, tell backend server to export data of a certain filetype
+     */
     function handleExport() {
-        console.log("yay export")
         let choice = { fileType: format}
         const promise = fetch('http://localhost:4000/exportPath', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ choice })
-            //body: "json"
         });
     }
+    
+    /**
+     * FUNCTION open Export modal
+     */
     function handleOpenExport() {
         setExportModal(true)
     }
+
+    /**
+     * FUNCTION close Export modal
+     */
     function handleCloseExport() {
         handleExport()
         setExportModal(false)
         setExportConfModal(true)
     }
+    
+    /**
+     * FUNCTION close Export confirmation modal
+     */
     function handleCloseExportConf() {
         setExportConfModal(false)
     }
+    
+    /**
+     * FUNCTION handle selecting a radio button
+     * PARAM value of the selected radio button
+     */
     const onPickFormat = (val) => {
         setFormat(val);
     }
 
+    /**
+     * FUNCTION handle edit of season passholder
+     */
     const handleItemEdit = (item) => {
         setFormData({ name: item.name, address: item.address, phoneNum: item.phoneNum, section: item.seatAssignment.section, row: item.seatAssignment.row, seatNum: item.seatAssignment.seatNum })
         setShow(true)
     }
 
+    /**
+     * FUNCTION handle update of name field
+     */
     const handleNameChange = e => {
         setFormData({
             ...formData,
             name: e.target.value
         })
     }
+    
+    /**
+     * FUNCTION handle update of address field
+     */
     const handleAddressChange = e => {
         setFormData({
             ...formData,
             address: e.target.value
         })
     }
+    
+    /**
+     * FUNCTION handle update of phone number field
+     */
     const handlePhoneNumChange = e => {
         setFormData({
             ...formData,
@@ -140,16 +196,16 @@ export const SeasonPassStuff = () => {
         })
     }
 
+    /**
+     * FUNCTION handle submission of Edit modal form
+     */
     const onFormSubmit = (e) => {
         e.preventDefault()
         if (!formData.name) {
             setFormError('Please fill in all fields.');
             return;
         }
-
         setFormError(null);
-
-
         let passUpdate =
         {
             name: formData.name,
@@ -159,10 +215,7 @@ export const SeasonPassStuff = () => {
             row: formData.row,
             seatNum: formData.seatNum
         }
-
         console.log(passUpdate)
-
-
         const promise = fetch('http://localhost:4000/holderUpdate', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
@@ -192,15 +245,17 @@ export const SeasonPassStuff = () => {
         setTimeout(() => { window.location.reload(); }, 500);
     }
 
-
-
+    /**
+     * RETURN render page elements
+     */
     if (data) {
-        console.log(JSON.stringify(data))
+        // If there is data to load...
         return (
             <div className='d-flex' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
-
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
                     <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>
+
+                        {/**Import button */}
                         <Button className=' p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -208,6 +263,8 @@ export const SeasonPassStuff = () => {
                             onClick={handleImportModal}>
                             Import Data
                         </Button>
+                        
+                        {/**Export button */}
                         <Button className='ms-2 p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -216,6 +273,7 @@ export const SeasonPassStuff = () => {
                             Export Data
                         </Button>
 
+                        {/**Back button */}
                         <Button className='ms-auto p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -225,6 +283,8 @@ export const SeasonPassStuff = () => {
                         </Button>
                     </div>
                     <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '45rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
+                        
+                        {/**Table of season passholders */}
                         <Table bordered responsive striped hover variant='dark' size='sm'>
                             <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={5}>Season Pass Holders</th></tr></thead>
                             <tbody style={{ fontSize: '20px', color: "white" }}>
@@ -235,8 +295,6 @@ export const SeasonPassStuff = () => {
                                     <th>Seat</th>
                                     <th>Options</th>
                                 </tr>
-
-
                                 {data.map((item, index) => (
                                     <tr key={index} style={{ alignItems: 'center' }}>
                                         <td >{item.name}</td>
@@ -256,6 +314,8 @@ export const SeasonPassStuff = () => {
                         </Table>
                     </div>
                 </Stack>
+
+                {/**Edit Modal */}
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Enter Event Data</Modal.Title>
@@ -308,6 +368,8 @@ export const SeasonPassStuff = () => {
                         </Form>
                     </Modal.Body>
                 </Modal>
+                
+                {/**Import Modal */}
                 <Modal show={importModal} onHide={handleCloseImport}>
                     <Modal.Header closeButton></Modal.Header>
                     <Modal.Body>
@@ -321,6 +383,8 @@ export const SeasonPassStuff = () => {
                         </Form>
                     </Modal.Body>
                 </Modal>
+                
+                {/**Export Modal */}
                 <Modal show={exportModal} onHide={handleCloseExport}>
                     <Modal.Header closeButton>
                         <Modal.Title>Export to a file</Modal.Title>
@@ -343,6 +407,8 @@ export const SeasonPassStuff = () => {
                         </Form>
                     </Modal.Body>
                 </Modal>
+                
+                {/**Export confirmation Modal */}
                 <Modal show={exportConfModal} onHide={handleCloseExportConf}>
                     <Modal.Header closeButton>
                         <Modal.Title>Export to a file</Modal.Title>
@@ -360,6 +426,7 @@ export const SeasonPassStuff = () => {
         )
     }
     else {
+        // Otherwise, load an empty table...
         return (
             <div style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center' }}>
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
@@ -405,17 +472,4 @@ export const SeasonPassStuff = () => {
         );
     }
 
-}
-function getTicketStatusText(statusInt) {
-    switch (statusInt) {
-        case 0:
-            return "Unsold"
-        case 1:
-            return "Reserved"
-        case 2:
-            return "Paid"
-        case 3:
-            return "Picked Up"
-
-    }
 }

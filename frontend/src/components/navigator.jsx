@@ -2,8 +2,8 @@ import { Component } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-
 export default class Navigator extends Component{
+    // Render navigation bar on every page
     render(){
     return (
         <div>

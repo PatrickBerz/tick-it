@@ -1,24 +1,42 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Stack,Button } from 'react-bootstrap';
+import { Stack, Button } from 'react-bootstrap';
 
 
 export const AdminPage = () =>{
     
+    /**
+     * FUNCTION handle listings buttonclick
+     */
      function ListingsSubmit(){
         window.location.href="/eventListings"
     }
+
+    /**
+     * FUNCTION handle ticket stuff buttonclick
+     */
     function ticketStuffSubmit(){
         window.location.href="/ticketStuff"
     }
+    
+    /**
+     * FUNCTION handle season pass buttonclick
+     */
     function seasonPassSubmit(){
         window.location.href="/seasonPassStuff"
     }
+    
+    /**
+     * FUNCTION handle policy buttonclick
+     */
     function policyStuffSubmit(){
         window.location.href="/policyStuff"
     }
+    
+    /**
+     * RETURN render page elements
+     */
     return (
         <div  style={{height:'100%', width:'100%', paddingTop:'120px', paddingLeft:'35%', paddingRight:'35%'}}>
-
             <Stack className='square border border-secondary border-3' direction='vertical' style={{color: 'white', alignItems:'center', background: '#282634' }} gap={1}>
                     <div style={{fontSize:'30px', marginTop:'80px' }}>Welcome, Admin</div>
                     <Button size='lg' onClick={ListingsSubmit} variant="primary"

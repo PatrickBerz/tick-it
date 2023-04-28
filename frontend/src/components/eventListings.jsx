@@ -1,11 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Stack, Button, Alert, Table, Modal, InputGroup, Row, Col } from 'react-bootstrap'
-import React, { useState, useEffect } from 'react'
-
-
+import { useState, useEffect } from 'react'
 
 export const EventListings = () => {
 
+    // Controls modal form data
     const [formData, setFormData] = useState({
         performanceName: '',
         venueName: '',
@@ -15,14 +14,19 @@ export const EventListings = () => {
         sectionPrice:''
     });
 
-    const [showModal, setShow] = useState(false)
-    const [formError, setFormError] = useState(null)
-    const [showData, setShowData] = useState([])
-    const [alert, setAlert] = useState(undefined);
+    const [showModal, setShow] = useState(false) // Controls new event modal
+    const [formError, setFormError] = useState(null) // Controls form submission error message
+    const [showData, setShowData] = useState([]) // Controls array of show data
+    const [alert, setAlert] = useState(undefined); // Controls error/success message
 
-    const [playhouseSections, setPlayhouseSections] = useState([])
-    const [concertHallSections, setConcertHallSections] = useState([])
+    const [playhouseSections, setPlayhouseSections] = useState([]) // Controls playhouse sections
+    const [concertHallSections, setConcertHallSections] = useState([]) // Controls concert hall sections
 
+    /**
+     * FUNCTION handle price change of playhouse sections
+     * PARAM the section id
+     * PARAM new price
+     */
     function handlePhPriceChange(section, value) {
         setPlayhouseSections(prevState => ({
             ...prevState,
@@ -31,6 +35,11 @@ export const EventListings = () => {
         }))
     }
 
+    /**
+     * FUNCTION handle price change of concert hall sections
+     * PARAM the section id
+     * PARAM new price
+     */
     function handleChPriceChange(section, value) {
         setConcertHallSections(prevState => ({
             ...prevState,
@@ -39,18 +48,23 @@ export const EventListings = () => {
         }))
     }
 
+    /**
+     * FUNCTION on buttonclick, navigate back to admin homepage
+     */
     const handleBackButton = () => {
         window.location.href = "/adminPage"
-
-    }
-    const handleExport = () => {
-        console.log("yay export")
-
     }
 
+    /**
+     * FUNCTION on buttonclick, show the new event modal
+     */
     const newEventModal = () => {        
         setShow(true)
-    };
+    }
+    
+    /**
+     * FUNCTION close the new event modal
+     */
     const handleClose = () => {
         setShow(false)
         setAlert(undefined)
@@ -62,36 +76,50 @@ export const EventListings = () => {
         })
     }
 
-
-
+    /**
+     * FUNCTION handle event name field update
+     */
     const handleTextChange = e => {
         setFormData({
             ...formData,
             performanceName: e.target.value
         })
     }
+    
+    /**
+     * FUNCTION handle venue selection field update
+     */
     const handleSelectChange = e => {
         setFormData({
             ...formData,
             venueName: e.target.value
         })
     }
+    
+    /**
+     * FUNCTION handle date field update
+     */
     const handleDateChange = e => {
         setFormData({
             ...formData,
             date: e.target.value
         })
     }
+    
+    /**
+     * FUNCTION handle time field update
+     */
     const handleTimeChange = e => {
         setFormData({
             ...formData,
             time: e.target.value
         })
     }
+    
+    /**
+     * FUNCTION handle when a show is deleted on buttonclick
+     */
     const handleItemDeleted = (item) => {
-        console.log(item.performanceName)
-        //showData.splice(index, 1)
-        //console.log(showData)
         let showDelete =
         {
             performance: {
@@ -100,13 +128,11 @@ export const EventListings = () => {
                 dateTime: item.dateTime
             }
         }
-        console.log(showDelete)
         const promise = fetch('http://localhost:4000/deleteShow', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ showDelete })
         });
-        console.log(promise)
         promise.then(event => {
             if (event.status === 200) {
                 setAlert({ label: 'success', type: 'success' })
@@ -117,8 +143,11 @@ export const EventListings = () => {
 
         })
         setTimeout(() => { window.location.reload(); }, 500);
-
     }
+
+    /**
+     * FUNCTION convert ISO to pretty CST
+     */
     const convertDate = (item) => {
         const oldDate = new Date(item)
         //Shift time 300 minutes (5 hours) to get it out of GMT
@@ -131,16 +160,15 @@ export const EventListings = () => {
             minute: 'numeric',
             hour12: true
         }
-
         const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
-        //const formattedDate = date.toLocaleDateString('en-US', options)
         return formattedDate
     }
 
 
-
+    /**
+     * FUNCTION convert datetime to ISO datetime
+     */
     function toISODate(dateStr, timeStr) {
-        // console.log(dateStr, timeStr)
         const [year, month, day] = dateStr.split("-");
         const [hour, minute] = timeStr.split(":");
 
@@ -150,8 +178,12 @@ export const EventListings = () => {
         const paddedMinute = (minute.length === 1) ? `0${minute}` : minute;
 
         return `${year}-${paddedMonth}-${paddedDay}T${paddedHour}:${paddedMinute}:00.000Z`;
-
     }
+
+    /**
+     * FUNCTION handle submission of new show form (in new show modal)
+     * PAREM event
+     */
     const onFormSubmit = (e) => {
         e.preventDefault()
         if (!formData.performanceName || !formData.venueName || !formData.date || !formData.time) {
@@ -162,7 +194,6 @@ export const EventListings = () => {
         setFormError(null);
 
         let dateTime = toISODate(formData.date, formData.time)
-       
 
         let newShow =
         {
@@ -174,9 +205,6 @@ export const EventListings = () => {
             }
 
         }
-
-        console.log(newShow)
-
 
         const promise = fetch('http://localhost:4000/newShow', {
             method: 'POST',
@@ -200,9 +228,11 @@ export const EventListings = () => {
         })
         handleClose()
         setTimeout(() => { window.location.reload(); }, 500);
-
-
     }
+    
+    /**
+     * USEEFFECT on first render, fetch the playhouse sections from database
+     */
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/phSections')
@@ -211,6 +241,10 @@ export const EventListings = () => {
         }
         fetchData();
     }, []);
+    
+    /**
+     * USEEFFECT on first render, fetch the concert hall sections from database
+     */
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/chSections')
@@ -221,6 +255,9 @@ export const EventListings = () => {
         fetchData();
     }, []);
 
+    /**
+     * USEEFFECT on first render, fetch the show list from database
+     */
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/showData')
@@ -232,14 +269,17 @@ export const EventListings = () => {
     }, []);
 
 
-    // Perf name, venue name, date/time, array of tickets
+    /**
+     * RETURN render page elements
+     */
     if (showData) {
-        console.log(JSON.stringify(showData))
+        // If the show data is loaded
         return (
             <div className='d-flex' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
-
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
                     <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>
+
+                        {/**Create Show button */}
                         <Button className='p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -248,6 +288,7 @@ export const EventListings = () => {
                             Create Show
                         </Button>
 
+                        {/**Back button*/}
                         <Button className='ms-auto p-2' style={{
                             borderColor: '#FF4057',
                             backgroundColor: '#FF4057',
@@ -258,6 +299,7 @@ export const EventListings = () => {
                     </div>
                     <div className="square border border-secondary border-3 container" style={{ maxWidth: '95%', maxHeight: '35rem', padding: '20px', overflowY: 'auto', marginBottom: '30px', background: '#282634' }}>
 
+                        {/**Table of event listings/performances*/}
                         <Table bordered responsive striped hover variant='dark' size='sm' >
                             <thead><tr><th style={{ textAlign: 'center', fontSize: '20px' }} colSpan={6}>
                                 Performances
@@ -272,7 +314,6 @@ export const EventListings = () => {
                                     <th >Seats in Venue</th>
                                     <th></th>
                                 </tr>
-
                                 {showData.map((item, index) => (
                                     <tr key={index}>
                                         <td>{item.performanceName}</td>
@@ -294,6 +335,7 @@ export const EventListings = () => {
                     </div>
                 </Stack>
 
+                {/**New Show Modal*/}
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Enter Event Data</Modal.Title>
@@ -370,22 +412,19 @@ export const EventListings = () => {
                                     </Form.Group>
                                 ))
                             )}
-
                             <Button className='mt-3' variant="primary" type="submit" >
                                 Submit
                             </Button>
-
                         </Form>
                     </Modal.Body>
                 </Modal>
             </div>
-
         )
     }
     else {
+        // Otherwise, if the shows don't load...
         return (
             <div className='d-flex' style={{ maxWidth: '100%', maxHeight: '100%', alignSelf: 'center', marginTop: '60px', paddingLeft: '25px', paddingRight: '25px' }}>
-
                 <Stack direction='vertical' style={{ marginTop: '40px' }} gap={2}>
                     <div className='d-flex ' style={{ width: '95%', alignSelf: 'center' }}>
                         <Button className='p-2' style={{
@@ -394,20 +433,6 @@ export const EventListings = () => {
                         }}
                             onClick={newEventModal}>
                             Create Show
-                        </Button>
-                        <Button className='ms-2 p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} // send file path
-                            onClick={handleExport}>
-                            Import Data
-                        </Button>
-                        <Button className='ms-2 p-2' style={{
-                            borderColor: '#FF4057',
-                            backgroundColor: '#FF4057',
-                        }} //0 or 1
-                            onClick={handleExport}>
-                            Export Data
                         </Button>
 
                         <Button className='ms-auto p-2' style={{
@@ -456,9 +481,7 @@ export const EventListings = () => {
                             </tbody>
                         </Table>
                     </div>
-
                 </Stack>
-
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Enter Event Data</Modal.Title>
@@ -487,12 +510,10 @@ export const EventListings = () => {
                                         <option value="Concert Hall">Concert Hall</option>
                                     </Form.Select>
                                 </Form.Group>
-
                                 <Form.Group as={Col} controlId="dateValue">
                                     <Form.Label>Date</Form.Label>
                                     <Form.Control type='date' required placeholder="MM/DD/YYYY" value={formData.date} onChange={handleDateChange} />
                                 </Form.Group>
-
                             </Row>
                             <Row>
                                 <Form.Group as={Col} controlId="dateValue">
@@ -503,7 +524,6 @@ export const EventListings = () => {
                             <Button variant="primary" type="submit" >
                                 Submit
                             </Button>
-
                         </Form>
                     </Modal.Body>
                 </Modal>
